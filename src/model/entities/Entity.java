@@ -2,6 +2,7 @@ package model.entities;
 
 import util.Pair;
 
+import java.awt.Graphics;
 import java.util.List;
 
 import graphics.EntitiesGraphics;
@@ -105,9 +106,9 @@ public abstract class Entity {
 		return this.move;
 	}
 
-	public void updateEntity(Entity e) {
-		this.graphics.updateGraphics(e);
+	public void updateEntity(Graphics g, Entity e) {
 		this.updateEntityMovement();
+		this.graphics.updateGraphics(g, e);
 	}
 
 	protected abstract void updateEntityMovement();

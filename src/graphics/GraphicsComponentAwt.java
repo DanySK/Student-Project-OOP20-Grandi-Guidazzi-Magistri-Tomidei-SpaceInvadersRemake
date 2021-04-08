@@ -15,21 +15,20 @@ public class GraphicsComponentAwt implements EntitiesGraphics {
 	private Image img;
 	private Graphics graphics;
 
-	public GraphicsComponentAwt(Graphics g, List<String> strImgs) {
+	public GraphicsComponentAwt(List<String> strImgs) {
 		this.strImgs = strImgs;
 		this.img = new ImageIcon(getClass().getResource(this.strImgs.get(0))).getImage();
-		this.graphics = (Graphics2D) g; 
 	}
 
 	@Override
-	public void updateGraphics(Entity e) {
+	public void updateGraphics(Graphics g, Entity e) {
+		this.graphics = (Graphics2D) g;
 		this.graphics.drawImage(this.img, e.getX(), e.getY(), null);
 	}
 
 	@Override
 	public void switchImage(Entity e, String strImg) {
 		this.img = new ImageIcon(getClass().getResource(strImg)).getImage();
-		this.updateGraphics(e);
 	}
 
 }
