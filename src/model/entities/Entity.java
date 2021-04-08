@@ -16,15 +16,15 @@ public abstract class Entity {
 	private EntitiesGraphics graphics;
 	private EntityMovement move;
 
-	public void create(Pair<Integer,Integer> pos, int width,int height, int muX, int muY,
-			List<String> liststr, EntitiesGraphics g, EntityMovement move) {
+	protected void create(Pair<Integer,Integer> pos, int width,int height, int muX, int muY,
+			List<String> liststr, EntitiesGraphics graph, EntityMovement move) {
 		this.width = width;
 		this.height = height;
 		this.pos = pos;
 		this.muX = muX;
 		this.muY = muY;
 		this.strImgs = liststr;
-		this.graphics = g;
+		this.graphics = graph;
 		this.move = move;
 		this.life = true;
 	}
