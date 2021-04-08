@@ -12,4 +12,9 @@ public interface EntityMovement {
 
 	public void moveDown(Entity e);
 
+	public void moveDownLeft(Entity e);
+
+	public void moveDownRight(Entity e);
+
+
 }

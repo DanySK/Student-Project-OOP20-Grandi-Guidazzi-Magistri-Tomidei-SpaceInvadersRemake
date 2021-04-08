@@ -23,5 +23,17 @@ public class EntityMovementImpl implements EntityMovement{
 	public void moveDown(Entity e) {
 		e.setY(e.getY() + e.getMuY());
 	}
+
+	@Override
+	public void moveDownLeft(Entity e) {
+		e.setY(e.getY() + e.getMuY());
+		e.setX(e.getX() - e.getMuX());
+	}
+
+	@Override
+	public void moveDownRight(Entity e) {
+		e.setY(e.getY() + e.getMuY());
+		e.setX(e.getX() + e.getMuX());		
+	}
 	
 }
