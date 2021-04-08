@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import graphics.EntitiesGraphics;
+import graphics.GraphicsComponentAwt;
 import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovement;
+import model.physics.EntityMovementImpl;
 import util.Pair;
 
 public class Boss extends Entity implements Enemy {
@@ -20,10 +22,11 @@ public class Boss extends Entity implements Enemy {
 	private int speed;
 	private List<String> strImgs;
 
-	public Boss(Pair<Integer,Integer> pos, EntitiesGraphics graph, EntityMovement move) {
+	public Boss(Pair<Integer,Integer> pos) {
 		this.strImgs = new ArrayList<>();
-		this.create(pos, this.BOSS_INITIAL_WIDTH, this.BOSS_INITIAL_HEIGHT, this.BOSS_INITIAL_BOSS_MU_X, this.BOSS_INITIAL_BOSS_MU_Y,
-				this.strImgs, graph, move);
+		this.create(pos, this.BOSS_INITIAL_WIDTH, this.BOSS_INITIAL_HEIGHT, this.BOSS_INITIAL_BOSS_MU_X, 
+				this.BOSS_INITIAL_BOSS_MU_Y, this.strImgs, new GraphicsComponentAwt(this.strImgs),
+				new EntityMovementImpl());
 		this.speed = 6;
 		this.direction = EntityDirections.LEFT;
 	}
