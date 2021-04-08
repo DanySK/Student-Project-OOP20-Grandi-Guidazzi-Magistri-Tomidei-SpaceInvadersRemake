@@ -21,6 +21,7 @@ public class BossBullet extends Entity {
 	private EntityDirections direction;
 
 	protected BossBullet(Pair<Integer,Integer> pos, List<String> strImg) {
+		this.randomBulletImg(strImg);
 		this.create(pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
 				this.BULLET_INITIAL_MU_Y, this.bulletStrImgs, new GraphicsComponentAwt(this.bulletStrImgs),
 				new EntityMovementImpl());
@@ -41,21 +42,22 @@ public class BossBullet extends Entity {
 		}
 	}
 
-	private void randomBulletImg() {
+	private void randomBulletImg(List<String> strImg) {
 		Random random = new Random();
 		switch(random.nextInt(this.TOT_BULLET_DIRECTION)) {
 			case 0:
 				this.direction = EntityDirections.DOWN;
-				this.bulletStrImgs.set(0, "");
+				this.bulletStrImgs.add(strImg.get(0));
 				break;
 			case 1:
 				this.direction = EntityDirections.DOWN_LEFT;
-				this.bulletStrImgs.set(0, "");
+				this.bulletStrImgs.add(strImg.get(1));
 				break;
 				
 			case 2:
 				this.direction = EntityDirections.DOWN_RIGHT;
-				this.bulletStrImgs.set(0, "");
+				this.bulletStrImgs.add(strImg.get(2));
 				break;
 		}
+	}
 }
