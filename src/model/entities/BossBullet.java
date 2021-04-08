@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.util.List;
+import java.util.Random;
 
 import graphics.GraphicsComponentAwt;
 import model.entitiesutil.EntityDirections;
@@ -14,6 +15,7 @@ public class BossBullet extends Entity {
 	private final int BULLET_INITIAL_HEIGHT = 0;
 	private final int BULLET_INITIAL_MU_X = 0;
 	private final int BULLET_INITIAL_MU_Y = 0;
+	private final int TOT_BULLET_DIRECTION = 3;
 
 	private List<String> bulletStrImgs;
 	private EntityDirections direction;
@@ -39,4 +41,21 @@ public class BossBullet extends Entity {
 		}
 	}
 
+	private void randomBulletImg() {
+		Random random = new Random();
+		switch(random.nextInt(this.TOT_BULLET_DIRECTION)) {
+			case 0:
+				this.direction = EntityDirections.DOWN;
+				this.bulletStrImgs.set(0, "");
+				break;
+			case 1:
+				this.direction = EntityDirections.DOWN_LEFT;
+				this.bulletStrImgs.set(0, "");
+				break;
+				
+			case 2:
+				this.direction = EntityDirections.DOWN_RIGHT;
+				this.bulletStrImgs.set(0, "");
+				break;
+		}
 }
