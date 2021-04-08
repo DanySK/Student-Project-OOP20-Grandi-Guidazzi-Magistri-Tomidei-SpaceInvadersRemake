@@ -3,10 +3,8 @@ package model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import graphics.EntitiesGraphics;
 import graphics.GraphicsComponentAwt;
 import model.entitiesutil.EntityDirections;
-import model.physics.EntityMovement;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
