@@ -10,10 +10,10 @@ import util.Pair;
 
 public class Boss extends Entity implements Enemy {
 
-	private final int WIDTH = 0;
-	private final int HEIGHT = 0;
-	private final int BOSS_MU_X = 0;
-	private final int BOSS_MU_Y = 0;
+	private final int BOSS_INITIAL_WIDTH = 0;
+	private final int BOSS_INITIAL_HEIGHT = 0;
+	private final int BOSS_INITIAL_BOSS_MU_X = 0;
+	private final int BOSS_INITIAL_BOSS_MU_Y = 0;
 	private final int BOSS_MAX_SPEED = 0;
 
 	private EntityDirections direction;
@@ -21,8 +21,8 @@ public class Boss extends Entity implements Enemy {
 	private List<String> strImgs;
 
 	public Boss(Pair<Integer,Integer> pos, EntitiesGraphics graph, EntityMovement move) {
-		strImgs = new ArrayList<>();
-		super.create(pos, this.WIDTH, this.HEIGHT, this.BOSS_MU_X, this.BOSS_MU_Y,
+		this.strImgs = new ArrayList<>();
+		this.create(pos, this.BOSS_INITIAL_WIDTH, this.BOSS_INITIAL_HEIGHT, this.BOSS_INITIAL_BOSS_MU_X, this.BOSS_INITIAL_BOSS_MU_Y,
 				this.strImgs, graph, move);
 		this.speed = 6;
 		this.direction = EntityDirections.LEFT;
