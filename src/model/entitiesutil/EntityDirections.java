@@ -1,6 +1,6 @@
 package model.entitiesutil;
 
-public enum EntityDirection{
+public enum EntityDirections{
 
 	LEFT,
 

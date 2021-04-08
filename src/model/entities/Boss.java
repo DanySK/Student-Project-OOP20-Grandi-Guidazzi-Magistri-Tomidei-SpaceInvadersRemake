@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import graphics.EntitiesGraphics;
-import model.entitiesutil.EntityDirection;
+import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovement;
 import util.Pair;
 
@@ -16,7 +16,7 @@ public class Boss extends Entity implements Enemy {
 	private final int BOSS_MU_Y = 0;
 	private final int BOSS_MAX_SPEED = 0;
 
-	private EntityDirection direction;
+	private EntityDirections direction;
 	private int speed;
 	private List<String> strImgs;
 
@@ -25,16 +25,16 @@ public class Boss extends Entity implements Enemy {
 		super.create(pos, this.WIDTH, this.HEIGHT, this.BOSS_MU_X, this.BOSS_MU_Y,
 				this.strImgs, graph, move);
 		this.speed = 6;
-		this.direction = EntityDirection.LEFT;
+		this.direction = EntityDirections.LEFT;
 	}
 
 	@Override
 	public void changeDirection() {
-		if(this.direction == EntityDirection.LEFT) {
-			this.direction = EntityDirection.RIGHT;
+		if(this.direction == EntityDirections.LEFT) {
+			this.direction = EntityDirections.RIGHT;
 		}
 		else {
-			this.direction = EntityDirection.RIGHT;
+			this.direction = EntityDirections.RIGHT;
 		}
 		if(this.speed < this.BOSS_MAX_SPEED) {
 			this.speed++;
