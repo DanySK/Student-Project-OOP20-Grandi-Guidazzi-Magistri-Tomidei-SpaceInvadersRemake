@@ -4,4 +4,6 @@ public interface Enemy {
 
 	public void changeDirection();
 
+	public void shot();
+
 }
