@@ -1,7 +1,9 @@
 package model.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import graphics.GraphicsComponentAwt;
 import model.entitiesutil.EntityDirections;
@@ -20,13 +22,19 @@ public class Boss extends Entity implements Enemy {
 	private int speed;
 	private List<String> strImgs;
 
+	private Set<BossBullet> bullets;
+	private List<String> bulletImg;
+
 	public Boss(Pair<Integer,Integer> pos) {
 		this.strImgs = new ArrayList<>();
 		this.create(pos, this.BOSS_INITIAL_WIDTH, this.BOSS_INITIAL_HEIGHT, this.BOSS_INITIAL_BOSS_MU_X, 
 				this.BOSS_INITIAL_BOSS_MU_Y, this.strImgs, new GraphicsComponentAwt(this.strImgs),
 				new EntityMovementImpl());
 		this.speed = 6;
-		this.direction = EntityDirections.LEFT;
+		this.direction = EntityDirections.RIGHT;
+
+		this.bullets = new HashSet<>();
+		this.bulletImg = new ArrayList<>();
 	}
 
 	@Override
@@ -57,6 +65,15 @@ public class Boss extends Entity implements Enemy {
 			default:
 				break;
 		}
+	}
+
+	@Override
+	public void shot() {
+		//this.bullets.add(new BossBullet(this.getPos(), this.bulletImg));
+	}
+
+	public void bulletDistruction(BossBullet bullet) {
+		//this.bullets.remove(bullet);
 	}
 
 }
