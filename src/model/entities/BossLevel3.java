@@ -105,6 +105,12 @@ public class BossLevel3 extends Entity implements Enemy{
 
 			this.setX(x);
 		}
+
+		this.updateEntityMovement();
+	}
+
+	public int getSpeed() {
+		return this.speed;
 	}
 
 }
