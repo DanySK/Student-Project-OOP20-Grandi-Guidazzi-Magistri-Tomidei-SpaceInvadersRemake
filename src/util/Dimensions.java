@@ -1,0 +1,44 @@
+package util;
+
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
+/**
+ * A class to get all the infos about the dimension of the screen and the components used in the project. 
+ */
+public class Dimensions {
+	GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+	
+	/**
+	 * A method to determine the prefer height.
+	 * @return the prefer window height.
+	 */
+	public int getPreferScreenHeight() {
+		return this.graphicsDevice.getDisplayMode().getHeight() * 7 / 10;
+	}
+	
+	/**
+	 * A method to determine the prefer width.
+	 * @return the prefer window width.
+	 */
+	public int getPreferScreenWidth() {
+		return this.graphicsDevice.getDisplayMode().getWidth() * 7 / 10;
+	}
+	
+	/**
+	 * A method to determine the prefer label height.
+	 * @return the prefer label height.
+	 */
+	public int getMaxLabelHeight() {
+		return this.getPreferScreenHeight()/10*2;
+	}
+	
+	/**
+	 * A method to determine the prefer label height.
+	 * @return the prefer label width.
+	 */
+	public int getMaxLabelWidth() {
+		return this.getPreferScreenWidth();
+	}
+
+}
