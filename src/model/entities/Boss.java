@@ -1,42 +1,53 @@
 package model.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import graphics.EntitiesGraphics;
-import model.entitiesutil.EntityDirection;
-import model.physics.EntityMovement;
+import graphics.GraphicsComponentAwt;
+import model.entitiesutil.EntityDirections;
+import model.physics.EntityMovementImpl;
 import util.Pair;
 
 public class Boss extends Entity implements Enemy {
 
-	private final int WIDTH = 0;
-	private final int HEIGHT = 0;
-	private final int BOSS_MU_X = 0;
-	private final int BOSS_MU_Y = 0;
-	private final int BOSS_MAX_SPEED = 0;
+	private final int INITIAL_WIDTH = 0;
+	private final int INITIAL_HEIGHT = 0;
+	private final int INITIAL_MU_X = 0;
+	private final int INITIAL_MU_Y = 0;
+	private final int MAX_SPEED = 0;
+	private final int MAX_HITS = 0;
 
-	private EntityDirection direction;
+	private EntityDirections direction;
 	private int speed;
+	private int hit;
 	private List<String> strImgs;
 
-	public Boss(Pair<Integer,Integer> pos, EntitiesGraphics graph, EntityMovement move) {
-		strImgs = new ArrayList<>();
-		super.create(pos, this.WIDTH, this.HEIGHT, this.BOSS_MU_X, this.BOSS_MU_Y,
-				this.strImgs, graph, move);
+	private List<String> bulletImg;
+
+	public Boss(Pair<Integer,Integer> pos) {
+		this.strImgs = new ArrayList<>();
+		this.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
+				this.INITIAL_MU_Y, this.strImgs, new GraphicsComponentAwt(this.strImgs),
+				new EntityMovementImpl());
+		this.hit = 0;
 		this.speed = 6;
-		this.direction = EntityDirection.LEFT;
+		this.direction = EntityDirections.RIGHT;
+
+		this.bulletImg = new ArrayList<>();
 	}
 
 	@Override
 	public void changeDirection() {
-		if(this.direction == EntityDirection.LEFT) {
-			this.direction = EntityDirection.RIGHT;
+		this.getMove().moveDown(this);
+		if(this.direction == EntityDirections.LEFT) {
+			this.direction = EntityDirections.RIGHT;
 		}
 		else {
-			this.direction = EntityDirection.RIGHT;
+			this.direction = EntityDirections.RIGHT;
 		}
-		if(this.speed < this.BOSS_MAX_SPEED) {
+		if(this.speed < this.MAX_SPEED) {
 			this.speed++;
 		}
 	}
@@ -56,6 +67,28 @@ public class Boss extends Entity implements Enemy {
 			default:
 				break;
 		}
+	}
+
+	@Override
+	public void hit() {
+		this.hit++;
+	}
+
+	@Override
+	public void death() {
+		if(this.hit >= this.MAX_HITS) {
+			super.setLife(false);
+		}
+	}
+
+	@Override
+	public void shot() {
+		/*this.bullets.add(new BossBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
+				this.getY() + this.getHeight()), this.bulletImg));*/
+	}
+
+	public void bulletDistruction(BossBullet bullet) {
+		//this.bullets.remove(bullet);
 	}
 
 }

@@ -2,6 +2,7 @@ package model.entities;
 
 import util.Pair;
 
+import java.awt.Graphics;
 import java.util.List;
 
 import graphics.EntitiesGraphics;
@@ -16,15 +17,15 @@ public abstract class Entity {
 	private EntitiesGraphics graphics;
 	private EntityMovement move;
 
-	public void create(Pair<Integer,Integer> pos, int width,int height, int muX, int muY,
-			List<String> liststr, EntitiesGraphics g, EntityMovement move) {
+	protected void create(Pair<Integer,Integer> pos, int width,int height, int muX, int muY,
+			List<String> liststr, EntitiesGraphics graph, EntityMovement move) {
 		this.width = width;
 		this.height = height;
 		this.pos = pos;
 		this.muX = muX;
 		this.muY = muY;
 		this.strImgs = liststr;
-		this.graphics = g;
+		this.graphics = graph;
 		this.move = move;
 		this.life = true;
 	}
@@ -89,7 +90,7 @@ public abstract class Entity {
 		return life;
 	}
 
-	public void setLife(boolean life) {
+	protected void setLife(boolean life) {
 		this.life = life;
 	}
 
@@ -97,17 +98,13 @@ public abstract class Entity {
 		return strImgs;
 	}
 
-	public void addStrImg1(String strImg1) {
-		this.strImgs.add(strImg1);
-	}
-
 	public EntityMovement getMove() {
 		return this.move;
 	}
 
-	public void updateEntity(Entity e) {
-		this.graphics.updateGraphics(e);
+	public void updateEntity(Graphics g, Entity e) {
 		this.updateEntityMovement();
+		this.graphics.updateGraphics(g, e);
 	}
 
 	protected abstract void updateEntityMovement();
