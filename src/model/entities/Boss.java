@@ -17,9 +17,11 @@ public class Boss extends Entity implements Enemy {
 	private final int INITIAL_MU_X = 0;
 	private final int INITIAL_MU_Y = 0;
 	private final int MAX_SPEED = 0;
+	private final int MAX_HITS = 0;
 
 	private EntityDirections direction;
 	private int speed;
+	private int hit;
 	private List<String> strImgs;
 
 	private Set<BossBullet> bullets;
@@ -64,6 +66,18 @@ public class Boss extends Entity implements Enemy {
 				break;
 			default:
 				break;
+		}
+	}
+
+	@Override
+	public void hit() {
+		this.hit++;
+	}
+
+	@Override
+	public void death() {
+		if(this.hit >= this.MAX_HITS) {
+			super.setLife(false);
 		}
 	}
 
