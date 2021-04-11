@@ -2,6 +2,7 @@ package model.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import graphics.GraphicsComponentAwt;
 import model.entitiesutil.BossState;
@@ -24,6 +25,7 @@ public class BossLevel3 extends Entity implements Enemy{
 	private int speed;
 	private EntityDirections direction;
 	private BossState state;
+	private Random random;
 
 	private List<String> bulletStrImg;
 
@@ -36,6 +38,7 @@ public class BossLevel3 extends Entity implements Enemy{
 		this.speed = 4;
 		this.direction = EntityDirections.LEFT;
 		this.state = BossState.NORMAL;
+		this.random = new Random();
 
 		this.bulletStrImg = new ArrayList<>();
 		this.bulletStrImg.add("");
@@ -58,6 +61,7 @@ public class BossLevel3 extends Entity implements Enemy{
 
 	@Override
 	public void changeDirection() {
+		this.getMove().moveDown(this);
 		if(this.direction == EntityDirections.LEFT) {
 			this.direction = EntityDirections.RIGHT;
 		}
@@ -87,6 +91,19 @@ public class BossLevel3 extends Entity implements Enemy{
 	public void changeState() {
 		if(this.hit >= this.HITS_2ND_PHASE) {
 			this.state = BossState.UPSET;
+		}
+	}
+
+	public void teleport(int minX, int maxX) {
+		int x;
+		
+		if(this.state == BossState.UPSET) {
+
+			do {
+				x = this.random.nextInt(maxX);
+			}while(x <= minX + this.getWidth());
+
+			this.setX(x);
 		}
 	}
 
