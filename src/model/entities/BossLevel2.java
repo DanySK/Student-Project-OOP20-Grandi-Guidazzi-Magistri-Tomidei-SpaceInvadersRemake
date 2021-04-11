@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import graphics.GraphicsComponentAwt;
+import model.entitiesutil.BossState;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
@@ -19,6 +20,7 @@ public class BossLevel2 extends Entity implements Enemy{
 
 	private List<String> strImg;
 	private int hit;
+	private BossState state;
 
 	private List<String> bulletStrImg;
 
@@ -28,12 +30,12 @@ public class BossLevel2 extends Entity implements Enemy{
 		this.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
 				this.strImg, new GraphicsComponentAwt(this.strImg), new EntityMovementImpl());
 		this.hit = 0;
+		this.state = BossState.NORMAL;
 
 		this.bulletStrImg = new ArrayList<>();
 		this.bulletStrImg.add("");
 		this.bulletStrImg.add("");
 		this.bulletStrImg.add("");
-
 	}
 
 	@Override
@@ -42,7 +44,7 @@ public class BossLevel2 extends Entity implements Enemy{
 
 	@Override
 	protected void updateEntityMovement() {
-		if(this.hit >= this.HITS_2ND_PHASE) {
+		if(this.state == BossState.UPSET) {
 			this.getMove().moveDown(this);
 		}
 	}
@@ -56,7 +58,6 @@ public class BossLevel2 extends Entity implements Enemy{
 		if(this.hit >= this.MAX_HITS) {
 			super.setLife(true);
 		}
-		
 	}
 
 	@Override
@@ -70,4 +71,10 @@ public class BossLevel2 extends Entity implements Enemy{
 	public int getSpeed() {
 		return this.SPEED;
 	}
+
+	public void changeState() {
+		if(this.hit >= this.HITS_2ND_PHASE) {
+			this.state = BossState.UPSET;
+		}
+	} 
 }
