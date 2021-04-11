@@ -90,16 +90,12 @@ public abstract class Entity {
 		return life;
 	}
 
-	public void setLife(boolean life) {
+	protected void setLife(boolean life) {
 		this.life = life;
 	}
 
 	public List<String> getStrImgs() {
 		return strImgs;
-	}
-
-	public void addStrImg1(String strImg1) {
-		this.strImgs.add(strImg1);
 	}
 
 	public EntityMovement getMove() {
