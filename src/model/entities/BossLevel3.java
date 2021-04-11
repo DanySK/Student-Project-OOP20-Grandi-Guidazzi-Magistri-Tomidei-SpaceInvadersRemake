@@ -9,7 +9,7 @@ import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
-public class BossLevel3 extends Entity{
+public class BossLevel3 extends Entity implements Enemy{
 
 	private final int INITIAL_WIDTH = 0;
 	private final int INITIAL_HEIGHT = 0;
@@ -35,6 +35,7 @@ public class BossLevel3 extends Entity{
 		this.hit = 0;
 		this.speed = 4;
 		this.direction = EntityDirections.LEFT;
+		this.state = BossState.NORMAL;
 
 		this.bulletStrImg = new ArrayList<>();
 		this.bulletStrImg.add("");
@@ -52,6 +53,40 @@ public class BossLevel3 extends Entity{
 		}
 		else {
 			this.getMove().moveRight(this);
+		}
+	}
+
+	@Override
+	public void changeDirection() {
+		if(this.direction == EntityDirections.LEFT) {
+			this.direction = EntityDirections.RIGHT;
+		}
+		else {
+			this.direction = EntityDirections.LEFT;
+		}
+	}
+
+	@Override
+	public void shot() {
+		/*(new BossBullet(new Pair<>(this.getX() + this.getWidth()/2 - 1, 
+		this.getY() + this.getHeight()), this.bulletStrImg));*/
+	}
+
+	@Override
+	public void hit() {
+		this.hit++;
+	}
+
+	@Override
+	public void death() {
+		if(this.hit >= this.MAX_HITS) {
+			this.setLife(false);
+		}
+	}
+
+	public void changeState() {
+		if(this.hit >= this.HITS_2ND_PHASE) {
+			this.state = BossState.UPSET;
 		}
 	}
 
