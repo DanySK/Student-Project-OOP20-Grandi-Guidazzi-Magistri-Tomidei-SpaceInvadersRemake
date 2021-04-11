@@ -24,7 +24,6 @@ public class Boss extends Entity implements Enemy {
 	private int hit;
 	private List<String> strImgs;
 
-	private Set<BossBullet> bullets;
 	private List<String> bulletImg;
 
 	public Boss(Pair<Integer,Integer> pos) {
@@ -32,15 +31,16 @@ public class Boss extends Entity implements Enemy {
 		this.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
 				this.INITIAL_MU_Y, this.strImgs, new GraphicsComponentAwt(this.strImgs),
 				new EntityMovementImpl());
+		this.hit = 0;
 		this.speed = 6;
 		this.direction = EntityDirections.RIGHT;
 
-		this.bullets = new HashSet<>();
 		this.bulletImg = new ArrayList<>();
 	}
 
 	@Override
 	public void changeDirection() {
+		this.getMove().moveDown(this);
 		if(this.direction == EntityDirections.LEFT) {
 			this.direction = EntityDirections.RIGHT;
 		}
@@ -83,7 +83,8 @@ public class Boss extends Entity implements Enemy {
 
 	@Override
 	public void shot() {
-		//this.bullets.add(new BossBullet(this.getPos(), this.bulletImg));
+		/*this.bullets.add(new BossBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
+				this.getY() + this.getHeight()), this.bulletImg));*/
 	}
 
 	public void bulletDistruction(BossBullet bullet) {
