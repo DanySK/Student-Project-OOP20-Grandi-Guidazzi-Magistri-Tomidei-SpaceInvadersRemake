@@ -6,4 +6,7 @@ public interface Enemy {
 
 	public void shot();
 
+	public void hit();
+
+	public void death();
 }
