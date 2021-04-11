@@ -1,9 +1,13 @@
 package model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import graphics.GraphicsComponentAwt;
 import model.entitiesutil.BossState;
 import model.entitiesutil.EntityDirections;
+import model.physics.EntityMovementImpl;
+import util.Pair;
 
 public class BossLevel3 extends Entity{
 
@@ -20,6 +24,23 @@ public class BossLevel3 extends Entity{
 	private int speed;
 	private EntityDirections direction;
 	private BossState state;
+
+	private List<String> bulletStrImg;
+
+	public BossLevel3(Pair<Integer, Integer> pos) {
+		this.strImg = new ArrayList<>();
+		this.strImg.add("");
+		super.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
+				this.strImg, new GraphicsComponentAwt(this.strImg), new EntityMovementImpl());
+		this.hit = 0;
+		this.speed = 4;
+		this.direction = EntityDirections.LEFT;
+
+		this.bulletStrImg = new ArrayList<>();
+		this.bulletStrImg.add("");
+		this.bulletStrImg.add("");
+		this.bulletStrImg.add("");
+	}
 
 	@Override
 	protected void updateEntityMovement() {
