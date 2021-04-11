@@ -1,20 +1,17 @@
 package util;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
 
 /**
  * A class to get all the infos about the dimension of the screen and the components used in the project. 
  */
 public class Dimensions {
-	GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-	
 	/**
 	 * A method to determine the prefer height.
 	 * @return the prefer window height.
 	 */
 	public int getPreferScreenHeight() {
-		return this.graphicsDevice.getDisplayMode().getHeight() * 7 / 10;
+		return Toolkit.getDefaultToolkit().getScreenSize().height * 7 / 10;
 	}
 	
 	/**
@@ -22,7 +19,7 @@ public class Dimensions {
 	 * @return the prefer window width.
 	 */
 	public int getPreferScreenWidth() {
-		return this.graphicsDevice.getDisplayMode().getWidth() * 7 / 10;
+		return Toolkit.getDefaultToolkit().getScreenSize().width * 7 / 10;
 	}
 	
 	/**
