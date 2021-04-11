@@ -1,7 +1,7 @@
 package menu;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -30,7 +30,7 @@ public class StateMenu implements State{
 		this.panel.setLayout(new BorderLayout());
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
-		this.centerPanel.setBackground(Color.black);
+		this.centerPanel.setOpaque(false);
 	 
 		this.panel.add(this.titleFactory.createTitle("Welcome to Space Invaders Remake", Constants.titleSize, Constants.colorTitle), BorderLayout.NORTH);
 		
