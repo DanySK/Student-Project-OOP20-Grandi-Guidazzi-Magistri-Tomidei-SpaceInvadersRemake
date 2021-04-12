@@ -35,8 +35,12 @@ public class StateLeaderboard implements State{
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
-		for(int i=Constants.minPodium; i<=Constants.maxPodium; i++) {
-			this.centerPanel.add(this.titleFactory.createTitle(i + ") " + this.leaderboardList.get(i-1), Constants.subtitleSize, Constants.colorSubtitle));
+		try {
+			for(int i=Constants.minPodium; i<=Constants.maxPodium; i++) {
+				this.centerPanel.add(this.titleFactory.createTitle(i + ") " + this.leaderboardList.get(i-1), Constants.subtitleSize, Constants.colorSubtitle));
+			}
+		} catch(IndexOutOfBoundsException e) {
+			this.centerPanel.add(this.titleFactory.createTitle("There was an error", Constants.subtitleSize, Constants.colorSubtitle));
 		}
 	}
 	@Override
