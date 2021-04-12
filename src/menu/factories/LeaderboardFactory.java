@@ -67,7 +67,7 @@ public class LeaderboardFactory {
 			this.bufferedWriter.close();
 			
 		} catch (IOException e) {
-			System.out.println("cannot find the file");
+			System.out.println("cannot find the leaderboard file");
 		}
 		
 		return list;
