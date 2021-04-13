@@ -5,10 +5,12 @@ import java.util.List;
 
 import graphics.GraphicsComponentAwt;
 import model.entitiesutil.BossState;
+import model.entitiesutil.Enemy;
+import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
-public class BossLevel2 extends Entity implements Enemy{
+public class Boss2 extends Enemy{
 
 	private final int INITIAL_WIDTH = 0;
 	private final int INITIAL_HEIGHT = 0;
@@ -19,17 +21,15 @@ public class BossLevel2 extends Entity implements Enemy{
 	private final int MAX_HITS = 0;
 
 	private List<String> strImg;
-	private int hit;
 	private BossState state;
 
 	private List<String> bulletStrImg;
 
-	public BossLevel2(Pair<Integer, Integer> pos) {
+	public Boss2(Pair<Integer, Integer> pos) {
 		this.strImg = new ArrayList<>();
 		this.strImg.add("");
 		this.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
-				this.strImg, new GraphicsComponentAwt(this.strImg), new EntityMovementImpl());
-		this.hit = 0;
+				this.MAX_HITS, this.strImg, EntityDirections.DOWN, new GraphicsComponentAwt(this.strImg), new EntityMovementImpl());
 		this.state = BossState.NORMAL;
 
 		this.bulletStrImg = new ArrayList<>();
@@ -44,19 +44,9 @@ public class BossLevel2 extends Entity implements Enemy{
 
 	@Override
 	protected void updateEntityMovement() {
+		this.changeState();
 		if(this.state.equals(BossState.UPSET)) {
-			this.getMove().moveDown(this);
-		}
-	}
-
-	@Override
-	public void hit() {
-		this.hit++;
-	}
-
-	public void death() {
-		if(this.hit >= this.MAX_HITS) {
-			super.setLife(true);
+			this.getMovement().moveDown(this);
 		}
 	}
 
@@ -68,13 +58,9 @@ public class BossLevel2 extends Entity implements Enemy{
 				this.getY() + this.getHeight()), this.bulletStrImg));*/
 	}
 
-	public int getSpeed() {
-		return this.SPEED;
-	}
-
-	public void changeState() {
-		if(this.hit >= this.HITS_2ND_PHASE) {
+	private void changeState() {
+		if(this.getHits() >= this.HITS_2ND_PHASE) {
 			this.state = BossState.UPSET;
 		}
-	} 
+	}
 }
