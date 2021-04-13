@@ -26,7 +26,7 @@ public class Boss1 extends Enemy {
 
 	public Boss1(Pair<Integer,Integer> pos) {
 		this.strImgs = new ArrayList<>();
-		this.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
+		this.create(EnemyType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
 				this.INITIAL_MU_Y, this.MAX_HITS, this.strImgs, this.direction, new GraphicsComponentAwt(this.strImgs),
 				new EntityMovementImpl());
 		this.speed = 6;
