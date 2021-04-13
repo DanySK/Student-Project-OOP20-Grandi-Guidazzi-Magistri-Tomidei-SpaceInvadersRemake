@@ -9,6 +9,18 @@ import util.Pair;
 
 public abstract class Bullet implements Entity{
 
+	public enum BulletType {
+
+
+		ENEMY,
+
+
+		BOSS,
+
+
+		HERO
+	}
+
 	private Pair<Integer,Integer> pos;
 	private int width, height, muX, muY;
 	private boolean life;
@@ -16,8 +28,10 @@ public abstract class Bullet implements Entity{
 	private EntitiesGraphics graphics;
 	private EntityMovement move;
 	private EntityDirections direction;
+	private EntityType entityType;
+	private BulletType bulletType;
 
-	protected void create(Pair<Integer,Integer> pos, int width,int height, int muX, int muY,
+	protected void create(BulletType type, Pair<Integer,Integer> pos, int width,int height, int muX, int muY,
 			List<String> strImg, EntityDirections dir, EntitiesGraphics graph, EntityMovement move) {
 		this.width = width;
 		this.height = height;
@@ -29,6 +43,8 @@ public abstract class Bullet implements Entity{
 		this.move = move;
 		this.direction = dir;
 		this.life = true;
+		this.entityType = EntityType.BULLET;
+		this.bulletType = type;
 	}
 
 	@Override
@@ -124,5 +140,14 @@ public abstract class Bullet implements Entity{
 
 	protected abstract void updateEntityMovement();
 
+	@Override
+	public EntityType getEntityType() {
+		return this.entityType;
+	}
+
+
+	public BulletType getBulleType() {
+		return this.bulletType;
+	}
 
 }

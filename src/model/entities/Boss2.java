@@ -28,7 +28,7 @@ public class Boss2 extends Enemy{
 	public Boss2(Pair<Integer, Integer> pos) {
 		this.strImg = new ArrayList<>();
 		this.strImg.add("");
-		this.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
+		this.create(EnemyType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
 				this.MAX_HITS, this.strImg, EntityDirections.DOWN, new GraphicsComponentAwt(this.strImg), new EntityMovementImpl());
 		this.state = BossState.NORMAL;
 

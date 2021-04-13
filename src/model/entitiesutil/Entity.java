@@ -9,6 +9,16 @@ import model.physics.EntityMovement;
 
 public interface Entity {
 
+	public enum EntityType{
+
+		ENEMY,
+
+
+		HERO,
+
+
+		BULLET
+	}
 
 	public Pair<Integer, Integer> getPos();
 
@@ -59,6 +69,9 @@ public interface Entity {
 
 
 	public void updateEntity(Graphics g, Entity e);
+
+
+	public EntityType getEntityType();
 
 
 }

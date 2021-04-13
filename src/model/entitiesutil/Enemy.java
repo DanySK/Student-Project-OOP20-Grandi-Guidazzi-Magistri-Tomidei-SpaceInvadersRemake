@@ -10,14 +10,25 @@ import util.Pair;
 
 public abstract class Enemy implements Entity{
 
+	public enum EnemyType{
+
+
+		GENERIC_ENEMY,
+
+
+		BOSS
+	}
+
 	private Pair<Integer,Integer> pos;
 	private int width, height, muX, muY, hit, maxHits;
 	private List<String> strImgs;
 	private EntitiesGraphics graphics;
 	private EntityMovement move;
 	private EntityDirections direction;
+	private EntityType entityType;
+	private EnemyType enemyType;
 
-	protected void create(Pair<Integer,Integer> pos, int width,int height, int muX, int muY, int maxHits,
+	protected void create(EnemyType type, Pair<Integer,Integer> pos, int width,int height, int muX, int muY, int maxHits,
 			List<String> strImg, EntityDirections dir, EntitiesGraphics graph, EntityMovement move) {
 		this.width = width;
 		this.height = height;
@@ -30,6 +41,9 @@ public abstract class Enemy implements Entity{
 		this.direction = dir;
 		this.hit = 0;
 		this.maxHits = maxHits;
+		this.entityType = EntityType.ENEMY;
+		this.enemyType = type;
+		
 	}
 
 	@Override
@@ -141,6 +155,14 @@ public abstract class Enemy implements Entity{
 
 
 	public abstract void  shot();
-	
+
+	@Override
+	public EntityType getEntityType() {
+		return this.entityType;
+	}
+
+	public EnemyType getEnemyType() {
+		return this.enemyType;
+	}
 }
 
