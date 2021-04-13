@@ -23,7 +23,7 @@ public class BossBullet extends Bullet {
 
 	protected BossBullet(Pair<Integer,Integer> pos, List<String> strImg) {
 		this.randomBulletImg(strImg);
-		this.create(pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
+		this.create(BulletType.BOSS, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
 				this.BULLET_INITIAL_MU_Y, this.bulletStrImgs, this.direction, new GraphicsComponentAwt(this.bulletStrImgs),
 				new EntityMovementImpl());
 	}
