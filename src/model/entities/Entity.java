@@ -8,104 +8,52 @@ import java.util.List;
 import graphics.EntitiesGraphics;
 import model.physics.EntityMovement;
 
-public abstract class Entity {
+public interface Entity {
 
-	private Pair<Integer,Integer> pos;
-	private int width, height, muX, muY;
-	private boolean life;
-	private List<String> strImgs;
-	private EntitiesGraphics graphics;
-	private EntityMovement move;
 
-	protected void create(Pair<Integer,Integer> pos, int width,int height, int muX, int muY,
-			List<String> liststr, EntitiesGraphics graph, EntityMovement move) {
-		this.width = width;
-		this.height = height;
-		this.pos = pos;
-		this.muX = muX;
-		this.muY = muY;
-		this.strImgs = liststr;
-		this.graphics = graph;
-		this.move = move;
-		this.life = true;
-	}
+	public Pair<Integer, Integer> getPos();
 
-	public Pair<Integer, Integer> getPos() {
-		return pos;
-	}
 
-	public void setPos(Pair<Integer, Integer> pos) {
-		this.pos = pos;
-	}
+	public void setPos(Pair<Integer, Integer> pos);
 
-	public int getX() {
-		return this.pos.getX();
-	}
 
-	public int getY() {
-		return this.pos.getY();
-	}
+	public int getX();
 
-	public void setX(int x) {
-		this.pos.setX(x);
-	}
 
-	public void setY(int y) {
-		this.pos.setY(y);
-	}
+	public int getY();
 
-	public int getWidth() {
-		return this.width;
-	}
 
-	public void setWidth(int width) {
-		this.width = width;
-	}
+	public void setX(int x);
 
-	public int getHeight() {
-		return this.height;
-	}
 
-	public void setHeight(int height) {
-		this.height = height;
-	}
+	public void setY(int y);
 
-	public int getMuX() {
-		return muX;
-	}
 
-	public void setMuX(int mux) {
-		this.muX = mux;
-	}
+	public int getWidth();
 
-	public int getMuY() {
-		return muY;
-	}
 
-	public void setMuY(int muy) {
-		this.muY = muy;
-	}
+	public int getHeight();
 
-	public boolean isLife() {
-		return life;
-	}
 
-	protected void setLife(boolean life) {
-		this.life = life;
-	}
+	public int getMuX();
 
-	public List<String> getStrImgs() {
-		return strImgs;
-	}
+	public void setMuX(int mux);
 
-	public EntityMovement getMove() {
-		return this.move;
-	}
 
-	public void updateEntity(Graphics g, Entity e) {
-		this.updateEntityMovement();
-		this.graphics.updateGraphics(g, e);
-	}
+	public int getMuY();
 
-	protected abstract void updateEntityMovement();
+
+	public void setMuY(int muy);
+
+
+	public boolean isLife();
+
+	public List<String> getStrImgs();
+
+
+	public EntityMovement getMove();
+
+
+	public void updateEntity(Graphics g, Entity e);
+
 }
