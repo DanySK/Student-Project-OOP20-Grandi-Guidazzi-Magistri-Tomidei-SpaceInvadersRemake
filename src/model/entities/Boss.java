@@ -41,7 +41,7 @@ public class Boss extends Entity implements Enemy {
 	@Override
 	public void changeDirection() {
 		this.getMove().moveDown(this);
-		if(this.direction == EntityDirections.LEFT) {
+		if(this.direction.equals(EntityDirections.LEFT)) {
 			this.direction = EntityDirections.RIGHT;
 		}
 		else {

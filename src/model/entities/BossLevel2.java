@@ -44,7 +44,7 @@ public class BossLevel2 extends Entity implements Enemy{
 
 	@Override
 	protected void updateEntityMovement() {
-		if(this.state == BossState.UPSET) {
+		if(this.state.equals(BossState.UPSET)) {
 			this.getMove().moveDown(this);
 		}
 	}

@@ -51,7 +51,7 @@ public class BossLevel3 extends Entity implements Enemy{
 		if(this.state == BossState.UPSET) {
 			this.speed = this.MAX_SPEED;
 		}
-		if(this.direction == EntityDirections.LEFT) {
+		if(this.direction.equals(EntityDirections.LEFT)) {
 			this.getMove().moveLeft(this);
 		}
 		else {
@@ -62,7 +62,7 @@ public class BossLevel3 extends Entity implements Enemy{
 	@Override
 	public void changeDirection() {
 		this.getMove().moveDown(this);
-		if(this.direction == EntityDirections.LEFT) {
+		if(this.direction.equals(EntityDirections.LEFT)) {
 			this.direction = EntityDirections.RIGHT;
 		}
 		else {
@@ -96,7 +96,7 @@ public class BossLevel3 extends Entity implements Enemy{
 
 	public void teleport(int minX, int maxX) {
 		int x;
-		
+
 		if(this.state == BossState.UPSET) {
 
 			do {
@@ -105,7 +105,6 @@ public class BossLevel3 extends Entity implements Enemy{
 
 			this.setX(x);
 		}
-
 		this.updateEntityMovement();
 	}
 
