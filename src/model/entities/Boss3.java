@@ -32,7 +32,7 @@ public class Boss3 extends Enemy{
 	public Boss3(Pair<Integer, Integer> pos) {
 		this.strImg = new ArrayList<>();
 		this.strImg.add("");
-		super.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
+		super.create(EnemyType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
 				this.MAX_HITS, this.strImg, this.direction, new GraphicsComponentAwt(this.strImg), new EntityMovementImpl());
 		this.speed = 4;
 		this.direction = EntityDirections.LEFT;
