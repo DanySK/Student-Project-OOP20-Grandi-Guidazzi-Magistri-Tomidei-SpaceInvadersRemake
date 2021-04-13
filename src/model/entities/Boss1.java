@@ -1,16 +1,15 @@
 package model.entities;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import graphics.GraphicsComponentAwt;
+import model.entitiesutil.Enemy;
 import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
-public class Boss extends Entity implements Enemy {
+public class Boss1 extends Enemy {
 
 	private final int INITIAL_WIDTH = 0;
 	private final int INITIAL_HEIGHT = 0;
@@ -21,17 +20,15 @@ public class Boss extends Entity implements Enemy {
 
 	private EntityDirections direction;
 	private int speed;
-	private int hit;
 	private List<String> strImgs;
 
 	private List<String> bulletImg;
 
-	public Boss(Pair<Integer,Integer> pos) {
+	public Boss1(Pair<Integer,Integer> pos) {
 		this.strImgs = new ArrayList<>();
 		this.create(pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
-				this.INITIAL_MU_Y, this.strImgs, new GraphicsComponentAwt(this.strImgs),
+				this.INITIAL_MU_Y, this.MAX_HITS, this.strImgs, this.direction, new GraphicsComponentAwt(this.strImgs),
 				new EntityMovementImpl());
-		this.hit = 0;
 		this.speed = 6;
 		this.direction = EntityDirections.RIGHT;
 
@@ -40,12 +37,12 @@ public class Boss extends Entity implements Enemy {
 
 	@Override
 	public void changeDirection() {
-		this.getMove().moveDown(this);
-		if(this.direction.equals(EntityDirections.LEFT)) {
-			this.direction = EntityDirections.RIGHT;
+		this.getMovement().moveDown(this);
+		if(this.getDirection().equals(EntityDirections.LEFT)) {
+			this.setDirection(EntityDirections.RIGHT);
 		}
 		else {
-			this.direction = EntityDirections.RIGHT;
+			this.setDirection(EntityDirections.RIGHT);
 		}
 		if(this.speed < this.MAX_SPEED) {
 			this.speed++;
@@ -54,32 +51,21 @@ public class Boss extends Entity implements Enemy {
 
 	@Override
 	protected void updateEntityMovement() {
-		switch(this.direction) {
+		switch(this.getDirection()) {
 			case LEFT:
-				this.getMove().moveLeft(this);
+				this.getMovement().moveLeft(this);
 				break;
 			case RIGHT:
-				this.getMove().moveRight(this);
+				this.getMovement().moveRight(this);
 				break;
 			case DOWN:
-				this.getMove().moveDown(this);
+				this.getMovement().moveDown(this);
 				break;
 			default:
 				break;
 		}
 	}
 
-	@Override
-	public void hit() {
-		this.hit++;
-	}
-
-	@Override
-	public void death() {
-		if(this.hit >= this.MAX_HITS) {
-			super.setLife(false);
-		}
-	}
 
 	@Override
 	public void shot() {
@@ -87,8 +73,5 @@ public class Boss extends Entity implements Enemy {
 				this.getY() + this.getHeight()), this.bulletImg));*/
 	}
 
-	public void bulletDistruction(BossBullet bullet) {
-		//this.bullets.remove(bullet);
-	}
 
 }
