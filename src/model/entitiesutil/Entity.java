@@ -53,7 +53,7 @@ public interface Entity {
 	public List<String> getStrImgs();
 
 
-	public EntityMovement getMove();
+	public EntityMovement getMovevement();
 
 
 	public void updateEntity(Graphics g, Entity e);
