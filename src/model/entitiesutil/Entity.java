@@ -1,4 +1,4 @@
-package model.entities;
+package model.entitiesutil;
 
 import util.Pair;
 
@@ -37,6 +37,7 @@ public interface Entity {
 
 	public int getMuX();
 
+
 	public void setMuX(int mux);
 
 
@@ -47,6 +48,7 @@ public interface Entity {
 
 
 	public boolean isLife();
+
 
 	public List<String> getStrImgs();
 
