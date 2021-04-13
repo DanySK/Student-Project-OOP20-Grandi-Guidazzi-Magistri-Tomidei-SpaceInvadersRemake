@@ -5,7 +5,6 @@ import util.Pair;
 import java.awt.Graphics;
 import java.util.List;
 
-import graphics.EntitiesGraphics;
 import model.physics.EntityMovement;
 
 public interface Entity {
@@ -53,9 +52,13 @@ public interface Entity {
 	public List<String> getStrImgs();
 
 
-	public EntityMovement getMovevement();
+	public EntityMovement getMovement();
+
+
+	public EntityDirections getDirection();
 
 
 	public void updateEntity(Graphics g, Entity e);
+
 
 }
