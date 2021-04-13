@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
-import model.entities.Entity;
+import model.entitiesutil.Entity;
 
 public class GraphicsComponentAwt implements EntitiesGraphics {
 

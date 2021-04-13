@@ -2,7 +2,7 @@ package graphics;
 
 import java.awt.Graphics;
 
-import model.entities.Entity;
+import model.entitiesutil.Entity;
 
 public interface EntitiesGraphics {
 

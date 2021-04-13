@@ -1,6 +1,6 @@
 package model.physics;
 
-import model.entities.Entity;
+import model.entitiesutil.Entity;
 
 public interface EntityMovement {
 
