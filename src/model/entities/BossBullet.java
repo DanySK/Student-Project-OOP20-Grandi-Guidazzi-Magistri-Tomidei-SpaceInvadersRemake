@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Random;
 
 import graphics.GraphicsComponentAwt;
+import model.entitiesutil.Bullet;
 import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
 
-public class BossBullet extends Entity {
+public class BossBullet extends Bullet {
 
 	private final int BULLET_INITIAL_WIDTH = 0;
 	private final int BULLET_INITIAL_HEIGHT = 0;
@@ -23,21 +24,21 @@ public class BossBullet extends Entity {
 	protected BossBullet(Pair<Integer,Integer> pos, List<String> strImg) {
 		this.randomBulletImg(strImg);
 		this.create(pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
-				this.BULLET_INITIAL_MU_Y, this.bulletStrImgs, new GraphicsComponentAwt(this.bulletStrImgs),
+				this.BULLET_INITIAL_MU_Y, this.bulletStrImgs, this.direction, new GraphicsComponentAwt(this.bulletStrImgs),
 				new EntityMovementImpl());
 	}
 
 	@Override
 	protected void updateEntityMovement() {
-		switch(this.direction) {
+		switch(this.getDirection()) {
 			case DOWN_LEFT:
-				this.getMove().moveDownLeft(this);
+				this.getMovement().moveDownLeft(this);
 				break;
 			case DOWN_RIGHT:
-				this.getMove().moveDownRight(this);
+				this.getMovement().moveDownRight(this);
 				break;
 			default:
-				this.getMove().moveDown(this);
+				this.getMovement().moveDown(this);
 				break;
 		}
 	}
