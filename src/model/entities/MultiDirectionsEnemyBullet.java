@@ -10,7 +10,7 @@ import model.physics.EntityMovementImpl;
 import util.Pair;
 
 
-public class BossUpsetBullet extends Bullet {
+public class MultiDirectionsEnemyBullet extends Bullet {
 
 	private final int BULLET_INITIAL_WIDTH = 0;
 	private final int BULLET_INITIAL_HEIGHT = 0;
@@ -21,7 +21,7 @@ public class BossUpsetBullet extends Bullet {
 	private List<String> bulletStrImgs;
 	private EntityDirections direction;
 
-	protected BossUpsetBullet(Pair<Integer,Integer> pos, List<String> strImg) {
+	protected MultiDirectionsEnemyBullet(Pair<Integer,Integer> pos, List<String> strImg) {
 		this.randomBulletImg(strImg);
 		this.create(BulletType.BOSS, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
 				this.BULLET_INITIAL_MU_Y, this.bulletStrImgs, this.direction, new GraphicsComponentAwt(this.bulletStrImgs),
