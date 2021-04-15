@@ -9,14 +9,12 @@ import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
-
 public class MultiDirectionsEnemyBullet extends Bullet {
 
 	private final int BULLET_INITIAL_WIDTH = 0;
 	private final int BULLET_INITIAL_HEIGHT = 0;
 	private final int BULLET_INITIAL_MU_X = 0;
 	private final int BULLET_INITIAL_MU_Y = 0;
-	private final int TOT_BULLET_DIRECTION = 3;
 
 	private List<String> bulletStrImgs;
 	private EntityDirections direction;
@@ -43,9 +41,10 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 		}
 	}
 
+
 	private void randomBulletImg(List<String> strImg) {
 		Random random = new Random();
-		switch(random.nextInt(this.TOT_BULLET_DIRECTION)) {
+		switch(random.nextInt(strImg.size())) {
 			case 0:
 				this.direction = EntityDirections.DOWN;
 				this.bulletStrImgs.add(strImg.get(0));
