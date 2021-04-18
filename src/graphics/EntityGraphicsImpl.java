@@ -9,23 +9,35 @@ import javax.swing.ImageIcon;
 
 import model.entitiesutil.Entity;
 
-public class GraphicsComponentAwt implements EntitiesGraphics {
+/**
+ * Implementation of {@link EntityGraphics}
+ */
+public class EntityGraphicsImpl implements EntityGraphics {
 
-	private List<String> strImgs;
 	private Image img;
 	private Graphics graphics;
 
-	public GraphicsComponentAwt(List<String> strImgs) {
-		this.strImgs = strImgs;
-		this.img = new ImageIcon(getClass().getResource(this.strImgs.get(0))).getImage();
+	/**
+	 * Implementation of {@link EntityGraphics}
+	 * 
+	 * @param strImgs is the image's path of the entity
+	 */
+	public EntityGraphicsImpl(List<String> strImgs) {
+		this.img = new ImageIcon(getClass().getResource(strImgs.get(0))).getImage();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void updateGraphics(Graphics g, Entity e) {
 		this.graphics = (Graphics2D) g;
 		this.graphics.drawImage(this.img, e.getX(), e.getY(), null);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void switchImage(Entity e, String strImg) {
 		this.img = new ImageIcon(getClass().getResource(strImg)).getImage();
