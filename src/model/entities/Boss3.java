@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import graphics.GraphicsComponentAwt;
+import graphics.EntityGraphicsImpl;
 import model.entitiesutil.BossState;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.EntityDirections;
@@ -17,12 +17,11 @@ public class Boss3 extends Enemy{
 	private final int INITIAL_HEIGHT = 0;
 	private final int INITIAL_MU_X = 0;
 	private final int INITIAL_MU_Y = 0;
-	private final int MAX_SPEED = 0;
 	private final int HITS_2ND_PHASE = 0;
 	private final int MAX_HITS = 0;
+	private final int MAX_SPEED = 0;
 
 	private List<String> strImg;
-	private int speed;
 	private EntityDirections direction;
 	private BossState state;
 	private Random random;
@@ -32,9 +31,8 @@ public class Boss3 extends Enemy{
 	public Boss3(Pair<Integer, Integer> pos) {
 		this.strImg = new ArrayList<>();
 		this.strImg.add("");
-		super.create(EnemyType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
-				this.MAX_HITS, this.strImg, this.direction, new GraphicsComponentAwt(this.strImg), new EntityMovementImpl());
-		this.speed = 4;
+		super.create(EntityType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
+				this.MAX_HITS, this.strImg, this.direction, new EntityGraphicsImpl(this.strImg), new EntityMovementImpl());
 		this.direction = EntityDirections.LEFT;
 		this.state = BossState.NORMAL;
 		this.random = new Random();
@@ -45,23 +43,29 @@ public class Boss3 extends Enemy{
 		this.bulletStrImg.add("");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	protected void updateEntityMovement() {
+	public void updateEntityPos() {
 		this.changeState();
+		this.teleport(0, 1);
 		if(this.state.equals(BossState.UPSET)) {
-			this.speed = this.MAX_SPEED;
+			this.setMuX(this.MAX_SPEED);
 		}
 		if(this.direction.equals(EntityDirections.LEFT)) {
-			this.getMovement().moveLeft(this);
+			this.getMovementImpl().moveLeft(this);
 		}
 		else {
-			this.getMovement().moveRight(this);
+			this.getMovementImpl().moveRight(this);
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void changeDirection() {
-		this.getMovement().moveDown(this);
 		if(this.direction.equals(EntityDirections.LEFT)) {
 			this.setDirection(EntityDirections.RIGHT);
 		}
@@ -70,34 +74,40 @@ public class Boss3 extends Enemy{
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void shot() {
 		/*(new BossBullet(new Pair<>(this.getX() + this.getWidth()/2 - 1, 
 		this.getY() + this.getHeight()), this.bulletStrImg));*/
 	}
 
+	/**
+	 * Change the state of the boss after it took too many hits 
+	 */
 	private void changeState() {
 		if(this.getHits() >= this.HITS_2ND_PHASE) {
 			this.state = BossState.UPSET;
 		}
 	}
 
-	public void teleport(int minX, int maxX) {
+	/**
+	 * Teleport the boss in a range took from input
+	 * 
+	 * @param minX is the minimum value of the range
+	 * @param maxX is the maximum value of the range
+	 */
+	private void teleport(int minX, int maxX) {
 		int x;
 
-		if(this.state.equals(BossState.UPSET)) {
+		if(this.state.equals(BossState.UPSET) && (this.getHits() % this.random.nextInt(2) + 2 == 0)) {
 
 			do {
-				x = this.random.nextInt(maxX);
-			}while(x <= minX + this.getWidth());
+				x = this.random.nextInt(maxX - this.getMuX());
+			}while(x <= minX + this.getMuX());
 
 			this.setX(x);
 		}
-		this.updateEntityMovement();
 	}
-
-	public int getSpeed() {
-		return this.speed;
-	}
-
 }
