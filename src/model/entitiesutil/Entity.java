@@ -38,11 +38,6 @@ public interface Entity {
 		ENEMY_BULLET,
 
 		/**
-		 * {@link Enemy} boss's {@link Bullet}
-		 */
-		BOSS_BULLET,
-
-		/**
 		 * Player's bullet
 		 */
 		PLAYER_BULLET,
