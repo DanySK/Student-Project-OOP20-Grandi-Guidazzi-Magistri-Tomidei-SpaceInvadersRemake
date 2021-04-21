@@ -65,8 +65,7 @@ public class LabelFactory {
 	        	switch(label.getText()) {
 	        	
 	        		case Strings.START:
-	        			//board.setCurrentState(new StateGame(board));
-	        			board.setCurrentState(new StateMenuInGame(board));
+	        			board.setCurrentState(new StateGame(board));
 	        			break;
 	        			
 	        		case Strings.EXIT:
