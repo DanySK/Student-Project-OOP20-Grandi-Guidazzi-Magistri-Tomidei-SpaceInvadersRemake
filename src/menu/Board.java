@@ -8,9 +8,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import util.AudioPlayer;
+import util.AudioImpl;
+import util.AudioTrack;
 import util.Constants;
-import util.Strings;
 
 /**
  * class that manages the change and creation of all the various states.
@@ -19,7 +19,9 @@ public class Board {
 
 	private JFrame frame = new JFrame();
 	private State currentState;
-	private AudioPlayer audioPlayer = new AudioPlayer();
+	private AudioImpl audioPlayer = new AudioImpl();
+	private boolean isReturningFromGame = false;
+	private boolean isReturningFromMenuGame = true;
 	
 	/**
 	 * the constructor of the first state in the project, it contains all the frame characteristics.
@@ -33,8 +35,7 @@ public class Board {
 		this.frame.setVisible(true);
 		this.frame.setResizable(false);
 		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		this.audioPlayer.startAudio(Strings.MENU_SONG, Constants.IN_LOOP);
-		
+		this.audioPlayer.play(AudioTrack.SOUND_TRACK, Constants.IN_LOOP);
 		setCurrentState(new StateMenu(this));
 	}
 	
@@ -43,15 +44,33 @@ public class Board {
 	 * @param newState
 	 */
 	public void setCurrentState(State newState){
-		if(newState.toString().contains("StateGame")) {
-			this.audioPlayer.stopAudio();
+		if(newState.toString().contains("StateMenuInGame")) {
+			if(this.isReturningFromMenuGame == true) {
+				this.audioPlayer.stop();
+				this.audioPlayer.play(AudioTrack.GAME_TRACK, Constants.IN_LOOP);
+				this.isReturningFromGame = true;
+				this.isReturningFromMenuGame = false;
+			}
+		} else if(newState.toString().contains("StateMenu")) {
+			if(this.isReturningFromGame == true) {
+				this.audioPlayer.stop();
+				this.audioPlayer.play(AudioTrack.SOUND_TRACK, Constants.IN_LOOP);
+				this.isReturningFromGame = false;
+				this.isReturningFromMenuGame = true;
+			}
+			
 		}
+		
 		this.frame.getContentPane().removeAll();
 		this.frame.repaint();
 		this.currentState = newState;
 		this.frame.getContentPane().add(currentState.getMainPanel());
 		this.frame.getContentPane().setBackground(Color.black);
 		this.frame.pack();
+	}
+	
+	public AudioImpl getAudio() {
+		return this.audioPlayer;
 	}
 	
 }

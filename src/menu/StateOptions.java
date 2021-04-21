@@ -26,6 +26,7 @@ public class StateOptions implements State{
 	 * @param board
 	 */
 	public StateOptions(Board board) {
+		
 		this.panel = this.panelFactory.createPanel(Strings.OPTIONS, board);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		

@@ -15,7 +15,12 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import menu.*;
-import util.AudioPlayer;
+import menu.gameview.StateAudioSettingsInGame;
+import menu.gameview.StateMenuInGame;
+import util.Audio;
+import util.AudioImpl;
+import util.AudioTrack;
+//import util.AudioPlayer;
 import util.Constants;
 import util.Strings;
 
@@ -24,7 +29,7 @@ import util.Strings;
 */
 public class LabelFactory {
 	
-	private AudioPlayer audioPlayer = new AudioPlayer();
+	private Audio audioPlayer = new AudioImpl();
 	
 	/**
 	 * Create a new label made from the input parameters and with action listeners.
@@ -56,11 +61,12 @@ public class LabelFactory {
 	        }
 	        
 	        public void mouseClicked(MouseEvent e) {
-	        	audioPlayer.startAudio(Strings.MENU_POP, Constants.NOT_IN_LOOP);
+	        	audioPlayer.play(AudioTrack.BUTTON_PRESSED, Constants.NOT_IN_LOOP);
 	        	switch(label.getText()) {
 	        	
 	        		case Strings.START:
-	        			board.setCurrentState(new StateGame(board));
+	        			//board.setCurrentState(new StateGame(board));
+	        			board.setCurrentState(new StateMenuInGame(board));
 	        			break;
 	        			
 	        		case Strings.EXIT:
@@ -82,6 +88,10 @@ public class LabelFactory {
 	        		case Strings.GO_BACK_TO_MENU:
 	        			board.setCurrentState(new StateMenu(board));
 	        			break;
+	        			
+	        		case Strings.RETURN_TO_GAME_MENU:
+	        			board.setCurrentState(new StateMenuInGame(board));
+	        			break;
 	        		
 	        		case Strings.LEADERBOARD:
 	        			board.setCurrentState(new StateLeaderboard(board));
@@ -93,6 +103,14 @@ public class LabelFactory {
 	        		
 	        		case Strings.AUDIO_SETTINGS:
 	        			board.setCurrentState(new StateAudioSettings(board));
+	        			break;
+	        			
+	        		case Strings.AUDIO_SETTINGS_IN_GAME:
+	        			board.setCurrentState(new StateAudioSettingsInGame(board));
+	        			break;
+	       
+	        		case Strings.RESTART:
+	        			board.setCurrentState(new StateGame(board));
 	        			break;
 	        		
 	        		case Strings.MORE_INFO:
