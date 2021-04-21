@@ -44,7 +44,7 @@ public class Board {
 	 * @param newState
 	 */
 	public void setCurrentState(State newState){
-		if(newState.toString().contains("StateMenuInGame")) {
+		if(newState.toString().contains("StateGame")) {
 			if(this.isReturningFromMenuGame == true) {
 				this.audioPlayer.stop();
 				this.audioPlayer.play(AudioTrack.GAME_TRACK, Constants.IN_LOOP);
@@ -62,7 +62,6 @@ public class Board {
 		}
 		
 		this.frame.getContentPane().removeAll();
-		this.frame.repaint();
 		this.currentState = newState;
 		this.frame.getContentPane().add(currentState.getMainPanel());
 		this.frame.getContentPane().setBackground(Color.black);
