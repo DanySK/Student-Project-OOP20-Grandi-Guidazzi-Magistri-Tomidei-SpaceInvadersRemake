@@ -2,6 +2,8 @@ package controller;
 
 import java.util.Optional;
 
+import menu.Board;
+
 /**
  * Implementation of {@link GameController}
  */
@@ -11,13 +13,13 @@ public class GameControllerImpl implements GameController{
 	private final double FRAME_PERIOD = 1000000000 / FPS;
 	private boolean isPaused;
 	private Optional<Thread> timer;
-	//private Board view;
+	private Board view;
 
 	/**
 	 * Implementation of {@link GameController}
 	 */
 	public GameControllerImpl() {
-		//this.view = new Board();
+		this.view = new Board();
 		this.isPaused = false;
 		this.timer = Optional.empty();
 	}
