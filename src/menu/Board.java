@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import controller.GameController;
 import util.AudioImpl;
 import util.AudioTrack;
 import util.Constants;
@@ -22,11 +23,13 @@ public class Board {
 	private AudioImpl audioPlayer = new AudioImpl();
 	private boolean isReturningFromGame = false;
 	private boolean isReturningFromMenuGame = true;
+	private GameController gameController;
 	
 	/**
 	 * the constructor of the first state in the project, it contains all the frame characteristics.
 	 */
-	public Board() {
+	public Board(GameController gameController) {
+		this.gameController = gameController;
 		this.frame.setTitle("Space Invaders Remake");
 		this.frame.setPreferredSize(Constants.preferDimension);
 		this.frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
@@ -70,6 +73,14 @@ public class Board {
 	
 	public AudioImpl getAudio() {
 		return this.audioPlayer;
+	}
+	
+	public GameController getGameController() {
+		return this.gameController;
+	}
+	
+	public State getState() {
+		return this.currentState;
 	}
 	
 }
