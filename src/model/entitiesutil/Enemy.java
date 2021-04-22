@@ -193,7 +193,7 @@ public abstract class Enemy implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isLife() {
+	public boolean isLive() {
 		return this.hit >= this.maxHits;
 	}
 
