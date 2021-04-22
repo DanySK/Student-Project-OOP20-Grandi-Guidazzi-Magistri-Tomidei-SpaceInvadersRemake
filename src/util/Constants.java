@@ -19,5 +19,8 @@ public interface Constants {
 	Color colorSubtitle = Color.white;
 	boolean IN_LOOP = true;
 	boolean NOT_IN_LOOP = false;
-	
+	float VOLUME_LEVEL_START = 7f;
+	int SPACING = 1;
+	int minSliderValue = 0;
+	int maxSliderValue = 10;
 }

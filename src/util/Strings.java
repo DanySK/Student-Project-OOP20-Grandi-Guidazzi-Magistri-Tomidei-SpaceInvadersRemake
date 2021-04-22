@@ -24,8 +24,11 @@ public interface Strings {
 	String CHANGE_KEYS = "Change keys";
 	String AUDIO_SETTINGS = "Audio settings";
 	String GO_BACK_TO_MENU = "Go back to menu";
+	String RESTART = "Restart game";
+	String RESUME = "Resume Game";
+	String RETURN_TO_GAME_MENU = "Return back to game menu";
+	String AUDIO_SETTINGS_IN_GAME = "Game audio settings";
 	
-	String MENU_SONG = "src/res/menuSong.wav";
-	String MENU_POP = "src/res/popMenu.wav";
+	String SOUNDS_DIRECTORY = "src/res/";
 	
 }
