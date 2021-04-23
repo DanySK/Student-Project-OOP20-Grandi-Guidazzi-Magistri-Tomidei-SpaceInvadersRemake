@@ -134,7 +134,7 @@ public interface Entity {
 	 * 
 	 * @return a boolean which represents if {@link Entity} is alive
 	 */
-	public boolean isLive();
+	public boolean isAlive();
 
 	/**
 	 * Return the images's paths of the {@link Entity}

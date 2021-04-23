@@ -152,7 +152,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isLive() {
+	public boolean isAlive() {
 		return this.life;
 	}
 
