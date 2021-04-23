@@ -32,7 +32,7 @@ public class EntityGraphicsImpl implements EntityGraphics {
 	@Override
 	public void updateGraphics(Graphics g, Entity e) {
 		this.graphics = (Graphics2D) g;
-		this.graphics.drawImage(this.img, e.getX(), e.getY(), null);
+		this.graphics.drawImage(this.img, (int)e.getX(), (int)e.getY(), null);
 	}
 
 	/**

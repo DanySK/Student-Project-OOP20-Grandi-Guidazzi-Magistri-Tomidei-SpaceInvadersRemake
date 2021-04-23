@@ -15,8 +15,8 @@ public class Boss3 extends Enemy{
 
 	private final int INITIAL_WIDTH = 0;
 	private final int INITIAL_HEIGHT = 0;
-	private final int INITIAL_MU_X = 0;
-	private final int INITIAL_MU_Y = 0;
+	private final double INITIAL_MU_X = 0;
+	private final double INITIAL_MU_Y = 0;
 	private final int HITS_2ND_PHASE = 0;
 	private final int MAX_HITS = 0;
 	private final int MAX_SPEED = 0;
@@ -99,13 +99,12 @@ public class Boss3 extends Enemy{
 	 * @param maxX is the maximum value of the range
 	 */
 	private void teleport(int minX, int maxX) {
-		int x;
-
+		double x;
 		if(this.state.equals(BossState.UPSET) && (this.getHits() % this.random.nextInt(2) + 2 == 0)) {
 
 			do {
-				x = this.random.nextInt(maxX - this.getMuX());
-			}while(x <= minX + this.getMuX());
+				x = this.random.nextInt((int)(maxX - this.getMuX()));
+			}while(x < minX);
 
 			this.setX(x);
 		}

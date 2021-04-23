@@ -16,8 +16,8 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 
 	private final int BULLET_INITIAL_WIDTH = 0;
 	private final int BULLET_INITIAL_HEIGHT = 0;
-	private final int BULLET_INITIAL_MU_X = 0;
-	private final int BULLET_MAX_MU_Y = 0;
+	private final double BULLET_INITIAL_MU_X = 0;
+	private final double BULLET_MAX_MU_Y = 0;
 
 	private List<String> bulletStrImgs;
 	private EntityDirections direction;
@@ -33,7 +33,7 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 		Random random = new Random();
 		this.randomBulletImg(strImg);
 		this.create(EntityType.ENEMY_BULLET, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
-				(random.nextInt(this.BULLET_MAX_MU_Y) + 1), this.bulletStrImgs, this.direction, new EntityGraphicsImpl(this.bulletStrImgs),
+				(random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), this.bulletStrImgs, this.direction, new EntityGraphicsImpl(this.bulletStrImgs),
 				new EntityMovementImpl());
 	}
 

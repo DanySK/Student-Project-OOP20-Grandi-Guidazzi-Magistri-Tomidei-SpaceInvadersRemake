@@ -17,8 +17,8 @@ public class Boss2 extends Enemy{
 
 	private final int INITIAL_WIDTH = 0;
 	private final int INITIAL_HEIGHT = 0;
-	private final int INITIAL_MU_X = 0;
-	private final int INITIAL_MU_Y = 0;
+	private final double INITIAL_MU_X = 0;
+	private final double INITIAL_MU_Y = 0;
 	private final int HITS_2ND_PHASE = 0;
 	private final int MAX_HITS = 0;
 
