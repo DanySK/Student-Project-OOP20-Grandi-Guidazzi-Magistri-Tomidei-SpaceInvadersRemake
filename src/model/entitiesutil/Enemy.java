@@ -196,15 +196,15 @@ public abstract class Enemy implements Entity{
 	 */
 	@Override
 	public boolean isAlive() {
-		return this.hit >= this.maxHits;
+		return this.hit < this.maxHits;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<String> getStrImgs() {
-		return strImgs;
+	public void setEntityStrImgs(List<String> newEntityStrImg) {
+		this.graphics.setEntityStrImgs(newEntityStrImg);
 	}
 
 	/**
@@ -225,7 +225,7 @@ public abstract class Enemy implements Entity{
 	/**
 	 * Invert the direction of the {@link Enemy}
 	 */
-	public abstract void changeDirection();
+	protected abstract void changeDirection();
 
 
 	/**

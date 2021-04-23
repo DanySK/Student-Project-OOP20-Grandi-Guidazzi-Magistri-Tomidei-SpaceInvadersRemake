@@ -137,11 +137,9 @@ public interface Entity {
 	public boolean isAlive();
 
 	/**
-	 * Return the images's paths of the {@link Entity}
-	 * 
-	 * @return the List of String which represent the {@link Entity}'s images's paths
+	 * Set the images's paths of the {@link Entity}
 	 */
-	public List<String> getStrImgs();
+	public void setEntityStrImgs(List<String> newEntityStrImg);
 
 	/**
 	 * Return the implementation of {@link EntityMovement} 

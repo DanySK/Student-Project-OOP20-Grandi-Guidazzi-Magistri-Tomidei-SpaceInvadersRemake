@@ -167,8 +167,8 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<String> getStrImgs() {
-		return this.strImgs;
+	public void setEntityStrImgs(List<String> newEntityStrImg) {
+		this.graphics.setEntityStrImgs(newEntityStrImg);
 	}
 
 	/**
