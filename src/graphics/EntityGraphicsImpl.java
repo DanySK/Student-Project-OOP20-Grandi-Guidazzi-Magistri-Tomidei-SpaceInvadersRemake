@@ -45,6 +45,9 @@ public class EntityGraphicsImpl implements EntityGraphics {
 		this.img = new ImageIcon(getClass().getResource(strImg)).getImage();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setEntityStrImgs(List<String> newEntityStrImg) {
 		this.strImgs = newEntityStrImg;
