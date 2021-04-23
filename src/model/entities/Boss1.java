@@ -20,9 +20,6 @@ public class Boss1 extends Enemy {
 	private final double INITIAL_MU_Y = 0;
 	private final int MAX_HITS = 0;
 
-	private EntityDirections direction;
-	private List<String> strImgs;
-
 	private List<String> bulletImg;
 
 	/**
@@ -31,11 +28,12 @@ public class Boss1 extends Enemy {
 	 * @param pos is the initial position this entity
 	 */
 	public Boss1(Pair<Integer,Integer> pos) {
-		this.strImgs = new ArrayList<>();
+		List<String> strImgs = new ArrayList<>();
+		strImgs.add("");
+		EntityDirections direction = EntityDirections.RIGHT;
 		this.create(EntityType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
-				this.INITIAL_MU_Y, this.MAX_HITS, this.strImgs, this.direction, new EntityGraphicsImpl(this.strImgs),
+				this.INITIAL_MU_Y, this.MAX_HITS, direction, new EntityGraphicsImpl(strImgs),
 				new EntityMovementImpl());
-		this.direction = EntityDirections.RIGHT;
 
 		this.bulletImg = new ArrayList<>();
 		this.bulletImg.add("");
@@ -61,10 +59,10 @@ public class Boss1 extends Enemy {
 	 */
 	@Override
 	public void updateEntityPos() {
-		if(this.direction.equals(EntityDirections.LEFT)){
+		if(this.getDirection().equals(EntityDirections.LEFT)){
 			this.getMovementImpl().moveLeft(this);
 		}
-		if(this.direction.equals(EntityDirections.RIGHT)) {
+		if(this.getDirection().equals(EntityDirections.RIGHT)) {
 			this.getMovementImpl().moveRight(this);
 		}
 	}

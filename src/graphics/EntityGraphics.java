@@ -1,6 +1,7 @@
 package graphics;
 
 import java.awt.Graphics;
+import java.util.List;
 
 import model.entitiesutil.Entity;
 
@@ -24,5 +25,11 @@ public interface EntityGraphics {
 	 * @param strImg	is the path of the new image
 	 */
 	public void switchImage(Entity e, String strImg);
-	
+
+	/**
+	 * Set the images's paths of the {@link Entity}
+	 * 
+	 * @param newEntityStrImg is the new images's path of the entity
+	 */
+	public void setEntityStrImgs(List<String> newEntityStrImg);
 }

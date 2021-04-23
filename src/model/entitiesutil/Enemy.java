@@ -15,7 +15,6 @@ public abstract class Enemy implements Entity{
 	private Pair<Double, Double> pos;
 	private double muX, muY;
 	private int width, height, hit, maxHits;
-	private List<String> strImgs;
 	private EntityGraphics graphics;
 	private EntityMovement move;
 	private EntityDirections direction;
@@ -31,20 +30,18 @@ public abstract class Enemy implements Entity{
 	 * @param muX		is the initial movement unit of the {@link Enemy} along x-axis
 	 * @param muY		is the initial movement unit of the {@link Enemy} along y-axis
 	 * @param maxHits	is the max number of hits that {@link Enemy} can take before dying
-	 * @param strImg	is the images's path of the {@link Enemy}
 	 * @param dir		is the initial direction of the {@link Enemy}
 	 * @param graph		is the {@link EntityGraphics} implementation
 	 * @param move		is {@link EntityMovement} implementation
 	 */
 	protected void create(EntityType type, Pair<Integer,Integer> pos, int width,int height, 
-			double muX, double muY, int maxHits, List<String> strImg, EntityDirections dir, 
+			double muX, double muY, int maxHits, EntityDirections dir, 
 			EntityGraphics graph, EntityMovement move) {
 		this.width = width;
 		this.height = height;
 		this.pos = new Pair<>((double)pos.getX(), (double)pos.getY());
 		this.muX = muX;
 		this.muY = muY;
-		this.strImgs = strImg;
 		this.graphics = graph;
 		this.move = move;
 		this.direction = dir;

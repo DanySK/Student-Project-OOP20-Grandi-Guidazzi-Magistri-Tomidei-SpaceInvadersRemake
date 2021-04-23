@@ -16,6 +16,7 @@ public class EntityGraphicsImpl implements EntityGraphics {
 
 	private Image img;
 	private Graphics graphics;
+	private List<String> strImgs;
 
 	/**
 	 * Implementation of {@link EntityGraphics}
@@ -23,7 +24,8 @@ public class EntityGraphicsImpl implements EntityGraphics {
 	 * @param strImgs is the image's path of the entity
 	 */
 	public EntityGraphicsImpl(List<String> strImgs) {
-		this.img = new ImageIcon(getClass().getResource(strImgs.get(0))).getImage();
+		this.strImgs = strImgs;
+		this.img = new ImageIcon(getClass().getResource(this.strImgs.get(0))).getImage();
 	}
 
 	/**
@@ -42,5 +44,11 @@ public class EntityGraphicsImpl implements EntityGraphics {
 	public void switchImage(Entity e, String strImg) {
 		this.img = new ImageIcon(getClass().getResource(strImg)).getImage();
 	}
+
+	@Override
+	public void setEntityStrImgs(List<String> newEntityStrImg) {
+		this.strImgs = newEntityStrImg;
+	}
+
 
 }

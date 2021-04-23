@@ -16,7 +16,6 @@ public abstract class Bullet implements Entity{
 	private double  muX, muY;
 	private int width, height;
 	private boolean life;
-	private List<String> strImgs;
 	private EntityGraphics graphics;
 	private EntityMovement move;
 	private EntityDirections direction;
@@ -31,20 +30,18 @@ public abstract class Bullet implements Entity{
 	 * @param height	is the initial height of the {@link Bullet}
 	 * @param muX		is the initial movement unit of the {@link Bullet} along x-axis 
 	 * @param muY		is the initial movement unit of the {@link Bullet} along y-axis 
-	 * @param strImg	is the images's path of {@link Bullet}
 	 * @param dir		is the initial direction of the {@link Bullet}
 	 * @param graph		is the {@link EntityGraphics} implementation
 	 * @param move		is {@link EntityMovement} implementation
 	 */
 	protected void create(EntityType type, Pair<Integer,Integer> pos, int width,int height, 
-			double muX, double muY, List<String> strImg, EntityDirections dir, 
+			double muX, double muY, EntityDirections dir, 
 			EntityGraphics graph, EntityMovement move) {
 		this.width = width;
 		this.height = height;
 		this.pos = new Pair<>((double)pos.getX(), (double)pos.getY());
 		this.muX = muX;
 		this.muY = muY;
-		this.strImgs = strImg;
 		this.graphics = graph;
 		this.move = move;
 		this.direction = dir;
