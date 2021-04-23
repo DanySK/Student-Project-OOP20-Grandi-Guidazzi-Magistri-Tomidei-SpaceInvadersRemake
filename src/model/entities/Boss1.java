@@ -64,7 +64,7 @@ public class Boss1 extends Enemy {
 		if(this.direction.equals(EntityDirections.LEFT)){
 			this.getMovementImpl().moveLeft(this);
 		}
-		else {
+		if(this.direction.equals(EntityDirections.RIGHT)) {
 			this.getMovementImpl().moveRight(this);
 		}
 	}
