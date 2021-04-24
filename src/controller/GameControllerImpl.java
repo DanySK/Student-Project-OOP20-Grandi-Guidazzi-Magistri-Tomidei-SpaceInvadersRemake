@@ -19,7 +19,7 @@ public class GameControllerImpl implements GameController{
 	 * Implementation of {@link GameController}
 	 */
 	public GameControllerImpl() {
-		this.view = new Board();
+		this.view = new Board(this);
 		this.isPaused = false;
 		this.timer = Optional.empty();
 	}
@@ -109,7 +109,7 @@ public class GameControllerImpl implements GameController{
 	 * Update {@link Entity}s graphics
 	 */
 	private void render() {
-		//this.view.getState().repaint();	//Update entities's view
+		this.view.getState().getMainPanel().repaint();	//Update entities's view
 	}
 
 	/**

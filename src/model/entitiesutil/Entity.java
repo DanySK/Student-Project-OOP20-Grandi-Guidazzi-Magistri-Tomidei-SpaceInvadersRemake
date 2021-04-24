@@ -49,7 +49,7 @@ public interface Entity {
      * @return the {@link Pair} of Integers which represents the current position of the {@link Entity}
      *        
      */
-	public Pair<Integer, Integer> getPos();
+	public Pair<Double, Double> getPos();
 
 	/**
 	 * Update the position of the {@link Entity}
@@ -63,7 +63,7 @@ public interface Entity {
 	 * 
 	 * @return the integer which represents the current {@link Entity}'s x position
 	 */
-	public int getX();
+	public double getX();
 
 
 	/**
@@ -71,21 +71,21 @@ public interface Entity {
 	 * 
 	 * @return the integer which represents {@link Entity}'s y position
 	 */
-	public int getY();
+	public double getY();
 
 	/**
 	 * Set {@link Entity}'s x position (from left) with the method input value
 	 *
 	 * @param x integer which represents the new x position (from left) of the {@link Entity}
 	 */
-	public void setX(int x);
+	public void setX(double x);
 
 	/**
 	 * Set {@link Entity}'s y position (from top) with the method input value
 	 * 
 	 * @param y integer which represents the new y position (from top) of the {@link Entity}
 	 */
-	public void setY(int y);
+	public void setY(double y);
 
 	/**
 	 * Return the current width of the {@link Entity}
@@ -106,42 +106,40 @@ public interface Entity {
 	 * 
 	 * @return the integer which represents {@link Entity}'s movement unit along x-axis
 	 */
-	public int getMuX();
+	public double getMuX();
 
 	/**
 	 * Update the movement unit of the {@link Entity} along x-axis with method input value
 	 * 
 	 * @param mux integer which is the new movement unit of the {@link Entity} along x-axis
 	 */
-	public void setMuX(int mux);
+	public void setMuX(double mux);
 
 	/**
 	 * Return the movement unit of the {@link Entity} along y-axis
 	 * 
 	 * @return the integer which represents the movement unit of the {@link Entity} along y-axis
 	 */
-	public int getMuY();
+	public double getMuY();
 
 	/**
 	 * Update the movement unit of the {@link Entity} along x-axis
 	 * 
 	 * @param mux 	new movement unit of the {@link Entity} along x-axis
 	 */
-	public void setMuY(int muy);
+	public void setMuY(double muy);
 
 	/**
 	 * Return true if {@link Entity} is alive, false otherwise
 	 * 
 	 * @return a boolean which represents if {@link Entity} is alive
 	 */
-	public boolean isLife();
+	public boolean isAlive();
 
 	/**
-	 * Return the images's paths of the {@link Entity}
-	 * 
-	 * @return the List of String which represent the {@link Entity}'s images's paths
+	 * Set the images's paths of the {@link Entity}
 	 */
-	public List<String> getStrImgs();
+	public void setEntityStrImgs(List<String> newEntityStrImg);
 
 	/**
 	 * Return the implementation of {@link EntityMovement} 

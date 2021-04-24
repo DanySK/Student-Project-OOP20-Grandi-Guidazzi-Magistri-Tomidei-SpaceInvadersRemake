@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,10 +17,9 @@ public class MonoDirectionEnemyBullet extends Bullet {
 
 	private final int BULLET_INITIAL_WIDTH = 0;
 	private final int BULLET_INITIAL_HEIGHT = 0;
-	private final int BULLET_INITIAL_MU_X = 0;
-	private final int BULLET_MAX_MU_Y = 0;
-
-	private List<String> bulletStrImgs;
+	private final double BULLET_INITIAL_MU_X = 0;
+	private final double BULLET_MAX_MU_Y = 0;
+	private List<String> strImgs;
 
 	/**
 	 * {@link Bullet} with a single direction
@@ -30,10 +30,11 @@ public class MonoDirectionEnemyBullet extends Bullet {
 	 */
 	protected MonoDirectionEnemyBullet(Pair<Integer,Integer> pos, List<String> strImg) {
 		Random random = new Random();
+		this.strImgs = new ArrayList<>();
 		this.randomBulletImg(strImg);
-		this.create(EntityType.ENEMY_BULLET, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
-				(random.nextInt(this.BULLET_MAX_MU_Y) + 1), this.bulletStrImgs, EntityDirections.DOWN, new EntityGraphicsImpl(this.bulletStrImgs),
-				new EntityMovementImpl());
+		this.create(EntityType.ENEMY_BULLET, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, 
+				this.BULLET_INITIAL_MU_X, (random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), EntityDirections.DOWN, 
+				new EntityGraphicsImpl(strImgs), new EntityMovementImpl());
 	}
 
 	/**
@@ -49,17 +50,17 @@ public class MonoDirectionEnemyBullet extends Bullet {
 	 * 
 	 * @param strImg is the list that the method takes as an input
 	 */
-	private void randomBulletImg(List<String> strImg) {
+	private void randomBulletImg(List<String> newStrImg) {
 		Random random = new Random();
-		switch(random.nextInt(strImg.size())) {
+		switch(random.nextInt(newStrImg.size())) {
 			case 1:
-				this.bulletStrImgs.add(strImg.get(1));
+				this.strImgs.add(newStrImg.get(1));
 				break;
 			case 2:
-				this.bulletStrImgs.add(strImg.get(2));
+				this.strImgs.add(newStrImg.get(2));
 				break;
 			default:
-				this.bulletStrImgs.add(strImg.get(0));
+				this.strImgs.add(newStrImg.get(0));
 				break;
 		}
 	}

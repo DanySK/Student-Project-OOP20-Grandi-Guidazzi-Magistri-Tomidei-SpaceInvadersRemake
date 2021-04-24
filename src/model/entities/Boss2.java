@@ -17,12 +17,11 @@ public class Boss2 extends Enemy{
 
 	private final int INITIAL_WIDTH = 0;
 	private final int INITIAL_HEIGHT = 0;
-	private final int INITIAL_MU_X = 0;
-	private final int INITIAL_MU_Y = 0;
+	private final double INITIAL_MU_X = 0;
+	private final double INITIAL_MU_Y = 0;
 	private final int HITS_2ND_PHASE = 0;
 	private final int MAX_HITS = 0;
 
-	private List<String> strImg;
 	private BossState state;
 
 	private List<String> bulletStrImg;
@@ -33,10 +32,10 @@ public class Boss2 extends Enemy{
 	 * @param pos is the initial position of this entity
 	 */
 	public Boss2(Pair<Integer, Integer> pos) {
-		this.strImg = new ArrayList<>();
-		this.strImg.add("");
+		List<String> strImg = new ArrayList<>();
+		strImg.add("");
 		this.create(EntityType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
-				this.MAX_HITS, this.strImg, EntityDirections.DOWN, new EntityGraphicsImpl(this.strImg), new EntityMovementImpl());
+				this.MAX_HITS, EntityDirections.DOWN, new EntityGraphicsImpl(strImg), new EntityMovementImpl());
 		this.state = BossState.NORMAL;
 
 		this.bulletStrImg = new ArrayList<>();

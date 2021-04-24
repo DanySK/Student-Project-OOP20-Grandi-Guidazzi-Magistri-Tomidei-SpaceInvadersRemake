@@ -12,10 +12,10 @@ import util.Pair;
  */
 public abstract class Bullet implements Entity{
 
-	private Pair<Integer,Integer> pos;
-	private int width, height, muX, muY;
+	private Pair<Double, Double> pos;
+	private double  muX, muY;
+	private int width, height;
 	private boolean life;
-	private List<String> strImgs;
 	private EntityGraphics graphics;
 	private EntityMovement move;
 	private EntityDirections direction;
@@ -30,19 +30,18 @@ public abstract class Bullet implements Entity{
 	 * @param height	is the initial height of the {@link Bullet}
 	 * @param muX		is the initial movement unit of the {@link Bullet} along x-axis 
 	 * @param muY		is the initial movement unit of the {@link Bullet} along y-axis 
-	 * @param strImg	is the images's path of {@link Bullet}
 	 * @param dir		is the initial direction of the {@link Bullet}
 	 * @param graph		is the {@link EntityGraphics} implementation
 	 * @param move		is {@link EntityMovement} implementation
 	 */
-	protected void create(EntityType type, Pair<Integer,Integer> pos, int width,int height, int muX, int muY,
-			List<String> strImg, EntityDirections dir, EntityGraphics graph, EntityMovement move) {
+	protected void create(EntityType type, Pair<Integer,Integer> pos, int width,int height, 
+			double muX, double muY, EntityDirections dir, 
+			EntityGraphics graph, EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = pos;
+		this.pos = new Pair<>((double)pos.getX(), (double)pos.getY());
 		this.muX = muX;
 		this.muY = muY;
-		this.strImgs = strImg;
 		this.graphics = graph;
 		this.move = move;
 		this.direction = dir;
@@ -54,7 +53,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Pair<Integer, Integer> getPos() {
+	public Pair<Double, Double> getPos() {
 		return this.pos;
 	}
 
@@ -63,14 +62,14 @@ public abstract class Bullet implements Entity{
 	 */
 	@Override
 	public void setPos(Pair<Integer, Integer> pos) {
-		this.pos = pos;
+		this.pos.setBoth((double)pos.getX(), (double)pos.getY());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getX() {
+	public double getX() {
 		return this.pos.getX();
 	}
 
@@ -78,7 +77,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getY() {
+	public double getY() {
 		return this.pos.getY();
 	}
 
@@ -86,7 +85,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setX(int x) {
+	public void setX(double x) {
 		this.pos.setX(x);
 	}
 
@@ -94,7 +93,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setY(int y) {
+	public void setY(double y) {
 		this.pos.setY(y);
 	}
 
@@ -118,7 +117,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getMuX() {
+	public double getMuX() {
 		return this.muX;
 	}
 
@@ -126,7 +125,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setMuX(int mux) {
+	public void setMuX(double mux) {
 		this.muX = mux;
 	}
 
@@ -134,7 +133,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getMuY() {
+	public double getMuY() {
 		return this.muY;
 	}
 
@@ -142,7 +141,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setMuY(int muy) {
+	public void setMuY(double muy) {
 		this.muY = muy;
 	}
 
@@ -150,7 +149,7 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isLife() {
+	public boolean isAlive() {
 		return this.life;
 	}
 
@@ -165,8 +164,8 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<String> getStrImgs() {
-		return this.strImgs;
+	public void setEntityStrImgs(List<String> newEntityStrImg) {
+		this.graphics.setEntityStrImgs(newEntityStrImg);
 	}
 
 	/**
