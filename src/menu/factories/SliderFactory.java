@@ -12,7 +12,7 @@ import util.Constants;
  */
 public class SliderFactory {
 
-	private JSlider slider = new JSlider(JSlider.HORIZONTAL, Constants.minSliderValue, Constants.maxSliderValue, (int) Constants.VOLUME_LEVEL_START);
+	private JSlider slider;
 	
 	/**
 	 * A method that create the slider.
@@ -21,6 +21,7 @@ public class SliderFactory {
 	 */
 	public JSlider create(Board board){
 		
+		this.slider = new JSlider(JSlider.HORIZONTAL, Constants.minSliderValue, Constants.maxSliderValue, (int) (board.getAudio().getVolume()*10));
 		this.slider.setBackground(Color.black);
 		this.slider.setMajorTickSpacing(Constants.SPACING);
 		this.slider.setForeground(Color.white);
@@ -32,4 +33,5 @@ public class SliderFactory {
 		
 		return this.slider;
 	}
+	
 }
