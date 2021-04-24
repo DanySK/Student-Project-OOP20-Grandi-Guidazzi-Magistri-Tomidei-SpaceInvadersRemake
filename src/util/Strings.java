@@ -14,6 +14,8 @@ public interface Strings {
 	String LEADERBOARD_URI = "src/res/Leaderboard.txt";
 	String LEADERBOARD_DEFAULT_TEXT = "No one is that good yet";
 	
+	String VOLUME_URI = "src/res/Volume.txt";
+	
 	String ABOUT = "About the original game...";
 	String MORE_INFO = "For more info, click here!";
 	String CREDITS = "Credits";
