@@ -6,8 +6,8 @@ package util;
 public interface Strings {
 	
 	String ABOUT_TEXT = "<html><center>The original videogame was an arcade created in 1978, by Tomohiro Nishikado." +
-						" The game was inspired by the videogame \"Space Monster\" and from the novel \"The War of the Worlds\"." +
-						" The game was so popular that than over the years was adapted for all the platforms avaiable." +
+						"<br/> The game was inspired by the videogame \"Space Monster\" and from the novel \"The War of the Worlds\"." +
+						"<br/> The game was so popular that than over the years was adapted for all the platforms avaiable." +
 						"</center></html>";
 	String MORE_INFO_LINK = "https://en.wikipedia.org/wiki/Space_Invaders";
 	
