@@ -2,8 +2,6 @@ package menu;
 
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.BoxLayout;
 
@@ -11,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import controller.GameController;
-import menu.gameview.StateInGameMenu;
 import util.AudioImpl;
 import util.AudioTrack;
 import util.Constants;
