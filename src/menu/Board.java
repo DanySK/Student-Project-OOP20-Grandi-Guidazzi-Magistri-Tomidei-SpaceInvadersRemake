@@ -2,6 +2,8 @@ package menu;
 
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BoxLayout;
 
@@ -9,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import controller.GameController;
+import menu.gameview.StateInGameMenu;
 import util.AudioImpl;
 import util.AudioTrack;
 import util.Constants;
@@ -68,6 +71,7 @@ public class Board {
 		this.currentState = newState;
 		this.frame.getContentPane().add(currentState.getMainPanel());
 		this.frame.getContentPane().setBackground(Color.black);
+		this.currentState.getMainPanel().requestFocusInWindow();
 		this.frame.pack();
 	}
 	
