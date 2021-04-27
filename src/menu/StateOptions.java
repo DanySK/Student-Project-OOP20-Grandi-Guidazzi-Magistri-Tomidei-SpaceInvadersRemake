@@ -17,8 +17,8 @@ public class StateOptions implements State{
 
 	private JPanel panel;
 	private JPanel centerPanel = new JPanel();
-	private LabelFactory labelFactory = new LabelFactory();
 	private PanelFactory panelFactory = new PanelFactory();
+	private LabelFactory labelFactory = new LabelFactory();
 	
 	/**
 	 * The constructor of the StateOptions,

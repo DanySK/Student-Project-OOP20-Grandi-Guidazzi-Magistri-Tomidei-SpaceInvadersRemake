@@ -16,8 +16,8 @@ public class StateChangeKeys implements State{
 
 	private JPanel panel;
 	private JPanel centerPanel = new JPanel();
-	private PanelFactory panelFactory = new PanelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
+	private PanelFactory panelFactory = new PanelFactory();
 	
 	/**
 	 * The constructor of the StateChangeKeys,
@@ -25,7 +25,7 @@ public class StateChangeKeys implements State{
 	 * @param board
 	 */
 	public StateChangeKeys(Board board) {
-		this.panel = this.panelFactory.createPanel(Strings.CHANGE_KEYS, board);
+		this.panel = this.panelFactory.createPanel(Strings.ABOUT, board);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
 		this.centerPanel.setLayout(new BorderLayout());

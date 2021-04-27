@@ -19,9 +19,9 @@ public class StateAbout implements State{
 
 	private JPanel panel;
 	private JPanel centerPanel = new JPanel();
+	private PanelFactory panelFactory = new PanelFactory();
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
-	private PanelFactory panelFactory = new PanelFactory();
 	
 	/**
 	 * The constructor of the state about,
