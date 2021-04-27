@@ -1,10 +1,14 @@
 package menu.gameview;
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import controller.GameController;
+import controller.GameControllerImpl;
 import menu.Board;
 import menu.State;
 import menu.factories.LabelFactory;
@@ -15,14 +19,15 @@ import util.Strings;
 /**
  * A class that contains the aspects of the menu in game.
  */
-public class StateMenuInGame implements State{
+public class StateInGameMenu implements State{
 
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
 	private JPanel panel = new JPanel();
 	private JPanel centerPanel = new JPanel();
 	
-	public StateMenuInGame(Board board) {
+	
+	public StateInGameMenu(Board board) {
 		this.panel.setOpaque(false);
 		this.panel.setLayout(new BorderLayout());
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
@@ -43,4 +48,5 @@ public class StateMenuInGame implements State{
 		return this.panel;
 	}
 
+	
 }
