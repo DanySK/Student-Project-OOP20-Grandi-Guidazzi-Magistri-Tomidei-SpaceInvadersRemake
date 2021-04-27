@@ -19,9 +19,9 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	private final int BULLET_INITIAL_HEIGHT = 0;
 	private final double BULLET_INITIAL_MU_X = 0;
 	private final double BULLET_MAX_MU_Y = 0;
-
 	private List<String> bulletStrImgs;
 	private EntityDirections direction;
+	private Random random;
 
 	/**
 	 * {@link Bullet} with multiple direction
@@ -29,12 +29,12 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 * @param pos		is the {@link Bullet} initial position
 	 * @param strImg	are the images's paths of the {@link Bullet} 
 	 */
-	protected MultiDirectionsEnemyBullet(Pair<Integer,Integer> pos, List<String> strImg) {
-		Random random = new Random();
+	protected MultiDirectionsEnemyBullet(Pair<Double, Double> pos, List<String> strImg) {
+		this.random = new Random();
 		this.bulletStrImgs = new ArrayList<>();
 		this.randomBulletImg(strImg);
 		this.create(EntityType.ENEMY_BULLET, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
-				(random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), this.direction, new EntityGraphicsImpl(this.bulletStrImgs),
+				(this.random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), this.direction, new EntityGraphicsImpl(this.bulletStrImgs),
 				new EntityMovementImpl());
 	}
 
@@ -63,8 +63,7 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 * @param newStrImg is the new image's path of the bullet
 	 */
 	private void randomBulletImg(List<String> newStrImg) {
-		Random random = new Random();
-		switch(random.nextInt(newStrImg.size())) {
+		switch(this.random.nextInt(newStrImg.size())) {
 			case 1:
 				this.direction = EntityDirections.DOWN_LEFT;
 				this.bulletStrImgs.add(newStrImg.get(1));

@@ -34,12 +34,12 @@ public abstract class Bullet implements Entity{
 	 * @param graph		is the {@link EntityGraphics} implementation
 	 * @param move		is {@link EntityMovement} implementation
 	 */
-	protected void create(EntityType type, Pair<Integer,Integer> pos, int width,int height, 
+	protected void create(EntityType type, Pair<Double, Double> pos, int width,int height, 
 			double muX, double muY, EntityDirections dir, 
 			EntityGraphics graph, EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = new Pair<>((double)pos.getX(), (double)pos.getY());
+		this.pos = pos;
 		this.muX = muX;
 		this.muY = muY;
 		this.graphics = graph;

@@ -50,7 +50,7 @@ public class Boss1 extends Enemy {
 			this.setDirection(EntityDirections.RIGHT);
 		}
 		else {
-			this.setDirection(EntityDirections.RIGHT);
+			this.setDirection(EntityDirections.LEFT);
 		}
 	}
 

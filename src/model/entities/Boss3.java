@@ -63,7 +63,7 @@ public class Boss3 extends Enemy{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void changeDirection() {
+	protected void changeDirection() {
 		if(this.getDirection().equals(EntityDirections.LEFT)) {
 			this.setDirection(EntityDirections.RIGHT);
 		}
