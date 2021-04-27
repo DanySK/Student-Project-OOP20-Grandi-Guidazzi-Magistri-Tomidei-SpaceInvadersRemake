@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import util.Constants;
+import util.Strings;
 
 public class PanelBackgroundFactory extends JPanel{
 
@@ -18,7 +19,7 @@ public class PanelBackgroundFactory extends JPanel{
 	
 	public PanelBackgroundFactory() {
 		try {
-			image = ImageIO.read(new File("src/res/backgroundImage.png"));
+			image = ImageIO.read(new File(Strings.PANEL_BACKGROUND));
 			this.resizedImage = image.getScaledInstance(Constants.preferDimension.width, Constants.preferDimension.height, Image.SCALE_DEFAULT);
 		} catch (IOException e) {
 			System.out.println("There was an error with the panel background");
