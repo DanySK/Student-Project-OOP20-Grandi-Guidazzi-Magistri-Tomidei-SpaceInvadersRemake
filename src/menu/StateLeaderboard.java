@@ -30,7 +30,7 @@ public class StateLeaderboard implements State{
 	 * @param board
 	 */
 	public StateLeaderboard(Board board) {
-		this.panel = this.panelFactory.createPanel(Strings.ABOUT, board);
+		this.panel = this.panelFactory.createPanel(Strings.LEADERBOARD, board);
 		this.centerPanel.setOpaque(false);
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);

@@ -25,7 +25,7 @@ public class StateChangeKeys implements State{
 	 * @param board
 	 */
 	public StateChangeKeys(Board board) {
-		this.panel = this.panelFactory.createPanel(Strings.ABOUT, board);
+		this.panel = this.panelFactory.createPanel(Strings.CHANGE_KEYS, board);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
 		this.centerPanel.setLayout(new BorderLayout());
