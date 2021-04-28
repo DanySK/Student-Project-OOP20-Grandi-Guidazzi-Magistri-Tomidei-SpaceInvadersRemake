@@ -20,8 +20,8 @@ public class StateLeaderboard implements State{
 	private JPanel panel = new JPanel();
 	private JPanel centerPanel = new JPanel();
 	private TitleFactory titleFactory = new TitleFactory();
-	private PanelFactory panelFactory = new PanelFactory();
 	private LeaderboardFactory leaderboardFactory = new LeaderboardFactory();
+	private PanelFactory panelFactory = new PanelFactory();
 	private List<String> leaderboardList = this.leaderboardFactory.getLeaderboardList();
 	
 	/**
@@ -30,7 +30,7 @@ public class StateLeaderboard implements State{
 	 * @param board
 	 */
 	public StateLeaderboard(Board board) {
-		this.panel = this.panelFactory.createPanel(Strings.LEADERBOARD, board);
+		this.panel = this.panelFactory.createPanel(Strings.ABOUT, board);
 		this.centerPanel.setOpaque(false);
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);

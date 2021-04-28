@@ -22,7 +22,9 @@ public class SliderFactory {
 	public JSlider create(Board board){
 		
 		this.slider = new JSlider(JSlider.HORIZONTAL, Constants.minSliderValue, Constants.maxSliderValue, (int) (board.getAudio().getVolume()*10));
-		this.slider.setBackground(Color.black);
+		
+		this.slider.setOpaque(false);
+		
 		this.slider.setMajorTickSpacing(Constants.SPACING);
 		this.slider.setForeground(Color.white);
 		this.slider.setPaintLabels(true);

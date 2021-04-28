@@ -24,8 +24,8 @@ public class StateAudioSettings implements State{
 
 	private JPanel panel;
 	private JPanel centerPanel = new JPanel();
-	private PanelFactory panelFactory = new PanelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
+	private PanelFactory panelFactory = new PanelFactory();
 	private SliderFactory sliderFactory = new SliderFactory();
 	
 	/**
@@ -35,7 +35,7 @@ public class StateAudioSettings implements State{
 	 */
 	public StateAudioSettings(Board board) {
 		
-		this.panel = this.panelFactory.createPanel(Strings.AUDIO_SETTINGS, board);
+		this.panel = this.panelFactory.createPanel(Strings.ABOUT, board);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 	
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));

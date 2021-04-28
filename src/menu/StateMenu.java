@@ -6,6 +6,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import menu.factories.LabelFactory;
+import menu.factories.PanelBackgroundFactory;
 import menu.factories.TitleFactory;
 import util.Constants;
 import util.Strings;
@@ -17,7 +18,7 @@ public class StateMenu implements State{
 
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
-	private JPanel panel = new JPanel();
+	private JPanel panel = new PanelBackgroundFactory();
 	private JPanel centerPanel = new JPanel();
 	
 	/**

@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import menu.Board;
 import menu.State;
 import menu.factories.LabelFactory;
-import menu.factories.PanelFactory;
 import menu.factories.SliderFactory;
 import menu.factories.TitleFactory;
 import util.Constants;

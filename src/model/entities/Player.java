@@ -1,20 +1,24 @@
 package model.entities;
 
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import graphics.EntityGraphics;
+import menu.Board;
 import model.entitiesutil.Entity;
+import model.entitiesutil.Entity.EntityType;
 import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovement;
 import util.Pair;
 
-public class Player implements Entity{
+public class Player{
 
 	private EntityType entityType;
-	private Pair<Double,Double> position;
-	private double movimentUnitX;
-	private double movimentUnitY;
+	private Pair<Integer,Integer> position;
+	private int movimentUnitX;
+	private int movimentUnitY;
 	private int height;
 	private int width;
 	private int hit;
@@ -22,7 +26,6 @@ public class Player implements Entity{
 	private List<String> strImages;
 	private EntityGraphics graphics;
 	private EntityMovement move;
-	private EntityDirections direction;
 	
 	/**
 	 * The Constractor that create the Player.
@@ -30,7 +33,7 @@ public class Player implements Entity{
 	 */
 	public Player(Pair<Integer,Integer> position) {
 		this.create(position, this.movimentUnitX, this.movimentUnitY, this.height, this.width, this.hit, 
-				this.maxHits, this.strImages, this.graphics, this.move, this.direction);
+				this.maxHits, this.strImages, this.graphics, this.move);
 	}
 	
 	/**
@@ -47,10 +50,10 @@ public class Player implements Entity{
 	 * @param move
 	 * @param dir
 	 */
-	private void create(Pair<Integer,Integer> pos, double movimentUnitX2, double movimentUnitY2, int height, int width, int hit, int maxHits, 
-			List<String> listImages, EntityGraphics graphics, EntityMovement move, EntityDirections dir) {
+	private void create(Pair<Integer,Integer> pos, int movimentUnitX2, int movimentUnitY2, int height, int width, int hit, int maxHits, 
+			List<String> listImages, EntityGraphics graphics, EntityMovement move) {
 		this.entityType = EntityType.PLAYER;
-		this.position = new Pair<>((double)pos.getX(), (double)pos.getY());
+		this.position = new Pair<>(pos.getX(), pos.getY());
 		this.movimentUnitX = movimentUnitX2;
 		this.movimentUnitY = movimentUnitY2;
 		this.height = height;
@@ -59,104 +62,102 @@ public class Player implements Entity{
 		this.maxHits = maxHits;
 		this.graphics = graphics;
 		this.move = move;
-		this.direction = dir;
 	}
 	
-	@Override
-	public Pair<Double, Double> getPos() {
+	
+	public Pair<Integer, Integer> getPos() {
 		return this.position;
 	}
 
-	@Override
+	
 	public void setPos(Pair<Integer, Integer> pos) {
-		
+		pos.setBoth(pos.getX(), pos.getY());
 	}
 
-	@Override
-	public double getX() {
+	
+	public int getX() {
 		return this.position.getX();
 	}
 
-	@Override
-	public double getY() {
+	
+	public int getY() {
 		return this.position.getY();
 	}
 
-	@Override
-	public void setX(double x) {
+	
+	public void setX(int x) {
 		this.position.setX(x);
 	}
 
-	@Override
-	public void setY(double y) {
+	
+	public void setY(int y) {
 		this.position.setY(y);
 	}
 
-	@Override
+	
 	public int getWidth() {
 		return this.width;
 	}
 
-	@Override
+	
 	public int getHeight() {
 		return this.height;
 	}
 
-	@Override
-	public double getMuX() {
+	
+	public int getMuX() {
 		return this.movimentUnitX;
 	}
 
-	@Override
-	public void setMuX(double mux) {
+	
+	public void setMuX(int mux) {
 		this.movimentUnitX = mux;
 	}
 
-	@Override
+	
 	public double getMuY() {
 		return this.movimentUnitY;
 	}
 
-	@Override
-	public void setMuY(double muy) {
+	
+	public void setMuY(int muy) {
 		this.movimentUnitY = muy;
 	}
 
-	@Override
+	
 	public boolean isAlive() {
 		return this.hit >= this.maxHits;
 	}
 
 
-	@Override
+	
 	public EntityMovement getMovementImpl() {
 		return this.move;
 	}
 
-	@Override
-	public EntityDirections getDirection() {
-		return this.direction;
-	}
 
-	@Override
+	
 	public void updateEntity(Graphics g, Entity e) {
 		this.graphics.updateGraphics(g, e);
 	}
 
-	@Override
-	public void updateEntityPos() {
-		
-	}
 
-	@Override
+
 	public EntityType getEntityType() {
 		return this.entityType;
 	}
 
-	@Override
+	
 	public void setEntityStrImgs(List<String> newEntityStrImg) {
 		
 	}
-
+	
+	public void moveRight() {
+		this.setX(this.getX() + this.getMuX()); //setMuX(5)
+	}
+	
+	public void moveLeft() {
+		this.setX(this.getX() - this.getMuX());//setMux(-5)
+	}
 	
 }

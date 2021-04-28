@@ -6,15 +6,17 @@ package util;
 public interface Strings {
 	
 	String ABOUT_TEXT = "<html><center>The original videogame was an arcade created in 1978, by Tomohiro Nishikado." +
-						" The game was inspired by the videogame \"Space Monster\" and from the novel \"The War of the Worlds\"." +
-						" The game was so popular that than over the years was adapted for all the platforms avaiable." +
-						"</center></html>";
+						"<br/> The game was inspired by the videogame \"Space Monster\" and from the novel \"The War of the Worlds\"." +
+						"<br/> The game was so popular that than over the years was adapted for all the platforms avaiable.</center></html>";
+	
 	String MORE_INFO_LINK = "https://en.wikipedia.org/wiki/Space_Invaders";
 	
 	String LEADERBOARD_URI = "src/res/Leaderboard.txt";
 	String LEADERBOARD_DEFAULT_TEXT = "No one is that good yet";
 	
 	String VOLUME_URI = "src/res/Volume.txt";
+	
+	String PANEL_BACKGROUND = "src/res/backgroundImage.png";
 	
 	String ABOUT = "About the original game...";
 	String MORE_INFO = "For more info, click here!";

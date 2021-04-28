@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import menu.*;
 import menu.gameview.StateAudioSettingsInGame;
-import menu.gameview.StateMenuInGame;
+import menu.gameview.StateInGameMenu;
 import util.Audio;
 import util.AudioImpl;
 import util.AudioTrack;
@@ -89,7 +89,7 @@ public class LabelFactory {
 	        			break;
 	        			
 	        		case Strings.RETURN_TO_GAME_MENU:
-	        			board.setCurrentState(new StateMenuInGame(board));
+	        			board.setCurrentState(new StateInGameMenu(board));
 	        			break;
 	        		
 	        		case Strings.LEADERBOARD:
@@ -110,6 +110,10 @@ public class LabelFactory {
 	       
 	        		case Strings.RESTART:
 	        			board.setCurrentState(new StateGame(board));
+	        			break;
+	        			
+	        		case Strings.RESUME:
+	        			board.getGameController().resume();
 	        			break;
 	        		
 	        		case Strings.MORE_INFO:
