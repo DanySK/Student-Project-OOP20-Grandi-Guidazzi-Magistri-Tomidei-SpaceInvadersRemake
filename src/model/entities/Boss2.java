@@ -6,7 +6,10 @@ import java.util.List;
 import graphics.EntityGraphicsImpl;
 import model.entitiesutil.BossState;
 import model.entitiesutil.Enemy;
+import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
+import model.entitiesutil.Entity.EntityType;
+import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
@@ -67,10 +70,10 @@ public class Boss2 extends Enemy{
 	 */
 	@Override
 	public void shot() {
-		/*(new BossBullet(new Pair<>(this.getX() + this.getWidth()/4 - 1, 
+		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(new Pair<>(this.getX() + this.getWidth()/4 - 1, 
 				this.getY() + this.getHeight()), this.bulletStrImg));
-		(new BossBullet(new Pair<>(this.getX() + this.getWidth()* 3/4 - 1,
-				this.getY() + this.getHeight()), this.bulletStrImg));*/
+		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(new Pair<>(this.getX() + this.getWidth()* 3/4 - 1,
+				this.getY() + this.getHeight()), this.bulletStrImg));
 	}
 
 	/**
@@ -79,6 +82,29 @@ public class Boss2 extends Enemy{
 	private void changeState() {
 		if(this.getHits() >= this.HITS_2ND_PHASE) {
 			this.state = BossState.UPSET;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAfterCollisionWith(Entity entity) {
+		if(entity.getEntityType().equals(EntityType.PLAYER_BULLET) && this.isAlive()) {
+			this.hit();
+		}
+		if(entity.getEntityType().equals(EntityType.PLAYER)) {
+			this.model.processGameOver();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAfterCollisionWith(EdgeCollision edge) {
+		if(edge.equals(EdgeCollision.DOWN)) {
+			this.model.processGameOver();
 		}
 	}
 }

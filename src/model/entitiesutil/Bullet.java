@@ -5,6 +5,7 @@ import java.util.List;
 
 import graphics.EntityGraphics;
 import model.physics.EntityMovement;
+import model.physics.EntityCollision.EdgeCollision;
 import util.Pair;
 
 /**
@@ -182,6 +183,18 @@ public abstract class Bullet implements Entity{
 	@Override
 	public EntityDirections getDirection() {
 		return this.direction;
+	}
+
+	public void setDirection(EntityDirections dir) {
+		this.direction = dir;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAfterCollisionWith(EdgeCollision edge) {
+		this.setLife();
 	}
 
 	/**

@@ -7,7 +7,10 @@ import java.util.Random;
 import graphics.EntityGraphicsImpl;
 import model.entitiesutil.BossState;
 import model.entitiesutil.Enemy;
+import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
+import model.entitiesutil.Entity.EntityType;
+import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
@@ -47,7 +50,7 @@ public class Boss3 extends Enemy{
 	@Override
 	public void updateEntityPos() {
 		this.changeState();
-		this.teleport(0, 1);
+		this.teleport();
 		if(this.state.equals(BossState.UPSET)) {
 			this.setMuX(this.MAX_SPEED);
 		}
@@ -77,8 +80,17 @@ public class Boss3 extends Enemy{
 	 */
 	@Override
 	public void shot() {
-		/*(new BossBullet(new Pair<>(this.getX() + this.getWidth()/2 - 1, 
-		this.getY() + this.getHeight()), this.bulletStrImg));*/
+		this.changeState();
+		if(this.state.equals(BossState.UPSET)) {
+			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(new Pair<>(this.getX() + this.getWidth()/4 - 1, 
+					this.getY() + this.getHeight()), this.bulletStrImg));
+			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(new Pair<>(this.getX() + this.getWidth()* 3/4 - 1,
+					this.getY() + this.getHeight()), this.bulletStrImg));
+		}
+		else {
+			this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
+					this.getY() + this.getHeight()), this.bulletImg));
+		}
 	}
 
 	/**
@@ -87,6 +99,7 @@ public class Boss3 extends Enemy{
 	private void changeState() {
 		if(this.getHits() >= this.HITS_2ND_PHASE) {
 			this.state = BossState.UPSET;
+			this.setMuX(this.MAX_SPEED);
 		}
 	}
 
@@ -96,14 +109,41 @@ public class Boss3 extends Enemy{
 	 * @param minX is the minimum value of the range
 	 * @param maxX is the maximum value of the range
 	 */
-	private void teleport(int minX, int maxX) {
+	private void teleport() {
 		double x;
 		if(this.state.equals(BossState.UPSET) && (this.getHits() % this.random.nextInt(2) + 2 == 0)) {
 			do {
-				x = this.random.nextInt((int)(maxX - this.getMuX()));
-			}while(x < minX);
+				x = this.random.nextInt((int)(this.model.getController().getWindowWidth - this.getMuX()));
+			}while(x < 0);
 
 			this.setX(x);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAfterCollisionWith(Entity entity) {
+		if(entity.getEntityType().equals(EntityType.PLAYER_BULLET)) {
+			this.hit();
+		}
+		if(entity.getEntityType().equals(EntityType.PLAYER)) {
+			this.model.processGameOver();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAfterCollisionWith(EdgeCollision edge) {
+		if(edge.equals(EdgeCollision.LEFT) || edge.equals(EdgeCollision.RIGHT)) {
+			this.getMovementImpl().moveDown(this);
+			this.changeDirection();
+		}
+		if(edge.equals(EdgeCollision.DOWN)) {
+			this.model.processGameOver();
 		}
 	}
 }

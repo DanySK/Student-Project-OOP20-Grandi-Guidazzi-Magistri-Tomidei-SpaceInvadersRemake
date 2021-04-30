@@ -6,7 +6,10 @@ import java.util.Random;
 
 import graphics.EntityGraphicsImpl;
 import model.entitiesutil.EntityDirections;
+import model.entitiesutil.Entity.EntityType;
 import model.entitiesutil.Bullet;
+import model.entitiesutil.Entity;
+import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
@@ -63,4 +66,15 @@ public class MonoDirectionEnemyBullet extends Bullet {
 				break;
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAfterCollisionWith(Entity entity) {
+		if(entity.getEntityType().equals(EntityType.PLAYER)) {
+			this.setLife();
+		}
+	}
+
 }

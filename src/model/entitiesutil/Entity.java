@@ -5,6 +5,7 @@ import util.Pair;
 import java.awt.Graphics;
 import java.util.List;
 
+import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovement;
 
 /**
@@ -64,7 +65,6 @@ public interface Entity {
 	 * @return the integer which represents the current {@link Entity}'s x position
 	 */
 	public double getX();
-
 
 	/**
 	 * Return the current y position (from top) of the {@link Entity}
@@ -138,6 +138,8 @@ public interface Entity {
 
 	/**
 	 * Set the images's paths of the {@link Entity}
+	 * 
+	 * @param newEntityStrImg is the new entity's images's path
 	 */
 	public void setEntityStrImgs(List<String> newEntityStrImg);
 
@@ -167,6 +169,23 @@ public interface Entity {
 	 * Update {@link Entity} position according its direction
 	 */
 	public void updateEntityPos();
+
+	/**
+	 * {@link Entity} does a specific action based on 
+	 * the {@link Entity} it collided with
+	 * 
+	 * 
+	 * @param entity that collided with this {@link Entity}
+	 */
+	public void doAfterCollisionWith(Entity entity);
+
+	/**
+	 * {@link Entity} does a specific action based on 
+	 * the edge it collided with
+	 * 
+	 * @param edge where the {@link Entity} collided
+	 */
+	public void doAfterCollisionWith(EdgeCollision edge);
 
 	/**
 	 * Return the types of {@link Entity}

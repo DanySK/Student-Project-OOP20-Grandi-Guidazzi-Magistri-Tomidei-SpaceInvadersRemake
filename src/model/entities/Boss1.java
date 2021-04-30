@@ -5,7 +5,9 @@ import java.util.List;
 
 import graphics.EntityGraphicsImpl;
 import model.entitiesutil.Enemy;
+import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
+import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
@@ -72,8 +74,35 @@ public class Boss1 extends Enemy {
 	 */
 	@Override
 	public void shot() {
-		/*this.bullets.add(new BossBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
-				this.getY() + this.getHeight()), this.bulletImg));*/
+		this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
+				this.getY() + this.getHeight()), this.bulletImg));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAfterCollisionWith(Entity entity) {
+		if(entity.getEntityType().equals(EntityType.PLAYER_BULLET) && this.isAlive()) {
+				this.hit();
+		}
+		if(entity.getEntityType().equals(EntityType.PLAYER)) {
+				this.model.processGameOver();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAfterCollisionWith(EdgeCollision edge) {
+		if(edge.equals(EdgeCollision.LEFT) || edge.equals(EdgeCollision.RIGHT)) {
+			this.getMovementImpl().moveDown(this);
+			this.changeDirection();
+		}
+		if(edge.equals(EdgeCollision.DOWN)) {
+			this.model.processGameOver();
+		}
 	}
 
 
