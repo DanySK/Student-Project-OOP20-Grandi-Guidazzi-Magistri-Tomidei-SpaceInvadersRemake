@@ -19,17 +19,10 @@ public interface EntityGraphics {
 	public void updateGraphics(Graphics g, Entity e);
 
 	/**
-	 * if the entity has more than one image this methods change entity's image
-	 * 
-	 * @param e 		is the {@link Entity} that need to change his image
-	 * @param strImg	is the path of the new image
-	 */
-	public void switchImage(Entity e, String strImg);
-
-	/**
 	 * Set the images's paths of the {@link Entity}
 	 * 
 	 * @param newEntityStrImg is the new images's path of the entity
 	 */
 	public void setEntityStrImgs(List<String> newEntityStrImg);
+
 }
