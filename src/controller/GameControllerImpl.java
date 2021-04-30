@@ -56,10 +56,7 @@ public class GameControllerImpl implements GameController{
 	 */
 	@Override
 	public void pause() {
-		if(!this.isPaused) {
-			this.isPaused = true;
-			this.stop();
-		}
+		
 	}
 
 	/**
@@ -67,11 +64,7 @@ public class GameControllerImpl implements GameController{
 	 */
 	@Override
 	public void resume() {
-		if(this.isPaused) {
-			this.isPaused = false;
-			this.timer = Optional.of(new Timer());
-			this.timer.get().run();
-		}
+		
 	}
 
 	/**
@@ -102,14 +95,14 @@ public class GameControllerImpl implements GameController{
 	 * Update {@link Entity}s position
 	 */
 	private void updateGame() {
-		//this.model.update();	//Update entities's position
+		this.model.update();	//Update entities's position
 	}
 
 	/**
 	 * Update {@link Entity}s graphics
 	 */
 	private void render() {
-		this.view.getState().getMainPanel().repaint();	//Update entities's view
+		this.view.getState().getMainPanel().repaint();
 	}
 
 	/**
@@ -132,10 +125,10 @@ public class GameControllerImpl implements GameController{
 				if(delta >= 1) {
 					updates++;
 					updateGame();
+					render();
+					frames++;
 					delta--;
 				}
-				render();
-				frames++;
 				if(System.currentTimeMillis() - timer > 1000) {
 					timer += 1000;
 					System.out.println(updates + ": Ticks, Fps: " +frames +", Delta: " + delta);
