@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 
 import model.entitiesutil.Entity;
+import model.entitiesutil.Entity.EntityType;
 
 /**
  * Implementation of {@link EntityGraphics}
@@ -23,8 +24,32 @@ public class EntityGraphicsImpl implements EntityGraphics {
 	 * 
 	 * @param strImgs is the image's path of the entity
 	 */
-	public EntityGraphicsImpl(List<String> strImgs) {
-		this.strImgs = strImgs;
+	public EntityGraphicsImpl(EntityType type) {
+		switch(type) {
+			case BOSS_1:
+				break;
+			case BOSS_2:
+				break;
+			case BOSS_3:
+				break;
+			case GENERIC_ENEMY:
+				break;
+			case PLAYER:
+				break;
+			case BOSS_1_BULLET:
+				break;
+			case BOSS_2_BULLET:
+				break;
+			case BOSS_3_BULLET:
+				break;
+			case ENEMY_BULLET:
+				break;
+			case PLAYER_BULLET:
+				break;
+			default:
+				break;
+			
+		}
 		this.img = new ImageIcon(getClass().getResource(this.strImgs.get(0))).getImage();
 	}
 
@@ -35,14 +60,6 @@ public class EntityGraphicsImpl implements EntityGraphics {
 	public void updateGraphics(Graphics g, Entity e) {
 		this.graphics = (Graphics2D) g;
 		this.graphics.drawImage(this.img, (int)e.getX(), (int)e.getY(), null);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void switchImage(Entity e, String strImg) {
-		this.img = new ImageIcon(getClass().getResource(strImg)).getImage();
 	}
 
 	/**
