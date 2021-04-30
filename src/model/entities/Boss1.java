@@ -22,25 +22,16 @@ public class Boss1 extends Enemy {
 	private final double INITIAL_MU_Y = 0;
 	private final int MAX_HITS = 0;
 
-	private List<String> bulletImg;
-
 	/**
 	 * Generic {@link Enemy} boss
 	 * 
 	 * @param pos is the initial position this entity
 	 */
 	public Boss1(Pair<Integer,Integer> pos) {
-		List<String> strImgs = new ArrayList<>();
-		strImgs.add("");
 		EntityDirections direction = EntityDirections.RIGHT;
-		this.create(EntityType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
-				this.INITIAL_MU_Y, this.MAX_HITS, direction, new EntityGraphicsImpl(strImgs),
+		this.create(EntityType.BOSS_1, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
+				this.INITIAL_MU_Y, this.MAX_HITS, direction, new EntityGraphicsImpl(EntityType.BOSS_1),
 				new EntityMovementImpl());
-
-		this.bulletImg = new ArrayList<>();
-		this.bulletImg.add("");
-		this.bulletImg.add("");
-		this.bulletImg.add("");
 	}
 
 	/**
@@ -64,7 +55,7 @@ public class Boss1 extends Enemy {
 		if(this.getDirection().equals(EntityDirections.LEFT)){
 			this.getMovementImpl().moveLeft(this);
 		}
-		if(this.getDirection().equals(EntityDirections.RIGHT)) {
+		else {
 			this.getMovementImpl().moveRight(this);
 		}
 	}
@@ -75,7 +66,7 @@ public class Boss1 extends Enemy {
 	@Override
 	public void shot() {
 		this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
-				this.getY() + this.getHeight()), this.bulletImg));
+				this.getY() + this.getHeight()), EntityType.BOSS_1_BULLET));
 	}
 
 	/**

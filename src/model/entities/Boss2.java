@@ -27,24 +27,16 @@ public class Boss2 extends Enemy{
 
 	private BossState state;
 
-	private List<String> bulletStrImg;
-
 	/**
 	 * {@link Enemy} boss with a lot of life but that moves slowly
 	 * 
 	 * @param pos is the initial position of this entity
 	 */
 	public Boss2(Pair<Integer, Integer> pos) {
-		List<String> strImg = new ArrayList<>();
-		strImg.add("");
-		this.create(EntityType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
-				this.MAX_HITS, EntityDirections.DOWN, new EntityGraphicsImpl(strImg), new EntityMovementImpl());
+		this.create(EntityType.BOSS_2, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
+				this.MAX_HITS, EntityDirections.DOWN, new EntityGraphicsImpl(EntityType.BOSS_2),
+				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
-
-		this.bulletStrImg = new ArrayList<>();
-		this.bulletStrImg.add("");
-		this.bulletStrImg.add("");
-		this.bulletStrImg.add("");
 	}
 
 	/**
@@ -70,10 +62,12 @@ public class Boss2 extends Enemy{
 	 */
 	@Override
 	public void shot() {
-		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(new Pair<>(this.getX() + this.getWidth()/4 - 1, 
-				this.getY() + this.getHeight()), this.bulletStrImg));
-		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(new Pair<>(this.getX() + this.getWidth()* 3/4 - 1,
-				this.getY() + this.getHeight()), this.bulletStrImg));
+		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
+				new Pair<>(this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight()), 
+				EntityType.BOSS_2_BULLET));
+		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
+				new Pair<>(this.getX() + this.getWidth()* 3/4 - 1,this.getY() + this.getHeight()), 
+				EntityType.BOSS_2_BULLET));
 	}
 
 	/**

@@ -27,21 +27,14 @@ public class Boss3 extends Enemy{
 	private BossState state;
 	private Random random;
 
-	private List<String> bulletStrImg;
-
 	public Boss3(Pair<Integer, Integer> pos) {
-		List<String> strImg = new ArrayList<>();
-		strImg.add("");
 		EntityDirections direction = EntityDirections.LEFT;
-		super.create(EntityType.BOSS, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
-				this.MAX_HITS, direction, new EntityGraphicsImpl(strImg), new EntityMovementImpl());
+		super.create(EntityType.BOSS_3, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
+				this.MAX_HITS, direction, new EntityGraphicsImpl(EntityType.BOSS_3), 
+				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
 		this.random = new Random();
 
-		this.bulletStrImg = new ArrayList<>();
-		this.bulletStrImg.add("");
-		this.bulletStrImg.add("");
-		this.bulletStrImg.add("");
 	}
 
 	/**
@@ -57,7 +50,7 @@ public class Boss3 extends Enemy{
 		if(this.getDirection().equals(EntityDirections.LEFT)) {
 			this.getMovementImpl().moveLeft(this);
 		}
-		if(this.getDirection().equals(EntityDirections.RIGHT)) {
+		else {
 			this.getMovementImpl().moveRight(this);
 		}
 	}
@@ -82,14 +75,17 @@ public class Boss3 extends Enemy{
 	public void shot() {
 		this.changeState();
 		if(this.state.equals(BossState.UPSET)) {
-			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(new Pair<>(this.getX() + this.getWidth()/4 - 1, 
-					this.getY() + this.getHeight()), this.bulletStrImg));
-			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(new Pair<>(this.getX() + this.getWidth()* 3/4 - 1,
-					this.getY() + this.getHeight()), this.bulletStrImg));
+			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
+					new Pair<>(this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight()), 
+					EntityType.BOSS_3_BULLET));
+			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
+					new Pair<>(this.getX() + this.getWidth()* 3/4 - 1, this.getY() + this.getHeight()), 
+					EntityType.BOSS_3_BULLET));
 		}
 		else {
-			this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
-					this.getY() + this.getHeight()), this.bulletImg));
+			this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(
+					new Pair<>(this.getX() + this.getWidth()/2 -1, this.getY() + this.getHeight()), 
+					EntityType.BOSS_3_BULLET));
 		}
 	}
 
