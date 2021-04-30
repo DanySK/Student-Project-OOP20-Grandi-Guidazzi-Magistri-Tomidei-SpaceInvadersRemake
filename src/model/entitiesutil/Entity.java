@@ -5,6 +5,7 @@ import util.Pair;
 import java.awt.Graphics;
 import java.util.List;
 
+import model.entities.*;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovement;
 
@@ -24,12 +25,22 @@ public interface Entity {
 		GENERIC_ENEMY,
 
 		/**
-		 * {@link Enemy} boss
+		 * {@link Boss1}
 		 */
-		BOSS,
+		BOSS_1,
 
 		/**
-		 * Player
+		 * {@link Boss2}
+		 */
+		BOSS_2,
+
+		/**
+		 * {@link Boss3}
+		 */
+		BOSS_3,
+
+		/**
+		 * {@link Player}
 		 */
 		PLAYER,
 
@@ -39,7 +50,22 @@ public interface Entity {
 		ENEMY_BULLET,
 
 		/**
-		 * Player's bullet
+		 * {@link Boss1}'s {@link Bullet}
+		 */
+		BOSS_1_BULLET,
+
+		/**
+		 * {@link Boss2}'s {@link Bullet}
+		 */
+		BOSS_2_BULLET,
+
+		/**
+		 * {@link Boss3}'s {@link Bullet}
+		 */
+		BOSS_3_BULLET,
+
+		/**
+		 * {@link Player}'s {@link Bullet}
 		 */
 		PLAYER_BULLET,
 	}
