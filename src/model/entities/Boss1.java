@@ -95,6 +95,4 @@ public class Boss1 extends Enemy {
 			this.model.processGameOver();
 		}
 	}
-
-
 }

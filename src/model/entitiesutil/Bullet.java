@@ -25,7 +25,7 @@ public abstract class Bullet implements Entity{
 	/**
 	 * Create a new {@link Bullet}
 	 * 
-	 * @param type		is the {@link BulletType}
+	 * @param type		is the type of the {@link Bullet}
 	 * @param pos		is the initial position of the {@link Bullet}
 	 * @param width		is the initial width of the {@link Bullet}
 	 * @param height	is the initial height of the {@link Bullet}
@@ -185,6 +185,11 @@ public abstract class Bullet implements Entity{
 		return this.direction;
 	}
 
+	/**
+	 * Set the direction of the {@link Bullet}
+	 * 
+	 * @param dir is the new direction of the {@link Bullet}
+	 */
 	public void setDirection(EntityDirections dir) {
 		this.direction = dir;
 	}
@@ -218,5 +223,4 @@ public abstract class Bullet implements Entity{
 	public EntityType getEntityType() {
 		return this.entityType;
 	}
-
 }

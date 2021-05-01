@@ -39,8 +39,8 @@ public class EntityCollisionImpl implements EntityCollision{
 	@Override
 	public void checkCollision(Entity e) {
 		this.enemyEntities = this.model.getEntitiesLevel().stream().
-				filter(i -> i.getEntityType().equals(EntityType.GENERIC_ENEMY) || 
-						i.getEntityType().equals(EntityType.BOSS)|| i.getEntityType().equals(EntityType.ENEMY_BULLET))
+				filter(i -> !i.getEntityType().equals(EntityType.PLAYER)
+						|| i.getEntityType().equals(EntityType.PLAYER_BULLET))
 				.collect(Collectors.toList());
 
 		this.playerEntities = this.model.getEntitiesLevel().stream().
@@ -88,7 +88,7 @@ public class EntityCollisionImpl implements EntityCollision{
 	/**
 	 * Check collision between an {@link Entity} and the frame Edges
 	 * 
-	 * @param e
+	 * @param e is the {@link Entity} to check
 	 */
 	private void edgeCollision(Entity e) {
 		if(e.isAlive()) {
@@ -101,7 +101,7 @@ public class EntityCollisionImpl implements EntityCollision{
 			if(e.getY() < 0) {
 				e.doAfterCollisionWith(EdgeCollision.TOP);
 			}
-			if(e.getY() + e.getHeight() >= this.model.getController().getWindowHeight()) {
+			if(e.getY() + e.getHeight() > this.model.getController().getWindowHeight()) {
 				e.doAfterCollisionWith(EdgeCollision.DOWN);
 			}
 		}

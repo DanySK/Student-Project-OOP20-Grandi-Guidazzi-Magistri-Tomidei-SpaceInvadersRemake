@@ -201,7 +201,7 @@ public interface Entity {
 	 * the {@link Entity} it collided with
 	 * 
 	 * 
-	 * @param entity that collided with this {@link Entity}
+	 * @param entity that collided with the {@link Entity}
 	 */
 	public void doAfterCollisionWith(Entity entity);
 

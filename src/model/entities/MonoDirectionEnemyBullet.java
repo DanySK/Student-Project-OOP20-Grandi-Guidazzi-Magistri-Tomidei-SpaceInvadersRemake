@@ -1,6 +1,5 @@
 package model.entities;
 
-import java.util.List;
 import java.util.Random;
 
 import graphics.EntityGraphicsImpl;
@@ -18,14 +17,12 @@ public class MonoDirectionEnemyBullet extends Bullet {
 	private final int BULLET_INITIAL_WIDTH = 0;
 	private final int BULLET_INITIAL_HEIGHT = 0;
 	private final double BULLET_MAX_MU_Y = 0;
-	private List<String> strImgs;
 
 	/**
 	 * {@link Bullet} with a single direction
 	 * 
 	 * @param pos		is the {@link Bullet} initial position
-	 * @param strImg	are the images's paths of the {@link Bullet} 
-	 * @param type		is the {@link BulletType}
+	 * @param type		is the type of this {@link Bullet}
 	 */
 	protected MonoDirectionEnemyBullet(Pair<Double, Double> pos, EntityType type) {
 		Random random = new Random();

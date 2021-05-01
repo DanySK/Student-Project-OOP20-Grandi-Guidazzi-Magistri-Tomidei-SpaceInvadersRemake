@@ -18,20 +18,19 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	private final int BULLET_INITIAL_HEIGHT = 0;
 	private final double BULLET_INITIAL_MU_X = 0;
 	private final double BULLET_MAX_MU_Y = 0;
-	private EntityDirections direction;
+	private final int POSSIBLE_BULLET_DIRECTION = 3;
 	private Random random;
 
 	/**
 	 * {@link Bullet} with multiple direction
 	 * 
 	 * @param pos		is the {@link Bullet} initial position
-	 * @param strImg	are the images's paths of the {@link Bullet} 
+	 * @param type		is the type of this {@link Bullet} 
 	 */
 	protected MultiDirectionsEnemyBullet(Pair<Double, Double> pos, EntityType type) {
 		this.random = new Random();
-		this.randomBulletImg();
 		this.create(type, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
-				(this.random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), this.direction, 
+				(this.random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), this.setRandomDirection(), 
 				new EntityGraphicsImpl(type), new EntityMovementImpl());
 	}
 
@@ -54,25 +53,19 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	}
 
 	/**
-	 * Method that select a random image's path from an input list,
-	 * and change the {@link Bullet} direction according to the image's path
+	 * Selects a possible random direction for this entity and returns it
 	 * 
-	 * @param newStrImg is the new image's path of the bullet
+	 * @return a possible random direction for this entity
 	 */
-	private void randomBulletImg() {
-		switch(this.random.nextInt()) {
+	private EntityDirections setRandomDirection() {
+		switch(this.random.nextInt(this.POSSIBLE_BULLET_DIRECTION)) {
 			case 1:
-				this.direction = EntityDirections.DOWN_LEFT;
-				break;
-
+				return EntityDirections.DOWN_LEFT;
 			case 2:
-				this.direction = EntityDirections.DOWN_RIGHT;
-				break;
-
+				return EntityDirections.DOWN_RIGHT;
 			default:
-				this.direction = EntityDirections.DOWN;
-				break;
-		}
+				return EntityDirections.DOWN;
+		} 
 	}
 
 	/**

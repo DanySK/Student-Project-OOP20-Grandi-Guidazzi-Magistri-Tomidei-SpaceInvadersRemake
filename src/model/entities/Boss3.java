@@ -14,6 +14,9 @@ import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
+/**
+ * {@link Enemy} boss that after taking a certain number of hits can teleport and move quickly
+ */
 public class Boss3 extends Enemy{
 
 	private final int INITIAL_WIDTH = 0;
@@ -27,6 +30,11 @@ public class Boss3 extends Enemy{
 	private BossState state;
 	private Random random;
 
+	/**
+	 * {@link Enemy} boss that after taking a certain number of hits can teleport and move quickly
+	 * 
+	 * @param pos is the initial position of this entity
+	 */
 	public Boss3(Pair<Integer, Integer> pos) {
 		EntityDirections direction = EntityDirections.LEFT;
 		super.create(EntityType.BOSS_3, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
@@ -77,6 +85,9 @@ public class Boss3 extends Enemy{
 		if(this.state.equals(BossState.UPSET)) {
 			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
 					new Pair<>(this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight()), 
+					EntityType.BOSS_3_BULLET));
+			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
+					new Pair<>(this.getX() + this.getWidth()/2 - 1, this.getY() + this.getHeight()), 
 					EntityType.BOSS_3_BULLET));
 			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
 					new Pair<>(this.getX() + this.getWidth()* 3/4 - 1, this.getY() + this.getHeight()), 
