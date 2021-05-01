@@ -27,7 +27,7 @@ public class StateCredits implements State{
 	 * @param board
 	 */
 	public StateCredits(Board board) {
-		this.panel = this.panelFactory.createPanel(Strings.ABOUT, board);
+		this.panel = this.panelFactory.createPanel(Strings.CREDITS, board);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
