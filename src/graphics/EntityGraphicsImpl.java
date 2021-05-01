@@ -22,7 +22,7 @@ public class EntityGraphicsImpl implements EntityGraphics {
 	/**
 	 * Implementation of {@link EntityGraphics}
 	 * 
-	 * @param strImgs is the image's path of the entity
+	 * @param type is the type of the entity
 	 */
 	public EntityGraphicsImpl(EntityType type) {
 		switch(type) {
