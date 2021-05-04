@@ -2,7 +2,6 @@ package model.entities;
 
 import java.util.Random;
 
-import graphics.EntityGraphicsImpl;
 import model.entitiesutil.EntityDirections;
 import model.entitiesutil.Bullet;
 import model.entitiesutil.Entity;
@@ -28,7 +27,7 @@ public class MonoDirectionEnemyBullet extends Bullet {
 		Random random = new Random();
 		this.create(type, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, 
 				0, (random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), EntityDirections.DOWN, 
-				new EntityGraphicsImpl(type), new EntityMovementImpl());
+				new EntityMovementImpl());
 	}
 
 	/**

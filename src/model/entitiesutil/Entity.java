@@ -2,9 +2,6 @@ package model.entitiesutil;
 
 import util.Pair;
 
-import java.awt.Graphics;
-import java.util.List;
-
 import model.entities.*;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovement;
@@ -163,13 +160,6 @@ public interface Entity {
 	public boolean isAlive();
 
 	/**
-	 * Set the images's paths of the {@link Entity}
-	 * 
-	 * @param newEntityStrImg is the new entity's images's path
-	 */
-	public void setEntityStrImgs(List<String> newEntityStrImg);
-
-	/**
 	 * Return the implementation of {@link EntityMovement} 
 	 * 
 	 * @return the object which represents the {@link EntityMovement} implementation
@@ -182,14 +172,6 @@ public interface Entity {
 	 * @return a value of {@link EntityDirections} which represents the {@link Entity}'s current direction
 	 */
 	public EntityDirections getDirection();
-
-	/**
-	 * Update {@link Entity} graphics
-	 * 
-	 * @param g		type of Graphics for {@link Entity} update
-	 * @param e 	Object that need to be update
-	 */
-	public void updateEntity(Graphics g, Entity e);
 
 	/**
 	 * Update {@link Entity} position according its direction

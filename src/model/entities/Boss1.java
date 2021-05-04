@@ -1,9 +1,5 @@
 package model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import graphics.EntityGraphicsImpl;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
@@ -30,7 +26,7 @@ public class Boss1 extends Enemy {
 	public Boss1(Pair<Integer,Integer> pos) {
 		EntityDirections direction = EntityDirections.RIGHT;
 		this.create(EntityType.BOSS_1, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
-				this.INITIAL_MU_Y, this.MAX_HITS, direction, new EntityGraphicsImpl(EntityType.BOSS_1),
+				this.INITIAL_MU_Y, this.MAX_HITS, direction,
 				new EntityMovementImpl());
 	}
 
@@ -65,8 +61,8 @@ public class Boss1 extends Enemy {
 	 */
 	@Override
 	public void shot() {
-		this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
-				this.getY() + this.getHeight()), EntityType.BOSS_1_BULLET));
+		/*this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
+				this.getY() + this.getHeight()), EntityType.BOSS_1_BULLET));*/
 	}
 
 	/**
@@ -78,7 +74,7 @@ public class Boss1 extends Enemy {
 				this.hit();
 		}
 		if(entity.getEntityType().equals(EntityType.PLAYER)) {
-				this.model.processGameOver();
+				//this.model.processGameOver();
 		}
 	}
 
@@ -92,7 +88,7 @@ public class Boss1 extends Enemy {
 			this.changeDirection();
 		}
 		if(edge.equals(EdgeCollision.DOWN)) {
-			this.model.processGameOver();
+			//this.model.processGameOver();
 		}
 	}
 }

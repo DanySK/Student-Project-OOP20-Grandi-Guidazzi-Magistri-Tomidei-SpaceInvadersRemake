@@ -1,14 +1,9 @@
 package model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import graphics.EntityGraphicsImpl;
 import model.entitiesutil.BossState;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
-import model.entitiesutil.Entity.EntityType;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
@@ -34,7 +29,7 @@ public class Boss2 extends Enemy{
 	 */
 	public Boss2(Pair<Integer, Integer> pos) {
 		this.create(EntityType.BOSS_2, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
-				this.MAX_HITS, EntityDirections.DOWN, new EntityGraphicsImpl(EntityType.BOSS_2),
+				this.MAX_HITS, EntityDirections.DOWN, 
 				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
 	}
@@ -62,12 +57,12 @@ public class Boss2 extends Enemy{
 	 */
 	@Override
 	public void shot() {
-		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
+		/*this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
 				new Pair<>(this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight()), 
 				EntityType.BOSS_2_BULLET));
 		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
 				new Pair<>(this.getX() + this.getWidth()* 3/4 - 1,this.getY() + this.getHeight()), 
-				EntityType.BOSS_2_BULLET));
+				EntityType.BOSS_2_BULLET));*/
 	}
 
 	/**
@@ -88,7 +83,7 @@ public class Boss2 extends Enemy{
 			this.hit();
 		}
 		if(entity.getEntityType().equals(EntityType.PLAYER)) {
-			this.model.processGameOver();
+			//this.model.processGameOver();
 		}
 	}
 
@@ -98,7 +93,7 @@ public class Boss2 extends Enemy{
 	@Override
 	public void doAfterCollisionWith(EdgeCollision edge) {
 		if(edge.equals(EdgeCollision.DOWN)) {
-			this.model.processGameOver();
+			//this.model.processGameOver();
 		}
 	}
 }

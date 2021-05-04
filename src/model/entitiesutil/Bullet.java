@@ -1,9 +1,5 @@
 package model.entitiesutil;
 
-import java.awt.Graphics;
-import java.util.List;
-
-import graphics.EntityGraphics;
 import model.physics.EntityMovement;
 import model.physics.EntityCollision.EdgeCollision;
 import util.Pair;
@@ -17,7 +13,6 @@ public abstract class Bullet implements Entity{
 	private double  muX, muY;
 	private int width, height;
 	private boolean life;
-	private EntityGraphics graphics;
 	private EntityMovement move;
 	private EntityDirections direction;
 	private EntityType entityType;
@@ -32,18 +27,16 @@ public abstract class Bullet implements Entity{
 	 * @param muX		is the initial movement unit of the {@link Bullet} along x-axis 
 	 * @param muY		is the initial movement unit of the {@link Bullet} along y-axis 
 	 * @param dir		is the initial direction of the {@link Bullet}
-	 * @param graph		is the {@link EntityGraphics} implementation
 	 * @param move		is {@link EntityMovement} implementation
 	 */
 	protected void create(EntityType type, Pair<Double, Double> pos, int width,int height, 
 			double muX, double muY, EntityDirections dir, 
-			EntityGraphics graph, EntityMovement move) {
+			EntityMovement move) {
 		this.width = width;
 		this.height = height;
 		this.pos = pos;
 		this.muX = muX;
 		this.muY = muY;
-		this.graphics = graph;
 		this.move = move;
 		this.direction = dir;
 		this.life = true;
@@ -165,14 +158,6 @@ public abstract class Bullet implements Entity{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setEntityStrImgs(List<String> newEntityStrImg) {
-		this.graphics.setEntityStrImgs(newEntityStrImg);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public EntityMovement getMovementImpl() {
 		return this.move;
 	}
@@ -200,14 +185,6 @@ public abstract class Bullet implements Entity{
 	@Override
 	public void doAfterCollisionWith(EdgeCollision edge) {
 		this.setLife();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void updateEntity(Graphics g, Entity e) {
-		this.graphics.updateGraphics(g, e);
 	}
 
 	/**

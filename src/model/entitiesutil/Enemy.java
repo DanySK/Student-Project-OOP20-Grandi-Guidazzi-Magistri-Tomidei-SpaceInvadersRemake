@@ -1,9 +1,5 @@
 package model.entitiesutil;
 
-import java.awt.Graphics;
-import java.util.List;
-
-import graphics.EntityGraphics;
 import model.physics.EntityMovement;
 import util.Pair;
 
@@ -15,7 +11,6 @@ public abstract class Enemy implements Entity{
 	private Pair<Double, Double> pos;
 	private double muX, muY;
 	private int width, height, hit, maxHits;
-	private EntityGraphics graphics;
 	private EntityMovement move;
 	private EntityDirections direction;
 	private EntityType entityType;
@@ -31,18 +26,16 @@ public abstract class Enemy implements Entity{
 	 * @param muY		is the initial movement unit of the {@link Enemy} along y-axis
 	 * @param maxHits	is the max number of hits that {@link Enemy} can take before dying
 	 * @param dir		is the initial direction of the {@link Enemy}
-	 * @param graph		is the {@link EntityGraphics} implementation
 	 * @param move		is {@link EntityMovement} implementation
 	 */
 	protected void create(EntityType type, Pair<Integer,Integer> pos, int width,int height, 
-			double muX, double muY, int maxHits, EntityDirections dir, 
-			EntityGraphics graph, EntityMovement move) {
+			double muX, double muY, int maxHits, EntityDirections dir,
+			EntityMovement move) {
 		this.width = width;
 		this.height = height;
 		this.pos = new Pair<>((double)pos.getX(), (double)pos.getY());
 		this.muX = muX;
 		this.muY = muY;
-		this.graphics = graph;
 		this.move = move;
 		this.direction = dir;
 		this.hit = 0;
@@ -194,22 +187,6 @@ public abstract class Enemy implements Entity{
 	@Override
 	public boolean isAlive() {
 		return this.hit < this.maxHits;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void setEntityStrImgs(List<String> newEntityStrImg) {
-		this.graphics.setEntityStrImgs(newEntityStrImg);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void updateEntity(Graphics g, Entity e) {
-		this.graphics.updateGraphics(g, e);
 	}
 
 	/**

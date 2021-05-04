@@ -1,15 +1,11 @@
 package model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import graphics.EntityGraphicsImpl;
 import model.entitiesutil.BossState;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
-import model.entitiesutil.Entity.EntityType;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
@@ -38,7 +34,7 @@ public class Boss3 extends Enemy{
 	public Boss3(Pair<Integer, Integer> pos) {
 		EntityDirections direction = EntityDirections.LEFT;
 		super.create(EntityType.BOSS_3, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
-				this.MAX_HITS, direction, new EntityGraphicsImpl(EntityType.BOSS_3), 
+				this.MAX_HITS, direction, 
 				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
 		this.random = new Random();
@@ -83,7 +79,7 @@ public class Boss3 extends Enemy{
 	public void shot() {
 		this.changeState();
 		if(this.state.equals(BossState.UPSET)) {
-			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
+			/*this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
 					new Pair<>(this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight()), 
 					EntityType.BOSS_3_BULLET));
 			this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
@@ -96,7 +92,7 @@ public class Boss3 extends Enemy{
 		else {
 			this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(
 					new Pair<>(this.getX() + this.getWidth()/2 -1, this.getY() + this.getHeight()), 
-					EntityType.BOSS_3_BULLET));
+					EntityType.BOSS_3_BULLET));*/
 		}
 	}
 
@@ -117,11 +113,11 @@ public class Boss3 extends Enemy{
 	 * @param maxX is the maximum value of the range
 	 */
 	private void teleport() {
-		double x;
+		double x = 0;
 		if(this.state.equals(BossState.UPSET) && (this.getHits() % this.random.nextInt(2) + 2 == 0)) {
-			do {
+			/*do {
 				x = this.random.nextInt((int)(this.model.getController().getWindowWidth - this.getMuX()));
-			}while(x < 0);
+			}while(x < 0);*/
 
 			this.setX(x);
 		}
@@ -136,7 +132,7 @@ public class Boss3 extends Enemy{
 			this.hit();
 		}
 		if(entity.getEntityType().equals(EntityType.PLAYER)) {
-			this.model.processGameOver();
+			//this.model.processGameOver();
 		}
 	}
 
@@ -150,7 +146,7 @@ public class Boss3 extends Enemy{
 			this.changeDirection();
 		}
 		if(edge.equals(EdgeCollision.DOWN)) {
-			this.model.processGameOver();
+			//this.model.processGameOver();
 		}
 	}
 }

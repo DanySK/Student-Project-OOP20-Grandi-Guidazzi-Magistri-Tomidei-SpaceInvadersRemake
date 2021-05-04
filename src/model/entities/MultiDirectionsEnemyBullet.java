@@ -2,7 +2,6 @@ package model.entities;
 
 import java.util.Random;
 
-import graphics.EntityGraphicsImpl;
 import model.entitiesutil.Bullet;
 import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
@@ -31,7 +30,7 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 		this.random = new Random();
 		this.create(type, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
 				(this.random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), this.setRandomDirection(), 
-				new EntityGraphicsImpl(type), new EntityMovementImpl());
+				new EntityMovementImpl());
 	}
 
 	/**
@@ -65,7 +64,7 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 				return EntityDirections.DOWN_RIGHT;
 			default:
 				return EntityDirections.DOWN;
-		} 
+		}
 	}
 
 	/**
