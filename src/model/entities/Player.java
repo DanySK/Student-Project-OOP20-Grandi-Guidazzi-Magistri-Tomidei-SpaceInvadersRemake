@@ -8,8 +8,8 @@ import java.util.List;
 import graphics.EntityGraphics;
 import menu.Board;
 import model.entitiesutil.Entity;
-import model.entitiesutil.Entity.EntityType;
 import model.entitiesutil.EntityDirections;
+import model.entitiesutil.EntityType;
 import model.physics.EntityMovement;
 import util.Pair;
 

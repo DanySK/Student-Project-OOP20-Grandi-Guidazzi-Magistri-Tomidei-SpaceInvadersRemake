@@ -95,7 +95,7 @@ public class GameControllerImpl implements GameController{
 	 * Update {@link Entity}s position
 	 */
 	private void updateGame() {
-		this.model.update();	//Update entities's position
+		//this.model.update();	//Update entities's position
 	}
 
 	/**

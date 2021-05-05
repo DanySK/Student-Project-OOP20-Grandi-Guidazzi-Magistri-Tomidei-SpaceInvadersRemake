@@ -4,6 +4,7 @@ import model.entitiesutil.BossState;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
+import model.entitiesutil.EntityType;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;

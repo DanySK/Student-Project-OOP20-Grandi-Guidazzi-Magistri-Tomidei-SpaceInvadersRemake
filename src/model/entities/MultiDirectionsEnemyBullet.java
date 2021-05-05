@@ -5,6 +5,7 @@ import java.util.Random;
 import model.entitiesutil.Bullet;
 import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
+import model.entitiesutil.EntityType;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 

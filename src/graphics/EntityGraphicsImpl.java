@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 
 import model.entitiesutil.Entity;
-import model.entitiesutil.Entity.EntityType;
+import model.entitiesutil.EntityType;
 
 /**
  * Implementation of {@link EntityGraphics}

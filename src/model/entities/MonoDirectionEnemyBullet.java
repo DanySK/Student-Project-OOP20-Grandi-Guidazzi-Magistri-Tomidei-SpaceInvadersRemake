@@ -3,6 +3,7 @@ package model.entities;
 import java.util.Random;
 
 import model.entitiesutil.EntityDirections;
+import model.entitiesutil.EntityType;
 import model.entitiesutil.Bullet;
 import model.entitiesutil.Entity;
 import model.physics.EntityMovementImpl;

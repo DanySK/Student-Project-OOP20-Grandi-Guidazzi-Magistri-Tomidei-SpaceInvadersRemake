@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import model.entitiesutil.Entity;
-import model.entitiesutil.Entity.EntityType;
+import model.entitiesutil.EntityType;
 
 /**
  * Implementation of {@link EntityCollision}

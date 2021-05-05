@@ -6,6 +6,7 @@ import java.util.List;
 import graphics.EntityGraphicsImpl;
 import model.entitiesutil.Bullet;
 import model.entitiesutil.EntityDirections;
+import model.entitiesutil.EntityType;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
