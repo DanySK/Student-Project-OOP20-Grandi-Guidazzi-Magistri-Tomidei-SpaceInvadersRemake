@@ -7,7 +7,7 @@ import util.Pair;
 /**
  * Object which is throw
  */
-public abstract class Bullet implements Entity{
+public abstract class Bullet implements Entity, AutoMovableEntity {
 
 	private Pair<Double, Double> pos;
 	private double  muX, muY;

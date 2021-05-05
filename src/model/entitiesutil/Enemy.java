@@ -6,7 +6,7 @@ import util.Pair;
 /**
  * {@link Entity} that Hero should kill
  */
-public abstract class Enemy implements Entity{
+public abstract class Enemy implements Entity, AutoMovableEntity {
 
 	private Pair<Double, Double> pos;
 	private double muX, muY;

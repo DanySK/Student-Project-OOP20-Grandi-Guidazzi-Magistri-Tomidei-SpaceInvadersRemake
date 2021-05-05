@@ -117,11 +117,6 @@ public interface Entity {
 	public EntityDirections getDirection();
 
 	/**
-	 * Update {@link Entity} position according its direction
-	 */
-	public void updateEntityPos();
-
-	/**
 	 * {@link Entity} does a specific action based on 
 	 * the {@link Entity} it collided with
 	 * 
