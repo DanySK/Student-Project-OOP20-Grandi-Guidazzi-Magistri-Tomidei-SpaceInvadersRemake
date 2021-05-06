@@ -6,7 +6,7 @@ import util.Pair;
 /**
  * {@link Entity} that Hero should kill
  */
-public abstract class Enemy implements Entity, AutoMovableEntity {
+public abstract class Enemy implements Entity, AutoMovableEntity, EntityCapableShooting {
 
 	private Pair<Double, Double> pos;
 	private double muX, muY;
@@ -203,8 +203,9 @@ public abstract class Enemy implements Entity, AutoMovableEntity {
 
 
 	/**
-	 * Create new {@link Bullet} according to the type of the {@link Enemy}
+	 * {@inheritDoc}
 	 */
+	@Override
 	public abstract void  shot();
 
 	/**
