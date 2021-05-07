@@ -3,6 +3,9 @@ package model.entitiesutil.typeentities;
 import model.entitiesutil.EntityDirections;
 import model.physics.EntityCollision.EdgeCollision;
 
+/**
+ * Interface that represents all the {@link GenericEntity} that can move
+ */
 public interface MobileEntity extends GenericEntity{
 
 	/**
