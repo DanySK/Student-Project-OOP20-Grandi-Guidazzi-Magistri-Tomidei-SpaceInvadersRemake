@@ -1,6 +1,6 @@
 package model.physics;
 
-import model.entitiesutil.Entity;
+import model.entitiesutil.typeentities.GenericEntity;
 
 /**
  * Interface to check collisions
@@ -8,7 +8,7 @@ import model.entitiesutil.Entity;
 public interface EntityCollision {
 
 	/**
-	 * Possible edges that can collide with {@link Entity}
+	 * Possible edges that can collide with {@link GenericEntity}
 	 */
 	public enum EdgeCollision{
 
@@ -41,8 +41,8 @@ public interface EntityCollision {
 	/**
 	 * Check collision between a specific entity in the level that is running
 	 * 
-	 * @param e is the {@link Entity} implementation that need to be checked
+	 * @param e is the {@link GenericEntity} implementation that need to be checked
 	 */
-	public void checkCollision(Entity e);
+	public void checkCollision(GenericEntity e);
 	
 }

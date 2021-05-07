@@ -3,9 +3,9 @@ package model.entities;
 import java.util.Random;
 
 import model.entitiesutil.Bullet;
-import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
-import model.entitiesutil.EntityType;
+import model.entitiesutil.GenericEntityType;
+import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityMovementImpl;
 import util.Pair;
 
@@ -27,7 +27,7 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 * @param pos		is the {@link Bullet} initial position
 	 * @param type		is the type of this {@link Bullet} 
 	 */
-	protected MultiDirectionsEnemyBullet(Pair<Double, Double> pos, EntityType type) {
+	protected MultiDirectionsEnemyBullet(Pair<Double, Double> pos, SpecificEntityType type) {
 		this.random = new Random();
 		this.create(type, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
 				(this.random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), this.setRandomDirection(), 
@@ -38,7 +38,7 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateEntityPos() {
+	public void updateEntityPosition() {
 		switch(this.getDirection()) {
 			case DOWN_LEFT:
 				this.getMovementImpl().moveBottomLeft(this);
@@ -72,8 +72,8 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doAfterCollisionWith(Entity entity) {
-		if(entity.getEntityType().equals(EntityType.PLAYER)) {
+	public void doAfterCollisionWithEntity(GenericEntity entity) {
+		if(entity.getEntityType().equals(GenericEntityType.PLAYER)) {
 			this.setLife();
 		}
 	}

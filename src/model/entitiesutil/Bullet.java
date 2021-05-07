@@ -1,13 +1,15 @@
 package model.entitiesutil;
 
 import model.physics.EntityMovement;
+import model.entities.SpecificEntityType;
+import model.entitiesutil.typeentities.AutoMovableEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import util.Pair;
 
 /**
  * Object which is throw
  */
-public abstract class Bullet implements Entity, AutoMovableEntity {
+public abstract class Bullet implements AutoMovableEntity {
 
 	private Pair<Double, Double> pos;
 	private double  muX, muY;
@@ -15,7 +17,7 @@ public abstract class Bullet implements Entity, AutoMovableEntity {
 	private boolean life;
 	private EntityMovement move;
 	private EntityDirections direction;
-	private EntityType entityType;
+	private SpecificEntityType entityType;
 
 	/**
 	 * Create a new {@link Bullet}
@@ -29,7 +31,7 @@ public abstract class Bullet implements Entity, AutoMovableEntity {
 	 * @param dir		is the initial direction of the {@link Bullet}
 	 * @param move		is {@link EntityMovement} implementation
 	 */
-	protected void create(EntityType type, Pair<Double, Double> pos, int width,int height, 
+	protected void create(SpecificEntityType type, Pair<Double, Double> pos, int width,int height, 
 			double muX, double muY, EntityDirections dir, 
 			EntityMovement move) {
 		this.width = width;
@@ -171,10 +173,9 @@ public abstract class Bullet implements Entity, AutoMovableEntity {
 	}
 
 	/**
-	 * Set the direction of the {@link Bullet}
-	 * 
-	 * @param dir is the new direction of the {@link Bullet}
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void setDirection(EntityDirections dir) {
 		this.direction = dir;
 	}
@@ -183,7 +184,7 @@ public abstract class Bullet implements Entity, AutoMovableEntity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doAfterCollisionWith(EdgeCollision edge) {
+	public void doAfterCollisionWithEdge(EdgeCollision edge) {
 		this.setLife();
 	}
 
@@ -191,13 +192,13 @@ public abstract class Bullet implements Entity, AutoMovableEntity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public abstract void updateEntityPos();
+	public abstract void updateEntityPosition();
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public EntityType getEntityType() {
+	public SpecificEntityType getEntityType() {
 		return this.entityType;
 	}
 }

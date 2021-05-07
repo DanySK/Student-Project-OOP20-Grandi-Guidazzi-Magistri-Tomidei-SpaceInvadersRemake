@@ -1,7 +1,9 @@
 package model.entitiesutil;
 
+import model.entitiesutil.typeentities.GenericEntity;
+
 /**
- * All the directions an {@link Entity} can move
+ * All the directions an {@link GenericEntity} can move
  */
 public enum EntityDirections{
 

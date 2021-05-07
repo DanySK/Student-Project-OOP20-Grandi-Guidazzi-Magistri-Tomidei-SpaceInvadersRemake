@@ -1,14 +1,12 @@
 package model.entitiesutil;
 
-import model.entities.Boss1;
-import model.entities.Boss2;
-import model.entities.Boss3;
 import model.entities.Player;
+import model.entitiesutil.typeentities.GenericEntity;
 
 /**
- * Possible types of {@link Entity}
+ * Possible generic types of the {@link GenericEntity}
  */
-public enum EntityType{
+public enum GenericEntityType{
 
 	/**
 	 * {@link Enemy}
@@ -16,19 +14,9 @@ public enum EntityType{
 	GENERIC_ENEMY,
 
 	/**
-	 * {@link Boss1}
+	 * {@link Enemy} boss
 	 */
-	BOSS_1,
-
-	/**
-	 * {@link Boss2}
-	 */
-	BOSS_2,
-
-	/**
-	 * {@link Boss3}
-	 */
-	BOSS_3,
+	BOSS,
 
 	/**
 	 * {@link Player}
@@ -36,27 +24,7 @@ public enum EntityType{
 	PLAYER,
 
 	/**
-	 * Generic {@link Enemy}'s {@link Bullet}
+	 * {@link Bullet}
 	 */
-	ENEMY_BULLET,
-
-	/**
-	 * {@link Boss1}'s {@link Bullet}
-	 */
-	BOSS_1_BULLET,
-
-	/**
-	 * {@link Boss2}'s {@link Bullet}
-	 */
-	BOSS_2_BULLET,
-
-	/**
-	 * {@link Boss3}'s {@link Bullet}
-	 */
-	BOSS_3_BULLET,
-
-	/**
-	 * {@link Player}'s {@link Bullet}
-	 */
-	PLAYER_BULLET,
+	BULLET,
 }

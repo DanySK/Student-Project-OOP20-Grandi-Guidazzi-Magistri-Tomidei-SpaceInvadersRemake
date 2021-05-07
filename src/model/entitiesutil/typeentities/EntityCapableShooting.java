@@ -1,13 +1,15 @@
-package model.entitiesutil;
+package model.entitiesutil.typeentities;
+
+import model.entitiesutil.Bullet;
 
 /**
- * Interface that represents all the {@link Entity} that can fire
+ * Interface that represents all the {@link GenericEntity} that can fire
  */
 public interface EntityCapableShooting {
 
 	/**
-	 * Create new {@link Bullet} according to the type of the {@link Entity}
+	 * Create new {@link Bullet} according to the type of the {@link GenericEntity}
 	 */
-	public void shot();
+	public void shoot();
 
 }

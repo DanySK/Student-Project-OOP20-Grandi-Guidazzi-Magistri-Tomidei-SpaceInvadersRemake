@@ -1,53 +1,52 @@
 package model.physics;
 
-import model.entitiesutil.Entity;
+import model.entitiesutil.typeentities.MobileEntity;
 
 /**
- * Interface that represent {@link Entity}'s movements
+ * Interface that represent {@link MobileEntity}'s movements
  */
 public interface EntityMovement {
 
 	/**
-	 * Method that move the {@link Entity} to the left
+	 * Method that move the {@link MobileEntity} to the left
 	 * 
-	 * @param e	is the {@link Entity} that needs to be moved
+	 * @param e	is the {@link MobileEntity} that needs to be moved
 	 */
-	public void moveLeft(Entity e);
+	public void moveLeft(MobileEntity e);
 
 	/**
-	 * Method that move the {@link Entity} to the right
+	 * Method that move the {@link GenericEntity} to the right
 	 * 
-	 * @param e	is the {@link Entity} that needs to be moved
+	 * @param e	is the {@link GenericEntity} that needs to be moved
 	 */
-	public void moveRight(Entity e);
+	public void moveRight(MobileEntity e);
 
 	/**
-	 * Method that move the {@link Entity} up
+	 * Method that move the {@link MobileEntity} up
 	 * 
-	 * @param e	is the {@link Entity} that needs to be moved
+	 * @param e	is the {@link MobileEntity} that needs to be moved
 	 */
-	public void moveUp(Entity e);
+	public void moveUp(MobileEntity e);
 
 	/**
-	 * Method that move the {@link Entity} down
+	 * Method that move the {@link MobileEntity} down
 	 * 
-	 * @param e	is the {@link Entity} that needs to be moved
+	 * @param e	is the {@link MobileEntity} that needs to be moved
 	 */
-	public void moveDown(Entity e);
+	public void moveDown(MobileEntity e);
 
 	/**
-	 * Method that move the {@link Entity} to the bottom left
+	 * Method that move the {@link MobileEntity} to the bottom left
 	 * 
-	 * @param e	is the {@link Entity} that needs to be moved
+	 * @param e	is the {@link MobileEntity} that needs to be moved
 	 */
-	public void moveBottomLeft(Entity e);
+	public void moveBottomLeft(MobileEntity e);
 
 	/**
-	 * Method that move the {@link Entity} to the bottom right
+	 * Method that move the {@link MobileEntity} to the bottom right
 	 * 
-	 * @param e	is the {@link Entity} that needs to be moved
+	 * @param e	is the {@link MobileEntity} that needs to be moved
 	 */
-	public void moveBottomRight(Entity e);
-
+	public void moveBottomRight(MobileEntity e);
 
 }

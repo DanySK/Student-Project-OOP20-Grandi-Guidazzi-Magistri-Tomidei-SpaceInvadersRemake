@@ -2,11 +2,11 @@ package model.entities;
 
 import java.util.Random;
 
-import model.entitiesutil.BossState;
 import model.entitiesutil.Enemy;
-import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
-import model.entitiesutil.EntityType;
+import model.entitiesutil.GenericEntityType;
+import model.entitiesutil.bossutil.BossState;
+import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
@@ -34,7 +34,7 @@ public class Boss3 extends Enemy{
 	 */
 	public Boss3(Pair<Integer, Integer> pos) {
 		EntityDirections direction = EntityDirections.LEFT;
-		super.create(EntityType.BOSS_3, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
+		super.create(SpecificEntityType.BOSS_3, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
 				this.MAX_HITS, direction, 
 				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
@@ -46,7 +46,7 @@ public class Boss3 extends Enemy{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateEntityPos() {
+	public void updateEntityPosition() {
 		this.changeState();
 		this.teleport();
 		if(this.state.equals(BossState.UPSET)) {
@@ -77,7 +77,7 @@ public class Boss3 extends Enemy{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void shot() {
+	public void shoot() {
 		this.changeState();
 		if(this.state.equals(BossState.UPSET)) {
 			/*this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
@@ -128,11 +128,11 @@ public class Boss3 extends Enemy{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doAfterCollisionWith(Entity entity) {
-		if(entity.getEntityType().equals(EntityType.PLAYER_BULLET)) {
+	public void doAfterCollisionWithEntity(GenericEntity entity) {
+		if(entity.getEntityType().equals(SpecificEntityType.PLAYER_BULLET)) {
 			this.hit();
 		}
-		if(entity.getEntityType().equals(EntityType.PLAYER)) {
+		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
 			//this.model.processGameOver();
 		}
 	}
@@ -141,7 +141,7 @@ public class Boss3 extends Enemy{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doAfterCollisionWith(EdgeCollision edge) {
+	public void doAfterCollisionWithEdge(EdgeCollision edge) {
 		if(edge.equals(EdgeCollision.LEFT) || edge.equals(EdgeCollision.RIGHT)) {
 			this.getMovementImpl().moveDown(this);
 			this.changeDirection();

@@ -1,4 +1,4 @@
-package model.entitiesutil;
+package model.entitiesutil.bossutil;
 
 /**
  * Possible Boss state

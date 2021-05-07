@@ -1,9 +1,9 @@
 package model.entities;
 
 import model.entitiesutil.Enemy;
-import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
-import model.entitiesutil.EntityType;
+import model.entitiesutil.GenericEntityType;
+import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 import util.Pair;
@@ -26,7 +26,7 @@ public class Boss1 extends Enemy {
 	 */
 	public Boss1(Pair<Integer,Integer> pos) {
 		EntityDirections direction = EntityDirections.RIGHT;
-		this.create(EntityType.BOSS_1, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
+		this.create(SpecificEntityType.BOSS_1, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
 				this.INITIAL_MU_Y, this.MAX_HITS, direction,
 				new EntityMovementImpl());
 	}
@@ -48,7 +48,7 @@ public class Boss1 extends Enemy {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateEntityPos() {
+	public void updateEntityPosition() {
 		if(this.getDirection().equals(EntityDirections.LEFT)){
 			this.getMovementImpl().moveLeft(this);
 		}
@@ -61,7 +61,7 @@ public class Boss1 extends Enemy {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void shot() {
+	public void shoot() {
 		/*this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
 				this.getY() + this.getHeight()), EntityType.BOSS_1_BULLET));*/
 	}
@@ -70,11 +70,11 @@ public class Boss1 extends Enemy {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doAfterCollisionWith(Entity entity) {
-		if(entity.getEntityType().equals(EntityType.PLAYER_BULLET) && this.isAlive()) {
+	public void doAfterCollisionWithEntity(GenericEntity entity) {
+		if(entity.getEntityType().equals(SpecificEntityType.PLAYER_BULLET) && this.isAlive()) {
 				this.hit();
 		}
-		if(entity.getEntityType().equals(EntityType.PLAYER)) {
+		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
 				//this.model.processGameOver();
 		}
 	}
@@ -83,7 +83,7 @@ public class Boss1 extends Enemy {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doAfterCollisionWith(EdgeCollision edge) {
+	public void doAfterCollisionWithEdge(EdgeCollision edge) {
 		if(edge.equals(EdgeCollision.LEFT) || edge.equals(EdgeCollision.RIGHT)) {
 			this.getMovementImpl().moveDown(this);
 			this.changeDirection();

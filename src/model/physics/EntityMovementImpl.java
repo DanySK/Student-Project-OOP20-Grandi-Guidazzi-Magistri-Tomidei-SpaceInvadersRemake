@@ -1,9 +1,9 @@
 package model.physics;
 
-import model.entitiesutil.Entity;
+import model.entitiesutil.typeentities.MobileEntity;
 
 /**
- * Class that implements {@link Entity}'s movements
+ * Class that implements {@link MobileEntity}'s movements
  */
 public class EntityMovementImpl implements EntityMovement{
 
@@ -11,7 +11,7 @@ public class EntityMovementImpl implements EntityMovement{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void moveLeft(Entity e) {
+	public void moveLeft(MobileEntity e) {
 		e.setX(e.getX() - e.getMuX());
 	}
 
@@ -19,7 +19,7 @@ public class EntityMovementImpl implements EntityMovement{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void moveRight(Entity e) {
+	public void moveRight(MobileEntity e) {
 		e.setX(e.getX() + e.getMuX());
 	}
 
@@ -27,7 +27,7 @@ public class EntityMovementImpl implements EntityMovement{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void moveUp(Entity e) {
+	public void moveUp(MobileEntity e) {
 		e.setY(e.getY() - e.getMuY());
 	}
 
@@ -35,7 +35,7 @@ public class EntityMovementImpl implements EntityMovement{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void moveDown(Entity e) {
+	public void moveDown(MobileEntity e) {
 		e.setY(e.getY() + e.getMuY());
 	}
 
@@ -43,7 +43,7 @@ public class EntityMovementImpl implements EntityMovement{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void moveBottomLeft(Entity e) {
+	public void moveBottomLeft(MobileEntity e) {
 		e.setY(e.getY() + e.getMuY());
 		e.setX(e.getX() - e.getMuX());
 	}
@@ -52,7 +52,7 @@ public class EntityMovementImpl implements EntityMovement{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void moveBottomRight(Entity e) {
+	public void moveBottomRight(MobileEntity e) {
 		e.setY(e.getY() + e.getMuY());
 		e.setX(e.getX() + e.getMuX());		
 	}

@@ -3,8 +3,10 @@ package model.physics;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import model.entitiesutil.Entity;
-import model.entitiesutil.EntityType;
+import model.entities.SpecificEntityType;
+import model.entitiesutil.GenericEntityType;
+import model.entitiesutil.typeentities.GenericEntity;
+import model.entitiesutil.typeentities.MobileEntity;
 
 /**
  * Implementation of {@link EntityCollision}
@@ -12,8 +14,8 @@ import model.entitiesutil.EntityType;
 public class EntityCollisionImpl implements EntityCollision{
 
 	private Model model;
-	private List<Entity> enemyEntities;
-	private List<Entity> playerEntities;
+	private List<GenericEntity> enemyEntities;
+	private List<GenericEntity> playerEntities;
 	
 	/**
 	 * Implementation of {@link EntityCollision}
@@ -37,34 +39,34 @@ public class EntityCollisionImpl implements EntityCollision{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void checkCollision(Entity e) {
+	public void checkCollision(GenericEntity e) {
 		this.enemyEntities = this.model.getEntitiesLevel().stream().
-				filter(i -> !i.getEntityType().equals(EntityType.PLAYER)
-						|| i.getEntityType().equals(EntityType.PLAYER_BULLET))
+				filter(i -> !i.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)
+						|| i.getEntityType().equals(GenericEntityType.PLAYER_BULLET))
 				.collect(Collectors.toList());
 
 		this.playerEntities = this.model.getEntitiesLevel().stream().
-				filter(i -> i.getEntityType().equals(EntityType.PLAYER)
-						|| i.getEntityType().equals(EntityType.PLAYER_BULLET))
+				filter(i -> i.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)
+						|| i.getEntityType().equals(GenericEntityType.PLAYER_BULLET))
 				.collect(Collectors.toList());
 
-		if(e.getEntityType().equals(EntityType.PLAYER) ||
-				e.getEntityType().equals(EntityType.PLAYER_BULLET)) {
+		if(e.getEntityType().getGenericType().equals(GenericEntityType.PLAYER) ||
+				e.getEntityType().equals(SpecificEntityType.PLAYER_BULLET)) {
 			this.enemyEntities.forEach(enemy -> this.collision(e, enemy));
 		}
 		else {
 			this.playerEntities.forEach(player -> this.collision(e, player));
 		}
-		this.edgeCollision(e);
+		this.edgeCollision((MobileEntity)e);
 	}
 
 	/**
 	 * Check collision between two specific entities
 	 * 
-	 * @param e				is one {@link Entity} to check
-	 * @param entityLevel	is one  {@link Entity} to check
+	 * @param e				is one {@link GenericEntity} to check
+	 * @param entityLevel	is one  {@link GenericEntity} to check
 	 */
-	private void collision(Entity e, Entity entityLevel) {
+	private void collision(GenericEntity e, GenericEntity entityLevel) {
 		if(!e.equals(entityLevel) && e.isAlive() && entityLevel.isAlive() && 
 				!e.getEntityType().equals(entityLevel.getEntityType())){
 
@@ -79,30 +81,30 @@ public class EntityCollisionImpl implements EntityCollision{
 
 			if(ePosY < (eLevelPosY + eLevelHeight) && (ePosY + eHeight) > eLevelPosY && 
 					ePosX < (eLevelPosX + eLevelWidth) && (ePosX + eWidth) > eLevelPosX) {
-				e.doAfterCollisionWith(entityLevel);
-				entityLevel.doAfterCollisionWith(e);
+				e.doAfterCollisionWithEntity(entityLevel);
+				entityLevel.doAfterCollisionWithEntity(e);
 			}
 		}
 	}
 
 	/**
-	 * Check collision between an {@link Entity} and the frame Edges
+	 * Check collision between an {@link GenericEntity} and the frame Edges
 	 * 
-	 * @param e is the {@link Entity} to check
+	 * @param e is the {@link GenericEntity} to check
 	 */
-	private void edgeCollision(Entity e) {
+	private void edgeCollision(MobileEntity e) {
 		if(e.isAlive()) {
 			if(e.getX() < 0) {
-				e.doAfterCollisionWith(EdgeCollision.LEFT);
+				e.doAfterCollisionWithEdge(EdgeCollision.LEFT);
 			}
 			if(e.getX() + e.getWidth() + e.getMuX() > this.model.getController().getWindowWidth()) {
-				e.doAfterCollisionWith(EdgeCollision.RIGHT);
+				e.doAfterCollisionWithEdge(EdgeCollision.RIGHT);
 			}
 			if(e.getY() < 0) {
-				e.doAfterCollisionWith(EdgeCollision.TOP);
+				e.doAfterCollisionWithEdge(EdgeCollision.TOP);
 			}
 			if(e.getY() + e.getHeight() > this.model.getController().getWindowHeight()) {
-				e.doAfterCollisionWith(EdgeCollision.DOWN);
+				e.doAfterCollisionWithEdge(EdgeCollision.DOWN);
 			}
 		}
 		
