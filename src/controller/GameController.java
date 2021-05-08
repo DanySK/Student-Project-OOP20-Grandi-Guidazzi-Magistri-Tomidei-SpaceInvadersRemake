@@ -13,7 +13,7 @@ public interface GameController {
 	/**
 	 * Stop the game loop 
 	 */
-	public void stop();
+	public void stopGameLoop();
 
 	/**
 	 * Return the state of the game loop.
