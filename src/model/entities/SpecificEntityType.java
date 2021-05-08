@@ -8,6 +8,9 @@ import model.entitiesutil.GenericEntityType;
  */
 public enum SpecificEntityType {
 
+	/**
+	 * {@link Alien}
+	 */
 	ALIEN(GenericEntityType.GENERIC_ENEMY, 0),
 
 	/**
@@ -30,6 +33,9 @@ public enum SpecificEntityType {
 	 */
 	PLAYER_1(GenericEntityType.PLAYER),
 
+	/**
+	 * {@link Alien}'s {@link Bullet}
+	 */
 	ALIEN_BULLET(GenericEntityType.BULLET),
 
 	/**
