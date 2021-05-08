@@ -1,6 +1,6 @@
 package launcher;
 
-import controller.GameControllerImpl;
+import menu.Board;
 
 /**
  * The class of the project main.
@@ -8,7 +8,7 @@ import controller.GameControllerImpl;
 public class Launcher {
 
 	public static void main(String[] args) {
-		new GameControllerImpl();
+		new Board();
 	}
 
 }
