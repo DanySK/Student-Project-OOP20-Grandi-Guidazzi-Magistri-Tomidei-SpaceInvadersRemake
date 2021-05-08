@@ -36,7 +36,7 @@ public abstract class Bullet implements AutoMovableEntity {
 			EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = pos;
+		this.pos = new Pair<>(pos.getX() - this.width/2, pos.getY() - this.height/2);
 		this.muX = muX;
 		this.muY = muY;
 		this.move = move;

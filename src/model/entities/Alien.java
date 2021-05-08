@@ -25,7 +25,7 @@ public class Alien extends Enemy{
 	@Override
 	public void doAfterCollisionWith(Entity entity) {
 		if(this.isAlive()) {
-			this.hit();
+			this.incHit();
 		}
 	}
 

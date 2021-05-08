@@ -130,7 +130,7 @@ public class Boss3 extends Enemy{
 	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
 		if(entity.getEntityType().equals(SpecificEntityType.PLAYER_BULLET)) {
-			this.hit();
+			this.incHit();
 		}
 		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
 			//this.model.processGameOver();

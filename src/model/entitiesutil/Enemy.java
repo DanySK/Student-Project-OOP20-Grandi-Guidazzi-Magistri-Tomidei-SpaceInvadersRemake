@@ -37,7 +37,7 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting 
 			EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = new Pair<>((double)pos.getX(), (double)pos.getY());
+		this.pos = new Pair<>((double)pos.getX() - this.width/2, (double)pos.getY() - this.height/2);
 		this.muX = muX;
 		this.muY = muY;
 		this.move = move;
@@ -155,7 +155,7 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting 
 	/**
 	 * Increment the current number of hits that {@link Enemy} take
 	 */
-	public void hit() {
+	public void incHit() {
 		this.hit++;
 	}
 
