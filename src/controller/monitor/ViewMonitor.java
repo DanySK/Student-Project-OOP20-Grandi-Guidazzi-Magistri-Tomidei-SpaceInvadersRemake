@@ -3,7 +3,7 @@ package controller.monitor;
 import controller.GameStatus;
 
 /**
- * Interface for set the {@link GameStatus}
+ * Interface for setting the {@link GameStatus}
  */
 public interface ViewMonitor {
 
