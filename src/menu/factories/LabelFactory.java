@@ -14,6 +14,9 @@ import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import controller.GameController;
+import controller.GameControllerImpl;
 import menu.*;
 import menu.gameview.StateAudioSettingsInGame;
 import menu.gameview.StateInGameMenu;
@@ -65,7 +68,7 @@ public class LabelFactory {
 	        	switch(label.getText()) {
 	        	
 	        		case Strings.START:
-	        			board.setCurrentState(new StateGame(board));
+//	        			board.setCurrentState(new GameControllerImpl().getView());
 	        			break;
 	        			
 	        		case Strings.EXIT:
@@ -113,7 +116,7 @@ public class LabelFactory {
 	        			break;
 	        			
 	        		case Strings.RESUME:
-	        			board.getGameController().resume();
+//	        			board.getGameController().resume();
 	        			break;
 	        		
 	        		case Strings.MORE_INFO:
