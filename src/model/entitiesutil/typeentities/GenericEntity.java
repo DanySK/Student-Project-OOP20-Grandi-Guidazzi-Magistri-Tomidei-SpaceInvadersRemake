@@ -9,7 +9,7 @@ import model.entities.SpecificEntityType;
 public interface GenericEntity {
 
 	/**
-	 * Return  the current position (from top left) of the {@link GenericEntity}
+	 * Return  the current position of the {@link GenericEntity}
 	 * 
      * @return the {@link Pair} of Integers which represents the current position of the {@link GenericEntity}
      *        
@@ -19,35 +19,36 @@ public interface GenericEntity {
 	/**
 	 * Update the position of the {@link GenericEntity}
 	 * 
-	 * @param pos is the new position
+	 * @param x is the new x coordinate
+	 * @param y is the new y coordinate
 	 */
-	public void setPos(Pair<Integer, Integer> pos);
+	public void setPos(int x, int y);
 
 	/**
-	 * Return the current x position (from top left) of the {@link GenericEntity}
+	 * Return the current x coordinate of the {@link GenericEntity}
 	 * 
-	 * @return the integer which represents the current {@link GenericEntity}'s x position
+	 * @return the integer which represents the current {@link GenericEntity}'s x coordinate
 	 */
 	public double getX();
 
 	/**
-	 * Return the current y position (from top) of the {@link GenericEntity}
+	 * Return the current y coordinate of the {@link GenericEntity}
 	 * 
-	 * @return the integer which represents {@link GenericEntity}'s y position
+	 * @return the integer which represents {@link GenericEntity}'s y coordinate
 	 */
 	public double getY();
 
 	/**
-	 * Set {@link GenericEntity}'s x position (from left) with the method input value
+	 * Set {@link GenericEntity}'s x coordinate with the method input value
 	 *
-	 * @param x integer which represents the new x position (from left) of the {@link GenericEntity}
+	 * @param x integer which represents the new x coordinate of the {@link GenericEntity}
 	 */
 	public void setX(double x);
 
 	/**
-	 * Set {@link GenericEntity}'s y position (from top) with the method input value
+	 * Set {@link GenericEntity}'s y coordinate with the method input value
 	 * 
-	 * @param y integer which represents the new y position (from top) of the {@link GenericEntity}
+	 * @param y integer which represents the new y coordinate of the {@link GenericEntity}
 	 */
 	public void setY(double y);
 

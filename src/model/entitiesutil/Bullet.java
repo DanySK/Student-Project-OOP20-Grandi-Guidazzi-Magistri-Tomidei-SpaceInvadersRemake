@@ -31,12 +31,12 @@ public abstract class Bullet implements AutoMovableEntity {
 	 * @param dir		is the initial direction of the {@link Bullet}
 	 * @param move		is {@link EntityMovement} implementation
 	 */
-	protected void create(SpecificEntityType type, Pair<Double, Double> pos, int width,int height, 
+	protected void create(SpecificEntityType type, double x, double y, int width,int height, 
 			double muX, double muY, EntityDirections dir, 
 			EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = new Pair<>(pos.getX() - this.width/2, pos.getY() - this.height/2);
+		this.pos = new Pair<>(x - (double)this.width/2, y - (double)this.height/2);
 		this.muX = muX;
 		this.muY = muY;
 		this.move = move;
@@ -57,8 +57,8 @@ public abstract class Bullet implements AutoMovableEntity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setPos(Pair<Integer, Integer> pos) {
-		this.pos.setBoth((double)pos.getX(), (double)pos.getY());
+	public void setPos(int x, int y) {
+		this.pos.setBoth((double)x - (double)this.width/2, (double)y - (double)this.height/2);
 	}
 
 	/**

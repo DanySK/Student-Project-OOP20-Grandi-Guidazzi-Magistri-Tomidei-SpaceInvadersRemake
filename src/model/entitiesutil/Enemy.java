@@ -32,12 +32,12 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting 
 	 * @param dir		is the initial direction of the {@link Enemy}
 	 * @param move		is {@link EntityMovement} implementation
 	 */
-	protected void create(SpecificEntityType type, Pair<Integer,Integer> pos, int width,int height, 
+	protected void create(SpecificEntityType type, int x, int y, int width,int height, 
 			double muX, double muY, int maxHits, EntityDirections dir,
 			EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = new Pair<>((double)pos.getX() - this.width/2, (double)pos.getY() - this.height/2);
+		this.pos = new Pair<>((double)x - (double)this.width/2, (double)y - (double)this.height/2);
 		this.muX = muX;
 		this.muY = muY;
 		this.move = move;
@@ -59,8 +59,8 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting 
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setPos(Pair<Integer, Integer> pos) {
-		this.pos.setBoth((double)pos.getX(), (double)pos.getY());
+	public void setPos(int x, int y) {
+		this.pos.setBoth((double)x - (double)this.width/2, (double)y - (double)this.height/2);
 	}
 
 	/**
@@ -150,6 +150,15 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting 
 	 */
 	public int getHits() {
 		return this.hit;
+	}
+
+	/**
+	 * Return the max number of hits that {@link Enemy} can take
+	 * 
+	 * @return an integer which represent the max number of hits that {@link Enemy} can take
+	 */
+	public int getMaxHits() {
+		return this.maxHits;
 	}
 
 	/**
