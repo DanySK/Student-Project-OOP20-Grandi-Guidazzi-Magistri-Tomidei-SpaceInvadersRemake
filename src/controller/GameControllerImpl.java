@@ -2,8 +2,6 @@ package controller;
 
 import java.util.Optional;
 
-import menu.Board;
-
 /**
  * Implementation of {@link GameController}
  */
@@ -11,16 +9,12 @@ public class GameControllerImpl implements GameController{
 
 	private final int FPS = 60;
 	private final double FRAME_PERIOD = 1000000000 / FPS;
-	private boolean isPaused;
 	private Optional<Thread> timer;
-	private Board view;
 
 	/**
 	 * Implementation of {@link GameController}
 	 */
 	public GameControllerImpl() {
-		this.view = new Board(this);
-		this.isPaused = false;
 		this.timer = Optional.empty();
 	}
 
@@ -86,7 +80,7 @@ public class GameControllerImpl implements GameController{
 	 * Update {@link GenericEntity}s graphics
 	 */
 	private void render() {
-		this.view.getState().getMainPanel().repaint();
+		
 	}
 
 	/**
@@ -102,7 +96,7 @@ public class GameControllerImpl implements GameController{
 			int updates = 0;
 			int frames = 0;
 			long timer = System.currentTimeMillis();
-			while(isRunning() && !isPaused) {
+			while(isRunning()) {
 				long current = System.nanoTime();
 				delta += (current - lastTime) / FRAME_PERIOD;
 				lastTime = current;
