@@ -7,7 +7,6 @@ import model.entitiesutil.EntityDirections;
 import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityMovementImpl;
-import util.Pair;
 
 /**
  * {@link Bullet} with multiple direction
@@ -27,9 +26,9 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 * @param pos		is the {@link Bullet} initial position
 	 * @param type		is the type of this {@link Bullet} 
 	 */
-	protected MultiDirectionsEnemyBullet(Pair<Double, Double> pos, SpecificEntityType type) {
+	protected MultiDirectionsEnemyBullet(double x, double y, SpecificEntityType type) {
 		this.random = new Random();
-		this.create(type, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
+		this.create(type, x, y, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, this.BULLET_INITIAL_MU_X,
 				(this.random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), this.setRandomDirection(), 
 				new EntityMovementImpl());
 	}
@@ -73,7 +72,7 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 */
 	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
-		if(entity.getEntityType().equals(GenericEntityType.PLAYER)) {
+		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
 			this.setLife();
 		}
 	}

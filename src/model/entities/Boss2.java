@@ -7,7 +7,6 @@ import model.entitiesutil.bossutil.BossState;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
-import util.Pair;
 
 /**
  * {@link Enemy} boss with a lot of life but that moves slowly
@@ -21,18 +20,21 @@ public class Boss2 extends Enemy{
 	private final int HITS_2ND_PHASE = 0;
 	private final int MAX_HITS = 0;
 
+	private boolean isAlreadyUpset;
 	private BossState state;
 
 	/**
 	 * {@link Enemy} boss with a lot of life but that moves slowly
 	 * 
-	 * @param pos is the initial position of this entity
+	 * @param x is the initial x coordinate
+	 * @param y is the initial y coordinate
 	 */
-	public Boss2(Pair<Integer, Integer> pos) {
-		this.create(SpecificEntityType.BOSS_2, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
+	public Boss2(int x, int y) {
+		this.create(SpecificEntityType.BOSS_2, x, y, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
 				this.MAX_HITS, EntityDirections.DOWN, 
 				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
+		this.isAlreadyUpset = false;
 	}
 
 	/**
@@ -70,8 +72,9 @@ public class Boss2 extends Enemy{
 	 * Change the state of the boss after it took too many hits 
 	 */
 	private void changeState() {
-		if(this.getHits() >= this.HITS_2ND_PHASE) {
+		if(this.getHits() >= this.HITS_2ND_PHASE && !isAlreadyUpset) {
 			this.state = BossState.UPSET;
+			this.isAlreadyUpset = true;
 		}
 	}
 

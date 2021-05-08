@@ -9,7 +9,6 @@ import model.entitiesutil.bossutil.BossState;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
-import util.Pair;
 
 /**
  * {@link Enemy} boss that after taking a certain number of hits can teleport and move quickly
@@ -20,23 +19,28 @@ public class Boss3 extends Enemy{
 	private final int INITIAL_HEIGHT = 0;
 	private final double INITIAL_MU_X = 0;
 	private final double INITIAL_MU_Y = 0;
-	private final int HITS_2ND_PHASE = 0;
 	private final int MAX_HITS = 0;
 	private final int MAX_SPEED = 0;
+	private final int HITS_2ND_PHASE = this.MAX_HITS/2;
 
+	private boolean isAlreadyUpset;
+	private boolean teleport;
 	private BossState state;
 	private Random random;
 
 	/**
 	 * {@link Enemy} boss that after taking a certain number of hits can teleport and move quickly
 	 * 
-	 * @param pos is the initial position of this entity
+	 * @param x is the initial x coordinate
+	 * @param y is the initial y coordinate
 	 */
-	public Boss3(Pair<Integer, Integer> pos) {
+	public Boss3(int x, int y) {
 		EntityDirections direction = EntityDirections.LEFT;
-		super.create(SpecificEntityType.BOSS_3, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
+		super.create(SpecificEntityType.BOSS_3, x, y, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X,this.INITIAL_MU_Y, 
 				this.MAX_HITS, direction, 
 				new EntityMovementImpl());
+		this.isAlreadyUpset = false;
+		this.teleport = false;
 		this.state = BossState.NORMAL;
 		this.random = new Random();
 
@@ -49,9 +53,6 @@ public class Boss3 extends Enemy{
 	public void updateEntityPosition() {
 		this.changeState();
 		this.teleport();
-		if(this.state.equals(BossState.UPSET)) {
-			this.setMuX(this.MAX_SPEED);
-		}
 		if(this.getDirection().equals(EntityDirections.LEFT)) {
 			this.getMovementImpl().moveLeft(this);
 		}
@@ -101,9 +102,10 @@ public class Boss3 extends Enemy{
 	 * Change the state of the boss after it took too many hits 
 	 */
 	private void changeState() {
-		if(this.getHits() >= this.HITS_2ND_PHASE) {
+		if(this.getHits() >= this.HITS_2ND_PHASE && !this.isAlreadyUpset) {
 			this.state = BossState.UPSET;
 			this.setMuX(this.MAX_SPEED);
+			this.isAlreadyUpset = true;
 		}
 	}
 
@@ -115,13 +117,23 @@ public class Boss3 extends Enemy{
 	 */
 	private void teleport() {
 		double x = 0;
-		if(this.state.equals(BossState.UPSET) && (this.getHits() % this.random.nextInt(2) + 2 == 0)) {
+		if(this.state.equals(BossState.UPSET) && 
+				this.getHits() % (this.getMaxHits()-this.getHits())== 0 &&
+				!this.teleport) {
 			/*do {
 				x = this.random.nextInt((int)(this.model.getController().getWindowWidth - this.getMuX()));
 			}while(x < 0);*/
 
 			this.setX(x);
+			this.teleport = true;
 		}
+	}
+
+	/**
+	 * Condition for teleport the boss
+	 */
+	protected void canTeleport() {
+		this.teleport = !this.teleport;
 	}
 
 	/**

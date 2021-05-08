@@ -6,7 +6,6 @@ import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
-import util.Pair;
 
 /**
  * Generic {@link Enemy} boss
@@ -22,11 +21,12 @@ public class Boss1 extends Enemy {
 	/**
 	 * Generic {@link Enemy} boss
 	 * 
-	 * @param pos is the initial position this entity
+	 * @param x is the initial x coordinate
+	 * @param y is the initial y coordinate
 	 */
-	public Boss1(Pair<Integer,Integer> pos) {
+	public Boss1(int x, int y) {
 		EntityDirections direction = EntityDirections.RIGHT;
-		this.create(SpecificEntityType.BOSS_1, pos, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
+		this.create(SpecificEntityType.BOSS_1, x, y, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
 				this.INITIAL_MU_Y, this.MAX_HITS, direction,
 				new EntityMovementImpl());
 	}

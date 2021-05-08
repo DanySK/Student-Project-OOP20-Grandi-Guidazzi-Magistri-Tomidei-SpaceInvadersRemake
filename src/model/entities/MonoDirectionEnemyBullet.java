@@ -7,7 +7,6 @@ import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.entitiesutil.Bullet;
 import model.physics.EntityMovementImpl;
-import util.Pair;
 
 /**
  * {@link Bullet} with a single direction
@@ -24,9 +23,9 @@ public class MonoDirectionEnemyBullet extends Bullet {
 	 * @param pos		is the {@link Bullet} initial position
 	 * @param type		is the type of this {@link Bullet}
 	 */
-	protected MonoDirectionEnemyBullet(Pair<Double, Double> pos, SpecificEntityType type) {
+	protected MonoDirectionEnemyBullet(double x,double y, SpecificEntityType type) {
 		Random random = new Random();
-		this.create(type, pos, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, 
+		this.create(type, x, y, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, 
 				0, (random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), EntityDirections.DOWN, 
 				new EntityMovementImpl());
 	}
