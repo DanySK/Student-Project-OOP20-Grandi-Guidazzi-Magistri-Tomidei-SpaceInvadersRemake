@@ -16,16 +16,6 @@ public interface GameController {
 	public void stop();
 
 	/**
-	 * Stop the game loop and open the game settings window
-	 */
-	public void pause();
-
-	/**
-	 *	Close the game settings window, reopen the game window and restart the game loop
-	 */
-	public void resume();
-
-	/**
 	 * Return the state of the game loop.
 	 * 
 	 * @return true if the game loop is running, false otherwise

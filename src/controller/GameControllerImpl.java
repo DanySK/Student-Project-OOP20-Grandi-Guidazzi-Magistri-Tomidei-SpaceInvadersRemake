@@ -55,22 +55,6 @@ public class GameControllerImpl implements GameController{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void pause() {
-		
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void resume() {
-		
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public boolean isRunning() {
 		return !this.timer.isEmpty();
 	}
