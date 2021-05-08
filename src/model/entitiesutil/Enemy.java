@@ -1,19 +1,23 @@
 package model.entitiesutil;
 
+import model.entities.SpecificEntityType;
+import model.entitiesutil.typeentities.AutoMovableEntity;
+import model.entitiesutil.typeentities.EntityCapableShooting;
+import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityMovement;
 import util.Pair;
 
 /**
- * {@link Entity} that Hero should kill
+ * {@link GenericEntity} that Hero should kill
  */
-public abstract class Enemy implements Entity, AutoMovableEntity, EntityCapableShooting {
+public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting {
 
 	private Pair<Double, Double> pos;
 	private double muX, muY;
 	private int width, height, hit, maxHits;
 	private EntityMovement move;
 	private EntityDirections direction;
-	private EntityType entityType;
+	private SpecificEntityType entityType;
 
 	/**
 	 * Create a new {@link Enemy}
@@ -28,7 +32,7 @@ public abstract class Enemy implements Entity, AutoMovableEntity, EntityCapableS
 	 * @param dir		is the initial direction of the {@link Enemy}
 	 * @param move		is {@link EntityMovement} implementation
 	 */
-	protected void create(EntityType type, Pair<Integer,Integer> pos, int width,int height, 
+	protected void create(SpecificEntityType type, Pair<Integer,Integer> pos, int width,int height, 
 			double muX, double muY, int maxHits, EntityDirections dir,
 			EntityMovement move) {
 		this.width = width;
@@ -173,11 +177,10 @@ public abstract class Enemy implements Entity, AutoMovableEntity, EntityCapableS
 
 
 	/**
-	 * Update the direction of the {@link Enemy}
-	 * 
-	 * @param dir is the new direction of the {@link Enemy}
+	 *{@inheritDoc}
 	 */
-	protected void setDirection(EntityDirections dir) {
+	@Override
+	public void setDirection(EntityDirections dir) {
 		this.direction = dir;
 	}
 
@@ -193,7 +196,7 @@ public abstract class Enemy implements Entity, AutoMovableEntity, EntityCapableS
 	 * {@inheritDoc}
 	 */
 	@Override
-	public abstract void updateEntityPos();
+	public abstract void updateEntityPosition();
 
 
 	/**
@@ -206,13 +209,13 @@ public abstract class Enemy implements Entity, AutoMovableEntity, EntityCapableS
 	 * {@inheritDoc}
 	 */
 	@Override
-	public abstract void  shot();
+	public abstract void  shoot();
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public EntityType getEntityType() {
+	public SpecificEntityType getEntityType() {
 		return this.entityType;
 	}
 }

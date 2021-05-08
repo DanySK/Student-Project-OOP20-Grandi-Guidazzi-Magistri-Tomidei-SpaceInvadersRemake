@@ -92,14 +92,14 @@ public class GameControllerImpl implements GameController{
 	}
 
 	/**
-	 * Update {@link Entity}s position
+	 * Update {@link GenericEntity}s position
 	 */
 	private void updateGame() {
 		//this.model.update();	//Update entities's position
 	}
 
 	/**
-	 * Update {@link Entity}s graphics
+	 * Update {@link GenericEntity}s graphics
 	 */
 	private void render() {
 		this.view.getState().getMainPanel().repaint();

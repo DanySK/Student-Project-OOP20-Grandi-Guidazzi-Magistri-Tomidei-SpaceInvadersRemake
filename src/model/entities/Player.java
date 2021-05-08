@@ -7,15 +7,15 @@ import java.util.List;
 
 import graphics.EntityGraphics;
 import menu.Board;
-import model.entitiesutil.Entity;
 import model.entitiesutil.EntityDirections;
-import model.entitiesutil.EntityType;
+import model.entitiesutil.GenericEntityType;
+import model.entitiesutil.typeentities.MobileEntity;
 import model.physics.EntityMovement;
 import util.Pair;
 
 public class Player{
 
-	private EntityType entityType;
+	private GenericEntityType entityType;
 	private Pair<Integer,Integer> position;
 	private int movimentUnitX;
 	private int movimentUnitY;
@@ -52,7 +52,7 @@ public class Player{
 	 */
 	private void create(Pair<Integer,Integer> pos, int movimentUnitX2, int movimentUnitY2, int height, int width, int hit, int maxHits, 
 			List<String> listImages, EntityGraphics graphics, EntityMovement move) {
-		this.entityType = EntityType.PLAYER;
+		this.entityType = GenericEntityType.PLAYER;
 		this.position = new Pair<>(pos.getX(), pos.getY());
 		this.movimentUnitX = movimentUnitX2;
 		this.movimentUnitY = movimentUnitY2;
@@ -137,13 +137,13 @@ public class Player{
 
 
 	
-	public void updateEntity(Graphics g, Entity e) {
+	public void updateEntity(Graphics g, MobileEntity e) {
 		this.graphics.updateGraphics(g, e);
 	}
 
 
 
-	public EntityType getEntityType() {
+	public GenericEntityType getEntityType() {
 		return this.entityType;
 	}
 
