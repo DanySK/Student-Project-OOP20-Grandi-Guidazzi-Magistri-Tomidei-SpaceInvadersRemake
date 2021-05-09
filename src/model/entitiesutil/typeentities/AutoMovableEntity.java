@@ -1,5 +1,6 @@
 package model.entitiesutil.typeentities;
 
+import model.physics.EntityMovement;
 
 /**
  * Interface that represents all the {@link GenericEntity} that must move automatically
@@ -18,6 +19,4 @@ public interface AutoMovableEntity extends MobileEntity {
 	 * @return the object which represents the {@link EntityMovement} implementation
 	 */
 	public EntityMovement getMovementMenager();
-=======
->>>>>>> b3813f813a63a3a18648ae96cf61084397c06ea0
 }
