@@ -54,10 +54,10 @@ public class Boss3 extends Enemy{
 		this.changeState();
 		this.teleport();
 		if(this.getDirection().equals(EntityDirections.LEFT)) {
-			this.getMovementImpl().moveLeft(this);
+			this.getMovementMenager().moveLeft(this);
 		}
 		else {
-			this.getMovementImpl().moveRight(this);
+			this.getMovementMenager().moveRight(this);
 		}
 	}
 
@@ -155,7 +155,7 @@ public class Boss3 extends Enemy{
 	@Override
 	public void doAfterCollisionWithEdge(EdgeCollision edge) {
 		if(edge.equals(EdgeCollision.LEFT) || edge.equals(EdgeCollision.RIGHT)) {
-			this.getMovementImpl().moveDown(this);
+			this.getMovementMenager().moveDown(this);
 			this.changeDirection();
 		}
 		if(edge.equals(EdgeCollision.DOWN)) {

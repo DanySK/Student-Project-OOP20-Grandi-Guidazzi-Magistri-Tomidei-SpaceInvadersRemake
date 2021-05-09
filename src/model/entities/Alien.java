@@ -43,10 +43,10 @@ public class Alien extends Enemy{
 	@Override
 	public void updateEntityPos() {
 		if(this.getDirection().equals(EntityDirections.LEFT)){
-			this.getMovementImpl().moveLeft(this);
+			this.getMovementMenager().moveLeft(this);
 		}
 		else {
-			this.getMovementImpl().moveRight(this);
+			this.getMovementMenager().moveRight(this);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class Alien extends Enemy{
 		else {
 			this.setDirection(EntityDirections.LEFT);
 		}
-		this.getMovementImpl().moveDown(this);
+		this.getMovementMenager().moveDown(this);
 	}
 
 	@Override

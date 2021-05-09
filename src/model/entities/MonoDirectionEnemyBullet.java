@@ -35,7 +35,7 @@ public class MonoDirectionEnemyBullet extends Bullet {
 	 */
 	@Override
 	public void updateEntityPosition() {
-		this.getMovementImpl().moveDown(this);
+		this.getMovementMenager().moveDown(this);
 	}
 
 	/**

@@ -1,7 +1,6 @@
 package model.entitiesutil.typeentities;
 
 import model.entitiesutil.EntityDirections;
-import model.physics.EntityMovement;
 import model.physics.EntityCollision.EdgeCollision;
 
 /**
@@ -50,13 +49,6 @@ public interface MobileEntity extends GenericEntity{
 	 * @param direction is the new direction of the {@link GenericEntity}
 	 */
 	public void setDirection(EntityDirections direction);
-
-	/**
-	 * Return the implementation of {@link EntityMovement} 
-	 * 
-	 * @return the object which represents the {@link EntityMovement} implementation
-	 */
-	public EntityMovement getMovementImpl();
 
 	/**
 	 * {@link GenericEntity} does a specific action based on 

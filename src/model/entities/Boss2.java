@@ -51,7 +51,7 @@ public class Boss2 extends Enemy{
 	public void updateEntityPosition() {
 		this.changeState();
 		if(this.state.equals(BossState.UPSET)) {
-			this.getMovementImpl().moveDown(this);
+			this.getMovementMenager().moveDown(this);
 		}
 	}
 

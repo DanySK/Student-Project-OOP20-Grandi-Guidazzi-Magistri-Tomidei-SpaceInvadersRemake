@@ -40,13 +40,13 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	public void updateEntityPosition() {
 		switch(this.getDirection()) {
 			case DOWN_LEFT:
-				this.getMovementImpl().moveBottomLeft(this);
+				this.getMovementMenager().moveBottomLeft(this);
 				break;
 			case DOWN_RIGHT:
-				this.getMovementImpl().moveBottomRight(this);
+				this.getMovementMenager().moveBottomRight(this);
 				break;
 			default:
-				this.getMovementImpl().moveDown(this);
+				this.getMovementMenager().moveDown(this);
 				break;
 		}
 	}
