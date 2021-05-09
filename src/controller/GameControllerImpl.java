@@ -100,9 +100,9 @@ public class GameControllerImpl implements GameController{
 			lastTime = System.nanoTime();		
 			double delta = 0;
 			while(isRunning() && !monitor.isGameStopped()) {
-				long current = System.nanoTime();
 				monitor.isGamePaused();
 				this.isResumed();
+				long current = System.nanoTime();
 				delta += (current - lastTime) / FRAME_PERIOD;
 				lastTime = current;
 				if(delta >= 1) {
