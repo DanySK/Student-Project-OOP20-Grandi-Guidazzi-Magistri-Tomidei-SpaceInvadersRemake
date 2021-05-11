@@ -17,9 +17,9 @@ public class PanelBackgroundFactory extends JPanel{
 	private Image image;
 	private Image resizedImage;
 	
-	public PanelBackgroundFactory() {
+	public PanelBackgroundFactory(String imageLocation) {
 		try {
-			image = ImageIO.read(new File(Strings.PANEL_BACKGROUND));
+			image = ImageIO.read(new File(imageLocation));
 			this.resizedImage = image.getScaledInstance(Constants.preferDimension.width, Constants.preferDimension.height, Image.SCALE_DEFAULT);
 		} catch (IOException e) {
 			System.out.println("There was an error with the panel background");

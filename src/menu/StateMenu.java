@@ -18,7 +18,7 @@ public class StateMenu implements State{
 
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
-	private JPanel panel = new PanelBackgroundFactory();
+	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	
 	/**

@@ -14,7 +14,8 @@ public class PanelFactory{
 	
 	private TitleFactory titleFactory = new TitleFactory();
 	private LabelFactory labelFactory = new LabelFactory();
-	private JPanel panel = new PanelBackgroundFactory();
+	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	
 	/**
 	 * Create a new JPanel with a button inside in a standard position.
 	 * 
