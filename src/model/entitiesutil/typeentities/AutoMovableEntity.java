@@ -10,12 +10,13 @@ public interface AutoMovableEntity extends MobileEntity {
 	/**
 	 * Update {@link AutoMovableEntity} position according its direction
 	 */
-	void updateEntityPosition();
+	public void updateEntityPosition();
+
 
 	/**
 	 * Return the implementation of {@link EntityMovement} 
 	 * 
 	 * @return the object which represents the {@link EntityMovement} implementation
 	 */
-	public EntityMovement getMovementImpl();
+	public EntityMovement getMovementMenager();
 }

@@ -2,25 +2,24 @@ package controller;
 
 import java.util.Optional;
 
-import menu.Board;
+import controller.monitor.ControllerMonitor;
+import controller.monitor.MonitorImpl;
 
 /**
  * Implementation of {@link GameController}
  */
-public class GameControllerImpl implements GameController{
+public class GameControllerImpl implements GameController, GameViewController {
 
 	private final int FPS = 60;
 	private final double FRAME_PERIOD = 1000000000 / FPS;
-	private boolean isPaused;
 	private Optional<Thread> timer;
-	private Board view;
+	private ControllerMonitor monitor;
 
 	/**
 	 * Implementation of {@link GameController}
 	 */
 	public GameControllerImpl() {
-		this.view = new Board(this);
-		this.isPaused = false;
+		this.monitor = new MonitorImpl();
 		this.timer = Optional.empty();
 	}
 
@@ -31,7 +30,7 @@ public class GameControllerImpl implements GameController{
 	public void startNewGame() {
 		if(!this.isRunning()) {
 			this.timer = Optional.of(new Timer());
-			this.timer.get().run();
+			this.timer.get().start();
 		}
 	}
 
@@ -39,7 +38,7 @@ public class GameControllerImpl implements GameController{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void stop() {
+	public void stopGameLoop() {
 		if(this.isRunning()) {
 			try {
 				this.timer.get().join();
@@ -55,22 +54,6 @@ public class GameControllerImpl implements GameController{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void pause() {
-		
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void resume() {
-		
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public boolean isRunning() {
 		return !this.timer.isEmpty();
 	}
@@ -80,7 +63,7 @@ public class GameControllerImpl implements GameController{
 	 */
 	@Override
 	public void gameOver() {
-		this.stop();
+		this.stopGameLoop();
 	}
 
 	/**
@@ -88,7 +71,15 @@ public class GameControllerImpl implements GameController{
 	 */
 	@Override
 	public void victory() {
-		this.stop();
+		this.stopGameLoop();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void getView() {
+		
 	}
 
 	/**
@@ -102,7 +93,7 @@ public class GameControllerImpl implements GameController{
 	 * Update {@link GenericEntity}s graphics
 	 */
 	private void render() {
-		this.view.getState().getMainPanel().repaint();
+		
 	}
 
 	/**
@@ -111,35 +102,35 @@ public class GameControllerImpl implements GameController{
 	private class Timer extends Thread{
 	
 		private final int SLEEP_TIME = 5;	//waiting time between 2 loop cycles: 5 ms
+		private long lastTime;
 
 		public void run() {
-			long lastTime = System.nanoTime();		
+			lastTime = System.nanoTime();		
 			double delta = 0;
-			int updates = 0;
-			int frames = 0;
-			long timer = System.currentTimeMillis();
-			while(isRunning() && !isPaused) {
+			while(isRunning() && !monitor.isGameStopped()) {
+				monitor.isGamePaused();
+				this.isResumed();
 				long current = System.nanoTime();
 				delta += (current - lastTime) / FRAME_PERIOD;
 				lastTime = current;
 				if(delta >= 1) {
-					updates++;
 					updateGame();
 					render();
-					frames++;
 					delta--;
-				}
-				if(System.currentTimeMillis() - timer > 1000) {
-					timer += 1000;
-					System.out.println(updates + ": Ticks, Fps: " +frames +", Delta: " + delta);
-					updates = 0;
-					frames = 0;
 				}
 				try {
 					Thread.sleep(this.SLEEP_TIME);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+			}
+			stopGameLoop();
+		}
+
+		private void isResumed() {
+			if(monitor.isGameResumed()) {
+				this.lastTime = System.nanoTime();
+				monitor.setResume();
 			}
 		}
 	}

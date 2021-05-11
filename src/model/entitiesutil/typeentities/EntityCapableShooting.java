@@ -8,7 +8,7 @@ import model.entitiesutil.Bullet;
 public interface EntityCapableShooting {
 
 	/**
-	 * Create new {@link Bullet} according to the type of the {@link GenericEntity}
+	 * Create new {@link Bullet} according to the specific type of the {@GenericEntity}
 	 */
 	public void shoot();
 

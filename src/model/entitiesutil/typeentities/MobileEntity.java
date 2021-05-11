@@ -50,6 +50,7 @@ public interface MobileEntity extends GenericEntity{
 	 */
 	public void setDirection(EntityDirections direction);
 
+
 	/**
 	 * {@link GenericEntity} does a specific action based on 
 	 * the edge it collided with

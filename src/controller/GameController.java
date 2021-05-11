@@ -13,17 +13,7 @@ public interface GameController {
 	/**
 	 * Stop the game loop 
 	 */
-	public void stop();
-
-	/**
-	 * Stop the game loop and open the game settings window
-	 */
-	public void pause();
-
-	/**
-	 *	Close the game settings window, reopen the game window and restart the game loop
-	 */
-	public void resume();
+	public void stopGameLoop();
 
 	/**
 	 * Return the state of the game loop.
