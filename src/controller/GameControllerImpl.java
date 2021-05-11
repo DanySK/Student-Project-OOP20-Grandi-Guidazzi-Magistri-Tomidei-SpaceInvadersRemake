@@ -8,7 +8,7 @@ import controller.monitor.MonitorImpl;
 /**
  * Implementation of {@link GameController}
  */
-public class GameControllerImpl implements GameController{
+public class GameControllerImpl implements GameController, GameViewController {
 
 	private final int FPS = 60;
 	private final double FRAME_PERIOD = 1000000000 / FPS;
@@ -72,6 +72,14 @@ public class GameControllerImpl implements GameController{
 	@Override
 	public void victory() {
 		this.stopGameLoop();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void getView() {
+		
 	}
 
 	/**
