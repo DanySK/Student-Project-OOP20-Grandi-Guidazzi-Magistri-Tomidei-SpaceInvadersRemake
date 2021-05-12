@@ -36,7 +36,7 @@ public abstract class Bullet implements AutoMovableEntity {
 			EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = new Pair<>(x - (double)this.width/2, y - (double)this.height/2);
+		this.pos = new Pair<>(x, y);
 		this.muX = muX;
 		this.muY = muY;
 		this.move = move;
@@ -58,7 +58,7 @@ public abstract class Bullet implements AutoMovableEntity {
 	 */
 	@Override
 	public void setPos(int x, int y) {
-		this.pos.setBoth((double)x - (double)this.width/2, (double)y - (double)this.height/2);
+		this.pos.setBoth((double)x, (double)y);
 	}
 
 	/**
