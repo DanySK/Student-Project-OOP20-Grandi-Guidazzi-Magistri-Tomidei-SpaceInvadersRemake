@@ -4,11 +4,14 @@ package menu;
 import java.awt.Color;
 
 
+
 import javax.swing.BoxLayout;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import controller.GameControllerImpl;
+import controller.GameViewController;
 import util.AudioImpl;
 import util.AudioTrack;
 import util.Constants;
@@ -23,21 +26,23 @@ public class Board {
 	private AudioImpl audioPlayer = new AudioImpl();
 	private boolean isReturningFromGame = false;
 	private boolean isReturningFromMenuGame = true;
+	private GameViewController controller;
 	
 	/**
 	 * the constructor of the first state in the project, it contains all the frame characteristics.
 	 */
 	public Board() {
+		this.controller = new GameControllerImpl();
 		this.frame.setTitle("Space Invaders Remake");
 		this.frame.setPreferredSize(Constants.preferDimension);
 		this.frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		this.frame.pack();
 		this.frame.setLocationRelativeTo(null);
-		this.frame.setVisible(true);
 		this.frame.setResizable(false);
 		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.audioPlayer.play(AudioTrack.SOUND_TRACK, Constants.IN_LOOP);
 		setCurrentState(new StateMenu(this));
+		this.frame.setVisible(true);
 	}
 	
 	/**
@@ -78,4 +83,7 @@ public class Board {
 		return this.currentState;
 	}
 	
+	public GameViewController getController() {
+		return this.controller;
+	}
 }
