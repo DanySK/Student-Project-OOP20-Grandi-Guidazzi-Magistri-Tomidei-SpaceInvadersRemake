@@ -37,7 +37,7 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting 
 			EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = new Pair<>((double)x - (double)this.width/2, (double)y - (double)this.height/2);
+		this.pos = new Pair<>((double)x, (double)y);
 		this.muX = muX;
 		this.muY = muY;
 		this.move = move;
@@ -60,7 +60,7 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting 
 	 */
 	@Override
 	public void setPos(int x, int y) {
-		this.pos.setBoth((double)x - (double)this.width/2, (double)y - (double)this.height/2);
+		this.pos.setBoth((double)x, (double)y);
 	}
 
 	/**
