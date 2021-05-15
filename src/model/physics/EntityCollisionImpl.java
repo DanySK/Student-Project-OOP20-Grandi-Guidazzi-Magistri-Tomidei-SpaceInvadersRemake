@@ -72,12 +72,12 @@ public class EntityCollisionImpl implements EntityCollision{
 
 			final double ePosX = e.getX();
 			final double ePosY = e.getY();
-			final int eWidth = e.getWidth();
-			final int eHeight = e.getHeight();
+			final int eWidth = e.getWidth()/2;
+			final int eHeight = e.getHeight()/2;
 			final double eLevelPosX = entityLevel.getX();
 			final double eLevelPosY = entityLevel.getY();
-			final int eLevelWidth = entityLevel.getWidth();
-			final int eLevelHeight = entityLevel.getHeight();
+			final int eLevelWidth = entityLevel.getWidth()/2;
+			final int eLevelHeight = entityLevel.getHeight()/2;
 
 			if(ePosY < (eLevelPosY + eLevelHeight) && (ePosY + eHeight) > eLevelPosY && 
 					ePosX < (eLevelPosX + eLevelWidth) && (ePosX + eWidth) > eLevelPosX) {
@@ -94,16 +94,16 @@ public class EntityCollisionImpl implements EntityCollision{
 	 */
 	private void edgeCollision(MobileEntity e) {
 		if(e.isAlive()) {
-			if(e.getX() < 0) {
+			if(e.getX() - e.getWidth()/2 < 0) {
 				e.doAfterCollisionWithEdge(EdgeCollision.LEFT);
 			}
-			if(e.getX() + e.getWidth() + e.getMuX() > this.model.getController().getWindowWidth()) {
+			if(e.getX() + e.getWidth()/2 + e.getMuX() > this.model.getController().getWindowWidth()) {
 				e.doAfterCollisionWithEdge(EdgeCollision.RIGHT);
 			}
-			if(e.getY() < 0) {
+			if(e.getY() - e.getHeight()/2 < 0) {
 				e.doAfterCollisionWithEdge(EdgeCollision.TOP);
 			}
-			if(e.getY() + e.getHeight() > this.model.getController().getWindowHeight()) {
+			if(e.getY() + e.getHeight()/2 > this.model.getController().getWindowHeight()) {
 				e.doAfterCollisionWithEdge(EdgeCollision.DOWN);
 			}
 		}
