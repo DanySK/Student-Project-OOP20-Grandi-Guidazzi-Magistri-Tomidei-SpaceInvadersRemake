@@ -23,4 +23,6 @@ public interface Constants {
 	final static int SPACING = 1;
 	final static int minSliderValue = 0;
 	final static int maxSliderValue = 10;
+	
+	final static int maxLeaderboardCharacters = 10; 
 }
