@@ -1,17 +1,14 @@
 package menu.gameview;
 
 import java.awt.BorderLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import controller.GameController;
-import controller.GameControllerImpl;
 import menu.Board;
 import menu.State;
 import menu.factories.LabelFactory;
+import menu.factories.PanelBackgroundFactory;
 import menu.factories.TitleFactory;
 import util.Constants;
 import util.Strings;
@@ -23,7 +20,7 @@ public class StateInGameMenu implements State{
 
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
-	private JPanel panel = new JPanel();
+	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	
 	
