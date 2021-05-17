@@ -5,7 +5,7 @@ import model.entitiesutil.Bullet;
 /**
  * Interface that represents all the {@link GenericEntity} that can fire
  */
-public interface EntityCapableShooting {
+public interface EntityCapableOfShooting {
 
 	/**
 	 * Create new {@link Bullet} according to the specific type of the {@GenericEntity}

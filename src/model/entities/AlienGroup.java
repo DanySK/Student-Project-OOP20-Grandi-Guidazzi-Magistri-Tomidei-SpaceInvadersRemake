@@ -2,11 +2,11 @@ package model.entities;
 
 import java.util.Random;
 
-import model.entitiesutil.typeentities.EntityCapableShooting;
+import model.entitiesutil.typeentities.EntityCapableOfShooting;
 
 
 
-public class AlienGroup implements EntityCapableShooting{
+public class AlienGroup implements EntityCapableOfShooting{
 
 	private Random random = new Random();
 	

@@ -2,7 +2,7 @@ package model.entitiesutil;
 
 import model.entities.SpecificEntityType;
 import model.entitiesutil.typeentities.AutoMovableEntity;
-import model.entitiesutil.typeentities.EntityCapableShooting;
+import model.entitiesutil.typeentities.EntityCapableOfShooting;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityMovement;
 import util.Pair;
@@ -10,7 +10,7 @@ import util.Pair;
 /**
  * {@link GenericEntity} that Hero should kill
  */
-public abstract class Enemy implements AutoMovableEntity, EntityCapableShooting {
+public abstract class Enemy implements AutoMovableEntity, EntityCapableOfShooting {
 
 	private Pair<Double, Double> pos;
 	private double muX, muY;

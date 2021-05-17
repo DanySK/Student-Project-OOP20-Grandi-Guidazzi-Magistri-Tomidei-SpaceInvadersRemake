@@ -5,7 +5,7 @@ import model.entitiesutil.EntityDirections;
 /**
  * Interface that represents all the {@link GenericEntity} that the user can move
  */
-public interface UserEntity extends MobileEntity, EntityCapableShooting {
+public interface UserEntity extends MobileEntity, EntityCapableOfShooting {
 
 	/**
 	 * Update {@link UserEntity} position according its direction
