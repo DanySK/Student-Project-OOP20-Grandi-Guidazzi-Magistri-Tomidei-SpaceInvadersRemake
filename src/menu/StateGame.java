@@ -6,7 +6,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 import menu.gameview.StateInGameMenu;
+import model.entities.MonoDirectionPlayerBullet;
 import model.entities.Player;
+import model.entitiesutil.EntityDirections;
 import util.Pair;
 
 /**
@@ -14,8 +16,8 @@ import util.Pair;
  */
 public class StateGame implements State{
 	
-	private JPanel panel = new JPanel();
-	private Player player = new Player(new Pair<>(this.panel.getHeight()/2, this.panel.getWidth()/2));
+	private JPanel panel;
+	private Player player = new Player(this.panel.getHeight()/2, this.panel.getWidth()/2);
 	
 	
 	/**
@@ -24,6 +26,8 @@ public class StateGame implements State{
 	 * @param board
 	 */
 	public StateGame(Board board) {
+		this.panel = board.getController().getView();
+		
 		this.panel.addKeyListener(new KeyListener(){
 
 			@Override
@@ -38,28 +42,27 @@ public class StateGame implements State{
 				if(key == KeyEvent.VK_ESCAPE) {
 					board.setCurrentState(new StateInGameMenu(board));
 				} else if(key == KeyEvent.VK_RIGHT) {
-					player.moveRight();
+					player.updateEntityPosition(EntityDirections.RIGHT);
 				} else if(key == KeyEvent.VK_LEFT) {
-					player.moveLeft();
+					player.updateEntityPosition(EntityDirections.LEFT);
 				} else if(key == KeyEvent.VK_SPACE) {
-					//MonoDirectionEnemyBullet shot = new MonoDirectionEnemyBullet(new Pair<>(getX(), getY()), strImages);
-					//sparo devo implementarlo da capo anche se cambio solo up al posto di down?
+					player.shoot();
 				}
 				
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				/*int key = e.getKeyCode();
+				int key = e.getKeyCode();
 				
-				if(key == KeyEvent.VK_RIGHT) {
-					setX(getX());
-				} else if(key == KeyEvent.VK_LEFT) {
-					setX(getX());
-				}*/
+				if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT) {
+					player.setMuX(0);
+				}
+				
 			}
 			
 		});
+		
 		this.panel.setFocusable(true);
 	}
 	
