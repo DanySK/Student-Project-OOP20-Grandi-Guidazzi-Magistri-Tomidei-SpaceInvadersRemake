@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import menu.Board;
 import menu.State;
 import menu.factories.LabelFactory;
+import menu.factories.PanelBackgroundFactory;
 import menu.factories.SliderFactory;
 import menu.factories.TitleFactory;
 import util.Constants;
@@ -15,7 +16,7 @@ import util.Strings;
 
 public class StateAudioSettingsInGame implements State{
 
-	private JPanel panel = new JPanel();
+	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
