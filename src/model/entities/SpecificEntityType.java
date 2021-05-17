@@ -36,27 +36,27 @@ public enum SpecificEntityType {
 	/**
 	 * {@link Alien}'s {@link Bullet}
 	 */
-	ALIEN_BULLET(GenericEntityType.BULLET),
+	ALIEN_BULLET(GenericEntityType.ENEMY_BULLET),
 
 	/**
 	 * {@link Boss1}'s {@link Bullet}
 	 */
-	BOSS_1_BULLET(GenericEntityType.BULLET),
+	BOSS_1_BULLET(GenericEntityType.ENEMY_BULLET),
 
 	/**
 	 * {@link Boss2}'s {@link Bullet}
 	 */
-	BOSS_2_BULLET(GenericEntityType.BULLET),
+	BOSS_2_BULLET(GenericEntityType.ENEMY_BULLET),
 
 	/**
 	 * {@link Boss3}'s {@link Bullet}
 	 */
-	BOSS_3_BULLET(GenericEntityType.BULLET),
+	BOSS_3_BULLET(GenericEntityType.ENEMY_BULLET),
 
 	/**
 	 * {@link Player}'s {@link Bullet}
 	 */
-	PLAYER_BULLET(GenericEntityType.BULLET);
+	PLAYER_1_BULLET(GenericEntityType.PLAYER_BULLET);
 
 
 	private final GenericEntityType type;

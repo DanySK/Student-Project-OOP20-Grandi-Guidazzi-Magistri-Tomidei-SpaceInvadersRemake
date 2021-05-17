@@ -13,7 +13,7 @@ public class MonoDirectionPlayerBullet extends Bullet{
 	private final double BULLET_MAX_MU_Y = 0;
 	
 	public MonoDirectionPlayerBullet(double x, double y) {
-		this.create(SpecificEntityType.PLAYER_BULLET, BULLET_MAX_MU_Y, BULLET_MAX_MU_Y, BULLET_INITIAL_WIDTH, BULLET_INITIAL_HEIGHT, 
+		this.create(SpecificEntityType.PLAYER_1_BULLET, BULLET_MAX_MU_Y, BULLET_MAX_MU_Y, BULLET_INITIAL_WIDTH, BULLET_INITIAL_HEIGHT, 
 				BULLET_MAX_MU_Y, BULLET_MAX_MU_Y, EntityDirections.UP, new EntityMovementImpl());
 	}
 

@@ -24,7 +24,13 @@ public enum GenericEntityType{
 	PLAYER,
 
 	/**
-	 * {@link Bullet}
+	 * {@link Enemy}'s {@link Bullet}
 	 */
-	BULLET,
+	ENEMY_BULLET,
+
+	/**
+	 * {@link Player}'s {@link Bullet}
+	 */
+	PLAYER_BULLET;
+	
 }

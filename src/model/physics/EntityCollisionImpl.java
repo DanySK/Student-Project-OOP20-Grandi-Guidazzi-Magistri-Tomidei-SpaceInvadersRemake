@@ -51,7 +51,7 @@ public class EntityCollisionImpl implements EntityCollision{
 				.collect(Collectors.toList());
 
 		if(e.getEntityType().getGenericType().equals(GenericEntityType.PLAYER) ||
-				e.getEntityType().equals(SpecificEntityType.PLAYER_BULLET)) {
+				e.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET)) {
 			this.enemyEntities.forEach(enemy -> this.collision(e, enemy));
 		}
 		else {
