@@ -1,27 +1,33 @@
 package model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import graphics.EntityGraphicsImpl;
 import model.entitiesutil.Bullet;
 import model.entitiesutil.EntityDirections;
 import model.entitiesutil.GenericEntityType;
+import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityMovementImpl;
-import util.Pair;
 
 public class MonoDirectionPlayerBullet extends Bullet{
 
-	private List<String> strImgs;
+	private final int BULLET_INITIAL_WIDTH = 0;
+	private final int BULLET_INITIAL_HEIGHT = 0;
+	private final double BULLET_MAX_MU_Y = 0;
 	
-	private MonoDirectionPlayerBullet(Pair<Integer,Integer> pos, List<String> strImgs) {
-		this.strImgs = new ArrayList<>();
-		this.create(GenericEntityType.PLAYER_BULLET, pos, 0, 0, 0, 0, EntityDirections.UP, new EntityGraphicsImpl(strImgs), new EntityMovementImpl());
+	public MonoDirectionPlayerBullet(double x, double y) {
+		this.create(SpecificEntityType.PLAYER_BULLET, BULLET_MAX_MU_Y, BULLET_MAX_MU_Y, BULLET_INITIAL_WIDTH, BULLET_INITIAL_HEIGHT, 
+				BULLET_MAX_MU_Y, BULLET_MAX_MU_Y, EntityDirections.UP, new EntityMovementImpl());
 	}
+
+	@Override
+	public void doAfterCollisionWithEntity(GenericEntity entity) {
+		if(entity.getEntityType().getGenericType().equals(GenericEntityType.GENERIC_ENEMY) 
+				|| entity.getEntityType().getGenericType().equals(GenericEntityType.BOSS)) {
+			this.setLife();
+		} 
+	}
+
 	@Override
 	public void updateEntityPosition() {
-		// TODO Auto-generated method stub
-		
+		this.getMovementMenager().moveUp(this);
 	}
 
 }
