@@ -10,5 +10,5 @@ public interface UserEntity extends MobileEntity, EntityCapableShooting {
 	/**
 	 * Update {@link UserEntity} position according its direction
 	 */
-	void updateEntityPos(EntityDirections direction);
+	void updateEntityPosition(EntityDirections direction);
 }
