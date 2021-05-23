@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import menu.*;
 import menu.gameview.StateAudioSettingsInGame;
 import menu.gameview.StateInGameMenu;
+import menuController.menuController;
 import util.Audio;
 import util.AudioImpl;
 import util.AudioTrack;
@@ -28,6 +29,7 @@ import util.Strings;
 public class LabelFactory {
 	
 	private Audio audioPlayer = new AudioImpl();
+	private menuController controller;
 	
 	/**
 	 * Create a new label made from the input parameters and with action listeners.
@@ -38,6 +40,7 @@ public class LabelFactory {
 	 * @return the label built
 	 */
 	public JLabel createButton(String buttonType, Board board, String position) {
+		this.controller = board.getMenuController();
 		JLabel label = new JLabel(buttonType);
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		label.setMaximumSize(Constants.maxLabelDimension);
@@ -73,43 +76,43 @@ public class LabelFactory {
 	        			break;
 	        		
 	        		case Strings.ABOUT:
-	        			board.getMenuController().changeState(new StateAbout(board));
+	        			controller.changeState(new StateAbout(board));
 	        			break;
 	        		
 	        		case Strings.OPTIONS:
-	        			board.getMenuController().changeState(new StateOptions(board));
+	        			controller.changeState(new StateOptions(board));
 	        			break;
 	        		
 	        		case Strings.CREDITS:
-	        			board.getMenuController().changeState(new StateCredits(board));
+	        			controller.changeState(new StateCredits(board));
 	        			break;
 	        		
 	        		case Strings.GO_BACK_TO_MENU:
-	        			board.getMenuController().changeState(new StateMenu(board));
+	        			controller.changeState(new StateMenu(board));
 	        			break;
 	        			
 	        		case Strings.RETURN_TO_GAME_MENU:
-	        			board.getMenuController().changeState(new StateInGameMenu(board));
+	        			controller.changeState(new StateInGameMenu(board));
 	        			break;
 	        		
 	        		case Strings.LEADERBOARD:
-	        			board.getMenuController().changeState(new StateLeaderboard(board));
+	        			controller.changeState(new StateLeaderboard(board));
 	        			break;
 	        		
 	        		case Strings.CHANGE_KEYS:
-	        			board.getMenuController().changeState(new StateChangeKeys(board));
+	        			controller.changeState(new StateChangeKeys(board));
 	        			break;
 	        		
 	        		case Strings.AUDIO_SETTINGS:
-	        			board.getMenuController().changeState(new StateAudioSettings(board));
+	        			controller.changeState(new StateAudioSettings(board));
 	        			break;
 	        			
 	        		case Strings.AUDIO_SETTINGS_IN_GAME:
-	        			board.getMenuController().changeState(new StateAudioSettingsInGame(board));
+	        			controller.changeState(new StateAudioSettingsInGame(board));
 	        			break;
 	       
 	        		case Strings.RESTART:
-	        			board.getMenuController().changeState(new StateGame(board));
+	        			controller.changeState(new StateGame(board));
 	        			break;
 	        			
 	        		case Strings.RESUME:
