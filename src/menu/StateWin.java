@@ -21,6 +21,9 @@ import menu.factories.TitleFactory;
 import util.Constants;
 import util.Strings;
 
+/**
+ *	A class that contains all the object to create the StateWin
+ */
 public class StateWin implements State{
 
 	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
@@ -31,6 +34,12 @@ public class StateWin implements State{
 	private BufferedReader bufferedReader;
 	private Optional<String> lastOnPodium;
 	
+	/**
+	 * The constructor of the StateWin,
+	 * this state is showed when the player wins.
+	 * @param board
+	 * @param score
+	 */
 	public StateWin(Board board, int score) {
 		this.panel.setLayout(new BorderLayout());
 		
