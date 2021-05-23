@@ -23,5 +23,10 @@ public enum GameStatus {
 	/**
 	 * The game loop is resumed
 	 */
-	RESUMED;
+	RESUMED,
+
+	/**
+	 * The game loop is resumed and the game is restarted
+	 */
+	RESTARTED;
 }
