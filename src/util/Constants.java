@@ -11,6 +11,8 @@ public interface Constants {
 	final static Dimensions screenInfo = new Dimensions();
 	final static Dimension preferDimension = new Dimension(screenInfo.getPreferScreenWidth(), screenInfo.getPreferScreenHeight());
 	final static Dimension maxLabelDimension = new Dimension(screenInfo.getMaxLabelWidth(), screenInfo.getMaxLabelHeight());
+	final static Dimension maxButtonDimension = new Dimension(screenInfo.getMaxLabelWidth(), screenInfo.getMaxButtonHeight());
+	final static Dimension maxTextFieldDimension = new Dimension(screenInfo.getMaxTextFieldWidth(), screenInfo.getMaxTextFieldHeight());
 	final static int titleSize = 60;
 	final static int subtitleSize = 25;
 	final static int minPodium = 1;

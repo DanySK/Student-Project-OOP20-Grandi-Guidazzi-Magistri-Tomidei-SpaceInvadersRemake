@@ -37,5 +37,29 @@ public class Dimensions {
 	public int getMaxLabelWidth() {
 		return this.getPreferScreenWidth();
 	}
+	
+	/**
+	 * A method to determine the prefer button height.
+	 * @return the prefer button height.
+	 */
+	public int getMaxButtonHeight() {
+		return this.getPreferScreenHeight()/10;
+	}
+	
+	/**
+	 * A method to determine the prefer TextField height.
+	 * @return the prefer TextField height.
+	 */
+	public int getMaxTextFieldHeight() {
+		return this.getPreferScreenHeight()/10;
+	}
+	
+	/**
+	 * A method to determine the prefer TextField height.
+	 * @return the prefer TextField width.
+	 */
+	public int getMaxTextFieldWidth() {
+		return this.getPreferScreenWidth()/3;
+	}
 
 }

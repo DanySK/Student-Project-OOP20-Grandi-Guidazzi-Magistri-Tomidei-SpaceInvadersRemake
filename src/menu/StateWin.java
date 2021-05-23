@@ -2,7 +2,9 @@ package menu;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Color;
+import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +13,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -27,6 +30,8 @@ import util.Strings;
 public class StateWin implements State{
 
 	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	private JPanel southPanel = new JPanel();
+	private JPanel centralPanel = new JPanel();
 	private LabelFactory labelFactory = new LabelFactory();
 	private JButton button = new JButton("Enter");
 	private JTextField textField = new JTextField();
@@ -42,6 +47,12 @@ public class StateWin implements State{
 	 */
 	public StateWin(Board board, int score) {
 		this.panel.setLayout(new BorderLayout());
+		this.centralPanel.setLayout(new BorderLayout());
+		this.southPanel.setOpaque(false);
+		this.centralPanel.setOpaque(false);
+		this.southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.PAGE_AXIS));
+		this.panel.add(this.centralPanel, BorderLayout.SOUTH);
+		this.centralPanel.add(southPanel);
 		
 		try {
 			this.bufferedReader = new BufferedReader(new FileReader(Strings.LEADERBOARD_URI));
@@ -56,11 +67,13 @@ public class StateWin implements State{
 			String[] lastOnPodiumArray = lastOnPodium.get().split(" ");
 			if(this.lastOnPodium.get().equals(Strings.LEADERBOARD_DEFAULT_TEXT) || this.lastOnPodium.get().equals("") ||
 					 Integer.parseInt(lastOnPodiumArray[lastOnPodiumArray.length-1]) < score) {
-				this.panel.add(this.textField);
-				this.panel.add(this.button, BorderLayout.SOUTH);
-				this.button.setBackground(Color.black);
+				this.southPanel.add(this.textField);
+				this.southPanel.add(this.button);
+				this.textField.setMaximumSize(Constants.maxTextFieldDimension);
+				this.button.setBackground(Color.gray);
 				this.button.setForeground(Color.white);
-				this.button.setOpaque(false);
+				this.button.setAlignmentX(Component.CENTER_ALIGNMENT);
+				this.button.setPreferredSize(Constants.maxButtonDimension);
 				this.panel.add(this.titleFactory.createTitle("Congratulation, Please insert your nickname(max " + Constants.maxLeaderboardCharacters + " characters)",
 						Constants.subtitleSize, Constants.colorSubtitle), BorderLayout.NORTH);
 				this.button.addActionListener(e->{
@@ -86,7 +99,7 @@ public class StateWin implements State{
 				});
 				
 			} else{
-				this.panel.add(this.labelFactory.createButton(Strings.GO_BACK_TO_MENU, board, "Center"), BorderLayout.SOUTH);
+				this.panel.add(this.labelFactory.createButton(Strings.GO_BACK_TO_MENU, board, "Center"), BorderLayout.CENTER);
 			}
 		} catch (IOException e) {
 			this.panel.add(this.labelFactory.createButton(Strings.GO_BACK_TO_MENU, board, "Center"), BorderLayout.SOUTH);
