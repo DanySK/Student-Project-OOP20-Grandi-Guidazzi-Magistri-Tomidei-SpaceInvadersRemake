@@ -8,12 +8,20 @@ import menu.factories.LabelFactory;
 import menu.factories.PanelBackgroundFactory;
 import util.Strings;
 
-public class StateDied implements State{
+/**
+ *	A class that contains all the object to create the StateGameOver
+ */
+public class StateGameOver implements State{
 
 	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
 	private LabelFactory labelFactory = new LabelFactory();
 	
-	public StateDied(Board board) {
+	/**
+	 * The constructor of the StateGameOver,
+	 * this state is showed when the player loses.
+	 * @param board
+	 */
+	public StateGameOver(Board board) {
 		this.panel.setLayout(new BorderLayout());
 		this.panel.add(this.labelFactory.createButton(Strings.GO_BACK_TO_MENU, board, "Center"), BorderLayout.SOUTH);
 	}
