@@ -13,7 +13,7 @@ import util.Strings;
  */
 public class StateGameOver implements State{
 
-	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.GAME_OVER_BACKGROUND);
 	private LabelFactory labelFactory = new LabelFactory();
 	
 	/**

@@ -17,6 +17,7 @@ public interface Strings {
 	String VOLUME_URI = "src/res/Volume.txt";
 	
 	String PANEL_BACKGROUND = "src/res/backgroundImage.png";
+	String GAME_OVER_BACKGROUND = "src/res/gameOverBackground.png";
 	
 	String ABOUT = "About the original game...";
 	String MORE_INFO = "For more info, click here!";

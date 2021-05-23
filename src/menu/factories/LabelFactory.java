@@ -68,7 +68,7 @@ public class LabelFactory {
 	        		case Strings.START:
 //	        			board.setCurrentState(new GameControllerImpl().getView());
 //	        			board.getMenuController().changeState(new StateGame(board));
-	        			board.setCurrentState(new StateWin(board, 10));
+	        			board.setCurrentState(new StateGameOver(board));
 	        			break;
 	        			
 	        		case Strings.EXIT:
