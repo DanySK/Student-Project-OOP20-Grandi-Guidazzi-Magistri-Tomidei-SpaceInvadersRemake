@@ -21,7 +21,7 @@ public class SliderFactory {
 	 */
 	public JSlider create(Board board){
 		
-		this.slider = new JSlider(JSlider.HORIZONTAL, Constants.minSliderValue, Constants.maxSliderValue, (int) (board.getAudio().getVolume()*10));
+		this.slider = new JSlider(JSlider.HORIZONTAL, Constants.minSliderValue, Constants.maxSliderValue, (int) (board.getMenuController().getAudio().getVolume()*10));
 		
 		this.slider.setOpaque(false);
 		
@@ -30,7 +30,7 @@ public class SliderFactory {
 		this.slider.setPaintLabels(true);
 		this.slider.setPaintTicks(true);
 		this.slider.addChangeListener(e->{
-				board.getAudio().setVolume((float)slider.getValue()/Constants.maxSliderValue);
+				board.getMenuController().getAudio().setVolume((float)slider.getValue()/Constants.maxSliderValue);
 		});
 		
 		return this.slider;

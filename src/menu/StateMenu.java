@@ -2,6 +2,7 @@ package menu;
 
 import java.awt.BorderLayout;
 
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -46,5 +47,10 @@ public class StateMenu implements State{
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;
+	}
+	
+	@Override
+	public String toString() {
+		return "StateMenu";
 	}
 }

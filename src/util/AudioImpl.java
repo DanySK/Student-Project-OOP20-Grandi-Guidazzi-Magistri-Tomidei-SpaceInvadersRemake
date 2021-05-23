@@ -1,6 +1,7 @@
 package util;
 
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -14,7 +15,6 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import menu.Board;
 
 
 public class AudioImpl implements Audio{
@@ -26,6 +26,7 @@ public class AudioImpl implements Audio{
 	private float volume;
 	private BufferedReader reader;
 	private BufferedWriter writer;
+	private boolean isPlaying = false;
 
 	/**
 	 * The constructor creates a new Audio for each audio track.
@@ -43,6 +44,7 @@ public class AudioImpl implements Audio{
     
 	@Override
 	public void play(AudioTrack music, boolean inLoop) {
+		this.isPlaying = true;
 		this.file = new File(music.getPath());
 			try {
 				audioIn = AudioSystem.getAudioInputStream(file.toURI().toURL());
@@ -60,7 +62,9 @@ public class AudioImpl implements Audio{
 
 	@Override
 	public void stop() {
-		this.clip.stop();	
+		if(this.isPlaying) {
+			this.clip.stop();
+		}
 	}
 
 	@Override
@@ -82,6 +86,11 @@ public class AudioImpl implements Audio{
 	@Override
 	public float getVolume() {
 		return this.volume;
+	}
+
+	@Override
+	public boolean isPlaying() {
+		return this.isPlaying;
 	}
 	
 }

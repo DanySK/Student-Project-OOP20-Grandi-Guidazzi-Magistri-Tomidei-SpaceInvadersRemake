@@ -12,4 +12,10 @@ public interface State {
 	 * @return the state main panel
 	 */
 	public JPanel getMainPanel();
+	
+	/**
+	 * 
+	 * @return the name of the State
+	 */
+	public String toString();
 }

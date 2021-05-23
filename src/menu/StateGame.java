@@ -1,22 +1,25 @@
 package menu;
 
 import java.awt.event.KeyEvent;
+
 import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import menu.factories.LabelFactory;
 import menu.gameview.StateInGameMenu;
 import model.entities.MonoDirectionPlayerBullet;
 import model.entities.Player;
 import model.entitiesutil.EntityDirections;
 import util.Pair;
+import util.Strings;
 
 /**
  *	A class that contains all the object to create the StateGame
  */
 public class StateGame implements State{
 	
-	private JPanel panel;
+	private JPanel panel = new JPanel();
 	private Player player = new Player(this.panel.getHeight()/2, this.panel.getWidth()/2);
 	
 	
@@ -69,6 +72,11 @@ public class StateGame implements State{
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;
+	}
+	
+	@Override
+	public String toString() {
+		return "StateGame";
 	}
 	
 }

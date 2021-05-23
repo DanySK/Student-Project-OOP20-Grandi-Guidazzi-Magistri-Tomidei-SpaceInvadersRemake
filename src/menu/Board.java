@@ -3,8 +3,6 @@ package menu;
 
 import java.awt.Color;
 
-
-
 import javax.swing.BoxLayout;
 
 import javax.swing.JFrame;
@@ -12,8 +10,8 @@ import javax.swing.WindowConstants;
 
 import controller.GameControllerImpl;
 import controller.GameViewController;
-import util.AudioImpl;
-import util.AudioTrack;
+import menuController.menuController;
+import menuController.menuControllerImpl;
 import util.Constants;
 
 /**
@@ -23,9 +21,7 @@ public class Board {
 
 	private JFrame frame = new JFrame();
 	private State currentState;
-	private AudioImpl audioPlayer = new AudioImpl();
-	private boolean isReturningFromGame = false;
-	private boolean isReturningFromMenuGame = true;
+	private menuController menuController = new menuControllerImpl(this); 
 	private GameViewController controller;
 	
 	/**
@@ -40,8 +36,7 @@ public class Board {
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setResizable(false);
 		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		this.audioPlayer.play(AudioTrack.SOUND_TRACK, Constants.IN_LOOP);
-		setCurrentState(new StateMenu(this));
+		this.menuController.changeState(new StateMenu(this));
 		this.frame.setVisible(true);
 	}
 	
@@ -50,23 +45,6 @@ public class Board {
 	 * @param newState
 	 */
 	public void setCurrentState(State newState){
-		if(newState.toString().contains("StateGame")) {
-			if(this.isReturningFromMenuGame == true) {
-				this.audioPlayer.stop();
-				this.audioPlayer.play(AudioTrack.GAME_TRACK, Constants.IN_LOOP);
-				this.isReturningFromGame = true;
-				this.isReturningFromMenuGame = false;
-			}
-		} else if(newState.toString().contains("StateMenu")) {
-			if(this.isReturningFromGame == true) {
-				this.audioPlayer.stop();
-				this.audioPlayer.play(AudioTrack.SOUND_TRACK, Constants.IN_LOOP);
-				this.isReturningFromGame = false;
-				this.isReturningFromMenuGame = true;
-			}
-			
-		}
-		
 		this.frame.getContentPane().removeAll();
 		this.currentState = newState;
 		this.frame.getContentPane().add(currentState.getMainPanel());
@@ -75,15 +53,20 @@ public class Board {
 		this.frame.pack();
 	}
 	
-	public AudioImpl getAudio() {
-		return this.audioPlayer;
-	}
-	
-	public State getState() {
-		return this.currentState;
-	}
-	
+	/** a method to get the game view controller
+	 * 
+	 * @return the GameViewController
+	 */
 	public GameViewController getController() {
 		return this.controller;
+	}
+	
+	/** a method to get the menu controller
+	 * 
+	 * @return the menuController
+	 */
+	public menuController getMenuController() {
+		return this.menuController;
+		
 	}
 }

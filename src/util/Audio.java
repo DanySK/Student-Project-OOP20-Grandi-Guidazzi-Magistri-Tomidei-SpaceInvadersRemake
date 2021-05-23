@@ -29,4 +29,10 @@ public interface Audio {
 	 * @return the volume of an audio track.
 	 */
 	float getVolume();
+	
+	/**
+	 * 
+	 * @return if the music is playing
+	 */
+	boolean isPlaying();
 }
