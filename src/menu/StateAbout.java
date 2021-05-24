@@ -1,15 +1,13 @@
 package menu;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 
-
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import menu.factories.LabelFactory;
 import menu.factories.PanelFactory;
-import menu.factories.TitleFactory;
-import util.Constants;
 import util.Strings;
 
 /**
@@ -21,7 +19,7 @@ public class StateAbout implements State{
 	private JPanel centerPanel = new JPanel();
 	private PanelFactory panelFactory = new PanelFactory();
 	private LabelFactory labelFactory = new LabelFactory();
-	private TitleFactory titleFactory = new TitleFactory();
+	private JTextArea textArea = new JTextArea();
 	
 	/**
 	 * The constructor of the state about,
@@ -30,12 +28,18 @@ public class StateAbout implements State{
 	 */
 	public StateAbout(Board board) {
 		this.panel = this.panelFactory.createPanel(Strings.ABOUT, board);
+		this.textArea.setText(Strings.ABOUT_TEXT);
+		this.textArea.setFont(new Font("sans", Font.BOLD, 25));
+		this.textArea.setLineWrap(true);
+		this.textArea.setWrapStyleWord(true);
+		this.textArea.setOpaque(false);
+		this.textArea.setEnabled(false);
 		this.centerPanel.setOpaque(false);
-		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
+		this.centerPanel.setLayout(new BorderLayout());
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
-		this.centerPanel.add(this.titleFactory.createTitle(Strings.ABOUT_TEXT, Constants.subtitleSize, Constants.colorSubtitle));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.MORE_INFO, board, "Center"));
+		this.centerPanel.add(this.textArea, BorderLayout.NORTH);
+		this.centerPanel.add(this.labelFactory.createButton(Strings.MORE_INFO, board, "Center"), BorderLayout.CENTER);
 	
 	}
 	
