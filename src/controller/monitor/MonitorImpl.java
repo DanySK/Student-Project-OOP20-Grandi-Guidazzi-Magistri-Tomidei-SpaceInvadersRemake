@@ -1,21 +1,21 @@
 package controller.monitor;
 
-import java.util.concurrent.locks.Condition;
+import java.util.Optional;
 import java.util.concurrent.locks.ReentrantLock;
 
 import controller.GameStatus;
+import controller.GameViewController;
 
 public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 
 	private final ReentrantLock lock;
-	private final Condition condition;
 
-	private GameStatus gameState;
+	private Optional<GameStatus> gameState;
+	private GameViewController ctrl;
 
-	public MonitorImpl() {
+	public MonitorImpl(GameViewController c) {
+		this.ctrl = c;
 		this.lock = new ReentrantLock();
-		this.condition = this.lock.newCondition();
-		this.gameState = GameStatus.RUNNING;
 	}
 
 	/**
@@ -25,8 +25,10 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	public void pause(){
 		this.lock.lock();
 		try{
-			if(!this.gameState.equals(GameStatus.PAUSED) && !this.gameState.equals(GameStatus.STOPPED)) {
-				this.gameState = GameStatus.PAUSED;
+			if(!this.gameState.get().equals(GameStatus.PAUSED) 
+					&& !this.gameState.get().equals(GameStatus.STOPPED)) {
+				this.gameState = Optional.of(GameStatus.PAUSED);
+				this.ctrl.stop();
 			}
 		}
 		finally {
@@ -41,9 +43,10 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	public void resume(){
 		this.lock.lock();
 		try{
-			if(this.gameState.equals(GameStatus.PAUSED) && !this.gameState.equals(GameStatus.STOPPED)) {
-				this.gameState = GameStatus.RESUMED;
-				this.condition.signalAll();	
+			if(this.gameState.get().equals(GameStatus.PAUSED) 
+					&& !this.gameState.get().equals(GameStatus.STOPPED)) {
+				this.gameState = Optional.of(GameStatus.RESUMED);
+				this.ctrl.resume();
 			}
 		}
 		finally {
@@ -55,19 +58,18 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void isGamePaused() {
-		 this.lock.lock();
-	     try {
-	    	 while (this.gameState.equals(GameStatus.PAUSED) && !this.gameState.equals(GameStatus.STOPPED)) {
-	    		 try {
-	    			 this.condition.await();
-	             } 
-	             catch (InterruptedException ignored) {}
-	        }
-	     }
-	     finally {
-	    	 this.lock.unlock();
-	     }
+	public void restart() {
+		this.lock.lock();
+		try{
+			if(this.gameState.get().equals(GameStatus.PAUSED) 
+					&& !this.gameState.get().equals(GameStatus.STOPPED)) {
+				this.gameState = Optional.of(GameStatus.RESTARTED);
+				this.ctrl.restart();
+			}
+		}
+		finally {
+			this.lock.unlock();
+		}
 	}
 
 	/**
@@ -77,41 +79,14 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	public void stop(){
         this.lock.lock();
         try{
-            if(!this.gameState.equals(GameStatus.STOPPED)){
-            	this.gameState = GameStatus.STOPPED;
-            }
+            if(!this.gameState.get().equals(GameStatus.STOPPED)){
+            	this.gameState = Optional.of(GameStatus.STOPPED);
+				this.ctrl.stop();
+			}
         }
         finally {
             this.lock.unlock();
         }
-    }
-
-	/**
-	 * {@inheritDoc}
-	 */
-    @Override
-	public boolean isGameStopped(){
-        this.lock.lock();
-        try{
-            return this.gameState.equals(GameStatus.STOPPED);
-        }
-        finally {
-            this.lock.unlock();
-        }
-    }
-
-    /**
-	 * {@inheritDoc}
-	 */
-    @Override
-    public boolean isGameResumed() {
-    	this.lock.lock();
-    	try {
-    		return this.gameState.equals(GameStatus.RESUMED);
-    	}
-    	finally {
-    		this.lock.unlock();
-    	}
     }
 
     /**
@@ -121,10 +96,24 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
     public void setResume() {
     	this.lock.lock();
     	try {
-    		this.gameState = GameStatus.RUNNING;
+    		this.gameState = Optional.of(GameStatus.RUNNING);
     	}
     	finally {
     		this.lock.unlock();
     	}
-    }	
+    }
+
+    /**
+   	 * {@inheritDoc}
+   	 */
+	@Override
+	public void setStart() {
+		this.lock.lock();
+    	try {
+    		this.gameState = Optional.of(GameStatus.RUNNING);
+    	}
+    	finally {
+    		this.lock.unlock();
+    	}
+	}
 }

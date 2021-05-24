@@ -1,7 +1,7 @@
 package controller;
 
 /**
- * Possible state of the {@link GameController}
+ * Possible state of the game
  */
 public enum GameStatus {
 

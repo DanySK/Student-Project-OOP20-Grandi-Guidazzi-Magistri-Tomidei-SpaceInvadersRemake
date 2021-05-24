@@ -1,9 +1,13 @@
 package controller;
 
 import java.util.Optional;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import controller.monitor.ControllerMonitor;
 import controller.monitor.MonitorImpl;
+import controller.monitor.ViewMonitor;
 
 /**
  * Implementation of {@link GameController}
@@ -11,15 +15,17 @@ import controller.monitor.MonitorImpl;
 public class GameControllerImpl implements GameController, GameViewController {
 
 	private final int FPS = 60;
-	private final double FRAME_PERIOD = 1000000000 / FPS;
-	private Optional<Thread> timer;
+	private final int DEL = 1000/FPS;
+	private final int TIME_TO_RESUME = 3000;
+	private Optional<ScheduledExecutorService> timer;
 	private ControllerMonitor monitor;
 
 	/**
 	 * Implementation of {@link GameController}
 	 */
 	public GameControllerImpl() {
-		this.monitor = new MonitorImpl();
+		this.monitor = new MonitorImpl(this);
+		//
 		this.timer = Optional.empty();
 	}
 
@@ -29,8 +35,9 @@ public class GameControllerImpl implements GameController, GameViewController {
 	@Override
 	public void startNewGame() {
 		if(!this.isRunning()) {
-			this.timer = Optional.of(new Timer());
-			this.timer.get().start();
+			//
+			this.monitor.setStart();
+			this.timer = Optional.ofNullable(this.createTimer(DEL));
 		}
 	}
 
@@ -38,16 +45,29 @@ public class GameControllerImpl implements GameController, GameViewController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void stopGameLoop() {
-		if(this.isRunning()) {
-			try {
-				this.timer.get().join();
-				this.timer = Optional.empty();
-			}
-			catch(InterruptedException e) {
-				e.printStackTrace();
-			}
+	public void stop() {
+		if(this.timer.isPresent()) {
+			this.timer.get().shutdownNow();
+			this.timer = Optional.empty();
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void resume() {
+		this.timer = Optional.ofNullable(this.createTimer(TIME_TO_RESUME));
+		this.monitor.setResume();		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void restart() {
+		this.timer = Optional.ofNullable(this.createTimer(DEL));
+		this.monitor.setResume();
 	}
 
 	/**
@@ -55,23 +75,17 @@ public class GameControllerImpl implements GameController, GameViewController {
 	 */
 	@Override
 	public boolean isRunning() {
-		return !this.timer.isEmpty();
+		return this.timer.isPresent() && !timer.get().isTerminated() 
+				&& !timer.get().isShutdown();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void gameOver() {
-		this.stopGameLoop();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void victory() {
-		this.stopGameLoop();
+	public boolean gameOver() {
+		this.stop();
+		return false; //
 	}
 
 	/**
@@ -83,6 +97,14 @@ public class GameControllerImpl implements GameController, GameViewController {
 	}
 
 	/**
+	 * Game Loop
+	 */
+	private void gameLoop() {
+		this.updateGame();
+		this.render();
+	}
+
+	/**
 	 * Update {@link GenericEntity}s position
 	 */
 	private void updateGame() {
@@ -90,48 +112,17 @@ public class GameControllerImpl implements GameController, GameViewController {
 	}
 
 	/**
-	 * Update {@link GenericEntity}s graphics
+	 * Update the game view
 	 */
 	private void render() {
-		
+		//
 	}
 
-	/**
-	 * Thread for the game loop
-	 */
-	private class Timer extends Thread{
-	
-		private final int SLEEP_TIME = 5;	//waiting time between 2 loop cycles: 5 ms
-		private long lastTime;
-
-		public void run() {
-			lastTime = System.nanoTime();		
-			double delta = 0;
-			while(isRunning() && !monitor.isGameStopped()) {
-				monitor.isGamePaused();
-				this.isResumed();
-				long current = System.nanoTime();
-				delta += (current - lastTime) / FRAME_PERIOD;
-				lastTime = current;
-				if(delta >= 1) {
-					updateGame();
-					render();
-					delta--;
-				}
-				try {
-					Thread.sleep(this.SLEEP_TIME);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			stopGameLoop();
-		}
-
-		private void isResumed() {
-			if(monitor.isGameResumed()) {
-				this.lastTime = System.nanoTime();
-				monitor.setResume();
-			}
-		}
-	}
+	//
+	private ScheduledExecutorService createTimer(int delay) {
+		final ScheduledExecutorService timer = Executors.newScheduledThreadPool(
+                Runtime.getRuntime().availableProcessors() + 1);
+        timer.scheduleAtFixedRate(() -> this.gameLoop(), delay, 1000/FPS, TimeUnit.MILLISECONDS);
+        return timer;
+    } 
 }
