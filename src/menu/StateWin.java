@@ -29,7 +29,7 @@ import util.Strings;
  */
 public class StateWin implements State{
 
-	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.WIN_BACKGROUND);
 	private JPanel southPanel = new JPanel();
 	private JPanel centralPanel = new JPanel();
 	private LabelFactory labelFactory = new LabelFactory();
