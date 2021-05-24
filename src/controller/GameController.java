@@ -6,16 +6,6 @@ package controller;
 public interface GameController {
 
 	/**
-	 * Start a new game loop
-	 */
-	public void startNewGame();
-
-	/**
-	 * Stop the game loop 
-	 */
-	public void stopGameLoop();
-
-	/**
 	 * Return the state of the game loop.
 	 * 
 	 * @return true if the game loop is running, false otherwise
@@ -23,13 +13,10 @@ public interface GameController {
 	public boolean isRunning();
 
 	/**
-	 * Stop the game loop and open the game over window
+	 * Return if the player win.
+	 * 
+	 * @return true if the player win, false otherwise
 	 */
-	public void gameOver();
-
-	/**
-	 * Stop the game loop and open the victory window
-	 */
-	public void victory();
+	public boolean gameOver();
 
 }
