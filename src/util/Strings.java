@@ -5,9 +5,9 @@ package util;
  */
 public class Strings {
 	
-	public final static String ABOUT_TEXT = "     The original videogame was an arcade created in 1978, by Tomohiro Nishikado.\n" +
-			"     The game was inspired by the videogame \"Space Monster\" and from the novel \"The War of the Worlds\".\n" +
-			"     The game was so popular that than over the years was adapted for all the platforms avaiable.";
+	public final static String ABOUT_TEXT = "The original videogame was an arcade created in 1978, by Tomohiro Nishikado.\n" +
+			"The game was inspired by the videogame \"Space Monster\" and from the novel \"The War of the Worlds\".\n" +
+			"The game was so popular that than over the years was adapted for all the platforms avaiable.";
 	
 	public final static String MORE_INFO_LINK = "https://en.wikipedia.org/wiki/Space_Invaders";
 	
