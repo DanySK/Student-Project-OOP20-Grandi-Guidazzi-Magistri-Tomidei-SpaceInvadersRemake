@@ -18,11 +18,6 @@ public class ImageLoader {
 	Random randomPlayerImage = new Random();
 	
 	public ImageLoader(GenericEntity entity) throws IOException {
-		this.playerImageList.add(Strings.FEDE_SKIN);
-		this.playerImageList.add(Strings.MELI_SKIN);
-		this.playerImageList.add(Strings.TANGERINE_SKIN);
-		this.playerImageList.add(Strings.NOSE_SKIN);
-		
 		this.choseImage(entity);
 	}
 	
