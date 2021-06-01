@@ -138,7 +138,7 @@ public class Player implements UserEntity{
 
 	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
-		if(entity.getEntityType().equals(GenericEntityType.ENEMY_BULLET) && this.isAlive()){
+		if(entity.getEntityType().getGenericType().equals(GenericEntityType.ENEMY_BULLET) && this.isAlive()){
 			this.incHits();
 		} /*else if( !this.isAlive()) {
 			//this.model.processGameOver();
