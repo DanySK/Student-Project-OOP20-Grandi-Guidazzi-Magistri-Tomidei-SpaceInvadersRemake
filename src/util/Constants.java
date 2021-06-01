@@ -13,6 +13,7 @@ public class Constants {
 	public final static Dimension maxLabelDimension = new Dimension(screenInfo.getMaxLabelWidth(), screenInfo.getMaxLabelHeight());
 	public final static Dimension maxButtonDimension = new Dimension(screenInfo.getMaxLabelWidth(), screenInfo.getMaxButtonHeight());
 	public final static Dimension maxTextFieldDimension = new Dimension(screenInfo.getMaxTextFieldWidth(), screenInfo.getMaxTextFieldHeight());
+	public final static int imageDimension = 100;
 	public final static int titleSize = 60;
 	public final static int subtitleSize = 25;
 	public final static int minPodium = 1;
