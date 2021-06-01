@@ -16,9 +16,21 @@ public class Strings {
 	
 	public final static String VOLUME_URI = "src/res/Volume.txt";
 	
-	public final static String PANEL_BACKGROUND = "src/res/backgroundImage.png";
-	public final static String GAME_OVER_BACKGROUND = "src/res/gameOverBackground.png";
-	public final static String WIN_BACKGROUND = "src/res/winBackground.png";
+	public final static String PANEL_BACKGROUND = "src/res/image/backgroundImage.png";
+	public final static String GAME_OVER_BACKGROUND = "src/res/image/gameOverBackground.png";
+	public final static String WIN_BACKGROUND = "src/res/image/winBackground.png";
+	
+	public final static String BOSS_1 = "src/res/image/winBackground.png";
+	public final static String BOSS_2 = "src/res/image/winBackground.png";
+	public final static String BOSS_3 = "src/res/image/winBackground.png";
+	public final static String FEDE_SKIN = "src/res/image/fedeskin.png";
+	public final static String TANGERINE_SKIN = "src/res/image/skinluc.png";
+	public final static String NOSE_SKIN = "src/res/image/nasoSkin.png";
+	public final static String MELI_SKIN = "src/res/image/MeliSkin.png";
+	public final static String ALIEN_SKIN = "src/res/image/MeliSkin.png";
+	public final static String ALIEN_BULLET = "src/res/image/alienBullet.jpg";
+	public final static String BOSS_BULLET = "src/res/image/bossBullet.jpg";
+	public final static String PLAYER_BULLET = "src/res/image/playerBullet.jpg";
 	
 	public final static String ABOUT = "About the original game...";
 	public final static String MORE_INFO = "For more info, click here!";
@@ -34,6 +46,8 @@ public class Strings {
 	public final static String RESUME = "Resume Game";
 	public final static String RETURN_TO_GAME_MENU = "Return back to game menu";
 	public final static String AUDIO_SETTINGS_IN_GAME = "Game audio settings";
+	public final static String START_GAME = "Start game"; 
+	public final static String RANDOM_SKIN = "Random Skin";
 	
 	public final static String SOUNDS_DIRECTORY = "src/res/";
 	
