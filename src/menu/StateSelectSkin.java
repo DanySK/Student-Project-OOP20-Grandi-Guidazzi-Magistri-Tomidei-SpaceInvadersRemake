@@ -2,6 +2,7 @@ package menu;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,12 +17,12 @@ import model.entitiesutil.GenericEntityType;
 import util.Constants;
 import util.Strings;
 import view.ImageLoader;
+import view.PlayerImageLoader;
 
 public class StateSelectSkin implements State{
 
 	private TitleFactory titleFactory = new TitleFactory();
 	private JButton button = new JButton(Strings.RANDOM_SKIN);
-	//private LabelFactory labelFactory = new LabelFactory();
 	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	private JPanel gridPanel = new JPanel();
@@ -54,6 +55,12 @@ public class StateSelectSkin implements State{
 		
 		this.centerPanel.add(this.button);
 		this.button.addActionListener(e->{
+			PlayerImageLoader playerImage = new PlayerImageLoader();
+			try {
+				playerImage.selectRandomSkin();
+			} catch (IOException e1) {
+				System.out.println("Upload error image");
+			}
 			board.setCurrentState(new StateInfo(board));
 		});
 		
