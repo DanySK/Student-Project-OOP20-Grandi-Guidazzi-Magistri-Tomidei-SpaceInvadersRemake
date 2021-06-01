@@ -1,5 +1,6 @@
 package model.entities;
 
+import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
 import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
@@ -19,43 +20,20 @@ public class Player implements UserEntity{
 	private int width;
 	private int hit;
 	private int maxHits;
-	private EntityMovement move;
 	
 	/**
 	 * The Constractor that create the Player.
 	 * @param position
 	 */
 	public Player(int x, int y) {
-		this.create(x, y, this.movimentUnitX, this.movimentUnitY, this.height, this.width, 3, 
-				this.move);
-	}
-	
-	/**
-	 * The Method create a new object Player.
-	 * @param pos
-	 * @param movimentUnitX2
-	 * @param movimentUnitY2
-	 * @param height
-	 * @param width
-	 * @param hit
-	 * @param maxHits
-	 * @param listImages
-	 * @param graphics
-	 * @param move
-	 * @param dir
-	 */
-	private void create(int x, int y, double movimentUnitX2, double movimentUnitY2, 
-			int height, int width, int maxHits, EntityMovement move) {
 		this.entityType = SpecificEntityType.PLAYER_1;
 		this.position = new Pair<>((double)x, (double)y);
-		this.movimentUnitX = movimentUnitX2;
-		this.movimentUnitY = movimentUnitY2;
-		this.height = height;
-		this.width = width;
+		this.movimentUnitX = EntityConstants.PlayerConstants.INITIAL_MU_X;
+		this.movimentUnitY = EntityConstants.PlayerConstants.INITIAL_MU_Y;
+		this.height = EntityConstants.PlayerConstants.INITIAL_HEIGHT;
+		this.width = EntityConstants.PlayerConstants.INITIAL_WIDTH;
 		this.hit = 0;
-		this.maxHits = maxHits;
-		this.move = move;
-		
+		this.maxHits = EntityConstants.PlayerConstants.MAX_HITS;
 	}
 	
 	public Pair<Double, Double> getPos() {
