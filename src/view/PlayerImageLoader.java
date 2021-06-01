@@ -10,6 +10,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import model.entities.SpecificEntityType;
+import model.entitiesutil.EntityConstants;
 import model.entitiesutil.typeentities.GenericEntity;
 import util.Strings;
 
@@ -29,7 +30,7 @@ public class PlayerImageLoader {
 		Optional<Image> image = Optional.empty();
 		if(this.playerImageList.contains(playerImage)) {
 			image = Optional.of(ImageIO.read(new File(playerImage)));
-			return this.resizeImage(image.get(), 0, 0);
+			return this.resizeImage(image.get(), EntityConstants.PlayerConstants.INITIAL_HEIGHT, EntityConstants.PlayerConstants.INITIAL_HEIGHT);
 		}
 		return image;
 	}
@@ -42,6 +43,6 @@ public class PlayerImageLoader {
 		int randomItem = this.randomPlayerImage.nextInt(this.playerImageList.size());
 		String chooseItem = this.playerImageList.get(randomItem);
 		Image randomImage = ImageIO.read(new File(chooseItem));
-		return this.resizeImage(randomImage, SpecificEntityType.PLAYER_1, SpecificEntityType.PLAYER_1); //luc mettere quello che manca 
+		return this.resizeImage(randomImage, EntityConstants.PlayerConstants.INITIAL_HEIGHT, EntityConstants.PlayerConstants.INITIAL_WIDTH);
 	}
 }
