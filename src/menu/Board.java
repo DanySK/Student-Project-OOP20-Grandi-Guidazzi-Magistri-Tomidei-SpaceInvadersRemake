@@ -53,7 +53,7 @@ public class Board {
 		this.frame.pack();
 	}
 	
-	/** a method to get the game view controller
+	/** a method to get the game view controller.
 	 * 
 	 * @return the GameViewController
 	 */
@@ -61,12 +61,18 @@ public class Board {
 		return this.controller;
 	}
 	
-	/** a method to get the menu controller
+	/** a method to get the menu controller.
 	 * 
 	 * @return the menuController
 	 */
 	public menuController getMenuController() {
 		return this.menuController;
-		
+	}
+	/** a method to get the mainFrame.
+	 * 
+	 * @return the mainFrame
+	 */
+	public JFrame getFrame() {
+		return this.frame;
 	}
 }

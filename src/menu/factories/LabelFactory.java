@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import menu.*;
@@ -125,7 +126,7 @@ public class LabelFactory {
 	        			try {
 							Desktop.getDesktop().browse(java.net.URI.create(Strings.MORE_INFO_LINK));
 						} catch (IOException e1) {
-							System.out.println("Link not found");
+							JOptionPane.showMessageDialog(board.getFrame(), "Link not found", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 	        			break;
 	        	}

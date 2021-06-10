@@ -10,6 +10,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import javax.swing.JOptionPane;
+
+import menu.Board;
 import util.Constants;
 import util.Pair;
 import util.Strings;
@@ -30,7 +33,7 @@ public class LeaderboardFactory {
 	 * 
 	 * @return a List of stings containing the leaderboard infos.
 	 */
-	public List<String> getLeaderboardList(){
+	public List<String> getLeaderboardList(Board board){
 		
 		try {
 			this.bufferedReader = new BufferedReader(new FileReader(Strings.LEADERBOARD_URI));
@@ -67,7 +70,7 @@ public class LeaderboardFactory {
 			this.bufferedWriter.close();
 			
 		} catch (IOException e) {
-			System.out.println("cannot find the leaderboard file");
+			JOptionPane.showMessageDialog(board.getFrame(), "Can't find the leaderboard file", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		return list;

@@ -22,7 +22,7 @@ public class StateLeaderboard implements State{
 	private TitleFactory titleFactory = new TitleFactory();
 	private LeaderboardFactory leaderboardFactory = new LeaderboardFactory();
 	private PanelFactory panelFactory = new PanelFactory();
-	private List<String> leaderboardList = this.leaderboardFactory.getLeaderboardList();
+	private List<String> leaderboardList;
 	
 	/**
 	 * The constructor of the StateLeaderboard,
@@ -30,6 +30,7 @@ public class StateLeaderboard implements State{
 	 * @param board
 	 */
 	public StateLeaderboard(Board board) {
+		this.leaderboardList = this.leaderboardFactory.getLeaderboardList(board);
 		this.panel = this.panelFactory.createPanel(Strings.LEADERBOARD, board);
 		this.centerPanel.setOpaque(false);
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
