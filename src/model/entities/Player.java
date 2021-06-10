@@ -9,6 +9,9 @@ import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovement;
 import util.Pair;
 
+/**
+ * A class that create the player entity.
+ */
 public class Player implements UserEntity{
 
 	private SpecificEntityType entityType;
@@ -28,12 +31,12 @@ public class Player implements UserEntity{
 	public Player(int x, int y) {
 		this.entityType = SpecificEntityType.PLAYER_1;
 		this.position = new Pair<>((double)x, (double)y);
-		this.movimentUnitX = EntityConstants.PlayerConstants.INITIAL_MU_X;
-		this.movimentUnitY = EntityConstants.PlayerConstants.INITIAL_MU_Y;
-		this.height = EntityConstants.PlayerConstants.INITIAL_HEIGHT;
-		this.width = EntityConstants.PlayerConstants.INITIAL_WIDTH;
+		this.movimentUnitX = EntityConstants.Player.PLAYER_INITIAL_MU_X;
+		this.movimentUnitY = EntityConstants.Player.PLAYER_INITIAL_MU_Y;
+		this.height = EntityConstants.Player.PLAYER_INITIAL_HEIGHT;
+		this.width = EntityConstants.Player.PLAYER_INITIAL_WIDTH;
 		this.hit = 0;
-		this.maxHits = EntityConstants.PlayerConstants.MAX_HITS;
+		this.maxHits = EntityConstants.Player.PLAYER_MAX_HITS;
 	}
 	
 	public Pair<Double, Double> getPos() {
