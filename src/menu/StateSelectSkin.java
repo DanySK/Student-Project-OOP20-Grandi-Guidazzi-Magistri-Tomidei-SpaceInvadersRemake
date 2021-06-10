@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import menu.factories.ButtonFactory;
@@ -18,7 +19,9 @@ import util.Constants;
 import util.Strings;
 import view.ImageLoader;
 import view.PlayerImageLoader;
-
+/**
+ * A class that allow to choose the skin for player.
+ */
 public class StateSelectSkin implements State{
 
 	private TitleFactory titleFactory = new TitleFactory();
@@ -59,7 +62,7 @@ public class StateSelectSkin implements State{
 			try {
 				playerImage.selectRandomSkin();
 			} catch (IOException e1) {
-				System.out.println("Upload error image");
+				JOptionPane.showMessageDialog(board.getFrame(), "Image not found", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			board.setCurrentState(new StateInfo(board));
 		});
