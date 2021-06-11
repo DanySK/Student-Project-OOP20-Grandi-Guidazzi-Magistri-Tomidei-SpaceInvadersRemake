@@ -75,7 +75,6 @@ public class GameViewImpl extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent e) {
     	this.setKeyValue(e.getKeyCode(), false);
-
     }
     
     private void setKeyValue(int code, boolean value) {
