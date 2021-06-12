@@ -1,4 +1,4 @@
-package controller.monitor;
+package controller.gameStatusMenager;
 
 import controller.GameStatus;
 
