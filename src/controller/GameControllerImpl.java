@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 
 import controller.monitor.ControllerMonitor;
 import controller.monitor.MonitorImpl;
-import controller.monitor.ViewMonitor;
 
 /**
  * Implementation of {@link GameController}
@@ -124,5 +123,15 @@ public class GameControllerImpl implements GameController, GameViewController {
                 Runtime.getRuntime().availableProcessors() + 1);
         timer.scheduleAtFixedRate(() -> this.gameLoop(), delay, 1000/FPS, TimeUnit.MILLISECONDS);
         return timer;
-    } 
+    }
+
+	@Override
+	public int getWindowWidth() {
+		return 0;
+	}
+
+	@Override
+	public int getWindowHeight() {
+		return 0;
+	} 
 }

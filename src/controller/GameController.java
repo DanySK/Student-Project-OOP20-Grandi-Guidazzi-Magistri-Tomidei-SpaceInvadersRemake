@@ -19,4 +19,8 @@ public interface GameController {
 	 */
 	public boolean gameOver();
 
+	public int getWindowWidth();
+
+	public int getWindowHeight();
+
 }
