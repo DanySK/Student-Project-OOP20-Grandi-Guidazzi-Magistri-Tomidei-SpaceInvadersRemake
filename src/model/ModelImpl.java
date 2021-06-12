@@ -44,14 +44,14 @@ public class ModelImpl implements Model {
 	}
 
 	public void nextLevel() {
-		this.entities.add(new Boss1((ModelImpl.MAX_WIDTH-ModelImpl.MIN_WIDTH)/2,
-				(ModelImpl.MAX_HEIGHT-ModelImpl.MIN_HEIGHT)/2, this));
-		this.entities.add(new Boss2(300, 300, this));
-		this.entities.add(new Boss3((ModelImpl.MAX_WIDTH-ModelImpl.MIN_WIDTH)/2, 80, this));
+//		this.entities.add(new Boss1((ModelImpl.MAX_WIDTH-ModelImpl.MIN_WIDTH)/2,
+//				(ModelImpl.MAX_HEIGHT-ModelImpl.MIN_HEIGHT)/2, this));
+//		this.entities.add(new Boss2(300, 300, this));
+//		this.entities.add(new Boss3((ModelImpl.MAX_WIDTH-ModelImpl.MIN_WIDTH)/2, 80, this));
 //		this.entities.add(new MonoDirectionEnemyBullet((ModelImpl.MAX_WIDTH-ModelImpl.MIN_WIDTH)/2,
 //				ModelImpl.MAX_HEIGHT - 100 - 7.5 -14 , SpecificEntityType.BOSS_1_BULLET));
-		this.entities.add(new Player((ModelImpl.MAX_WIDTH-ModelImpl.MIN_WIDTH)/2,
-			ModelImpl.MAX_HEIGHT - 100));
+//		this.entities.add(new Player((ModelImpl.MAX_WIDTH-ModelImpl.MIN_WIDTH)/2,
+//			ModelImpl.MAX_HEIGHT - 100));
 	}
 
 	@Override
