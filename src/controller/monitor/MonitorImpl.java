@@ -1,21 +1,22 @@
 package controller.monitor;
 
-import java.util.Optional;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 import controller.GameStatus;
-import controller.GameViewController;
 
 public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 
 	private final ReentrantLock lock;
+	private final Condition condition;
 
-	private Optional<GameStatus> gameState;
-	private GameViewController ctrl;
+	private GameStatus gameState;
 
-	public MonitorImpl(GameViewController c) {
-		this.ctrl = c;
+	public MonitorImpl() {
 		this.lock = new ReentrantLock();
+		this.condition = this.lock.newCondition();
+		this.gameState = GameStatus.STOPPED;
+		System.out.println(this.gameState);
 	}
 
 	/**
@@ -25,10 +26,9 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	public void pause(){
 		this.lock.lock();
 		try{
-			if(!this.gameState.get().equals(GameStatus.PAUSED) 
-					&& !this.gameState.get().equals(GameStatus.STOPPED)) {
-				this.gameState = Optional.of(GameStatus.PAUSED);
-				this.ctrl.stop();
+			if(!this.gameState.equals(GameStatus.PAUSED) && !this.gameState.equals(GameStatus.STOPPED)) {
+				this.gameState = GameStatus.PAUSED;
+				System.out.println(this.gameState);
 			}
 		}
 		finally {
@@ -43,10 +43,10 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	public void resume(){
 		this.lock.lock();
 		try{
-			if(this.gameState.get().equals(GameStatus.PAUSED) 
-					&& !this.gameState.get().equals(GameStatus.STOPPED)) {
-				this.gameState = Optional.of(GameStatus.RESUMED);
-				this.ctrl.resume();
+			if(this.gameState.equals(GameStatus.PAUSED) && !this.gameState.equals(GameStatus.STOPPED)) {
+				this.gameState = GameStatus.RESUMED;
+				System.out.println(this.gameState);
+				this.condition.signal();	
 			}
 		}
 		finally {
@@ -61,10 +61,10 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	public void restart() {
 		this.lock.lock();
 		try{
-			if(this.gameState.get().equals(GameStatus.PAUSED) 
-					&& !this.gameState.get().equals(GameStatus.STOPPED)) {
-				this.gameState = Optional.of(GameStatus.RESTARTED);
-				this.ctrl.restart();
+			if(this.gameState.equals(GameStatus.PAUSED) 
+					&& !this.gameState.equals(GameStatus.STOPPED)) {
+				this.gameState = GameStatus.RESTARTED;
+				this.condition.signal();
 			}
 		}
 		finally {
@@ -79,15 +79,47 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	public void stop(){
         this.lock.lock();
         try{
-            if(!this.gameState.get().equals(GameStatus.STOPPED)){
-            	this.gameState = Optional.of(GameStatus.STOPPED);
-				this.ctrl.stop();
-			}
+        	if(!this.gameState.equals(GameStatus.STOPPED)){
+            	this.gameState = GameStatus.STOPPED;
+            	this.condition.signal();
+            	System.out.println(this.gameState);
+            }
         }
         finally {
             this.lock.unlock();
         }
     }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void isGamePaused() {
+		 this.lock.lock();
+	     try {
+	    	 if(this.gameState.equals(GameStatus.PAUSED) && !this.gameState.equals(GameStatus.STOPPED)) {
+					try {
+						this.condition.await();
+					} catch (InterruptedException e) {}
+				}
+	     }
+	     finally {
+	    	 this.lock.unlock();
+	     }
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public GameStatus getGameStatus() {
+		this.lock.lock();
+		try {
+			return this.gameState;
+		}
+		finally{
+			this.lock.unlock();
+		}
+	}
 
     /**
 	 * {@inheritDoc}
@@ -96,7 +128,7 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
     public void setResume() {
     	this.lock.lock();
     	try {
-    		this.gameState = Optional.of(GameStatus.RUNNING);
+    		this.gameState = GameStatus.RUNNING;
     	}
     	finally {
     		this.lock.unlock();
@@ -110,7 +142,7 @@ public class MonitorImpl implements ViewMonitor, ControllerMonitor {
 	public void setStart() {
 		this.lock.lock();
     	try {
-    		this.gameState = Optional.of(GameStatus.RUNNING);
+    		this.gameState = GameStatus.RUNNING;
     	}
     	finally {
     		this.lock.unlock();
