@@ -1,9 +1,11 @@
 package view;
 
+import java.util.Set;
+
+import model.entitiesutil.typeentities.GenericEntity;
+
 public interface GraphicsView {
 
-	public void entityImages();
-	
-	public void updateEntityImages();
+	public void updateEntityImages(Set<GenericEntity> entity);
 	
 }
