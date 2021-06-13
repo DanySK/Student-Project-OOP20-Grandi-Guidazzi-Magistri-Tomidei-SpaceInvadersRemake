@@ -6,6 +6,11 @@ import model.entitiesutil.typeentities.GenericEntity;
 
 public interface GraphicsView {
 
-	public void updateEntityImages(Set<GenericEntity> entity);
+	//public void updateEntityImages();
+
+	/**
+	 * The method that update the images.
+	 */
+	void updateEntityImages(Set<GenericEntity> entitySet);
 	
 }
