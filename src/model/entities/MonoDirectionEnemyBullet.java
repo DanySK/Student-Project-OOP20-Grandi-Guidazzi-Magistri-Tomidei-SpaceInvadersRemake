@@ -6,16 +6,13 @@ import model.entitiesutil.EntityDirections;
 import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.entitiesutil.Bullet;
+import model.entitiesutil.EntityConstants;
 import model.physics.EntityMovementImpl;
 
 /**
  * {@link Bullet} with a single direction
  */
 public class MonoDirectionEnemyBullet extends Bullet {
-
-	private final int BULLET_INITIAL_WIDTH = 0;
-	private final int BULLET_INITIAL_HEIGHT = 0;
-	private final double BULLET_MAX_MU_Y = 0;
 
 	/**
 	 * {@link Bullet} with a single direction
@@ -25,9 +22,10 @@ public class MonoDirectionEnemyBullet extends Bullet {
 	 */
 	protected MonoDirectionEnemyBullet(double x,double y, SpecificEntityType type) {
 		Random random = new Random();
-		this.create(type, x, y, this.BULLET_INITIAL_WIDTH, this.BULLET_INITIAL_HEIGHT, 
-				0, (random.nextInt((int)this.BULLET_MAX_MU_Y) + 1), EntityDirections.DOWN, 
-				new EntityMovementImpl());
+		this.create(type, x, y, EntityConstants.MonoDirectionEnemyBullet.INITIAL_WIDTH, 
+				EntityConstants.MonoDirectionEnemyBullet.INITIAL_HEIGHT, 
+				0, (random.nextInt((int)EntityConstants.MonoDirectionEnemyBullet.MAX_MU_Y) + 1), 
+				EntityDirections.DOWN, new EntityMovementImpl());
 	}
 
 	/**

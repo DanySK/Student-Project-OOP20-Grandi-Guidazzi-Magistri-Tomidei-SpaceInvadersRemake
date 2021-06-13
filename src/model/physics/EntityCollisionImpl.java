@@ -1,8 +1,11 @@
 package model.physics;
 
+import java.awt.Rectangle;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import model.Model;
+import model.ModelImpl;
 import model.entities.SpecificEntityType;
 import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
@@ -31,7 +34,7 @@ public class EntityCollisionImpl implements EntityCollision{
 	public void checkCollision() {	
 		this.model.getEntitiesLevel().forEach(e ->{
 			this.model.getEntitiesLevel().forEach(eLevel -> this.collision(e, eLevel));
-			this.edgeCollision(e);
+			this.edgeCollision((MobileEntity) e);
 		});
 	}
 
@@ -42,12 +45,12 @@ public class EntityCollisionImpl implements EntityCollision{
 	public void checkCollision(GenericEntity e) {
 		this.enemyEntities = this.model.getEntitiesLevel().stream().
 				filter(i -> !i.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)
-						|| i.getEntityType().equals(GenericEntityType.PLAYER_BULLET))
+						|| i.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET))
 				.collect(Collectors.toList());
 
 		this.playerEntities = this.model.getEntitiesLevel().stream().
 				filter(i -> i.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)
-						|| i.getEntityType().equals(GenericEntityType.PLAYER_BULLET))
+						|| i.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET))
 				.collect(Collectors.toList());
 
 		if(e.getEntityType().getGenericType().equals(GenericEntityType.PLAYER) ||
@@ -57,7 +60,6 @@ public class EntityCollisionImpl implements EntityCollision{
 		else {
 			this.playerEntities.forEach(player -> this.collision(e, player));
 		}
-		this.edgeCollision((MobileEntity)e);
 	}
 
 	/**
@@ -70,17 +72,13 @@ public class EntityCollisionImpl implements EntityCollision{
 		if(!e.equals(entityLevel) && e.isAlive() && entityLevel.isAlive() && 
 				!e.getEntityType().equals(entityLevel.getEntityType())){
 
-			final double ePosX = e.getX();
-			final double ePosY = e.getY();
-			final int eWidth = e.getWidth()/2;
-			final int eHeight = e.getHeight()/2;
-			final double eLevelPosX = entityLevel.getX();
-			final double eLevelPosY = entityLevel.getY();
-			final int eLevelWidth = entityLevel.getWidth()/2;
-			final int eLevelHeight = entityLevel.getHeight()/2;
+			final Rectangle e1 = new Rectangle();
+			final Rectangle e2 = new Rectangle();
 
-			if(ePosY < (eLevelPosY + eLevelHeight) && (ePosY + eHeight) > eLevelPosY && 
-					ePosX < (eLevelPosX + eLevelWidth) && (ePosX + eWidth) > eLevelPosX) {
+			e1.setBounds((int)e.getX()-e.getWidth()/2, (int)e.getY()-e.getHeight()/2, e.getWidth(), e.getHeight());
+			e2.setBounds((int)entityLevel.getX()-entityLevel.getWidth()/2, 
+					(int)entityLevel.getY()-entityLevel.getHeight()/2, entityLevel.getWidth(), entityLevel.getHeight());
+			if(e1.intersects(e2)) {
 				e.doAfterCollisionWithEntity(entityLevel);
 				entityLevel.doAfterCollisionWithEntity(e);
 			}
@@ -94,16 +92,16 @@ public class EntityCollisionImpl implements EntityCollision{
 	 */
 	private void edgeCollision(MobileEntity e) {
 		if(e.isAlive()) {
-			if(e.getX() - e.getWidth()/2 < 0) {
+			if(e.getX() - e.getWidth()/2 < ModelImpl.MIN_WIDTH) {
 				e.doAfterCollisionWithEdge(EdgeCollision.LEFT);
 			}
-			if(e.getX() + e.getWidth()/2 + e.getMuX() > this.model.getController().getWindowWidth()) {
+			if(e.getX() + e.getWidth()/2 + e.getMuX() > ModelImpl.MAX_WIDTH) {
 				e.doAfterCollisionWithEdge(EdgeCollision.RIGHT);
 			}
-			if(e.getY() - e.getHeight()/2 < 0) {
+			if(e.getY() - e.getHeight()/2 < ModelImpl.MIN_HEIGHT) {
 				e.doAfterCollisionWithEdge(EdgeCollision.TOP);
 			}
-			if(e.getY() + e.getHeight()/2 > this.model.getController().getWindowHeight()) {
+			if(e.getY() + e.getHeight()/2 > ModelImpl.MAX_HEIGHT) {
 				e.doAfterCollisionWithEdge(EdgeCollision.DOWN);
 			}
 		}

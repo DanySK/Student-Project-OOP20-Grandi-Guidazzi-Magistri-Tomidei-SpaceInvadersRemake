@@ -1,7 +1,7 @@
 package model.entities;
 
 import model.entitiesutil.Enemy;
-
+import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
@@ -9,15 +9,12 @@ import model.physics.EntityMovementImpl;
 
 public class Alien extends Enemy{
 
-	private final int WIDTH = 0;
-	private final int HEIGHT = 0;
-	private final double MUX = 0;
-	private final double MUY = 0;
 	private final int MAX_HIT = 1;
 	private final AlienGroup alienGroup;
 	
 	public Alien(int x, int y, AlienGroup alienGroup) {
-		this.create(SpecificEntityType.ALIEN, x, y, this.WIDTH, this.HEIGHT, this.MUX, this.MUY,
+		this.create(SpecificEntityType.ALIEN, x, y, EntityConstants.Alien.INITIAL_WIDTH, EntityConstants.Alien.INITIAL_HEIGHT, 
+				EntityConstants.Alien.INITIAL_MU_X, EntityConstants.Alien.INITIAL_MU_Y,
 					this.MAX_HIT, EntityDirections.LEFT, new EntityMovementImpl());
 		this.alienGroup = alienGroup;
 	}

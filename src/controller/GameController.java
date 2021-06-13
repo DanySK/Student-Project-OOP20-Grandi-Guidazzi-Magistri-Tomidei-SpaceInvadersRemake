@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.Set;
+
+import model.entitiesutil.MappedEntity;
+
 /**
  * Interface of the game controller
  */
@@ -18,5 +22,16 @@ public interface GameController {
 	 * @return true if the player win, false otherwise
 	 */
 	public boolean gameOver();
+
+	public int getWindowWidth();
+
+	public int getWindowHeight();
+
+	public Set<MappedEntity> getEntitiesLevel();
+
+	/**
+	 * 
+	 */
+	public void stop();
 
 }

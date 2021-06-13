@@ -1,6 +1,8 @@
 package model.entities;
 
+import model.Model;
 import model.entitiesutil.Enemy;
+import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
 import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
@@ -12,11 +14,7 @@ import model.physics.EntityMovementImpl;
  */
 public class Boss1 extends Enemy {
 
-	private final int INITIAL_WIDTH = 0;
-	private final int INITIAL_HEIGHT = 0;
-	private final double INITIAL_MU_X = 0;
-	private final double INITIAL_MU_Y = 0;
-	private final int MAX_HITS = 0;
+	private final Model model;
 
 	/**
 	 * Generic {@link Enemy} boss
@@ -24,11 +22,12 @@ public class Boss1 extends Enemy {
 	 * @param x is the initial x coordinate
 	 * @param y is the initial y coordinate
 	 */
-	public Boss1(int x, int y) {
-		EntityDirections direction = EntityDirections.RIGHT;
-		this.create(SpecificEntityType.BOSS_1, x, y, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, 
-				this.INITIAL_MU_Y, this.MAX_HITS, direction,
+	public Boss1(int x, int y, Model model) {
+		this.create(SpecificEntityType.BOSS_1, x, y, EntityConstants.Boss1.INITIAL_WIDTH, 
+				EntityConstants.Boss1.INITIAL_HEIGHT, EntityConstants.Boss1.INITIAL_MU_X, 
+				EntityConstants.Boss1.INITIAL_MU_Y, EntityConstants.Boss1.MAX_HITS, EntityDirections.RIGHT,
 				new EntityMovementImpl());
+		this.model = model;
 	}
 
 	/**
@@ -62,8 +61,8 @@ public class Boss1 extends Enemy {
 	 */
 	@Override
 	public void shoot() {
-		/*this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
-				this.getY() + this.getHeight()), EntityType.BOSS_1_BULLET));*/
+		this.model.getNewEntity().add(new MonoDirectionEnemyBullet(this.getX() + this.getWidth()/2 -1,
+				this.getY() + this.getHeight(), SpecificEntityType.BOSS_1_BULLET));
 	}
 
 	/**
@@ -75,7 +74,7 @@ public class Boss1 extends Enemy {
 				this.incHit();
 		}
 		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
-				//this.model.processGameOver();
+				this.model.processGameOver();
 		}
 	}
 
@@ -89,7 +88,7 @@ public class Boss1 extends Enemy {
 			this.changeDirection();
 		}
 		if(edge.equals(EdgeCollision.DOWN)) {
-			//this.model.processGameOver();
+			this.model.processGameOver();
 		}
 	}
 }

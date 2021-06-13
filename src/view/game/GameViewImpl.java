@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-import controller.monitor.ViewMonitor;
+import controller.gameStatusMenager.ViewMonitor;
 
 public class GameViewImpl extends KeyAdapter {
     private final ViewMonitor flag;
@@ -75,7 +75,6 @@ public class GameViewImpl extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent e) {
     	this.setKeyValue(e.getKeyCode(), false);
-
     }
     
     private void setKeyValue(int code, boolean value) {
