@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import menu.factories.LabelFactory;
 import menu.gameview.StateInGameMenu;
-import model.entities.MonoDirectionPlayerBullet;
+import model.entities.PlayerBullet;
 import model.entities.Player;
 import model.entitiesutil.EntityDirections;
 import util.Pair;
@@ -19,8 +19,7 @@ import util.Strings;
  */
 public class StateGame implements State{
 	
-	private JPanel panel = new JPanel();
-	private Player player = new Player(this.panel.getHeight()/2, this.panel.getWidth()/2);
+	private JPanel panel;
 	
 	
 	/**
@@ -29,44 +28,7 @@ public class StateGame implements State{
 	 * @param board
 	 */
 	public StateGame(Board board) {
-		this.panel = board.getController().getView();
-		
-		this.panel.addKeyListener(new KeyListener(){
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				int key = e.getKeyCode();
-				
-				if(key == KeyEvent.VK_ESCAPE) {
-					board.setCurrentState(new StateInGameMenu(board));
-				} else if(key == KeyEvent.VK_RIGHT) {
-					player.updateEntityPosition(EntityDirections.RIGHT);
-				} else if(key == KeyEvent.VK_LEFT) {
-					player.updateEntityPosition(EntityDirections.LEFT);
-				} else if(key == KeyEvent.VK_SPACE) {
-					player.shoot();
-				}
-				
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				int key = e.getKeyCode();
-				
-				if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT) {
-					player.setMuX(0);
-				}
-				
-			}
-			
-		});
-		
-		this.panel.setFocusable(true);
+		//this.panel = board.getController().getView().getPanel();
 	}
 	
 	@Override
