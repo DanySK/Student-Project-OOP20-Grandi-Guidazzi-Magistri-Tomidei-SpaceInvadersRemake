@@ -17,8 +17,7 @@ import model.entities.SpecificEntityType;
 import model.entitiesutil.GenericEntityType;
 import util.Constants;
 import util.Strings;
-import view.ImageLoader;
-import view.PlayerImageLoader;
+import view.ImageManagerImpl;
 /**
  * A class that allow to choose the skin for player.
  */
@@ -47,7 +46,7 @@ public class StateSelectSkin implements State{
 		
 		this.panel.add(this.titleFactory.createTitle("Select your Skin:", Constants.titleSize, Constants.colorTitle), BorderLayout.NORTH);
 		
-		this.gridPanel.setLayout(new GridLayout(0,2,0,2));
+		this.gridPanel.setLayout(new GridLayout(0,Constants.specificColumns,0,Constants.specificRow));
 		this.gridPanel.setOpaque(false);
 		this.centerPanel.add(this.gridPanel, BorderLayout.CENTER);
 		
@@ -58,12 +57,11 @@ public class StateSelectSkin implements State{
 		
 		this.centerPanel.add(this.button);
 		this.button.addActionListener(e->{
-			PlayerImageLoader playerImage = new PlayerImageLoader();
-			try {
-				playerImage.selectRandomSkin();
-			} catch (IOException e1) {
-				JOptionPane.showMessageDialog(board.getFrame(), "Image not found", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+//			try {
+//				//board.getController().getView().getImageManager().selectRandomSkin();
+//			} catch (IOException e1) {
+//				JOptionPane.showMessageDialog(board.getFrame(), "Image not found", "Error", JOptionPane.ERROR_MESSAGE);
+//			}
 			board.setCurrentState(new StateInfo(board));
 		});
 		

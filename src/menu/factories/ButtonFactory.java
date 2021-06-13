@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import menu.Board;
 import menu.StateInfo;
 import util.Constants;
-import view.PlayerImageLoader;
+import view.ImageManagerImpl;
 /**
  * A class that makes buttons for choose the player image. 
  */
@@ -46,12 +46,11 @@ public class ButtonFactory {
 		this.button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		this.button.addActionListener(e->{
-			PlayerImageLoader playerImage = new PlayerImageLoader();
-			try {
-				playerImage.choseImage(skinUri);
-			} catch (IOException e1) {
-				JOptionPane.showMessageDialog(board.getFrame(), "Update image error", "Error", JOptionPane.ERROR_MESSAGE);
-			} 
+//			try {
+//				//board.getController().getView().getImageManager().chosePlayerSKin(skinUri);
+//			} catch (IOException e1) {
+//				JOptionPane.showMessageDialog(board.getFrame(), "Image not found", "Error", JOptionPane.ERROR_MESSAGE);
+//			}
 			board.getMenuController().changeState(new StateInfo(board));
 		});
 		
