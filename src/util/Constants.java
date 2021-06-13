@@ -28,4 +28,7 @@ public class Constants {
 	public final static int maxSliderValue = 10;
 	
 	public final static int maxLeaderboardCharacters = 10; 
+	
+	public final static int specificRow = 2;
+	public final static int specificColumns = 2;
 }
