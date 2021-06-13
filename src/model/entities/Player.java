@@ -31,12 +31,12 @@ public class Player implements UserEntity{
 	public Player(int x, int y) {
 		this.entityType = SpecificEntityType.PLAYER_1;
 		this.position = new Pair<>((double)x, (double)y);
-		this.movimentUnitX = EntityConstants.Player.PLAYER_INITIAL_MU_X;
-		this.movimentUnitY = EntityConstants.Player.PLAYER_INITIAL_MU_Y;
-		this.height = EntityConstants.Player.PLAYER_INITIAL_HEIGHT;
-		this.width = EntityConstants.Player.PLAYER_INITIAL_WIDTH;
+		this.movimentUnitX = EntityConstants.Player.INITIAL_MU_X;
+		this.movimentUnitY = EntityConstants.Player.INITIAL_MU_Y;
+		this.height = EntityConstants.Player.INITIAL_HEIGHT;
+		this.width = EntityConstants.Player.INITIAL_WIDTH;
 		this.hit = 0;
-		this.maxHits = EntityConstants.Player.PLAYER_MAX_HITS;
+		this.maxHits = EntityConstants.Player.MAX_HITS;
 	}
 	
 	public Pair<Double, Double> getPos() {
