@@ -1,6 +1,8 @@
 package model.entities;
 
+import model.Model;
 import model.entitiesutil.Enemy;
+import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
 import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.bossutil.BossState;
@@ -13,13 +15,7 @@ import model.physics.EntityMovementImpl;
  */
 public class Boss2 extends Enemy{
 
-	private final int INITIAL_WIDTH = 0;
-	private final int INITIAL_HEIGHT = 0;
-	private final double INITIAL_MU_X = 0;
-	private final double INITIAL_MU_Y = 0;
-	private final int HITS_2ND_PHASE = 0;
-	private final int MAX_HITS = 0;
-
+	private final Model model;
 	private boolean isAlreadyUpset;
 	private BossState state;
 
@@ -29,12 +25,14 @@ public class Boss2 extends Enemy{
 	 * @param x is the initial x coordinate
 	 * @param y is the initial y coordinate
 	 */
-	public Boss2(int x, int y) {
-		this.create(SpecificEntityType.BOSS_2, x, y, this.INITIAL_WIDTH, this.INITIAL_HEIGHT, this.INITIAL_MU_X, this.INITIAL_MU_Y,
-				this.MAX_HITS, EntityDirections.DOWN, 
+	public Boss2(int x, int y, Model model) {
+		this.create(SpecificEntityType.BOSS_2, x, y, EntityConstants.Boss2.INITIAL_WIDTH, 
+				EntityConstants.Boss2.INITIAL_HEIGHT, EntityConstants.Boss2.INITIAL_MU_X, 
+				EntityConstants.Boss2.INITIAL_MU_Y, EntityConstants.Boss2.MAX_HITS, EntityDirections.DOWN, 
 				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
 		this.isAlreadyUpset = false;
+		this.model = model;
 	}
 
 	/**
@@ -60,19 +58,19 @@ public class Boss2 extends Enemy{
 	 */
 	@Override
 	public void shoot() {
-		/*this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
-				new Pair<>(this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight()), 
-				EntityType.BOSS_2_BULLET));
-		this.model.getNewEntitiesLevel().add(new MultiDirectionsEnemyBullet(
-				new Pair<>(this.getX() + this.getWidth()* 3/4 - 1,this.getY() + this.getHeight()), 
-				EntityType.BOSS_2_BULLET));*/
+		this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(
+				this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight(), 
+				SpecificEntityType.BOSS_2_BULLET));
+		this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(
+				this.getX() + this.getWidth()* 3/4 - 1,this.getY() + this.getHeight(), 
+				SpecificEntityType.BOSS_2_BULLET));
 	}
 
 	/**
 	 * Change the state of the boss after it took too many hits 
 	 */
 	private void changeState() {
-		if(this.getHits() >= this.HITS_2ND_PHASE && !isAlreadyUpset) {
+		if(this.getHits() >= EntityConstants.Boss2.HITS_2ND_PHASE && !isAlreadyUpset) {
 			this.state = BossState.UPSET;
 			this.isAlreadyUpset = true;
 		}
@@ -87,7 +85,7 @@ public class Boss2 extends Enemy{
 			this.incHit();
 		}
 		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
-			//this.model.processGameOver();
+			this.model.processGameOver();
 		}
 	}
 
@@ -97,7 +95,7 @@ public class Boss2 extends Enemy{
 	@Override
 	public void doAfterCollisionWithEdge(EdgeCollision edge) {
 		if(edge.equals(EdgeCollision.DOWN)) {
-			//this.model.processGameOver();
+			this.model.processGameOver();
 		}
 	}
 }
