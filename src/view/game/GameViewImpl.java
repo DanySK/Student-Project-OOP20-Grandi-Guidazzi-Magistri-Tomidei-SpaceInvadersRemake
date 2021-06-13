@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-import controller.monitor.ViewMonitor;
+import controller.gameStatusMenager.ViewMonitor;
 
 public class GameViewImpl extends KeyAdapter {
     private final ViewMonitor flag;
