@@ -3,11 +3,16 @@ package view;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import model.entitiesutil.typeentities.GenericEntity;
 
@@ -16,30 +21,39 @@ import model.entitiesutil.typeentities.GenericEntity;
  */
 public class GraphicsViewImpl extends JPanel implements GraphicsView{
 
-	private Map<GenericEntity, Image> genericEntityMap;
-	private PlayerImageLoader playerLoader;
-	private Graphics graphics;
-	private ImageLoader imageLoader;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Set<GenericEntity> genericEntitySet;
+	private UpdateManager imageManager;
 	
-	public GraphicsViewImpl(Set<GenericEntity> entity) {
+	public GraphicsViewImpl(){
 		super();
-		this.imageLoader = new ImageLoader();
-		this.genericEntityMap = new HashMap<>();
-		entity.forEach(e-> this.genericEntityMap.put(e, imageLoader.createImage(e).get()));
+		this.genericEntitySet = new HashSet<>();
+		this.imageManager = new ImageManagerImpl();
 	}
 
 	@Override
 	public void paintComponents(Graphics graphics) {
-		this.graphics = (Graphics2D)graphics;
-		this.genericEntityMap.forEach((entity,image)-> this.graphics.drawImage(image, (int)entity.getX(), (int)entity.getY(), null));
+		this.genericEntitySet.forEach(e->{
+			Optional<Image> image = this.imageManager.drawEntity(e);
+			if(image.equals(Optional.empty())) {
+				JOptionPane.showMessageDialog(this, "Image not found", "Error", JOptionPane.ERROR_MESSAGE);
+			}else {
+				graphics.drawImage(image.get(), (int)e.getX(), (int)e.getY(), null);
+			}
+		});
 	}
 	
 	/**
 	 * The method that update the images.
 	 */
 	@Override
-	public void updateEntityImages(Set<GenericEntity> entity) {
-		entity.forEach(e-> this.genericEntityMap.put(e, imageLoader.createImage(e).get()));
+	public void updateEntityImages(Set<GenericEntity> entitySet) {
+		this.genericEntitySet.clear();
+		this.genericEntitySet = entitySet;
+		SwingUtilities.invokeLater(()->this.repaint());
 		
 	}
 }
