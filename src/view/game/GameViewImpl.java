@@ -21,7 +21,6 @@ import view.GraphicsViewImpl;
 public class GameViewImpl extends KeyAdapter {
     private final ViewMonitor flag;
     private final Set<Integer> guiUpdateSet;
-    private final ExecutorService executorService;
     private final Map<GameEvent,Boolean> keyPressed;
     private final GraphicsView graphicsView;
     private boolean isPause;
@@ -30,7 +29,6 @@ public class GameViewImpl extends KeyAdapter {
     public GameViewImpl(final ViewMonitor flag) {
         this.flag = flag;
         this.guiUpdateSet = Collections.synchronizedSet(new HashSet<>());
-        this.executorService = Executors.newCachedThreadPool();
         this.keyPressed = Collections.synchronizedMap(new HashMap<>());
         this.isPause = false;
         this.graphicsView = new GraphicsViewImpl();
@@ -50,7 +48,6 @@ public class GameViewImpl extends KeyAdapter {
 
     public void updateGui(Set<Integer/*lista di updates in verita'*/> updates){
         this.guiUpdateSet.addAll(updates);
-        //this.executorService.execute(this::refresh); //non e' detto che sia da fare nell' executor service
     }
     
 
@@ -60,7 +57,7 @@ public class GameViewImpl extends KeyAdapter {
 
 
     private void setPause(){
-    	this.isPause = true;
+    	this.isPause = true; //usare game status al posto del booleano this.flag.getStatus()
         this.flag.pause();
     }
 
@@ -109,7 +106,7 @@ public class GameViewImpl extends KeyAdapter {
 			return GameEvent.FIRE;
 
 		default:
-			throw new IllegalArgumentException("smetti di spingere tasti sbagliati coglione");
+			throw new IllegalArgumentException("wrong typing");
 		}
     }
     
