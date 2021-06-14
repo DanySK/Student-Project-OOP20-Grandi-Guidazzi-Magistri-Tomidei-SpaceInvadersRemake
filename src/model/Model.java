@@ -1,8 +1,10 @@
 package model;
 
+import java.util.List;
 import java.util.Set;
 
 import controller.GameController;
+import model.entities.Alien;
 import model.entitiesutil.MappedEntity;
 import model.entitiesutil.typeentities.AutoMovableEntity;
 import model.entitiesutil.typeentities.GenericEntity;
@@ -27,5 +29,7 @@ public interface Model {
 	public GameController getController();
 
 	public void processGameOver();
+
+	public List<Alien> getAlienList();
 
 }

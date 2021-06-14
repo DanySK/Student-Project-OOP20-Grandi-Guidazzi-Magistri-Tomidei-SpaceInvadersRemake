@@ -1,10 +1,12 @@
 package model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import controller.GameController;
+import model.entities.Alien;
 import model.entities.Boss1;
 import model.entities.Boss2;
 import model.entities.Boss3;
@@ -73,6 +75,11 @@ public class ModelImpl implements Model {
 		return this.entities.stream().filter(e -> e instanceof Enemy).filter(e -> e.isAlive()).map(e -> (Enemy)e).collect(Collectors.toSet());
 	}
 
+	@Override
+	public List<Alien> getAlienList() {
+		return this.entities.stream().filter(e -> e instanceof Alien).filter(e -> e.isAlive()).map(e -> (Alien)e).collect(Collectors.toList());
+	}
+
 	public Set<MappedEntity> getMappedEntities(){
 		Set<MappedEntity> set = new HashSet<>();
 		this.entities.stream().filter(e -> e.isAlive()).forEach(e ->{
@@ -137,4 +144,5 @@ public class ModelImpl implements Model {
 	public Set<GenericEntity> getNewEntity() {
 		return this.newEntity;
 	}
+
 }
