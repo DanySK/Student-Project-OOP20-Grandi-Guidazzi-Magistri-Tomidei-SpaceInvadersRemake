@@ -45,7 +45,7 @@ public class EntityCollisionImpl implements EntityCollision{
 	public void checkCollision(GenericEntity e) {
 		this.enemyEntities = this.model.getEntitiesLevel().stream().
 				filter(i -> !i.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)
-						|| i.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET))
+						&& !i.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET))
 				.collect(Collectors.toList());
 
 		this.playerEntities = this.model.getEntitiesLevel().stream().
