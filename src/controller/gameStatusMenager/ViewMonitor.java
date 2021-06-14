@@ -27,4 +27,11 @@ public interface ViewMonitor {
 	 */
 	public void stop();
 
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
+	public GameStatus getGameStatus();
+
 }
