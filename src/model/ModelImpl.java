@@ -61,34 +61,16 @@ public class ModelImpl implements Model {
 
 	@Override
 	public Set<AutoMovableEntity> getAutoMovableEntitiesLevel() {
-		Set<AutoMovableEntity> set = new HashSet<>();
-		this.entities.forEach(e -> {
-			if((e instanceof AutoMovableEntity) && e.isAlive()) {
-				set.add((AutoMovableEntity)e);
-			}
-		});
-		return set;
+		return this.entities.stream().filter(e -> e instanceof AutoMovableEntity).filter(e -> e.isAlive()).map(e -> (AutoMovableEntity)e).collect(Collectors.toSet());
 	}
 
 	@Override
 	public Set<UserEntity> getUserEntity() {
-		Set<UserEntity> set = new HashSet<>();
-		this.entities.forEach(e -> {
-			if((e instanceof UserEntity) && e.isAlive()) {
-				set.add((UserEntity)e);
-			}
-		});
-		return set;
+		return this.entities.stream().filter(e -> e instanceof UserEntity).filter(e -> e.isAlive()).map(e -> (UserEntity)e).collect(Collectors.toSet());
 	}
 
 	private Set<Enemy> enemyCapableOfFiring() {
-		Set<Enemy> set = new HashSet<>();
-		this.getAutoMovableEntitiesLevel().forEach(e -> {
-			if((e instanceof Enemy) && e.isAlive()) {
-				set.add((Enemy)e);
-			}
-		});
-		return set;
+		return this.entities.stream().filter(e -> e instanceof Enemy).filter(e -> e.isAlive()).map(e -> (Enemy)e).collect(Collectors.toSet());
 	}
 
 	public Set<MappedEntity> getMappedEntities(){
