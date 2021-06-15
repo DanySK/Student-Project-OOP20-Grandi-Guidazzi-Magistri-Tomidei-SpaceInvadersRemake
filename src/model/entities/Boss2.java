@@ -58,11 +58,11 @@ public class Boss2 extends Enemy{
 	 */
 	@Override
 	public void shoot() {
-		this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(
-				this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight(), 
+		this.model.getNewEntity().add(new MultiDirectionsEnemyBullet( this.getX() + this.getWidth()/4 - 1,
+				this.getY() + this.getHeight() + EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT / 2, 
 				SpecificEntityType.BOSS_2_BULLET));
-		this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(
-				this.getX() + this.getWidth()* 3/4 - 1,this.getY() + this.getHeight(), 
+		this.model.getNewEntity().add(new MultiDirectionsEnemyBullet( this.getX() + this.getWidth()* 3/4 - 1,
+				this.getY() + this.getHeight() + EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT / 2, 
 				SpecificEntityType.BOSS_2_BULLET));
 	}
 
@@ -83,9 +83,6 @@ public class Boss2 extends Enemy{
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
 		if(entity.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET) && this.isAlive()) {
 			this.incHit();
-		}
-		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
-			this.model.processGameOver();
 		}
 	}
 
