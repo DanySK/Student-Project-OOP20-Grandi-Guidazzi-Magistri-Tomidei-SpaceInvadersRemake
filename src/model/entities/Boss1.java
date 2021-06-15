@@ -4,7 +4,6 @@ import model.Model;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
-import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
