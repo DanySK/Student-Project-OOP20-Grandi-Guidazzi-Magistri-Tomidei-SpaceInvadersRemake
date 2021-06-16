@@ -4,7 +4,6 @@ import model.Model;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
-import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.bossutil.BossState;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
@@ -58,12 +57,12 @@ public class Boss2 extends Enemy{
 	 */
 	@Override
 	public void shoot() {
-		this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(
-				this.getX() + this.getWidth()/4 - 1, this.getY() + this.getHeight(), 
-				SpecificEntityType.BOSS_2_BULLET));
-		this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(
-				this.getX() + this.getWidth()* 3/4 - 1,this.getY() + this.getHeight(), 
-				SpecificEntityType.BOSS_2_BULLET));
+		for(int i = 2; i > 0; i--) {
+			this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(this.getX() +
+					(i%2 == 0 ? +1 : -1) * this.getWidth()/4 + (i%2 == 0 ? -1 : +1),
+					this.getY() + this.getHeight()/2 + EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT/2,
+					SpecificEntityType.BOSS_2_BULLET));
+		}
 	}
 
 	/**
@@ -82,10 +81,7 @@ public class Boss2 extends Enemy{
 	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
 		if(entity.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET) && this.isAlive()) {
-			this.incHit();
-		}
-		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
-			this.model.processGameOver();
+			this.incHits();
 		}
 	}
 

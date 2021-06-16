@@ -164,7 +164,7 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableOfShootin
 	/**
 	 * Increment the current number of hits that {@link Enemy} take
 	 */
-	public void incHit() {
+	public void incHits() {
 		this.hit++;
 	}
 
