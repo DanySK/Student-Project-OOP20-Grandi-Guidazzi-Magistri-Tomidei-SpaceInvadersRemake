@@ -35,9 +35,9 @@ public class AlienGroup implements EntityCapableOfShooting{
 		int spacingY = 40;
 		Pair<Integer, Integer> lastPos = new Pair<>(0,0);
 		rows += numAlien % this.MAX_ALIEN_PER_COLUMN == 0 ? 0 : 1;
-		for(int i = 0; i < this.MAX_ALIEN_PER_COLUMN; i++) {
+		for(int i = 0; i < rows; i++) {
 			lastPos=new Pair<>(spacingX, (i+1)*spacingY);
-			for(int j = 0; j < rows; j++) {
+			for(int j = 0; j < this.MAX_ALIEN_PER_COLUMN; j++) {
 				if(alienInserted>=numAlien) {
 					break;
 				}
