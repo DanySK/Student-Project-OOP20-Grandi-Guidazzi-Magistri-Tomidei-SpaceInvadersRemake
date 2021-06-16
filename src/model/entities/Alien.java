@@ -1,21 +1,23 @@
 package model.entities;
 
+import model.Model;
+
 import model.entitiesutil.Enemy;
 import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
-
 public class Alien extends Enemy{
 
-	private final int MAX_HIT = 1;
 	private final AlienGroup alienGroup;
+	private final Model model;
 	
-	public Alien(int x, int y, AlienGroup alienGroup) {
-		this.create(SpecificEntityType.ALIEN, x, y, EntityConstants.Alien.INITIAL_WIDTH, EntityConstants.Alien.INITIAL_HEIGHT, 
+	public Alien(int x, int y, AlienGroup alienGroup, Model model, SpecificEntityType type) {
+		this.model = model;
+		this.create(type, x, y, EntityConstants.Alien.INITIAL_WIDTH, EntityConstants.Alien.INITIAL_HEIGHT, 
 				EntityConstants.Alien.INITIAL_MU_X, EntityConstants.Alien.INITIAL_MU_Y,
-					this.MAX_HIT, EntityDirections.LEFT, new EntityMovementImpl());
+				EntityConstants.Alien.MAX_HIT, EntityDirections.LEFT, new EntityMovementImpl());
 		this.alienGroup = alienGroup;
 	}
 	
@@ -32,20 +34,22 @@ public class Alien extends Enemy{
 	
 	@Override
 	public void doAfterCollisionWithEdge(EdgeCollision edge) {
-		if(edge.equals(EdgeCollision.LEFT) || edge.equals(EdgeCollision.RIGHT)) {
-			alienGroup.alienGroupDown();
-		}
-		if(edge.equals(EdgeCollision.DOWN)) {
-			//this.model.processGameOver();
+		if(edge.equals(EdgeCollision.LEFT)){ 
+			alienGroup.alienGroupDown(EdgeCollision.LEFT);
+		} else if(edge.equals(EdgeCollision.RIGHT)) {
+			alienGroup.alienGroupDown(EdgeCollision.RIGHT);
+		} else if(edge.equals(EdgeCollision.DOWN)) {
+			this.model.processGameOver();
 		}
 	}
 	
 	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
-		if(this.isAlive()) {
-			this.incHit();
+		if(entity.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET)) {
+			if(this.isAlive()) {
+				this.incHit();
+			}
 		}
-		
 	}
 	
 	@Override
@@ -60,8 +64,8 @@ public class Alien extends Enemy{
 	
 	@Override
 	public void shoot() {
-		/*this.model.getNewEntitiesLevel().add(new MonoDirectionEnemyBullet(new Pair<>(this.getX() + this.getWidth()/2 -1,
-		this.getY() + this.getHeight()), EntityType.ALIEN_BULLET));*/
+		this.model.getNewEntity().add(new MonoDirectionEnemyBullet(this.getX(),
+		this.getY() + EntityConstants.MonoDirectionEnemyBullet.INITIAL_WIDTH + this.getHeight(), SpecificEntityType.ALIEN_BULLET));
 		
 	}
 

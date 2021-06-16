@@ -18,10 +18,11 @@ public class EntityConstants {
 	}
 	
 	public class Alien{
-		public final static int INITIAL_WIDTH = 0;
-		public final static int INITIAL_HEIGHT = 0;
+		public final static int INITIAL_WIDTH = 50;
+		public final static int INITIAL_HEIGHT = 50;
 		public final static double INITIAL_MU_X = 0;
 		public final static double INITIAL_MU_Y = 0;
+		public final static int MAX_HIT = 1;
 	}
 
 	public class Boss1 {

@@ -11,7 +11,17 @@ public enum SpecificEntityType {
 	/**
 	 * {@link Alien}
 	 */
-	ALIEN(GenericEntityType.GENERIC_ENEMY, 0),
+	ALIEN_1(GenericEntityType.GENERIC_ENEMY, 0),
+	
+	/**
+	 * {@link Alien}
+	 */
+	ALIEN_2(GenericEntityType.GENERIC_ENEMY, 0),
+	
+	/**
+	 * {@link Alien}
+	 */
+	ALIEN_3(GenericEntityType.GENERIC_ENEMY, 0),
 
 	/**
 	 * {@link Boss1}
