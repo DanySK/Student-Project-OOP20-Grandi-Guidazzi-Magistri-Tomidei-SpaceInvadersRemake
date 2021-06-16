@@ -43,7 +43,7 @@ public class Alien extends Enemy{
 	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
 		if(this.isAlive()) {
-			this.incHit();
+			this.incHits();
 		}
 		
 	}
