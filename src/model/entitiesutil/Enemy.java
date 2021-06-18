@@ -32,12 +32,12 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableOfShootin
 	 * @param dir		is the initial direction of the {@link Enemy}
 	 * @param move		is {@link EntityMovement} implementation
 	 */
-	protected void create(SpecificEntityType type, int x, int y, int width,int height, 
+	protected void create(SpecificEntityType type, double x, double y, int width,int height, 
 			double muX, double muY, int maxHits, EntityDirections dir,
 			EntityMovement move) {
 		this.width = width;
 		this.height = height;
-		this.pos = new Pair<>((double)x, (double)y);
+		this.pos = new Pair<>(x, y);
 		this.muX = muX;
 		this.muY = muY;
 		this.move = move;
@@ -59,8 +59,8 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableOfShootin
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setPos(int x, int y) {
-		this.pos.setBoth((double)x, (double)y);
+	public void setPos(double x, double y) {
+		this.pos.setBoth(x, y);
 	}
 
 	/**

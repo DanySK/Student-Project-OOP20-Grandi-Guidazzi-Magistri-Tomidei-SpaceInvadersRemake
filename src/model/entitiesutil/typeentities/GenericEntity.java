@@ -22,7 +22,7 @@ public interface GenericEntity {
 	 * @param x is the new x coordinate
 	 * @param y is the new y coordinate
 	 */
-	public void setPos(int x, int y);
+	public void setPos(double x, double y);
 
 	/**
 	 * Return the current x coordinate of the {@link GenericEntity}

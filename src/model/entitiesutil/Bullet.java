@@ -57,8 +57,8 @@ public abstract class Bullet implements AutoMovableEntity {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void setPos(int x, int y) {
-		this.pos.setBoth((double)x, (double)y);
+	public void setPos(double x, double y) {
+		this.pos.setBoth(x, y);
 	}
 
 	/**
