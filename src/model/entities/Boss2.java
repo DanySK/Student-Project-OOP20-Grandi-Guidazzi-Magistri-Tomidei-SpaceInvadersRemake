@@ -15,7 +15,6 @@ import model.physics.EntityMovementImpl;
 public class Boss2 extends Enemy{
 
 	private final Model model;
-	private boolean isAlreadyUpset;
 	private BossState state;
 
 	/**
@@ -30,7 +29,6 @@ public class Boss2 extends Enemy{
 				EntityConstants.Boss2.INITIAL_MU_Y, EntityConstants.Boss2.MAX_HITS, EntityDirections.DOWN, 
 				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
-		this.isAlreadyUpset = false;
 		this.model = model;
 	}
 
@@ -69,9 +67,8 @@ public class Boss2 extends Enemy{
 	 * Change the state of the boss after it took too many hits 
 	 */
 	private void changeState() {
-		if(this.getHits() >= EntityConstants.Boss2.HITS_2ND_PHASE && !isAlreadyUpset) {
+		if(this.getHits() >= EntityConstants.Boss2.HITS_2ND_PHASE && !this.state.equals(BossState.UPSET)) {
 			this.state = BossState.UPSET;
-			this.isAlreadyUpset = true;
 		}
 	}
 
