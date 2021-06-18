@@ -1,14 +1,12 @@
 package model.entitiesutil.typeentities;
 
-import model.entitiesutil.EntityDirections;
-
 /**
  * Interface that represents all the {@link GenericEntity} that the user can move
  */
 public interface UserEntity extends MobileEntity, EntityCapableOfShooting {
 
 	/**
-	 * Update {@link UserEntity} position according its direction
+	 * Update {@link UserEntity} position
 	 */
-	void updateEntityPosition(EntityDirections direction);
+	void updateEntityPosition();
 }
