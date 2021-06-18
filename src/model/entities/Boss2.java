@@ -24,7 +24,7 @@ public class Boss2 extends Enemy{
 	 * @param x is the initial x coordinate
 	 * @param y is the initial y coordinate
 	 */
-	public Boss2(int x, int y, Model model) {
+	public Boss2(double x, double y, Model model) {
 		this.create(SpecificEntityType.BOSS_2, x, y, EntityConstants.Boss2.INITIAL_WIDTH, 
 				EntityConstants.Boss2.INITIAL_HEIGHT, EntityConstants.Boss2.INITIAL_MU_X, 
 				EntityConstants.Boss2.INITIAL_MU_Y, EntityConstants.Boss2.MAX_HITS, EntityDirections.DOWN, 
@@ -59,7 +59,7 @@ public class Boss2 extends Enemy{
 	public void shoot() {
 		for(int i = 2; i > 0; i--) {
 			this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(this.getX() +
-					(i%2 == 0 ? +1 : -1) * this.getWidth()/4 + (i%2 == 0 ? -1 : +1),
+					(i%2 == 0 ? +1 : -1) * this.getWidth()/4,
 					this.getY() + this.getHeight()/2 + EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT/2,
 					SpecificEntityType.BOSS_2_BULLET));
 		}

@@ -28,7 +28,7 @@ public class Boss3 extends Enemy{
 	 * @param x is the initial x coordinate
 	 * @param y is the initial y coordinate
 	 */
-	public Boss3(int x, int y, Model model) {
+	public Boss3(double x, double y, Model model) {
 		super.create(SpecificEntityType.BOSS_3, x, y, EntityConstants.Boss3.INITIAL_WIDTH, 
 				EntityConstants.Boss3.INITIAL_HEIGHT, EntityConstants.Boss3.INITIAL_MU_X,
 				EntityConstants.Boss3.INITIAL_MU_Y, EntityConstants.Boss3.MAX_HITS, EntityDirections.LEFT, 
