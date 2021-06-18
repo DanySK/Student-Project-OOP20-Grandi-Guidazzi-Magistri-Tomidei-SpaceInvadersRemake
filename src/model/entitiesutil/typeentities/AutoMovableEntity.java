@@ -1,5 +1,6 @@
 package model.entitiesutil.typeentities;
 
+import model.entitiesutil.EntityDirections;
 import model.physics.EntityMovement;
 
 /**
@@ -12,6 +13,19 @@ public interface AutoMovableEntity extends MobileEntity {
 	 */
 	public void updateEntityPosition();
 
+	/**
+	 * Return the current directions of the {@link GenericEntity}
+	 * 
+	 * @return a value of {@link EntityDirections} which represents the {@link GenericEntity}'s current direction
+	 */
+	public EntityDirections getDirection();
+
+	/**
+	 * Update the direction of the {@link GenericEntity}
+	 * 
+	 * @param direction is the new direction of the {@link GenericEntity}
+	 */
+	public void setDirection(EntityDirections direction);
 
 	/**
 	 * Return the implementation of {@link EntityMovement} 

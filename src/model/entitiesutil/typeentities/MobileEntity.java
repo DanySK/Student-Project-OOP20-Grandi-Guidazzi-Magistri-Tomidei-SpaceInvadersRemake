@@ -1,6 +1,5 @@
 package model.entitiesutil.typeentities;
 
-import model.entitiesutil.EntityDirections;
 import model.physics.EntityCollision.EdgeCollision;
 
 /**
@@ -35,21 +34,6 @@ public interface MobileEntity extends GenericEntity{
 	 * @param mux 	new movement unit of the {@link GenericEntity} along x-axis
 	 */
 	void setMuY(double muy);
-
-	/**
-	 * Return the current directions of the {@link GenericEntity}
-	 * 
-	 * @return a value of {@link EntityDirections} which represents the {@link GenericEntity}'s current direction
-	 */
-	public EntityDirections getDirection();
-
-	/**
-	 * Update the direction of the {@link GenericEntity}
-	 * 
-	 * @param direction is the new direction of the {@link GenericEntity}
-	 */
-	public void setDirection(EntityDirections direction);
-
 
 	/**
 	 * {@link GenericEntity} does a specific action based on 
