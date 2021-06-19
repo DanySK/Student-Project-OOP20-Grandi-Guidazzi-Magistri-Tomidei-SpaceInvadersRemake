@@ -20,11 +20,13 @@ public class GameControllerImpl implements GameController, GameViewController {
 
 	private final int FPS = 60;
 	private final int DEL = 1000/FPS;
-	private final ScheduledExecutorService loop;
 	private final ControllerMonitor stateGameMenager;
 	private final Model model;
 	@SuppressWarnings("unused")
 	private final GameViewImpl view;
+
+	private ScheduledExecutorService loop;
+	private int frames;
 
 	/**
 	 * Implementation of {@link GameController}
@@ -33,8 +35,6 @@ public class GameControllerImpl implements GameController, GameViewController {
 		this.stateGameMenager = new MonitorImpl();
 		this.model = new ModelImpl(this);
 		this.view = new GameViewImpl((ViewMonitor) this.stateGameMenager);
-		this.loop = Executors.newScheduledThreadPool
-				(Runtime.getRuntime().availableProcessors()-1);
 	}
 
 	/**
@@ -44,7 +44,10 @@ public class GameControllerImpl implements GameController, GameViewController {
 	public void startNewGame() {
 		if(!this.isRunning()) {
 			//
+			this.frames = 0;
 			this.stateGameMenager.setStart();
+			this.loop = Executors.newScheduledThreadPool
+					(Runtime.getRuntime().availableProcessors()-1);
 			this.loop.scheduleWithFixedDelay(()-> gameLoop(), DEL, DEL, TimeUnit.MILLISECONDS);
 		}
 	}
@@ -86,6 +89,9 @@ public class GameControllerImpl implements GameController, GameViewController {
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Set<MappedEntity> getEntitiesLevel() {
 		return this.model.getMappedEntities();
@@ -98,17 +104,19 @@ public class GameControllerImpl implements GameController, GameViewController {
 		this.stateGameMenager.isGamePaused();
 		switch(this.stateGameMenager.getGameStatus()) {
 			case STOPPED:
+				this.stateGameMenager.setResume();
 				this.stop();
 				break;
 			case RESTARTED:
+				this.frames = 0;
 				//this.model.restartLvl();
+				this.stateGameMenager.setResume();
 				break;
 			case RESUMED:
 				this.stateGameMenager.setResume();
 				break;
-		default:
-			break;
-				
+			default:
+				break;
 		}
 		this.updateGame();
 		this.render();
@@ -118,7 +126,7 @@ public class GameControllerImpl implements GameController, GameViewController {
 	 * Update {@link GenericEntity}s position
 	 */
 	private void updateGame() {
-		//this.model.update();	//Update entities's position
+		this.model.updateEntityLevel(frames++);	//Update entities's position
 	}
 
 	/**
@@ -128,11 +136,17 @@ public class GameControllerImpl implements GameController, GameViewController {
 		//
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int getWindowWidth() {
 		return 0;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int getWindowHeight() {
 		return 0;
