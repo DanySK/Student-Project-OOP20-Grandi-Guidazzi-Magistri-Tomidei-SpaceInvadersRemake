@@ -68,7 +68,9 @@ public class Boss2 extends Enemy{
 	 */
 	@Override
 	public boolean canShoot(int cycles) {
-		return false;
+		int x = EntityConstants.Boss2.CYCLES_TO_SHOOT;
+		return (x == 0) ? true : 
+			(cycles % x == 0) ? true : false;
 	}
 
 	/**

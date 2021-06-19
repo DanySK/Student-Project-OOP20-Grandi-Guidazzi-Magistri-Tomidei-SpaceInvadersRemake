@@ -97,7 +97,10 @@ public class Boss3 extends Enemy{
 	 */
 	@Override
 	public boolean canShoot(int cycles) {
-		return false;
+		int x = this.state.equals(BossState.NORMAL) ? EntityConstants.Boss3.CYCLES_TO_SHOOT_1ST_PHASE
+				: EntityConstants.Boss3.CYCLES_TO_SHOOT_2ND_PHASE;
+		return (x == 0) ? true : 
+			(cycles % x == 0) ? true : false;
 	}
 
 	/**
