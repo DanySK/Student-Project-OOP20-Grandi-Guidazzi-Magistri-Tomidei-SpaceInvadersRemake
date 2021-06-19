@@ -93,6 +93,14 @@ public class Boss3 extends Enemy{
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canShoot(int cycles) {
+		return false;
+	}
+
+	/**
 	 * Change the state of the boss after it took too many hits 
 	 */
 	private void changeState() {

@@ -1,8 +1,8 @@
 package model.entitiesutil;
 
 import model.entities.SpecificEntityType;
+import model.entitiesutil.typeentities.AutoFiringEntity;
 import model.entitiesutil.typeentities.AutoMovableEntity;
-import model.entitiesutil.typeentities.EntityCapableOfShooting;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityMovement;
 import util.Pair;
@@ -10,7 +10,7 @@ import util.Pair;
 /**
  * {@link GenericEntity} that Hero should kill
  */
-public abstract class Enemy implements AutoMovableEntity, EntityCapableOfShooting {
+public abstract class Enemy implements AutoMovableEntity, AutoFiringEntity {
 
 	private Pair<Double, Double> pos;
 	private double muX, muY;
@@ -23,7 +23,8 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableOfShootin
 	 * Create a new {@link Enemy}
 	 * 
 	 * @param type		is the {@link EnemyType}
-	 * @param pos		is the initial position of the {@link Enemy}
+	 * @param x			is the initial x coordinate of the {@link Enemy}
+	 * @param y			is the initial y coordinate of the {@link Enemy}
 	 * @param width		is the initial width of the {@link Enemy}
 	 * @param height	is the initial height of the {@link Enemy}
 	 * @param muX		is the initial movement unit of the {@link Enemy} along x-axis
@@ -33,8 +34,7 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableOfShootin
 	 * @param move		is {@link EntityMovement} implementation
 	 */
 	protected void create(SpecificEntityType type, double x, double y, int width,int height, 
-			double muX, double muY, int maxHits, EntityDirections dir,
-			EntityMovement move) {
+			double muX, double muY, int maxHits, EntityDirections dir, EntityMovement move) {
 		this.width = width;
 		this.height = height;
 		this.pos = new Pair<>(x, y);
@@ -207,18 +207,22 @@ public abstract class Enemy implements AutoMovableEntity, EntityCapableOfShootin
 	@Override
 	public abstract void updateEntityPosition();
 
-
 	/**
 	 * Invert the direction of the {@link Enemy}
 	 */
 	protected abstract void changeDirection();
-
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public abstract void  shoot();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public abstract boolean canShoot(int cycles); 
 
 	/**
 	 * {@inheritDoc}

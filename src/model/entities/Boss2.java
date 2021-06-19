@@ -25,7 +25,7 @@ public class Boss2 extends Enemy{
 	 */
 	public Boss2(double x, double y, Model model) {
 		this.create(SpecificEntityType.BOSS_2, x, y, EntityConstants.Boss2.INITIAL_WIDTH, 
-				EntityConstants.Boss2.INITIAL_HEIGHT, EntityConstants.Boss2.INITIAL_MU_X, 
+				EntityConstants.Boss2.INITIAL_HEIGHT, 0, 
 				EntityConstants.Boss2.INITIAL_MU_Y, EntityConstants.Boss2.MAX_HITS, EntityDirections.DOWN, 
 				new EntityMovementImpl());
 		this.state = BossState.NORMAL;
@@ -61,6 +61,14 @@ public class Boss2 extends Enemy{
 					this.getY() + this.getHeight()/2 + EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT/2,
 					SpecificEntityType.BOSS_2_BULLET));
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean canShoot(int cycles) {
+		return false;
 	}
 
 	/**
