@@ -9,6 +9,10 @@ public class Strings {
 			"The game was inspired by the videogame \"Space Monster\" and from the novel \"The War of the Worlds\".\n" +
 			"The game was so popular that than over the years was adapted for all the platforms avaiable.";
 	
+	public final static String INFO_TEXT = "Use the Right and Left arrows for" + 
+			"move your player and Space Bar for shoot!" +
+			"And click esc for pause the game";
+	
 	public final static String MORE_INFO_LINK = "https://en.wikipedia.org/wiki/Space_Invaders";
 	
 	public final static String LEADERBOARD_URI = "src/res/Leaderboard.txt";
@@ -43,7 +47,6 @@ public class Strings {
 	public final static String AUDIO_SETTINGS = "Audio settings";
 	public final static String GO_BACK_TO_MENU = "Go back to menu";
 	public final static String RESTART = "Restart game";
-	public final static String RESUME = "Resume Game";
 	public final static String RETURN_TO_GAME_MENU = "Return back to game menu";
 	public final static String AUDIO_SETTINGS_IN_GAME = "Game audio settings";
 	public final static String START_GAME = "Start game"; 
