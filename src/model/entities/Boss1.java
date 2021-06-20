@@ -20,6 +20,7 @@ public class Boss1 extends Enemy {
 	 * 
 	 * @param x is the initial x coordinate
 	 * @param y is the initial y coordinate
+	 * @param model is the model that contains this {{@link GenericEntity}
 	 */
 	public Boss1(double x, double y, Model model) {
 		this.create(SpecificEntityType.BOSS_1, x, y, EntityConstants.Boss1.INITIAL_WIDTH, 
@@ -81,7 +82,7 @@ public class Boss1 extends Enemy {
 	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
 		if(entity.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET) && this.isAlive()) {
-				this.incHits();
+			this.incHits();
 		}
 	}
 

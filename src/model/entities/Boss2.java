@@ -22,6 +22,7 @@ public class Boss2 extends Enemy{
 	 * 
 	 * @param x is the initial x coordinate
 	 * @param y is the initial y coordinate
+	 * @param model is the model that contains this {{@link GenericEntity}
 	 */
 	public Boss2(double x, double y, Model model) {
 		this.create(SpecificEntityType.BOSS_2, x, y, EntityConstants.Boss2.INITIAL_WIDTH, 
