@@ -118,10 +118,6 @@ public class LabelFactory {
 	        			controller.changeState(new StateGame(board));
 	        			break;
 	        			
-	        		case Strings.RESUME:
-//	        			board.getGameController().resume();
-	        			break;
-	        		
 	        		case Strings.MORE_INFO:
 	        			try {
 							Desktop.getDesktop().browse(java.net.URI.create(Strings.MORE_INFO_LINK));
