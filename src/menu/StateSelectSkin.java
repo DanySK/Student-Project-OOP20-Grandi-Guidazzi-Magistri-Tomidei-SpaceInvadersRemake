@@ -1,23 +1,18 @@
 package menu;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
-import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import menu.factories.ButtonFactory;
-import menu.factories.LabelFactory;
 import menu.factories.PanelBackgroundFactory;
 import menu.factories.TitleFactory;
-import model.entities.SpecificEntityType;
-import model.entitiesutil.GenericEntityType;
 import util.Constants;
 import util.Strings;
-import view.ImageManagerImpl;
 /**
  * A class that allow to choose the skin for player.
  */
@@ -33,6 +28,11 @@ public class StateSelectSkin implements State{
 	private JButton tangerineButton;
 	private JButton noseButton;
 	
+	/**
+	 * The constructor of the StateSelectSkin,
+	 * this state gives the possibility to choose the skin of the player
+	 * @param board
+	 */
 	public StateSelectSkin(Board board) {
 		this.fedeButton = new ButtonFactory().createSkinButton(Strings.FEDE_SKIN, board);
 		this.meliButton = new ButtonFactory().createSkinButton(Strings.MELI_SKIN, board);
@@ -64,8 +64,13 @@ public class StateSelectSkin implements State{
 //			}
 			board.setCurrentState(new StateInfo(board));
 		});
-		
+		this.button.setAlignmentX(Component.CENTER_ALIGNMENT);
 	}
+	
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;
