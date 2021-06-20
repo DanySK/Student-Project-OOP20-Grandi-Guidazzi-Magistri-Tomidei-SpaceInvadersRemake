@@ -69,6 +69,16 @@ public class Boss1 extends Enemy {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public boolean canShoot(int cycles) {
+		int x = EntityConstants.Boss1.CYCLES_TO_SHOOT;
+		return (x == 0) ? true : 
+			(cycles % x == 0) ? true : false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
 		if(entity.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET) && this.isAlive()) {
 				this.incHits();
