@@ -1,5 +1,9 @@
 package model.entitiesutil;
 
+/**
+ * The class that manage all the constants of the entities
+ */
+
 public class EntityConstants { 
 	
 	public class PlayerBullet{
