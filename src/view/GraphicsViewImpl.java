@@ -1,12 +1,8 @@
 package view;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -21,19 +17,22 @@ import model.entitiesutil.typeentities.GenericEntity;
  */
 public class GraphicsViewImpl extends JPanel implements GraphicsView{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Set<GenericEntity> genericEntitySet;
 	private UpdateManager imageManager;
 	
+	/**
+	 * The constructor that create the objects to manage the images.
+	 */
 	public GraphicsViewImpl(){
 		super();
 		this.genericEntitySet = new HashSet<>();
 		this.imageManager = new ImageManagerImpl();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void paintComponents(Graphics graphics) {
 		this.genericEntitySet.forEach(e->{
@@ -47,7 +46,7 @@ public class GraphicsViewImpl extends JPanel implements GraphicsView{
 	}
 	
 	/**
-	 * The method that update the images.
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void updateEntityImages(Set<GenericEntity> entitySet) {

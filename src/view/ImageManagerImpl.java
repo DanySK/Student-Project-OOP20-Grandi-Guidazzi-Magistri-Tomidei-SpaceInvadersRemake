@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +21,9 @@ public class ImageManagerImpl implements ImageManager, UpdateManager{
 	private ArrayList<String> playerImageList = new ArrayList<>();
 	private Random random = new Random();
 	
+	/**
+	 * The constructor that add all the images for the playerSkin
+	 */
 	public ImageManagerImpl(){
 		this.playerImageList.add(Strings.FEDE_SKIN);
 		this.playerImageList.add(Strings.MELI_SKIN);
@@ -29,6 +31,9 @@ public class ImageManagerImpl implements ImageManager, UpdateManager{
 		this.playerImageList.add(Strings.NOSE_SKIN);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Optional<Image> drawEntity(GenericEntity entity) {
 		try {

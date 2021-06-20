@@ -1,22 +1,15 @@
 package model.entities;
 
-import model.entitiesutil.EntityConstants;
-import model.entitiesutil.EntityDirections;
-import model.entitiesutil.GenericEntityType;
-import model.entitiesutil.typeentities.GenericEntity;
 import model.entitiesutil.typeentities.UserEntity;
-import model.physics.EntityCollision.EdgeCollision;
-import model.physics.EntityMovement;
 import util.Pair;
 
 /**
- * A class that create the player entity.
+ * The entity with which the user can play.
  */
-public class Player implements UserEntity{
+public abstract class Player implements UserEntity{
 
 	private SpecificEntityType entityType;
 	private Pair<Double,Double> position;
-	private EntityDirections direction;
 	private double movimentUnitX;
 	private double movimentUnitY;
 	private int height;
@@ -25,140 +18,153 @@ public class Player implements UserEntity{
 	private int maxHits;
 	
 	/**
-	 * The Constractor that create the Player.
-	 * @param position
+	 * Method that generate the entity player.
+	 * @param type		is the {@link SpecificEntityType}
+	 * @param x			is the initial x coordinate of the {@link Player}
+	 * @param y			is the initial y coordinate of the {@link Player}
+	 * @param width		is the initial width of the {@link Player}
+	 * @param height	is the initial height of the {@link Player}
+	 * @param muX		is the initial movement unit of the {@link Player} along x-axis
+	 * @param muY		is the initial movement unit of the {@link Player} along y-axis
+	 * @param maxHits	is the max number of hits that {@link Player} can take before dying
 	 */
-	public Player(int x, int y) {
+	public void create(SpecificEntityType type, double x, double y, int width,int height, 
+			double muX, double muY, int maxHits) {
 		this.entityType = SpecificEntityType.PLAYER_1;
-		this.position = new Pair<>((double)x, (double)y);
-		this.movimentUnitX = EntityConstants.Player.INITIAL_MU_X;
-		this.movimentUnitY = EntityConstants.Player.INITIAL_MU_Y;
-		this.height = EntityConstants.Player.INITIAL_HEIGHT;
-		this.width = EntityConstants.Player.INITIAL_WIDTH;
+		this.position = new Pair<>(x, y);
+		this.movimentUnitX = muX;
+		this.movimentUnitY = muY;
+		this.height = height;
+		this.width = width;
 		this.hit = 0;
-		this.maxHits = EntityConstants.Player.MAX_HITS;
+		this.maxHits = maxHits;
 	}
 	
+	/**
+	 * A method that returns the position of player in a specific moment.
+	 */
 	public Pair<Double, Double> getPos() {
 		return this.position;
 	}
 
-	public void setPos(Pair<Integer, Integer> pos) {
-		pos.setBoth(pos.getX(), pos.getY());
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setPos(double x, double y) {
+		this.position.setBoth(x, y);
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public int getWidth() {
 		return this.width;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public int getHeight() {
 		return this.height;
 	}
-
+    
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean isAlive() {
 		return this.hit < this.maxHits;
 	}
 	
+	/**
+	 * Method that increments the number of hit.
+	 */
 	public void incHits() {
 		this.hit++;
 	}
 
+	/**
+	 * Method that returns the number of hit suffered by the player.
+	 * @return
+	 */
+	public int getHit() {
+		return this.hit;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public double getMuX() {
 		return this.movimentUnitX;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setMuX(double mux) {
 		this.movimentUnitY = mux;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setMuY(double muy) {
 		this.movimentUnitY = muy;
 	}
 
-	@Override
-	public EntityDirections getDirection() {
-		return this.direction;
-	}
-
-	@Override
-	public void setDirection(EntityDirections direction) {
-		this.direction = direction;
-	}
-
-	@Override
-	public void doAfterCollisionWithEdge(EdgeCollision edge) {
-		if(edge.equals(EdgeCollision.LEFT) || edge.equals(EdgeCollision.RIGHT)) {
-			this.setPos(new Pair<>((int)this.getX(), (int)this.getY()));
-		}
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public double getX() {
 		return this.position.getX();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public double getY() {
 		return this.position.getY();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setX(double x) {
 		this.position.setY(x);
-		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setY(double y) {
 		this.position.setY(y);
-		
 	}
 
-	@Override
-	public void doAfterCollisionWithEntity(GenericEntity entity) {
-		if(entity.getEntityType().getGenericType().equals(GenericEntityType.ENEMY_BULLET) && this.isAlive()){
-			this.incHits();
-		} /*else if( !this.isAlive()) {
-			//this.model.processGameOver();
-		}*/
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public SpecificEntityType getEntityType() {
 		return this.entityType;
 	}
 
-	@Override
-	public void shoot() {
-		/*this.model.getNewEntitiesLvel().add(new MonoDirectionPlayerBullet(this.getX(), getY() - this.height/2),
-				SpecificEntityType.PLAYER_BULLET);*/
-		
-	}
-
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public double getMuY() {
 		return this.movimentUnitY;
 	}
-
-	@Override
-	public void setPos(int x, int y) {
-		this.position.setBoth((double)x-this.width/2, (double)y-this.height/2);
 		
-	}
-
-	@Override
-	public void updateEntityPosition(EntityDirections direction) {
-		if(this.getDirection().equals(EntityDirections.LEFT)) {
-			this.setX(this.getX() - this.getMuX());
-		} else {
-			this.setX(this.getX() + this.getMuX());
-			}
-		this.setX(this.getX() + this.getMuX());
-		}
-		
-	}
+}
 	
