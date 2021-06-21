@@ -22,7 +22,7 @@ public abstract class Enemy implements AutoMovableEntity, AutoFiringEntity {
 	/**
 	 * Create a new {@link Enemy}
 	 * 
-	 * @param type		is the {@link EnemyType}
+	 * @param type		is the type of the {@link Enemy}
 	 * @param x			is the initial x coordinate of the {@link Enemy}
 	 * @param y			is the initial y coordinate of the {@link Enemy}
 	 * @param width		is the initial width of the {@link Enemy}
