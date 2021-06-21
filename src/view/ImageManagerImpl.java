@@ -74,8 +74,8 @@ public class ImageManagerImpl implements ImageManager, UpdateManager{
 	 * @param heigth
 	 * @return
 	 */
-	private Optional<Image> resizeImage(Image image, int width, int heigth) {
-		return Optional.of(image.getScaledInstance(width, heigth, Image.SCALE_DEFAULT));
+	private Optional<Image> resizeImage(Image image, int width, int height) {
+		return Optional.of(image.getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 	
 	public void chosePlayerSKin(String playerImage) throws IOException{

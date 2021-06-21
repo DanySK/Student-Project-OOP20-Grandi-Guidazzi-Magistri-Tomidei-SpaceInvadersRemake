@@ -34,7 +34,6 @@ public class StateInGameMenu implements State{
 		this.panel.add(this.titleFactory.createTitle("Game Menu", Constants.titleSize, Constants.colorTitle), BorderLayout.NORTH);
 		
 		this.centerPanel.add(this.labelFactory.createButton(Strings.RESTART, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.RESUME, board, "Center"));
 		this.centerPanel.add(this.labelFactory.createButton(Strings.AUDIO_SETTINGS_IN_GAME, board, "Center"));
 		this.centerPanel.add(this.labelFactory.createButton(Strings.GO_BACK_TO_MENU, board, "Center"));
 		
