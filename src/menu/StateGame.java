@@ -24,10 +24,4 @@ public class StateGame implements State{
 	public JPanel getMainPanel() {
 		return this.panel;
 	}
-	
-	@Override
-	public String toString() {
-		return "StateGame";
-	}
-	
 }
