@@ -2,12 +2,18 @@ package model.entities;
 
 import model.Model;
 
+
 import model.entitiesutil.Enemy;
 import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
+/**
+ * 
+ * The class that models the enity alien.
+ *
+ */
 public class Alien extends Enemy{
 
 	private final AlienGroup alienGroup;
@@ -21,6 +27,9 @@ public class Alien extends Enemy{
 		this.alienGroup = alienGroup;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void changeDirection() {
 		if(this.getDirection().equals(EntityDirections.LEFT)) {
@@ -32,6 +41,9 @@ public class Alien extends Enemy{
 		this.getMovementMenager().moveDown(this);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void doAfterCollisionWithEdge(EdgeCollision edge) {
 		if(edge.equals(EdgeCollision.LEFT)){ 
@@ -43,6 +55,9 @@ public class Alien extends Enemy{
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void doAfterCollisionWithEntity(GenericEntity entity) {
 		if(this.isAlive()) {
@@ -50,6 +65,9 @@ public class Alien extends Enemy{
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void updateEntityPosition() {
 		if(this.getDirection().equals(EntityDirections.LEFT)){
@@ -60,13 +78,18 @@ public class Alien extends Enemy{
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void shoot() {
 		this.model.getNewEntity().add(new MonoDirectionEnemyBullet(this.getX(),
-		this.getY() + EntityConstants.MonoDirectionEnemyBullet.INITIAL_WIDTH + this.getHeight(), SpecificEntityType.ALIEN_BULLET));
-		
+		this.getY() + EntityConstants.MonoDirectionEnemyBullet.INITIAL_WIDTH / 2 + this.getHeight() / 2, SpecificEntityType.ALIEN_BULLET));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean canShoot(int cycles) {
 		int cycleToShoot = EntityConstants.Alien.CYCLES_TO_SHOOT;
