@@ -29,9 +29,18 @@ public class AlienGroup{
 	 * it takes the number of the alien in the group
 	 * @param numAlien
 	 */
-	public AlienGroup(int numAlien, Model model) {
+	public AlienGroup(Model model) {
+		this.model = model;
+	}
+	/**The method to create the group of aliens.
+	 * 
+	 * @param numAlien
+	 * @return a set with the aliens 
+	 */
+	public Set<Alien> createAlienGroup(int numAlien){
+		Set<Alien> alienGroup = new HashSet<>();
 		int alienInserted = 0;
-		int rows = numAlien / 10;
+		int rows = numAlien / this.MAX_ALIEN_PER_COLUMN;
 		int spacingX = EntityConstants.Alien.INITIAL_WIDTH * 3;
 		int spacingY = EntityConstants.Alien.INITIAL_HEIGHT * 2;
 		Pair<Integer, Integer> lastPos = new Pair<>(0,0);
@@ -43,17 +52,17 @@ public class AlienGroup{
 					break;
 				}
 				if(j == 0) {
-					this.model.getAlienList().add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_1));
+					alienGroup.add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_1));
 				} else if(j == 1) {
-					this.model.getAlienList().add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_2));
+					alienGroup.add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_2));
 				} else {
-					this.model.getAlienList().add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_3));
+					alienGroup.add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_3));
 				}
 				lastPos = new Pair<>(lastPos.getX()+spacingX, lastPos.getY());
 				alienInserted++;
 			}
 		}
-		this.model = model;
+		return alienGroup;
 	}
 	
 	/**
