@@ -2,11 +2,12 @@ package model.entities;
 
 import java.util.HashSet;
 
+
 import java.util.Random;
 import java.util.Set;
 
 import model.Model;
-import model.entitiesutil.typeentities.EntityCapableOfShooting;
+import model.entitiesutil.EntityConstants;
 import model.physics.EntityCollision.EdgeCollision;
 import util.Pair;
 
@@ -14,7 +15,7 @@ import util.Pair;
  * The class that create and manage the alien group
  *
  */
-public class AlienGroup implements EntityCapableOfShooting{
+public class AlienGroup{
 
 	private Random random = new Random();
 	private Model model;
@@ -31,8 +32,8 @@ public class AlienGroup implements EntityCapableOfShooting{
 	public AlienGroup(int numAlien, Model model) {
 		int alienInserted = 0;
 		int rows = numAlien / 10;
-		int spacingX = 20;
-		int spacingY = 40;
+		int spacingX = EntityConstants.Alien.INITIAL_WIDTH * 3;
+		int spacingY = EntityConstants.Alien.INITIAL_HEIGHT * 2;
 		Pair<Integer, Integer> lastPos = new Pair<>(0,0);
 		rows += numAlien % this.MAX_ALIEN_PER_COLUMN == 0 ? 0 : 1;
 		for(int i = 0; i < rows; i++) {
@@ -72,7 +73,6 @@ public class AlienGroup implements EntityCapableOfShooting{
 	/**
 	 * The method that lets the aliens shoot
 	 */
-	@Override
 	public void shoot() {
 		Set<Alien> alienShootingAtTheSameTime = new HashSet<>();
 		while(alienShootingAtTheSameTime.size() < random.nextInt(this.MAX_ALIEN_SHOOTING) + this.MIN_ALIEN_SHOOTING) {

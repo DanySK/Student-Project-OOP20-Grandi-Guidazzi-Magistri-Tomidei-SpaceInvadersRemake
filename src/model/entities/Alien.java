@@ -67,4 +67,11 @@ public class Alien extends Enemy{
 		
 	}
 
+	@Override
+	public boolean canShoot(int cycles) {
+		int cycleToShoot = EntityConstants.Alien.CYCLES_TO_SHOOT;
+		return (cycleToShoot == 0) ? true : 
+			(cycles % cycleToShoot == 0) ? true : false;
+	}
+
 }

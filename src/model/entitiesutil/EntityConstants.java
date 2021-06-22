@@ -26,6 +26,7 @@ public class EntityConstants {
 		public final static double INITIAL_MU_X = 0;
 		public final static double INITIAL_MU_Y = 0;
 		public final static int MAX_HIT = 1;
+		public final static int CYCLES_TO_SHOOT = 0; 
 	}
 
 	public class Boss1 {
