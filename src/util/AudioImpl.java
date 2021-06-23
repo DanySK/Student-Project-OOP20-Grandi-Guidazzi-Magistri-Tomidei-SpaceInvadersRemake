@@ -33,11 +33,11 @@ public class AudioImpl implements Audio{
 	 */
     public AudioImpl() {
     	try {
-			this.reader = new BufferedReader(new FileReader(Strings.VOLUME_URI));
+			this.reader = new BufferedReader(new FileReader(Strings.Volume.VOLUME_URI));
 			String level = this.reader.readLine().strip();
 			this.volume = Float.parseFloat(level);
 		} catch (IOException | NullPointerException e1) {
-			this.volume = Constants.VOLUME_LEVEL_START;
+			this.volume = Constants.AudioConstants.VOLUME_LEVEL_START;
 			System.out.println("error in the sound files");
 		}
     }
@@ -75,7 +75,7 @@ public class AudioImpl implements Audio{
 			this.volume = volume;
 			floatControl.setValue(gain);
 			try {
-				this.writer = new BufferedWriter(new FileWriter(Strings.VOLUME_URI));
+				this.writer = new BufferedWriter(new FileWriter(Strings.Volume.VOLUME_URI));
 				this.writer.write("" + this.getVolume());
 				this.writer.close();
 			} catch (IOException e1) {

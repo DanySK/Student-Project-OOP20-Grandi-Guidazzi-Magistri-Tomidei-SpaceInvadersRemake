@@ -18,7 +18,7 @@ public class menuControllerImpl implements menuController{
 	 */
 	public menuControllerImpl(Board board) {
 		this.board = board;
-		audio.play(AudioTrack.SOUND_TRACK, Constants.IN_LOOP);
+		audio.play(AudioTrack.SOUND_TRACK, Constants.AudioConstants.IN_LOOP);
 	}
 	
 	/**
@@ -30,14 +30,14 @@ public class menuControllerImpl implements menuController{
 		if(state.getClass().getSimpleName().equals("StateMenu")) {
 			if(this.isReturningFromGame == true) {
 				this.audio.stop();
-				this.audio.play(AudioTrack.SOUND_TRACK, Constants.IN_LOOP);
+				this.audio.play(AudioTrack.SOUND_TRACK, Constants.AudioConstants.IN_LOOP);
 				this.isReturningFromGame = false;
 				this.isReturningFromMenuGame = true;
 			}
 		} else if(state.getClass().getSimpleName().equals("StateGame")) {
 			if(this.isReturningFromMenuGame == true) {
 				this.audio.stop();
-				this.audio.play(AudioTrack.GAME_TRACK, Constants.IN_LOOP);
+				this.audio.play(AudioTrack.GAME_TRACK, Constants.AudioConstants.IN_LOOP);
 				this.isReturningFromGame = true;
 				this.isReturningFromMenuGame = false;
 			}

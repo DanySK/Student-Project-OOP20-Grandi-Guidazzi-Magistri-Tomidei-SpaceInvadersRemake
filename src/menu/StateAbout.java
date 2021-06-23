@@ -28,7 +28,7 @@ public class StateAbout implements State{
 	 */
 	public StateAbout(Board board) {
 		this.panel = this.panelFactory.createPanel(Strings.States.ABOUT, board);
-		this.textArea.setText(Strings.States.ABOUT);
+		this.textArea.setText(Strings.Texts.ABOUT_TEXT);
 		this.textArea.setFont(new Font("sans", Font.BOLD, 25));
 		this.textArea.setLineWrap(true);
 		this.textArea.setWrapStyleWord(true);
