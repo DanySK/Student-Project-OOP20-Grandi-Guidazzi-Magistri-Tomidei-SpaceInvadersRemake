@@ -19,12 +19,22 @@ public interface GameController {
 	 */
 	public boolean gameOver();
 
+	/**
+	 * Return the width of the panel where the game is running
+	 * 
+	 * @return an integer which represent the width of the panel
+	 */
 	public int getWindowWidth();
 
+	/**
+	 * Return the height of the panel where the game is running
+	 * 
+	 * @return an integer which represent the height of the panel
+	 */
 	public int getWindowHeight();
 
 	/**
-	 * 
+	 * Stop the thread that updates the game
 	 */
 	public void stop();
 
