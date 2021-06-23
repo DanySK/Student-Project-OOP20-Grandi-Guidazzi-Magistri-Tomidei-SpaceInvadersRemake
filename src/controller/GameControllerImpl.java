@@ -52,10 +52,9 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Stop the thread that updates the game
 	 */
-	@Override
-	public void stop() {
+	private void stop() {
 		if(this.isRunning()) {
 			this.loop.shutdownNow();
 			this.stateGameMenager.stop();
@@ -69,15 +68,6 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	public boolean isRunning() {
 		return this.stateGameMenager.getGameStatus().equals(GameStatus.RUNNING)
 				&& !this.loop.isShutdown() && !this.loop.isTerminated();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean gameOver() {
-		this.stop();
-		return false; //
 	}
 
 	/**
@@ -149,5 +139,22 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	@Override
 	public int getWindowHeight() {
 		return 0;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void gameOver() {
+		this.stop();
+		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void victory() {
+		this.stop();		
 	}
 }

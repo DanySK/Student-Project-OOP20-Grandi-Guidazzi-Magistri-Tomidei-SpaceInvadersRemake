@@ -13,11 +13,14 @@ public interface GameController {
 	public boolean isRunning();
 
 	/**
-	 * Return if the player win.
-	 * 
-	 * @return true if the player win, false otherwise
+	 * Stop the game loop and open the game over scene
 	 */
-	public boolean gameOver();
+	public void gameOver();
+
+	/**
+	 * Stop the game loop and open the victory scene
+	 */
+	public void victory();
 
 	/**
 	 * Return the width of the panel where the game is running
@@ -32,10 +35,5 @@ public interface GameController {
 	 * @return an integer which represent the height of the panel
 	 */
 	public int getWindowHeight();
-
-	/**
-	 * Stop the thread that updates the game
-	 */
-	public void stop();
 
 }
