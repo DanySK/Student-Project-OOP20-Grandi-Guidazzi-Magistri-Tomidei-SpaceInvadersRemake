@@ -5,7 +5,7 @@ import java.util.Set;
 import model.entitiesutil.MappedEntity;
 import view.game.GameViewImpl;
 
-public interface GameViewController {
+public interface ViewGameController {
 
 	/**
 	 * Start a new game

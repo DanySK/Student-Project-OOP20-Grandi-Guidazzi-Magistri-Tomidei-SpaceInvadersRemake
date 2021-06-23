@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import controller.GameControllerImpl;
-import controller.GameViewController;
+import controller.ViewGameController;
 import menuController.menuController;
 import menuController.menuControllerImpl;
 import util.Constants;
@@ -22,7 +22,7 @@ public class Board {
 	private JFrame frame = new JFrame();
 	private State currentState;
 	private menuController menuController = new menuControllerImpl(this); 
-	private GameViewController controller;
+	private ViewGameController controller;
 	
 	/**
 	 * the constructor of the first state in the project, it contains all the frame characteristics.
@@ -57,7 +57,7 @@ public class Board {
 	 * 
 	 * @return the GameViewController
 	 */
-	public GameViewController getController() {
+	public ViewGameController getController() {
 		return this.controller;
 	}
 	

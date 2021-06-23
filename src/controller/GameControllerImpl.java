@@ -16,7 +16,7 @@ import view.game.GameViewImpl;
 /**
  * Implementation of {@link GameController}
  */
-public class GameControllerImpl implements GameController, GameViewController {
+public class GameControllerImpl implements GameController, ViewGameController {
 
 	private final int FPS = 60;
 	private final int DEL = 1000/FPS;
