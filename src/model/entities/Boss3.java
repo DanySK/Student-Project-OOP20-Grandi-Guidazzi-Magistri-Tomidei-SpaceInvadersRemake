@@ -81,15 +81,15 @@ public class Boss3 extends Enemy{
 		if(this.state.equals(BossState.UPSET)) {
 			for(int i = 3; i > 0; i--) {
 				this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(this.getX() +
-						(i%3 == 0 ? +1 : (i%2 == 0 ? +0 : -1)) * this.getWidth()/4 + (i%3 == 0 ? -1 : (i%2 == 0 ? -1 : +1)),
+						(i%3 == 0 ? +1 : (i%2 == 0 ? +0 : -1)) * this.getWidth()/4,
 						this.getY() + this.getHeight()/2 + EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT/2,
-						SpecificEntityType.BOSS_3_BULLET));
+						SpecificEntityType.BOSS_BULLET));
 			}
 		}
 		else {
 			this.model.getNewEntity().add(new MonoDirectionEnemyBullet(this.getX() + this.getWidth()/2 -1,
 					this.getY() + this.getHeight() + EntityConstants.MonoDirectionEnemyBullet.INITIAL_HEIGHT / 2, 
-					SpecificEntityType.BOSS_3_BULLET));
+					SpecificEntityType.BOSS_BULLET));
 		}
 	}
 

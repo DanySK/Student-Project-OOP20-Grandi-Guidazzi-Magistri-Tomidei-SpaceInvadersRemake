@@ -1,6 +1,7 @@
 package model.entities;
 
 import model.entitiesutil.Bullet;
+import model.entitiesutil.Enemy;
 import model.entitiesutil.GenericEntityType;
 
 /**
@@ -49,19 +50,9 @@ public enum SpecificEntityType {
 	ALIEN_BULLET(GenericEntityType.ENEMY_BULLET),
 
 	/**
-	 * {@link Boss1}'s {@link Bullet}
+	 * {@link Enemy} boss's {@link Bullet}
 	 */
-	BOSS_1_BULLET(GenericEntityType.ENEMY_BULLET),
-
-	/**
-	 * {@link Boss2}'s {@link Bullet}
-	 */
-	BOSS_2_BULLET(GenericEntityType.ENEMY_BULLET),
-
-	/**
-	 * {@link Boss3}'s {@link Bullet}
-	 */
-	BOSS_3_BULLET(GenericEntityType.ENEMY_BULLET),
+	BOSS_BULLET(GenericEntityType.ENEMY_BULLET),
 
 	/**
 	 * {@link Player}'s {@link Bullet}
