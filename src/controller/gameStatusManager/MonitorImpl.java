@@ -1,4 +1,4 @@
-package controller.gameStatusMenager;
+package controller.gameStatusManager;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;

@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-import controller.gameStatusMenager.ViewMonitor;
+import controller.gameStatusManager.ViewMonitor;
 import model.entitiesutil.typeentities.GenericEntity;
 import view.GraphicsView;
 import view.GraphicsViewImpl;

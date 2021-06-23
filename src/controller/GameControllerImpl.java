@@ -5,9 +5,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import controller.gameStatusMenager.ControllerMonitor;
-import controller.gameStatusMenager.MonitorImpl;
-import controller.gameStatusMenager.ViewMonitor;
+import controller.gameStatusManager.ControllerMonitor;
+import controller.gameStatusManager.MonitorImpl;
+import controller.gameStatusManager.ViewMonitor;
 import model.Model;
 import model.ModelImpl;
 import model.entitiesutil.MappedEntity;
