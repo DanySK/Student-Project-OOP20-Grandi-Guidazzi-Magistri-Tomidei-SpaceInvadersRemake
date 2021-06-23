@@ -28,8 +28,8 @@ public class Board {
 	/**
 	 * the constructor of the first state in the project, it contains all the frame characteristics.
 	 */
-	public Board() {
-		this.controller = new GameControllerImpl();
+	public Board(ViewGameController viewGameController) {
+		this.controller = viewGameController;
 		this.frame.setTitle("Space Invaders Remake");
 		this.frame.setPreferredSize(Constants.ObjectDimension.preferDimension);
 		this.frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
