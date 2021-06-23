@@ -20,7 +20,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 
 	private final int FPS = 60;
 	private final int DEL = 1000/FPS;
-	private final ControllerGameStatusManager stateGameMenager;
+	private final ControllerGameStatusManager stateGameManager;
 	private final Model model;
 	private final GameViewImpl view;
 
@@ -31,9 +31,9 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 * Implementation of {@link GameController}
 	 */
 	public GameControllerImpl() {
-		this.stateGameMenager = new GameStatusManagerImpl();
+		this.stateGameManager = new GameStatusManagerImpl();
 		this.model = new ModelImpl(this);
-		this.view = new GameViewImpl((ViewGameStatusManager) this.stateGameMenager);
+		this.view = new GameViewImpl((ViewGameStatusManager) this.stateGameManager);
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 		if(!this.isRunning()) {
 			//
 			this.frames = 0;
-			this.stateGameMenager.setStart();
+			this.stateGameManager.setStart();
 			this.loop = Executors.newScheduledThreadPool
 					(Runtime.getRuntime().availableProcessors()-1);
 			this.loop.scheduleWithFixedDelay(()-> gameLoop(), DEL, DEL, TimeUnit.MILLISECONDS);
@@ -57,7 +57,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	private void stop() {
 		if(this.isRunning()) {
 			this.loop.shutdownNow();
-			this.stateGameMenager.stop();
+			this.stateGameManager.stop();
 		}
 	}
 
@@ -66,7 +66,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 */
 	@Override
 	public boolean isRunning() {
-		return this.stateGameMenager.getGameStatus().equals(GameStatus.RUNNING)
+		return this.stateGameManager.getGameStatus().equals(GameStatus.RUNNING)
 				&& !this.loop.isShutdown() && !this.loop.isTerminated();
 	}
 
@@ -90,19 +90,19 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 * Game Loop
 	 */
 	private void gameLoop() {
-		this.stateGameMenager.isGamePaused();
-		switch(this.stateGameMenager.getGameStatus()) {
+		this.stateGameManager.isGamePaused();
+		switch(this.stateGameManager.getGameStatus()) {
 			case STOPPED:
-				this.stateGameMenager.setResume();
+				this.stateGameManager.setResume();
 				this.stop();
 				break;
 			case RESTARTED:
 				this.frames = 0;
 				//this.model.restartLvl();
-				this.stateGameMenager.setResume();
+				this.stateGameManager.setResume();
 				break;
 			case RESUMED:
-				this.stateGameMenager.setResume();
+				this.stateGameManager.setResume();
 				break;
 			default:
 				break;
@@ -156,5 +156,13 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	@Override
 	public void victory() {
 		this.stop();		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ViewGameStatusManager getViewStatusManager() {
+		return (ViewGameStatusManager) this.stateGameManager;
 	}
 }
