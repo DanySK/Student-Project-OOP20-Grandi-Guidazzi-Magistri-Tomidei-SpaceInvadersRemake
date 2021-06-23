@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import menu.Board;
+import menu.StateGame;
 import menu.StateInfo;
 import util.Constants;
 import view.ImageManagerImpl;
@@ -46,12 +47,18 @@ public class ButtonFactory {
 		this.button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		this.button.addActionListener(e->{
-//			try {
-//				//board.getController().getView().getImageManager().chosePlayerSKin(skinUri);
-//			} catch (IOException e1) {
-//				JOptionPane.showMessageDialog(board.getFrame(), "Image not found", "Error", JOptionPane.ERROR_MESSAGE);
-//			}
-			board.getMenuController().changeState(new StateInfo(board));
+			//board.setPlayerSkin(skinUri);
+			JOptionPane.showMessageDialog(null, "Welcome to Space Invaders Remix!"
+					+ "\n\nTHINGS TO KNOW:"
+					+ "\n\n- Use left/right arrow keys to move\n- Press spacebar to shoot"
+                    + "\n- BOSS after each level\n- Shoot enemies to collect points and achieve high scores, but don't miss any shot!"
+                    + "\n- Press R to restart the game while you're in the game menu"
+                    + "\n- Press ESC to pause the game"
+                    + "\n- Press ESC to resume the game while you're in the game menu"
+                    + "\n- Press S to stop the game while you're in the game menu"
+                    + "\n- All pixel art is original\n- PLAY WITH SOUND\n\nHAVE FUN!");
+			board.setCurrentState(new StateGame(board,skinUri));
+			board.getController().startNewGame();
 		});
 		
 		return this.button;

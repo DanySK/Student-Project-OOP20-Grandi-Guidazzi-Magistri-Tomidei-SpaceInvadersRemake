@@ -1,11 +1,11 @@
-package controller.gameStatusMenager;
+package controller.gameStatusManager;
 
 import controller.GameStatus;
 
 /**
  * Interface for setting the {@link GameStatus}
  */
-public interface ViewMonitor {
+public interface ViewGameStatusManager {
 
 	/**
 	 * pause the game loop if the game is running
@@ -28,9 +28,9 @@ public interface ViewMonitor {
 	public void stop();
 
 	/**
+	 * Get the current {@link GameStatus}
 	 * 
-	 * 
-	 * @return
+	 * @return the value which represent the current state of the game
 	 */
 	public GameStatus getGameStatus();
 

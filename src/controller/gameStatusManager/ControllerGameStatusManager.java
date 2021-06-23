@@ -1,11 +1,11 @@
-package controller.gameStatusMenager;
+package controller.gameStatusManager;
 
 import controller.GameStatus;
 
 /**
  * Interface to monitor the status of the {@link GameController}
  */
-public interface ControllerMonitor {
+public interface ControllerGameStatusManager {
 
 	/**
 	 * Set the {@link GameStatus} equal to stopped
@@ -18,9 +18,9 @@ public interface ControllerMonitor {
 	public void isGamePaused();
 
 	/**
+	 * Get the current {@link GameStatus}
 	 * 
-	 * 
-	 * @return
+	 * @return the value which represent the current state of the game
 	 */
 	public GameStatus getGameStatus();
 

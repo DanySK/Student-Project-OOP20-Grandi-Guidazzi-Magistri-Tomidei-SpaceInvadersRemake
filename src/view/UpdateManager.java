@@ -1,9 +1,9 @@
 package view;
 
 import java.awt.Image;
-import java.util.Optional;
+import java.io.IOException;
 
-import model.entitiesutil.typeentities.GenericEntity;
+import model.entitiesutil.MappedEntity;
 
 /**
  * Interface that controls the update of the images.
@@ -15,6 +15,6 @@ public interface UpdateManager {
 	 * @param entity	is the entity to which the image will be associated
 	 * @return			the image associated
 	 */
-	Optional<Image> drawEntity(GenericEntity entity);
+	Image drawEntity(MappedEntity e) throws IOException;
 
 }

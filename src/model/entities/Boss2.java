@@ -60,7 +60,7 @@ public class Boss2 extends Enemy{
 			this.model.getNewEntity().add(new MultiDirectionsEnemyBullet(this.getX() +
 					(i%2 == 0 ? +1 : -1) * this.getWidth()/4,
 					this.getY() + this.getHeight()/2 + EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT/2,
-					SpecificEntityType.BOSS_2_BULLET));
+					SpecificEntityType.BOSS_BULLET));
 		}
 	}
 

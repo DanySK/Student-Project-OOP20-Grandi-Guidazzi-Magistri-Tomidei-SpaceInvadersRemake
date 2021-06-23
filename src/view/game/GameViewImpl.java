@@ -13,25 +13,23 @@ import java.util.Set;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-import controller.gameStatusMenager.ViewMonitor;
+import controller.gameStatusManager.ViewGameStatusManager;
 import model.entitiesutil.typeentities.GenericEntity;
 import view.GraphicsView;
-import view.GraphicsViewImpl;
+import view.GraphicsView;
 
 public class GameViewImpl extends KeyAdapter {
-    private final ViewMonitor flag;
+    private final ViewGameStatusManager flag;
     private final Set<Integer> guiUpdateSet;
     private final Map<GameEvent,Boolean> keyPressed;
-    private final GraphicsView graphicsView;
     private boolean isPause;
 
 
-    public GameViewImpl(final ViewMonitor flag) {
+    public GameViewImpl(final ViewGameStatusManager flag) {
         this.flag = flag;
         this.guiUpdateSet = Collections.synchronizedSet(new HashSet<>());
         this.keyPressed = Collections.synchronizedMap(new HashMap<>());
         this.isPause = false;
-        this.graphicsView = new GraphicsViewImpl();
     }
 
     public Set<GameEvent> getEvents(){
@@ -52,7 +50,7 @@ public class GameViewImpl extends KeyAdapter {
     
 
     private void refresh(Set<GenericEntity> entity) {
-       this.graphicsView.updateEntityImages(entity);
+      
     }
 
 

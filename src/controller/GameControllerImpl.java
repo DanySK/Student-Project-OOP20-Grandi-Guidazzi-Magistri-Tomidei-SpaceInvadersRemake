@@ -5,9 +5,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import controller.gameStatusMenager.ControllerMonitor;
-import controller.gameStatusMenager.MonitorImpl;
-import controller.gameStatusMenager.ViewMonitor;
+import controller.gameStatusManager.ControllerGameStatusManager;
+import controller.gameStatusManager.GameStatusManagerImpl;
+import controller.gameStatusManager.ViewGameStatusManager;
 import model.Model;
 import model.ModelImpl;
 import model.entitiesutil.MappedEntity;
@@ -16,13 +16,12 @@ import view.game.GameViewImpl;
 /**
  * Implementation of {@link GameController}
  */
-public class GameControllerImpl implements GameController, GameViewController {
+public class GameControllerImpl implements GameController, ViewGameController {
 
 	private final int FPS = 60;
 	private final int DEL = 1000/FPS;
-	private final ControllerMonitor stateGameMenager;
+	private final ControllerGameStatusManager stateGameMenager;
 	private final Model model;
-	@SuppressWarnings("unused")
 	private final GameViewImpl view;
 
 	private ScheduledExecutorService loop;
@@ -32,9 +31,9 @@ public class GameControllerImpl implements GameController, GameViewController {
 	 * Implementation of {@link GameController}
 	 */
 	public GameControllerImpl() {
-		this.stateGameMenager = new MonitorImpl();
+		this.stateGameMenager = new GameStatusManagerImpl();
 		this.model = new ModelImpl(this);
-		this.view = new GameViewImpl((ViewMonitor) this.stateGameMenager);
+		this.view = new GameViewImpl((ViewGameStatusManager) this.stateGameMenager);
 	}
 
 	/**
@@ -85,15 +84,15 @@ public class GameControllerImpl implements GameController, GameViewController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void getView() {
-		
+	public GameViewImpl getView() {
+		return this.view;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Set<MappedEntity> getEntitiesLevel() {
+	public Set<MappedEntity> getLevelEntities() {
 		return this.model.getMappedEntities();
 	}
 
@@ -151,5 +150,4 @@ public class GameControllerImpl implements GameController, GameViewController {
 	public int getWindowHeight() {
 		return 0;
 	}
-
 }

@@ -12,12 +12,14 @@ import model.physics.EntityMovementImpl;
  */
 public class PlayerBullet extends Bullet{
 	
+	private boolean touchEntity;
 	/**
 	 * The constructor that create the bullet of the player
 	 * @param x		is the initial x coordinate of the {@link Bullet}
 	 * @param y		is the initial y coordinate of the {@link Bullet}
 	 */
 	public PlayerBullet(double x, double y) {
+		this.touchEntity = false;
 		this.create(SpecificEntityType.PLAYER_1_BULLET, x, y, EntityConstants.PlayerBullet.INITIALWIDTH, 
 				EntityConstants.PlayerBullet.INITIALHEIGHT, EntityConstants.PlayerBullet.INITIAL_MU_X, 
 				EntityConstants.PlayerBullet.INITIAL_MU_Y, EntityDirections.UP, new EntityMovementImpl());
@@ -31,6 +33,7 @@ public class PlayerBullet extends Bullet{
 		if(entity.getEntityType().getGenericType().equals(GenericEntityType.GENERIC_ENEMY) 
 				|| entity.getEntityType().getGenericType().equals(GenericEntityType.BOSS)) {
 			this.setLife();
+			this.touchEntity = true;
 		} 
 	}
 
@@ -42,4 +45,11 @@ public class PlayerBullet extends Bullet{
 		this.getMovementMenager().moveUp(this);
 	}
 
+	/**
+	 * Method that returns the action of hit a enemies.
+	 * @return 
+	 */
+	public boolean touchEntity() {
+		return this.touchEntity;
+	}
 }
