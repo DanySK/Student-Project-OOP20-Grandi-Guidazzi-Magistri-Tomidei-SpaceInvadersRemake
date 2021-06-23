@@ -13,20 +13,20 @@ import java.util.Set;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-import controller.gameStatusManager.ViewMonitor;
+import controller.gameStatusManager.ViewGameStatusManager;
 import model.entitiesutil.typeentities.GenericEntity;
 import view.GraphicsView;
 import view.GraphicsViewImpl;
 
 public class GameViewImpl extends KeyAdapter {
-    private final ViewMonitor flag;
+    private final ViewGameStatusManager flag;
     private final Set<Integer> guiUpdateSet;
     private final Map<GameEvent,Boolean> keyPressed;
     private final GraphicsView graphicsView;
     private boolean isPause;
 
 
-    public GameViewImpl(final ViewMonitor flag) {
+    public GameViewImpl(final ViewGameStatusManager flag) {
         this.flag = flag;
         this.guiUpdateSet = Collections.synchronizedSet(new HashSet<>());
         this.keyPressed = Collections.synchronizedMap(new HashMap<>());

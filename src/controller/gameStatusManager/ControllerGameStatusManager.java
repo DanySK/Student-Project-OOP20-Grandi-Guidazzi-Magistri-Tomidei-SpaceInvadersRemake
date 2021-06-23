@@ -5,7 +5,7 @@ import controller.GameStatus;
 /**
  * Interface to monitor the status of the {@link GameController}
  */
-public interface ControllerMonitor {
+public interface ControllerGameStatusManager {
 
 	/**
 	 * Set the {@link GameStatus} equal to stopped

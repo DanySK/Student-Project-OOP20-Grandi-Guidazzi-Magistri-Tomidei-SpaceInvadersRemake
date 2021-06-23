@@ -5,9 +5,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import controller.gameStatusManager.ControllerMonitor;
-import controller.gameStatusManager.MonitorImpl;
-import controller.gameStatusManager.ViewMonitor;
+import controller.gameStatusManager.ControllerGameStatusManager;
+import controller.gameStatusManager.GameStatusManagerImpl;
+import controller.gameStatusManager.ViewGameStatusManager;
 import model.Model;
 import model.ModelImpl;
 import model.entitiesutil.MappedEntity;
@@ -20,7 +20,7 @@ public class GameControllerImpl implements GameController, GameViewController {
 
 	private final int FPS = 60;
 	private final int DEL = 1000/FPS;
-	private final ControllerMonitor stateGameMenager;
+	private final ControllerGameStatusManager stateGameMenager;
 	private final Model model;
 	private final GameViewImpl view;
 
@@ -31,9 +31,9 @@ public class GameControllerImpl implements GameController, GameViewController {
 	 * Implementation of {@link GameController}
 	 */
 	public GameControllerImpl() {
-		this.stateGameMenager = new MonitorImpl();
+		this.stateGameMenager = new GameStatusManagerImpl();
 		this.model = new ModelImpl(this);
-		this.view = new GameViewImpl((ViewMonitor) this.stateGameMenager);
+		this.view = new GameViewImpl((ViewGameStatusManager) this.stateGameMenager);
 	}
 
 	/**

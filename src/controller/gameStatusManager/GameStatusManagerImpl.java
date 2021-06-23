@@ -5,14 +5,14 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import controller.GameStatus;
 
-public class MonitorImpl implements ViewMonitor, ControllerMonitor {
+public class GameStatusManagerImpl implements ViewGameStatusManager, ControllerGameStatusManager {
 
 	private final ReentrantLock lock;
 	private final Condition condition;
 
 	private GameStatus gameState;
 
-	public MonitorImpl() {
+	public GameStatusManagerImpl() {
 		this.lock = new ReentrantLock();
 		this.condition = this.lock.newCondition();
 		this.gameState = GameStatus.STOPPED;

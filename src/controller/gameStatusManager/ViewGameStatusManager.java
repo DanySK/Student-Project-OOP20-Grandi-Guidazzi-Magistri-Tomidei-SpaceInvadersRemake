@@ -5,7 +5,7 @@ import controller.GameStatus;
 /**
  * Interface for setting the {@link GameStatus}
  */
-public interface ViewMonitor {
+public interface ViewGameStatusManager {
 
 	/**
 	 * pause the game loop if the game is running
