@@ -1,6 +1,5 @@
 package model.entitiesutil;
 
-import model.entities.Player;
 import model.entitiesutil.typeentities.GenericEntity;
 
 /**
