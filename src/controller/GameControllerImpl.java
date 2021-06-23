@@ -93,7 +93,7 @@ public class GameControllerImpl implements GameController, GameViewController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Set<MappedEntity> getEntitiesLevel() {
+	public Set<MappedEntity> getLevelEntities() {
 		return this.model.getMappedEntities();
 	}
 
@@ -151,5 +151,4 @@ public class GameControllerImpl implements GameController, GameViewController {
 	public int getWindowHeight() {
 		return 0;
 	}
-
 }

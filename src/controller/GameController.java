@@ -1,9 +1,5 @@
 package controller;
 
-import java.util.Set;
-
-import model.entitiesutil.MappedEntity;
-
 /**
  * Interface of the game controller
  */
@@ -26,8 +22,6 @@ public interface GameController {
 	public int getWindowWidth();
 
 	public int getWindowHeight();
-
-	public Set<MappedEntity> getEntitiesLevel();
 
 	/**
 	 * 
