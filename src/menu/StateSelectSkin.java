@@ -3,9 +3,11 @@ package menu;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.util.*;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import menu.factories.ButtonFactory;
@@ -27,6 +29,7 @@ public class StateSelectSkin implements State{
 	private JButton meliButton;
 	private JButton tangerineButton;
 	private JButton noseButton;
+	private Random random = new Random();
 	
 	/**
 	 * The constructor of the StateSelectSkin,
@@ -57,12 +60,20 @@ public class StateSelectSkin implements State{
 		
 		this.centerPanel.add(this.button);
 		this.button.addActionListener(e->{
-//			try {
-//				//board.getController().getView().getImageManager().selectRandomSkin();
-//			} catch (IOException e1) {
-//				JOptionPane.showMessageDialog(board.getFrame(), "Image not found", "Error", JOptionPane.ERROR_MESSAGE);
-//			}
+			//board.setPlayerSkin(this.selectRandomSkin());
+			//board.setCurrentState(new StateGame(board, board.getPlayerSkin));
+			JOptionPane.showMessageDialog(null, "Welcome to Space Invaders Remix!"
+					+ "\n\nTHINGS TO KNOW:"
+					+ "\n\n- Use left/right arrow keys to move\n- Press spacebar to shoot"
+                    + "\n- BOSS after each level\n- Shoot enemies to collect points and achieve high scores, but don't miss any shot!"
+                    + "\n- Press R to restart the game while you're in the game menu"
+                    + "\n- Press ESC to pause the game"
+                    + "\n- Press ESC to resume the game while you're in the game menu"
+                    + "\n- Press S to stop the game while you're in the game menu"
+                    + "\n- All pixel art is original\n- PLAY WITH SOUND\n\nHAVE FUN!");
+			
 			board.setCurrentState(new StateInfo(board));
+			board.getController().startNewGame();
 		});
 		this.button.setAlignmentX(Component.CENTER_ALIGNMENT);
 	}
@@ -74,6 +85,19 @@ public class StateSelectSkin implements State{
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;
+	}
+	
+	/**
+	 * The method select randomly one of the four playerImage. 
+	 */
+	private String selectRandomSkin() {
+		List<String> playerImageList = new ArrayList<>();
+		playerImageList.add(Strings.FEDE_SKIN);
+		playerImageList.add(Strings.MELI_SKIN);
+		playerImageList.add(Strings.TANGERINE_SKIN);
+		playerImageList.add(Strings.NOSE_SKIN);
+		String chooseItem = playerImageList.get(this.random.nextInt(playerImageList.size()));
+		return chooseItem;
 	}
 
 }
