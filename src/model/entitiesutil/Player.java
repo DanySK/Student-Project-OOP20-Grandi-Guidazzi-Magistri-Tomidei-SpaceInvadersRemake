@@ -1,5 +1,6 @@
-package model.entities;
+package model.entitiesutil;
 
+import model.entities.SpecificEntityType;
 import model.entitiesutil.typeentities.UserEntity;
 import util.Pair;
 
