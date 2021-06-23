@@ -3,8 +3,10 @@ package model.entities;
 import model.Model;
 import model.entitiesutil.EntityConstants;
 import model.entitiesutil.GenericEntityType;
+import model.entitiesutil.Player;
 import model.entitiesutil.typeentities.GenericEntity;
 import model.physics.EntityCollision.EdgeCollision;
+import view.game.GameEvent;
 
 /**
  * The entity with which the user with a generic player.
@@ -25,17 +27,6 @@ public class Player1 extends Player{
 				EntityConstants.Player.INITIAL_MU_X, 0, EntityConstants.Player.MAX_HITS);
 		this.model = model;
 	}
-
-	/*@Override
-	public void updateEntityPosition(int action) {
-		if(action == 1) {
-			this.setMuX(-this.getMuX());
-		} 
-		if (action == 2){
-			this.setMuX(this.getMuX());
-		}
-		this.setX(this.getX() + this.getMuX());
-		}*/
 	
 	/**
 	 * {@inheritDoc}
@@ -74,9 +65,17 @@ public class Player1 extends Player{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateEntityPosition() {
-		// TODO Auto-generated method stub
-		
+	public void updateEntityPosition(GameEvent event) {
+		if(event.equals(GameEvent.LEFT)) {
+			this.setMuX(-this.getMuX());
+		} 
+		if (event.equals(GameEvent.RIGHT)){
+			this.setMuX(this.getMuX());
+		}
+		if (event.equals(GameEvent.FIRE)) {
+			this.shoot();
+		}
+		this.setX(this.getX() + this.getMuX());
 	}
 
 }
