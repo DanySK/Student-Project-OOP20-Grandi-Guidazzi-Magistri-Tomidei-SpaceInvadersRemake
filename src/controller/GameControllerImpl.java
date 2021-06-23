@@ -22,7 +22,6 @@ public class GameControllerImpl implements GameController, GameViewController {
 	private final int DEL = 1000/FPS;
 	private final ControllerMonitor stateGameMenager;
 	private final Model model;
-	@SuppressWarnings("unused")
 	private final GameViewImpl view;
 
 	private ScheduledExecutorService loop;
@@ -85,8 +84,8 @@ public class GameControllerImpl implements GameController, GameViewController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void getView() {
-		
+	public GameViewImpl getView() {
+		return this.view;
 	}
 
 	/**
