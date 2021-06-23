@@ -28,9 +28,9 @@ public interface ViewMonitor {
 	public void stop();
 
 	/**
+	 * Get the current {@link GameStatus}
 	 * 
-	 * 
-	 * @return
+	 * @return the value which represent the current state of the game
 	 */
 	public GameStatus getGameStatus();
 
