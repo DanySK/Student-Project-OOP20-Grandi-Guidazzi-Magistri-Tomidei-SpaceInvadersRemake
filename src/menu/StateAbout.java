@@ -27,8 +27,8 @@ public class StateAbout implements State{
 	 * @param board
 	 */
 	public StateAbout(Board board) {
-		this.panel = this.panelFactory.createPanel(Strings.ABOUT, board);
-		this.textArea.setText(Strings.ABOUT_TEXT);
+		this.panel = this.panelFactory.createPanel(Strings.States.ABOUT, board);
+		this.textArea.setText(Strings.States.ABOUT);
 		this.textArea.setFont(new Font("sans", Font.BOLD, 25));
 		this.textArea.setLineWrap(true);
 		this.textArea.setWrapStyleWord(true);
@@ -39,7 +39,7 @@ public class StateAbout implements State{
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
 		this.centerPanel.add(this.textArea, BorderLayout.NORTH);
-		this.centerPanel.add(this.labelFactory.createButton(Strings.MORE_INFO, board, "Center"), BorderLayout.CENTER);
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.MORE_INFO, board, "Center"), BorderLayout.CENTER);
 	
 	}
 	

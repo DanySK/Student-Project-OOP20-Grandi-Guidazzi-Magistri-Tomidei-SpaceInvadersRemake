@@ -29,12 +29,12 @@ public class StateAudioSettings implements State{
 	 */
 	public StateAudioSettings(Board board) {
 		
-		this.panel = this.panelFactory.createPanel(Strings.AUDIO_SETTINGS, board);
+		this.panel = this.panelFactory.createPanel(Strings.States.AUDIO_SETTINGS, board);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 	
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.centerPanel.setOpaque(false);
-		this.centerPanel.add(this.titleFactory.createTitle("Choose an audio intensity:", Constants.subtitleSize, Constants.colorSubtitle), BorderLayout.CENTER);
+		this.centerPanel.add(this.titleFactory.createTitle("Choose an audio intensity:", Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle), BorderLayout.CENTER);
 		
 		this.centerPanel.add(this.sliderFactory.create(board));
 	}

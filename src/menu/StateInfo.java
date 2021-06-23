@@ -19,7 +19,7 @@ public class StateInfo implements State{
 
 	private TitleFactory titleFactory = new TitleFactory();
 	private LabelFactory labelFactory = new LabelFactory();
-	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	private JTextArea textArea = new JTextArea();
 	
@@ -29,7 +29,7 @@ public class StateInfo implements State{
 	 * @param board
 	 */
 	public StateInfo(Board board) {
-		this.textArea.setText(Strings.INFO_TEXT);
+		this.textArea.setText(Strings.Texts.INFO_TEXT);
 		this.textArea.setFont(new Font("sans", Font.BOLD, 25));
 		this.textArea.setLineWrap(true);
 		this.textArea.setWrapStyleWord(true);
@@ -41,10 +41,10 @@ public class StateInfo implements State{
 		this.centerPanel.setLayout(new BorderLayout());
 		this.centerPanel.setOpaque(false);
 		
-		this.panel.add(this.titleFactory.createTitle("How to play", Constants.titleSize, Constants.colorTitle), BorderLayout.NORTH);
+		this.panel.add(this.titleFactory.createTitle("How to play", Constants.ObjectSize.titleSize, Constants.Colors.colorTitle), BorderLayout.NORTH);
 		
 		this.centerPanel.add(this.textArea, BorderLayout.NORTH);
-		this.centerPanel.add(this.labelFactory.createButton(Strings.START_GAME, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.START_GAME, board, "Center"));
 	}
 	
 	/**

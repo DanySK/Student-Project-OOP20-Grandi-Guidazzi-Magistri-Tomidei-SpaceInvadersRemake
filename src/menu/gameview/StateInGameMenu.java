@@ -20,7 +20,7 @@ public class StateInGameMenu implements State{
 
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
-	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	
 	
@@ -31,11 +31,11 @@ public class StateInGameMenu implements State{
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.centerPanel.setOpaque(false);
 		
-		this.panel.add(this.titleFactory.createTitle("Game Menu", Constants.titleSize, Constants.colorTitle), BorderLayout.NORTH);
+		this.panel.add(this.titleFactory.createTitle("Game Menu", Constants.ObjectSize.titleSize, Constants.Colors.colorTitle), BorderLayout.NORTH);
 		
-		this.centerPanel.add(this.labelFactory.createButton(Strings.RESTART, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.AUDIO_SETTINGS_IN_GAME, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.GO_BACK_TO_MENU, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.RESTART, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.AUDIO_SETTINGS_IN_GAME, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.GO_BACK_TO_MENU, board, "Center"));
 		
 	}
 	

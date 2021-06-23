@@ -27,15 +27,15 @@ public class StateOptions implements State{
 	 */
 	public StateOptions(Board board) {
 		
-		this.panel = this.panelFactory.createPanel(Strings.OPTIONS, board);
+		this.panel = this.panelFactory.createPanel(Strings.States.OPTIONS, board);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.centerPanel.setOpaque(false);
 		
-		this.centerPanel.add(this.labelFactory.createButton(Strings.LEADERBOARD, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.CHANGE_KEYS, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.AUDIO_SETTINGS, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.LEADERBOARD, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.CHANGE_KEYS, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.AUDIO_SETTINGS, board, "Center"));
 	}
 	
 	@Override

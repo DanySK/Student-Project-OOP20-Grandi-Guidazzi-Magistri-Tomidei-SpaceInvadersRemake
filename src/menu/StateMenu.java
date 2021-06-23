@@ -19,7 +19,7 @@ public class StateMenu implements State{
 
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
-	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	
 	/**
@@ -34,13 +34,13 @@ public class StateMenu implements State{
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.centerPanel.setOpaque(false);
 	 
-		this.panel.add(this.titleFactory.createTitle("Welcome to Space Invaders Remake", Constants.titleSize, Constants.colorTitle), BorderLayout.NORTH);
+		this.panel.add(this.titleFactory.createTitle("Welcome to Space Invaders Remake", Constants.ObjectSize.titleSize, Constants.Colors.colorTitle), BorderLayout.NORTH);
 		
-		this.centerPanel.add(this.labelFactory.createButton(Strings.START, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.OPTIONS, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.CREDITS, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.ABOUT, board, "Center"));
-		this.centerPanel.add(this.labelFactory.createButton(Strings.EXIT, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.START, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.OPTIONS, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.CREDITS, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.ABOUT, board, "Center"));
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.EXIT, board, "Center"));
 		
 	}
 

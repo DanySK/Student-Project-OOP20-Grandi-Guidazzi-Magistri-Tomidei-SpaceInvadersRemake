@@ -30,7 +30,7 @@ public class Board {
 	public Board() {
 		this.controller = new GameControllerImpl();
 		this.frame.setTitle("Space Invaders Remake");
-		this.frame.setPreferredSize(Constants.preferDimension);
+		this.frame.setPreferredSize(Constants.ObjectDimension.preferDimension);
 		this.frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		this.frame.pack();
 		this.frame.setLocationRelativeTo(null);

@@ -24,7 +24,7 @@ public class TitleFactory {
 	public JLabel createTitle(String stringTitle, int titleSize, Color titleColor) {
 		JLabel title = new JLabel(stringTitle);
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setMaximumSize(Constants.maxLabelDimension);
+        title.setMaximumSize(Constants.ObjectDimension.maxLabelDimension);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("sans", Font.BOLD, titleSize));
         title.setForeground(titleColor);

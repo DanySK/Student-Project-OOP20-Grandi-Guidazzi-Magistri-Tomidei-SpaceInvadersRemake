@@ -19,8 +19,8 @@ import util.Strings;
 public class StateSelectSkin implements State{
 
 	private TitleFactory titleFactory = new TitleFactory();
-	private JButton button = new JButton(Strings.RANDOM_SKIN);
-	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	private JButton button = new JButton(Strings.Skins.RANDOM_SKIN);
+	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	private JPanel gridPanel = new JPanel();
 	private JButton fedeButton;
@@ -34,19 +34,19 @@ public class StateSelectSkin implements State{
 	 * @param board
 	 */
 	public StateSelectSkin(Board board) {
-		this.fedeButton = new ButtonFactory().createSkinButton(Strings.FEDE_SKIN, board);
-		this.meliButton = new ButtonFactory().createSkinButton(Strings.MELI_SKIN, board);
-		this.tangerineButton = new ButtonFactory().createSkinButton(Strings.TANGERINE_SKIN, board);
-		this.noseButton = new ButtonFactory().createSkinButton(Strings.NOSE_SKIN, board);
+		this.fedeButton = new ButtonFactory().createSkinButton(Strings.Skins.FEDE_SKIN, board);
+		this.meliButton = new ButtonFactory().createSkinButton(Strings.Skins.MELI_SKIN, board);
+		this.tangerineButton = new ButtonFactory().createSkinButton(Strings.Skins.TANGERINE_SKIN, board);
+		this.noseButton = new ButtonFactory().createSkinButton(Strings.Skins.NOSE_SKIN, board);
 		this.panel.setOpaque(false);
 		this.panel.setLayout(new BorderLayout());
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.centerPanel.setOpaque(false);
 		
-		this.panel.add(this.titleFactory.createTitle("Select your Skin:", Constants.titleSize, Constants.colorTitle), BorderLayout.NORTH);
+		this.panel.add(this.titleFactory.createTitle("Select your Skin:", Constants.ObjectSize.titleSize, Constants.Colors.colorTitle), BorderLayout.NORTH);
 		
-		this.gridPanel.setLayout(new GridLayout(0,Constants.specificColumns,0,Constants.specificRow));
+		this.gridPanel.setLayout(new GridLayout(0,Constants.LayoutDimension.specificColumns,0,Constants.LayoutDimension.specificRow));
 		this.gridPanel.setOpaque(false);
 		this.centerPanel.add(this.gridPanel, BorderLayout.CENTER);
 		

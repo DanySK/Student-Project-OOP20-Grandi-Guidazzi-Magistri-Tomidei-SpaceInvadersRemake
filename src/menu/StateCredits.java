@@ -27,16 +27,16 @@ public class StateCredits implements State{
 	 * @param board
 	 */
 	public StateCredits(Board board) {
-		this.panel = this.panelFactory.createPanel(Strings.CREDITS, board);
+		this.panel = this.panelFactory.createPanel(Strings.States.CREDITS, board);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.centerPanel.setOpaque(false);		
 
-		this.centerPanel.add(this.titleFactory.createTitle("Grandi Luca", Constants.subtitleSize, Constants.colorSubtitle));
-		this.centerPanel.add(this.titleFactory.createTitle("Guidazzi Federico", Constants.subtitleSize, Constants.colorSubtitle));
-		this.centerPanel.add(this.titleFactory.createTitle("Magistri Melissa", Constants.subtitleSize, Constants.colorSubtitle));
-		this.centerPanel.add(this.titleFactory.createTitle("Tomidei Luca", Constants.subtitleSize, Constants.colorSubtitle));
+		this.centerPanel.add(this.titleFactory.createTitle("Grandi Luca", Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle));
+		this.centerPanel.add(this.titleFactory.createTitle("Guidazzi Federico", Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle));
+		this.centerPanel.add(this.titleFactory.createTitle("Magistri Melissa", Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle));
+		this.centerPanel.add(this.titleFactory.createTitle("Tomidei Luca", Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle));
 
 		
 	}

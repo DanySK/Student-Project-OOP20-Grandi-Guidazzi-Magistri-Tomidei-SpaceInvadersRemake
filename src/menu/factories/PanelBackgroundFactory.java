@@ -20,7 +20,8 @@ public class PanelBackgroundFactory extends JPanel{
 	public PanelBackgroundFactory(String imageLocation) {
 		try {
 			image = ImageIO.read(new File(imageLocation));
-			this.resizedImage = image.getScaledInstance(Constants.preferDimension.width, Constants.preferDimension.height, Image.SCALE_DEFAULT);
+			this.resizedImage = image.getScaledInstance(Constants.ObjectDimension.preferDimension.width,
+					Constants.ObjectDimension.preferDimension.height, Image.SCALE_DEFAULT);
 		} catch (IOException e) {
 			this.setOpaque(false);
 		}

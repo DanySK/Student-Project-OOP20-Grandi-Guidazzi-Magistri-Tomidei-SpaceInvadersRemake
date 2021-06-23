@@ -35,12 +35,12 @@ public class ButtonFactory {
 	public JButton createSkinButton(String skinUri, Board board) {
 		try {
 			this.image = ImageIO.read(new File(skinUri));
-			this.resizedImage = this.image.getScaledInstance(Constants.imageDimension, Constants.imageDimension, Image.SCALE_DEFAULT);
+			this.resizedImage = this.image.getScaledInstance(Constants.ObjectSize.imageDimension, Constants.ObjectSize.imageDimension, Image.SCALE_DEFAULT);
 			button.setIcon(new ImageIcon(this.resizedImage));
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(board.getFrame(), "Update image error", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		this.button.setMaximumSize(new Dimension(Constants.imageDimension, Constants.imageDimension));
+		this.button.setMaximumSize(new Dimension(Constants.ObjectSize.imageDimension, Constants.ObjectSize.imageDimension));
 		this.button.setOpaque(false);
 		this.button.setBackground(Color.black);
 		this.button.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -31,17 +31,19 @@ public class StateLeaderboard implements State{
 	 */
 	public StateLeaderboard(Board board) {
 		this.leaderboardList = this.leaderboardFactory.getLeaderboardList(board);
-		this.panel = this.panelFactory.createPanel(Strings.LEADERBOARD, board);
+		this.panel = this.panelFactory.createPanel(Strings.States.LEADERBOARD, board);
 		this.centerPanel.setOpaque(false);
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 		
 		try {
-			for(int i=Constants.minPodium; i<=Constants.maxPodium; i++) {
-				this.centerPanel.add(this.titleFactory.createTitle(i + ") " + this.leaderboardList.get(i-1), Constants.subtitleSize, Constants.colorSubtitle));
+			for(int i=Constants.LeaderboardConstants.minPodium; i<=Constants.LeaderboardConstants.maxPodium; i++) {
+				this.centerPanel.add(this.titleFactory.
+						createTitle(i + ") " + this.leaderboardList.get(i-1), Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle));
 			}
 		} catch(IndexOutOfBoundsException e) {
-			this.centerPanel.add(this.titleFactory.createTitle("There was an error", Constants.subtitleSize, Constants.colorSubtitle));
+			this.centerPanel.add(this.titleFactory.
+					createTitle("There was an error", Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle));
 		}
 	}
 	@Override

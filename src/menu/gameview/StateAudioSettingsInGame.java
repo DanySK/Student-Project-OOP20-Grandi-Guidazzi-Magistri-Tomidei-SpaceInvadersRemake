@@ -16,7 +16,7 @@ import util.Strings;
 
 public class StateAudioSettingsInGame implements State{
 
-	private JPanel panel = new PanelBackgroundFactory(Strings.PANEL_BACKGROUND);
+	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	private LabelFactory labelFactory = new LabelFactory();
 	private TitleFactory titleFactory = new TitleFactory();
@@ -31,13 +31,15 @@ public class StateAudioSettingsInGame implements State{
 		
 		this.panel.setLayout(new BorderLayout());
 		this.panel.setOpaque(false);
-		this.panel.add(this.titleFactory.createTitle(Strings.AUDIO_SETTINGS, Constants.titleSize, Constants.colorTitle), BorderLayout.NORTH);
-		this.panel.add(this.labelFactory.createButton(Strings.RETURN_TO_GAME_MENU, board, "Left"), BorderLayout.SOUTH);
+		this.panel.add(this.titleFactory.createTitle(Strings.States.AUDIO_SETTINGS, 
+				Constants.ObjectSize.titleSize, Constants.Colors.colorTitle), BorderLayout.NORTH);
+		this.panel.add(this.labelFactory.createButton(Strings.States.RETURN_TO_GAME_MENU, board, "Left"), BorderLayout.SOUTH);
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
 	
 		this.centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
 		this.centerPanel.setOpaque(false);
-		this.centerPanel.add(this.titleFactory.createTitle("Choose an audio intensity:", Constants.subtitleSize, Constants.colorSubtitle), BorderLayout.CENTER);
+		this.centerPanel.add(this.titleFactory.createTitle("Choose an audio intensity:", 
+				Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle), BorderLayout.CENTER);
 		
 		this.centerPanel.add(this.sliderFactory.create(board));
 	}

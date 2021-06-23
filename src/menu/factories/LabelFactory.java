@@ -44,7 +44,7 @@ public class LabelFactory {
 		this.controller = board.getMenuController();
 		JLabel label = new JLabel(buttonType);
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
-		label.setMaximumSize(Constants.maxLabelDimension);
+		label.setMaximumSize(Constants.ObjectDimension.maxLabelDimension);
 		label.setVisible(true);
 		label.setForeground(Color.white);
 		label.setFont(new Font("sans", Font.BOLD, 25));
@@ -63,10 +63,10 @@ public class LabelFactory {
 	        }
 	        
 	        public void mouseClicked(MouseEvent e) {
-	        	audioPlayer.play(AudioTrack.BUTTON_PRESSED, Constants.NOT_IN_LOOP);
+	        	audioPlayer.play(AudioTrack.BUTTON_PRESSED, Constants.AudioConstants.NOT_IN_LOOP);
 	        	switch(label.getText()) {
 	        	
-	        		case Strings.START:
+	        		case Strings.States.START:
 //	        			board.setCurrentState(new GameControllerImpl().getView());
 //	        			board.getMenuController().changeState(new StateGame(board));
 //	        			board.setCurrentState(new StateGameOver(board));
@@ -74,53 +74,53 @@ public class LabelFactory {
 	        			board.setCurrentState(new StateSelectSkin(board));
 	        			break;
 	        			
-	        		case Strings.EXIT:
+	        		case Strings.States.EXIT:
 	        			System.exit(0);
 	        			break;
 	        		
-	        		case Strings.ABOUT:
+	        		case Strings.States.ABOUT:
 	        			controller.changeState(new StateAbout(board));
 	        			break;
 	        		
-	        		case Strings.OPTIONS:
+	        		case Strings.States.OPTIONS:
 	        			controller.changeState(new StateOptions(board));
 	        			break;
 	        		
-	        		case Strings.CREDITS:
+	        		case Strings.States.CREDITS:
 	        			controller.changeState(new StateCredits(board));
 	        			break;
 	        		
-	        		case Strings.GO_BACK_TO_MENU:
+	        		case Strings.States.GO_BACK_TO_MENU:
 	        			controller.changeState(new StateMenu(board));
 	        			break;
 	        			
-	        		case Strings.RETURN_TO_GAME_MENU:
+	        		case Strings.States.RETURN_TO_GAME_MENU:
 	        			controller.changeState(new StateInGameMenu(board));
 	        			break;
 	        		
-	        		case Strings.LEADERBOARD:
+	        		case Strings.States.LEADERBOARD:
 	        			controller.changeState(new StateLeaderboard(board));
 	        			break;
 	        		
-	        		case Strings.CHANGE_KEYS:
+	        		case Strings.States.CHANGE_KEYS:
 	        			controller.changeState(new StateChangeKeys(board));
 	        			break;
 	        		
-	        		case Strings.AUDIO_SETTINGS:
+	        		case Strings.States.AUDIO_SETTINGS:
 	        			controller.changeState(new StateAudioSettings(board));
 	        			break;
 	        			
-	        		case Strings.AUDIO_SETTINGS_IN_GAME:
+	        		case Strings.States.AUDIO_SETTINGS_IN_GAME:
 	        			controller.changeState(new StateAudioSettingsInGame(board));
 	        			break;
 	       
-	        		case Strings.RESTART:
+	        		case Strings.States.RESTART:
 	        			controller.changeState(new StateGame(board));
 	        			break;
 	        			
-	        		case Strings.MORE_INFO:
+	        		case Strings.States.MORE_INFO:
 	        			try {
-							Desktop.getDesktop().browse(java.net.URI.create(Strings.MORE_INFO_LINK));
+							Desktop.getDesktop().browse(java.net.URI.create(Strings.Links.MORE_INFO_LINK));
 						} catch (IOException e1) {
 							JOptionPane.showMessageDialog(board.getFrame(), "Link not found", "Error", JOptionPane.ERROR_MESSAGE);
 						}

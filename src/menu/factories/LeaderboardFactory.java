@@ -36,13 +36,13 @@ public class LeaderboardFactory {
 	public List<String> getLeaderboardList(Board board){
 		
 		try {
-			this.bufferedReader = new BufferedReader(new FileReader(Strings.LEADERBOARD_URI));
+			this.bufferedReader = new BufferedReader(new FileReader(Strings.Leaderboard.LEADERBOARD_URI));
 			
-			for(int i=Constants.minPodium; i<=Constants.maxPodium+1; i++) {
+			for(int i=Constants.LeaderboardConstants.minPodium; i<=Constants.LeaderboardConstants.maxPodium+1; i++) {
 				Optional<String> position = Optional.ofNullable(bufferedReader.readLine());
 				
-				if(position.isEmpty() || position.get().equals("") || position.get().equals(Strings.LEADERBOARD_DEFAULT_TEXT)) {
-					position = Optional.of(Strings.LEADERBOARD_DEFAULT_TEXT);
+				if(position.isEmpty() || position.get().equals("") || position.get().equals(Strings.Leaderboard.LEADERBOARD_DEFAULT_TEXT)) {
+					position = Optional.of(Strings.Leaderboard.LEADERBOARD_DEFAULT_TEXT);
 					this.leaderboardList.add(new Pair<>(position, 0));
 				} else {
 					String[] lineSplitted = position.get().split(" ");
@@ -59,8 +59,8 @@ public class LeaderboardFactory {
 					}
 				});
 			}
-			this.leaderboardList.remove(Constants.maxPodium);
-			this.bufferedWriter = new BufferedWriter(new FileWriter(Strings.LEADERBOARD_URI));
+			this.leaderboardList.remove(Constants.LeaderboardConstants.maxPodium);
+			this.bufferedWriter = new BufferedWriter(new FileWriter(Strings.Leaderboard.LEADERBOARD_URI));
 			for(var line : this.leaderboardList) {
 				String stringToWrite = line.getX().get();
 				this.list.add(stringToWrite);

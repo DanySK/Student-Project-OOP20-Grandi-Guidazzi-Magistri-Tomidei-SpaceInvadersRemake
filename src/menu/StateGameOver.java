@@ -13,7 +13,7 @@ import util.Strings;
  */
 public class StateGameOver implements State{
 
-	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.GAME_OVER_BACKGROUND);
+	private PanelBackgroundFactory panel = new PanelBackgroundFactory(Strings.BackgroundImages.GAME_OVER_BACKGROUND);
 	private LabelFactory labelFactory = new LabelFactory();
 	
 	/**
@@ -23,7 +23,7 @@ public class StateGameOver implements State{
 	 */
 	public StateGameOver(Board board) {
 		this.panel.setLayout(new BorderLayout());
-		this.panel.add(this.labelFactory.createButton(Strings.GO_BACK_TO_MENU, board, "Center"), BorderLayout.SOUTH);
+		this.panel.add(this.labelFactory.createButton(Strings.States.GO_BACK_TO_MENU, board, "Center"), BorderLayout.SOUTH);
 	}
 	
 	@Override
