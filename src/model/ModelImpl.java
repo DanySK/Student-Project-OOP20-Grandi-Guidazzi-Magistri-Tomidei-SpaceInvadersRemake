@@ -11,7 +11,6 @@ import model.entities.Boss1;
 import model.entities.Boss2;
 import model.entities.Boss3;
 import model.entities.MonoDirectionEnemyBullet;
-import model.entities.Player;
 import model.entities.SpecificEntityType;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.MappedEntity;
