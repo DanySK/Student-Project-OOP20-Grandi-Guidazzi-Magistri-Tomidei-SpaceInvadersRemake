@@ -47,7 +47,7 @@ public class ButtonFactory {
 		this.button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		this.button.addActionListener(e->{
-			//board.setPlayerSkin(skinUri);
+			board.setPlayerSkin(skinUri);
 			JOptionPane.showMessageDialog(null, "Welcome to Space Invaders Remix!"
 					+ "\n\nTHINGS TO KNOW:"
 					+ "\n\n- Use left/right arrow keys to move\n- Press spacebar to shoot"
