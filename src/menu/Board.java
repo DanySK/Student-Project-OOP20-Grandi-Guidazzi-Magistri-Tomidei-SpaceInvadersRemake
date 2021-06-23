@@ -23,6 +23,7 @@ public class Board {
 	private State currentState;
 	private menuController menuController = new menuControllerImpl(this); 
 	private ViewGameController controller;
+	private String playerSkin;
 	
 	/**
 	 * the constructor of the first state in the project, it contains all the frame characteristics.
@@ -74,5 +75,56 @@ public class Board {
 	 */
 	public JFrame getFrame() {
 		return this.frame;
+	}
+	
+	/**
+	 * A method to get the screen width 
+	 * @return the screen width
+	 */
+	public int getWidth() {
+		return this.currentState.getMainPanel().getWidth();
+	}
+
+	/**
+	 * A method to get the screen height 
+	 * @return the screen height
+	 */
+	public int getHeight() {
+		return this.currentState.getMainPanel().getHeight();
+	}
+
+	/**
+	 * A method to get the state of the game
+	 * @return the state of the game
+	 */
+	private StateGame getStateGame(){
+		return (StateGame)this.currentState;
+	}
+
+	/**
+	 * A method to refresh the game panel
+	 */
+	public void render() {
+		if(this.currentState.getClass().getSimpleName().equals("StateGame")) {
+			this.getStateGame().refresh();
+		}
+	}
+
+	/**
+	 * A method to set the player skin
+	 * @param skinUri
+	 */
+	public void setPlayerSkin(String skinUri) {
+		if(this.currentState.getClass().getSimpleName().equals("StateSelectSkin")) {
+			this.playerSkin = skinUri;
+		}
+	}
+
+	/**
+	 * A method that return the player skin
+	 * @return the player skin
+	 */
+	public String getPlayerSkin() {
+		return this.playerSkin;
 	}
 }

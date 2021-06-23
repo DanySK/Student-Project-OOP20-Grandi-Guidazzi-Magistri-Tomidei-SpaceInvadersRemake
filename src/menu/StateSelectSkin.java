@@ -92,10 +92,10 @@ public class StateSelectSkin implements State{
 	 */
 	private String selectRandomSkin() {
 		List<String> playerImageList = new ArrayList<>();
-		playerImageList.add(Strings.FEDE_SKIN);
-		playerImageList.add(Strings.MELI_SKIN);
-		playerImageList.add(Strings.TANGERINE_SKIN);
-		playerImageList.add(Strings.NOSE_SKIN);
+		playerImageList.add(Strings.Skins.FEDE_SKIN);
+		playerImageList.add(Strings.Skins.MELI_SKIN);
+		playerImageList.add(Strings.Skins.TANGERINE_SKIN);
+		playerImageList.add(Strings.Skins.NOSE_SKIN);
 		String chooseItem = playerImageList.get(this.random.nextInt(playerImageList.size()));
 		return chooseItem;
 	}
