@@ -35,17 +35,17 @@ public class Strings {
 	}
 	
 	public class Skins{
-		public final static String BOSS_1 = "src/res/image/winBackground.png";
-		public final static String BOSS_2 = "src/res/image/winBackground.png";
-		public final static String BOSS_3 = "src/res/image/winBackground.png";
+		public final static String BOSS_1 = "src/res/image/boss_1.png";
+		public final static String BOSS_2 = "src/res/image/boss_2.png";
+		public final static String BOSS_3 = "src/res/image/boss_3.png";
 		public final static String FEDE_SKIN = "src/res/image/fedeskin.png";
 		public final static String TANGERINE_SKIN = "src/res/image/skinluc.png";
 		public final static String NOSE_SKIN = "src/res/image/nasoSkin.png";
 		public final static String MELI_SKIN = "src/res/image/MeliSkin.png";
-		public final static String ALIEN_SKIN = "src/res/image/MeliSkin.png";
+		public final static String ALIEN_SKIN = "src/res/image/alien_Bullet.png";
 		public final static String ALIEN_BULLET = "src/res/image/alienBullet.jpg";
-		public final static String BOSS_BULLET = "src/res/image/bossBullet.jpg";
-		public final static String PLAYER_BULLET = "src/res/image/playerBullet.jpg";
+		public final static String BOSS_BULLET = "src/res/image/boss_Bullet.jpg";
+		public final static String PLAYER_BULLET = "src/res/image/player_1_Bullet.jpg";
 		public final static String RANDOM_SKIN = "Random Skin";
 	}
 	
