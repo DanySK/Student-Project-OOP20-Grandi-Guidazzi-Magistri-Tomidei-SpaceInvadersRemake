@@ -48,9 +48,4 @@ public class StateMenu implements State{
 	public JPanel getMainPanel() {
 		return this.panel;
 	}
-	
-	@Override
-	public String toString() {
-		return "StateMenu";
-	}
 }

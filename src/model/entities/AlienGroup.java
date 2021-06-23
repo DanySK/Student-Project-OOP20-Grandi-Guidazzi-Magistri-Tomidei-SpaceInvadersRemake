@@ -32,6 +32,7 @@ public class AlienGroup{
 	public AlienGroup(Model model) {
 		this.model = model;
 	}
+	
 	/**The method to create the group of aliens.
 	 * 
 	 * @param numAlien
@@ -43,10 +44,10 @@ public class AlienGroup{
 		int rows = numAlien / this.MAX_ALIEN_PER_COLUMN;
 		int spacingX = EntityConstants.Alien.INITIAL_WIDTH * 3;
 		int spacingY = EntityConstants.Alien.INITIAL_HEIGHT * 2;
-		Pair<Integer, Integer> lastPos = new Pair<>(0,0);
+		Pair<Integer, Integer> lastPos;
 		rows += numAlien % this.MAX_ALIEN_PER_COLUMN == 0 ? 0 : 1;
 		for(int i = 0; i < rows; i++) {
-			lastPos=new Pair<>(spacingX, (i+1)*spacingY);
+			lastPos=new Pair<>(spacingX * 4, (i+1)*spacingY);
 			for(int j = 0; j < this.MAX_ALIEN_PER_COLUMN; j++) {
 				if(alienInserted>=numAlien) {
 					break;
@@ -82,11 +83,13 @@ public class AlienGroup{
 	/**
 	 * The method that lets the aliens shoot
 	 */
-	public void shoot() {
+	public void shoot(int cycle) {
 		Set<Alien> alienShootingAtTheSameTime = new HashSet<>();
-		while(alienShootingAtTheSameTime.size() < random.nextInt(this.MAX_ALIEN_SHOOTING) + this.MIN_ALIEN_SHOOTING) {
-			alienShootingAtTheSameTime.add(this.model.getAlienList().get(random.nextInt(this.model.getAlienList().size())));
+		if(this.model.getAlienList().get(0).canShoot(cycle)) {
+			while(alienShootingAtTheSameTime.size() < random.nextInt(this.MAX_ALIEN_SHOOTING) + this.MIN_ALIEN_SHOOTING) {
+				alienShootingAtTheSameTime.add(this.model.getAlienList().get(random.nextInt(this.model.getAlienList().size())));
+			}
+			alienShootingAtTheSameTime.stream().forEach(i->i.shoot());
 		}
-		alienShootingAtTheSameTime.stream().forEach(i->i.shoot());
 	}
 }
