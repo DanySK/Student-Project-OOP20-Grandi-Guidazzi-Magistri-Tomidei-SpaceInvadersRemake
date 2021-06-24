@@ -22,7 +22,7 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 * @param pos		is the {@link Bullet} initial position
 	 * @param type		is the type of this {@link Bullet} 
 	 */
-	protected MultiDirectionsEnemyBullet(double x, double y, SpecificEntityType type) {
+	public MultiDirectionsEnemyBullet(double x, double y, SpecificEntityType type) {
 		this.random = new Random();
 		this.create(type, x, y, EntityConstants.MultiDirectionEnemyBullet.INITIAL_WIDTH, 
 				EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT, 

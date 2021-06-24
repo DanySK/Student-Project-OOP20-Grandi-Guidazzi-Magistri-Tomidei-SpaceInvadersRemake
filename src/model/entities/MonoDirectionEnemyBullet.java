@@ -20,7 +20,7 @@ public class MonoDirectionEnemyBullet extends Bullet {
 	 * @param pos		is the {@link Bullet} initial position
 	 * @param type		is the type of this {@link Bullet}
 	 */
-	protected MonoDirectionEnemyBullet(double x,double y, SpecificEntityType type) {
+	public MonoDirectionEnemyBullet(double x,double y, SpecificEntityType type) {
 		Random random = new Random();
 		this.create(type, x, y, EntityConstants.MonoDirectionEnemyBullet.INITIAL_WIDTH, 
 				EntityConstants.MonoDirectionEnemyBullet.INITIAL_HEIGHT, 
