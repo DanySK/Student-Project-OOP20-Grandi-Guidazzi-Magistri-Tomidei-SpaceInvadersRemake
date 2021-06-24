@@ -88,7 +88,7 @@ public class Player1 extends Player{
 	 * @return
 	 */
 	private boolean canShoot(int cycles) {
-		int cycleToShoot = EntityConstants.Alien.CYCLES_TO_SHOOT;
+		int cycleToShoot = EntityConstants.Player.CYCLES_TO_SHOOT;
 		this.shoot = (cycleToShoot == 0) ? true : 
 			(cycles % cycleToShoot == 0) ? true : this.shoot;
 		return this.shoot;
