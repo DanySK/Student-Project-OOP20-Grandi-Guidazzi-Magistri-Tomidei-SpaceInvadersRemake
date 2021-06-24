@@ -25,10 +25,10 @@ public class StateSelectSkin implements State{
 	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	private JPanel gridPanel = new JPanel();
-	private JButton fedeButton;
-	private JButton meliButton;
-	private JButton tangerineButton;
-	private JButton noseButton;
+	private JButton firstSkin;
+	private JButton secondSkin;
+	private JButton thirdSkin;
+	private JButton fourthSkin;
 	private Random random = new Random();
 	
 	/**
@@ -37,10 +37,10 @@ public class StateSelectSkin implements State{
 	 * @param board
 	 */
 	public StateSelectSkin(Board board) {
-		this.fedeButton = new ButtonFactory().createSkinButton(Strings.Skins.FEDE_SKIN, board);
-		this.meliButton = new ButtonFactory().createSkinButton(Strings.Skins.MELI_SKIN, board);
-		this.tangerineButton = new ButtonFactory().createSkinButton(Strings.Skins.TANGERINE_SKIN, board);
-		this.noseButton = new ButtonFactory().createSkinButton(Strings.Skins.NOSE_SKIN, board);
+		this.firstSkin = new ButtonFactory().createSkinButton(Strings.Skins.SKIN_1, board);
+		this.secondSkin = new ButtonFactory().createSkinButton(Strings.Skins.SKIN_2, board);
+		this.thirdSkin = new ButtonFactory().createSkinButton(Strings.Skins.SKIN_3, board);
+		this.fourthSkin = new ButtonFactory().createSkinButton(Strings.Skins.SKIN_4, board);
 		this.panel.setOpaque(false);
 		this.panel.setLayout(new BorderLayout());
 		this.panel.add(this.centerPanel, BorderLayout.CENTER);
@@ -53,10 +53,10 @@ public class StateSelectSkin implements State{
 		this.gridPanel.setOpaque(false);
 		this.centerPanel.add(this.gridPanel, BorderLayout.CENTER);
 		
-		this.gridPanel.add(this.fedeButton);
-		this.gridPanel.add(this.meliButton);
-		this.gridPanel.add(this.tangerineButton);
-		this.gridPanel.add(this.noseButton);
+		this.gridPanel.add(this.firstSkin);
+		this.gridPanel.add(this.secondSkin);
+		this.gridPanel.add(this.thirdSkin);
+		this.gridPanel.add(this.fourthSkin);
 		
 		this.centerPanel.add(this.button);
 		this.button.addActionListener(e->{
@@ -92,10 +92,10 @@ public class StateSelectSkin implements State{
 	 */
 	private String selectRandomSkin() {
 		List<String> playerImageList = new ArrayList<>();
-		playerImageList.add(Strings.Skins.FEDE_SKIN);
-		playerImageList.add(Strings.Skins.MELI_SKIN);
-		playerImageList.add(Strings.Skins.TANGERINE_SKIN);
-		playerImageList.add(Strings.Skins.NOSE_SKIN);
+		playerImageList.add(Strings.Skins.SKIN_1);
+		playerImageList.add(Strings.Skins.SKIN_2);
+		playerImageList.add(Strings.Skins.SKIN_3);
+		playerImageList.add(Strings.Skins.SKIN_4);
 		String chooseItem = playerImageList.get(this.random.nextInt(playerImageList.size()));
 		return chooseItem;
 	}
