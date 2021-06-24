@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import controller.GameController;
 import controller.GameStatus;
 import controller.ViewGameController;
 import controller.gameStatusManager.ViewGameStatusManager;
@@ -28,7 +29,7 @@ public class GameViewImpl extends KeyAdapter {
         this.flag = controller.getViewStatusManager();
         this.guiUpdateSet = Collections.synchronizedList(new ArrayList<>());
         this.keyPressed = Collections.synchronizedMap(new HashMap<>());
-        this.board = new Board();
+        this.board = new Board(controller);
     }
 
     public List<GameEvent> getEvents(){
