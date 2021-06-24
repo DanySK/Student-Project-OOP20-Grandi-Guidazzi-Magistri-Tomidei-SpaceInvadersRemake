@@ -115,6 +115,12 @@ public class LabelFactory {
 	        			break;
 	       
 	        		case Strings.States.RESTART:
+	        			board.getController().getViewStatusManager().restart();
+	        			controller.changeState(new StateGame(board));
+	        			break;
+	        			
+	        		case Strings.States.RESUME: 
+	        			board.getController().getViewStatusManager().resume();
 	        			controller.changeState(new StateGame(board));
 	        			break;
 	        			
