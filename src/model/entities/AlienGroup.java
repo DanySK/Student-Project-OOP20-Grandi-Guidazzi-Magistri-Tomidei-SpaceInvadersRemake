@@ -42,7 +42,7 @@ public class AlienGroup{
 		Set<Alien> alienGroup = new HashSet<>();
 		int alienInserted = 0;
 		int rows = numAlien / this.MAX_ALIEN_PER_COLUMN;
-		int spacingX = EntityConstants.Alien.INITIAL_WIDTH * 3;
+		int spacingX = EntityConstants.Alien.INITIAL_WIDTH * 2;
 		int spacingY = EntityConstants.Alien.INITIAL_HEIGHT * 2;
 		Pair<Integer, Integer> lastPos;
 		rows += numAlien % this.MAX_ALIEN_PER_COLUMN == 0 ? 0 : 1;
