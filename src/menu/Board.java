@@ -3,12 +3,12 @@ package menu;
 
 import java.awt.Color;
 
+
 import javax.swing.BoxLayout;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import controller.GameControllerImpl;
 import controller.ViewGameController;
 import menuController.menuController;
 import menuController.menuControllerImpl;
