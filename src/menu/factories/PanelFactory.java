@@ -17,7 +17,7 @@ public class PanelFactory{
 	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
 	
 	/**
-	 * Create a new JPanel with a button inside in a standard position.
+	 * Create a new JPanel with a standard background and a button inside in a standard position.
 	 * 
 	 * @param title
 	 * @param board
@@ -30,5 +30,17 @@ public class PanelFactory{
 		this.panel.add(this.labelFactory.createButton(Strings.States.GO_BACK_TO_MENU, board, "Left"), BorderLayout.SOUTH);
 		
 		return this.panel;
-	}	
+	}
+	
+	/**
+	 * Create a new JPanel with black background and a button inside in a standard position.
+	 * @param title
+	 * @param board
+	 * @return panel 
+	 */
+	public JPanel createBlackPanel(String title, Board board) {
+		this.panel = new PanelBackgroundFactory(Strings.BackgroundImages.BLACK_BACKGROUND); 
+		this.createPanel(title, board);
+		return this.panel;
+	}
 }
