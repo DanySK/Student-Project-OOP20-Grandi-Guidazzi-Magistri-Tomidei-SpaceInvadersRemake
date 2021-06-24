@@ -70,8 +70,8 @@ public class Player1 extends Player{
 	public void updateEntityPosition(GameEvent event, int cycles) {
 		if(this.getX() - this.getWidth() / 2 != model.getMinWorldWidth()) {
 			if(event.equals(GameEvent.LEFT)) {
-				this.setMuX(EntityConstants.Player.INITIAL_MU_X);
-				this.setX(this.getX() - this.getMuX());
+				this.setMuX(-EntityConstants.Player.INITIAL_MU_X);
+				this.setX(this.getX() + this.getMuX());
 			} 
 		}
 		if(this.getX() + this.getWidth() / 2 != model.getMaxWorldWidth())
