@@ -14,6 +14,7 @@ import view.game.GameEvent;
 public class Player1 extends Player{
 	
 	private final Model model;
+	private boolean shoot;
 	
 	/**
 	 * The constructor that create the entity.
@@ -26,6 +27,7 @@ public class Player1 extends Player{
 		this.create(type, x, y, EntityConstants.Player.INITIAL_WIDTH, EntityConstants.Player.INITIAL_HEIGHT,
 				EntityConstants.Player.INITIAL_MU_X, 0, EntityConstants.Player.MAX_HITS);
 		this.model = model;
+		this.shoot = false;
 	}
 	
 	/**
@@ -65,17 +67,30 @@ public class Player1 extends Player{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateEntityPosition(GameEvent event) {
+	public void updateEntityPosition(GameEvent event, int cycles) {
 		if(event.equals(GameEvent.LEFT)) {
-			this.setMuX(-this.getMuX());
+			this.setMuX(-EntityConstants.Player.INITIAL_MU_X);
+			this.setX(this.getX() + this.getMuX());
 		} 
 		if (event.equals(GameEvent.RIGHT)){
-			this.setMuX(this.getMuX());
+			this.setMuX(EntityConstants.Player.INITIAL_MU_X);
+			this.setX(this.getX() + this.getMuX());
 		}
-		if (event.equals(GameEvent.FIRE)) {
+		if (event.equals(GameEvent.FIRE) && this.canShoot(cycles)) {
 			this.shoot();
+			this.shoot = false;
 		}
-		this.setX(this.getX() + this.getMuX());
 	}
-
+	
+	/**
+	 * Method that controls if the entity can shoot.
+	 * @param cycles
+	 * @return
+	 */
+	private boolean canShoot(int cycles) {
+		int cycleToShoot = EntityConstants.Alien.CYCLES_TO_SHOOT;
+		this.shoot = (cycleToShoot == 0) ? true : 
+			(cycles % cycleToShoot == 0) ? true : this.shoot;
+		return this.shoot;
+	}
 }
