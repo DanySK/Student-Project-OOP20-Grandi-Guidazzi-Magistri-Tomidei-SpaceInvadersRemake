@@ -16,7 +16,6 @@ public class GameStatusManagerImpl implements ViewGameStatusManager, ControllerG
 		this.lock = new ReentrantLock();
 		this.condition = this.lock.newCondition();
 		this.gameState = GameStatus.STOPPED;
-		System.out.println(this.gameState);
 	}
 
 	/**
@@ -28,7 +27,6 @@ public class GameStatusManagerImpl implements ViewGameStatusManager, ControllerG
 		try{
 			if(!this.gameState.equals(GameStatus.PAUSED) && !this.gameState.equals(GameStatus.STOPPED)) {
 				this.gameState = GameStatus.PAUSED;
-				System.out.println(this.gameState);
 			}
 		}
 		finally {
@@ -45,7 +43,6 @@ public class GameStatusManagerImpl implements ViewGameStatusManager, ControllerG
 		try{
 			if(this.gameState.equals(GameStatus.PAUSED) && !this.gameState.equals(GameStatus.STOPPED)) {
 				this.gameState = GameStatus.RESUMED;
-				System.out.println(this.gameState);
 				this.condition.signal();	
 			}
 		}
@@ -79,10 +76,10 @@ public class GameStatusManagerImpl implements ViewGameStatusManager, ControllerG
 	public void stop(){
         this.lock.lock();
         try{
-        	if(!this.gameState.equals(GameStatus.STOPPED)){
+        	if(!this.gameState.equals(GameStatus.STOPPED)
+        			&& this.gameState.equals(GameStatus.PAUSED)){
             	this.gameState = GameStatus.STOPPED;
             	this.condition.signal();
-            	System.out.println(this.gameState);
             }
         }
         finally {
