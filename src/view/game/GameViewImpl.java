@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import controller.GameController;
 import controller.GameStatus;
 import controller.ViewGameController;
 import controller.gameStatusManager.ViewGameStatusManager;
