@@ -47,7 +47,7 @@ public class Player1 extends Player{
 			this.incHits();
 		} else if(entity.getEntityType().getGenericType().equals(GenericEntityType.BOSS)
 				|| (entity.getEntityType().getGenericType().equals(GenericEntityType.GENERIC_ENEMY))){
-			while (this.getHit() <= EntityConstants.Player.MAX_HITS) {
+			while (this.getHits() <= EntityConstants.Player.MAX_HITS) {
 				this.incHits();
 			}
 		}		
