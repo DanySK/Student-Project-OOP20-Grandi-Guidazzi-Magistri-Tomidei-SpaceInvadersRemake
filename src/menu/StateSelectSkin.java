@@ -72,7 +72,6 @@ public class StateSelectSkin implements State{
                     + "\n- Press S to stop the game while you're in the game menu"
                     + "\n- All pixel art is original\n- PLAY WITH SOUND\n\nHAVE FUN!");
 			
-			board.setCurrentState(new StateInfo(board));
 			board.getController().startNewGame();
 		});
 		this.button.setAlignmentX(Component.CENTER_ALIGNMENT);
