@@ -55,7 +55,6 @@ public class ButtonFactory {
                     + "\n- Press S to stop the game while you're in the game menu"
                     + "\n- All pixel art is original\n- PLAY WITH SOUND\n\nHAVE FUN!");
 			board.getMenuController().changeState(new StateGame(board, board.getPlayerSkin()));
-			//board.setCurrentState(new StateGame(board,skinUri));
 			board.getController().startNewGame();
 		});
 		
