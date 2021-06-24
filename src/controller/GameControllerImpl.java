@@ -117,6 +117,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 * Update {@link GenericEntity}s position
 	 */
 	private void updateGame() {
+		this.model.processInput(this.view.getEvents(), frames);
 		this.model.updateEntityLevel(frames++);	//Update entities's position
 	}
 
