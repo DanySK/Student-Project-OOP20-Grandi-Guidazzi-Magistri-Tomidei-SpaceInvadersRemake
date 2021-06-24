@@ -33,7 +33,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	public GameControllerImpl() {
 		this.stateGameManager = new GameStatusManagerImpl();
 		this.model = new ModelImpl(this);
-		this.view = new GameViewImpl((ViewGameStatusManager) this.stateGameManager);
+		this.view = new GameViewImpl(this);
 	}
 
 	/**
@@ -108,7 +108,8 @@ public class GameControllerImpl implements GameController, ViewGameController {
 				break;
 		}
 		this.updateGame();
-		this.render();
+//		this.render();
+		this.view.updateGui(this.model.getMappedEntities());
 	}
 
 	/**
