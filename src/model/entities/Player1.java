@@ -69,8 +69,8 @@ public class Player1 extends Player{
 	@Override
 	public void updateEntityPosition(GameEvent event, int cycles) {
 		if(event.equals(GameEvent.LEFT)) {
-			this.setMuX(-EntityConstants.Player.INITIAL_MU_X);
-			this.setX(this.getX() + this.getMuX());
+			this.setMuX(EntityConstants.Player.INITIAL_MU_X);
+			this.setX(this.getX() - this.getMuX());
 		} 
 		if (event.equals(GameEvent.RIGHT)){
 			this.setMuX(EntityConstants.Player.INITIAL_MU_X);
