@@ -14,7 +14,7 @@ public class LvLoaderImpl implements LvLoader{
 	 */
 	@Override
 	public Optional<Level> loadLevel(int levelNumber) {
-//		Optional<Level> JSonEntities = Optional.empty();
+		Optional<Level> JSonEntities = Optional.empty();
 //		try {
 //	        // create Gson instance
 //	        Gson gson = new Gson();
