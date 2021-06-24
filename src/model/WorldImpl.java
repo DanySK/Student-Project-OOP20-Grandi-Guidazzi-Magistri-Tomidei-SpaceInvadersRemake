@@ -100,11 +100,11 @@ public class WorldImpl implements World{
 
 		this.setWorldBounds(eLevel);
 
-		this.entities.add(new Player1(SpecificEntityType.PLAYER_1, (this.INITIAL_MAX_WIDTH+this.INITIAL_MIN_WIDTH)/2,
-				(this.INITIAL_MAX_HEIGHT  - EntityConstants.Player.INITIAL_HEIGHT/2), this.model));
+		this.entities.add(new Player1(SpecificEntityType.PLAYER_1, (this.MAX_WIDTH+this.MIN_WIDTH)/2,
+				(this.MAX_HEIGHT - EntityConstants.Player.INITIAL_HEIGHT/2), this.model));
 		
 		this.entities.addAll(this.placeEnemy(bossType, numAliens,
-				this.INITIAL_MAX_WIDTH, this.INITIAL_MIN_WIDTH, this.INITIAL_MAX_HEIGHT, this.INITIAL_MIN_HEIGHT));
+				this.MAX_WIDTH, this.MIN_WIDTH, this.MAX_HEIGHT, this.MIN_HEIGHT));
 
 		this.entities.forEach(e ->{
 
