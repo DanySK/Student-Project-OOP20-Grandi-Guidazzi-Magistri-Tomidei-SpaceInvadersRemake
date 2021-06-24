@@ -23,7 +23,9 @@ public class StateInGameMenu implements State{
 	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	
-	
+	/*
+	 * The costructor that create the Menu in game.
+	 */
 	public StateInGameMenu(Board board) {
 		this.panel.setOpaque(false);
 		this.panel.setLayout(new BorderLayout());
@@ -33,6 +35,7 @@ public class StateInGameMenu implements State{
 		
 		this.panel.add(this.titleFactory.createTitle("Game Menu", Constants.ObjectSize.titleSize, Constants.Colors.colorTitle), BorderLayout.NORTH);
 		
+		this.centerPanel.add(this.labelFactory.createButton(Strings.States.RESUME, board, "Center"));
 		this.centerPanel.add(this.labelFactory.createButton(Strings.States.RESTART, board, "Center"));
 		this.centerPanel.add(this.labelFactory.createButton(Strings.States.AUDIO_SETTINGS_IN_GAME, board, "Center"));
 		this.centerPanel.add(this.labelFactory.createButton(Strings.States.GO_BACK_TO_MENU, board, "Center"));
