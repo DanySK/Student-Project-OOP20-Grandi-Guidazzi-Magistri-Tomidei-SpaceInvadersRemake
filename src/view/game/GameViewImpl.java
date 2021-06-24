@@ -62,7 +62,7 @@ public class GameViewImpl extends KeyAdapter implements GameView {
  	 */
      @Override
      public void updateGui(Set<MappedEntity> updates){
-        this.guiUpdateSet.addAll(null);
+        this.guiUpdateSet.add(updates);
         this.board.render(this.guiUpdateSet.get(0));
         this.guiUpdateSet.remove(0);
     }
