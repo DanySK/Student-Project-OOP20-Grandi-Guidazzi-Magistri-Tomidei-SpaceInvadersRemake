@@ -25,6 +25,7 @@ import model.entitiesutil.typeentities.UserEntity;
 import model.physics.EntityCollision;
 import model.physics.EntityCollisionImpl;
 import util.Pair;
+import view.game.GameEvent;
 
 /**
  * {@link World} implementation
@@ -76,16 +77,16 @@ public class WorldImpl implements World{
 		MIN_WIDTH = this.INITIAL_MIN_WIDTH;
 		MIN_HEIGHT = this.INITIAL_MIN_HEIGHT;
 
-		 Set<GenericEntity> eLevel = new HashSet<>();
+		Set<GenericEntity> eLevel = new HashSet<>();
 
 		eLevel.add(new Player1(SpecificEntityType.PLAYER_1, (this.INITIAL_MAX_WIDTH+this.INITIAL_MIN_WIDTH)/2,
 				(this.INITIAL_MAX_HEIGHT - EntityConstants.Player.INITIAL_HEIGHT/2), this.model));
 
-		Optional<Level> lv = this.loaderManager.loadLevel(lvlNum);
-		int numAliens = lv.get().getAliens();
-		Optional<String> bossType = lv.get().getBoss();
+//		Optional<Level> lv = this.loaderManager.loadLevel(lvlNum);
+//		int numAliens = lv.get().getAliens();
+//		Optional<String> bossType = lv.get().getBoss();
 
-		eLevel.addAll(this.placeEnemy(bossType, numAliens,
+		eLevel.addAll(this.placeEnemy(Optional.empty(), 30,
 				this.INITIAL_MAX_WIDTH, this.INITIAL_MIN_WIDTH, this.INITIAL_MAX_HEIGHT, this.INITIAL_MIN_HEIGHT));
 		
 		eLevel.forEach(e ->{
@@ -105,7 +106,7 @@ public class WorldImpl implements World{
 		this.entities.add(new Player1(SpecificEntityType.PLAYER_1, (this.INITIAL_MAX_WIDTH+this.INITIAL_MIN_WIDTH)/2,
 				(this.INITIAL_MAX_HEIGHT  - EntityConstants.Player.INITIAL_HEIGHT/2), this.model));
 		
-		this.entities.addAll(this.placeEnemy(bossType, numAliens,
+		this.entities.addAll(this.placeEnemy(null, 30,
 				this.INITIAL_MAX_WIDTH, this.INITIAL_MIN_WIDTH, this.INITIAL_MAX_HEIGHT, this.INITIAL_MIN_HEIGHT));
 
 		this.entities.forEach(e ->{
@@ -172,7 +173,7 @@ public class WorldImpl implements World{
 			set.addAll(this.alienGroup.createAlienGroup(numAliens));
 		}
 		
-		if(bossType.isPresent() && this.isBossType(bossType.get())) {
+		if(!bossType.isEmpty()) {
 			switch (bossType.get().toUpperCase()) {
 			case "BOSS_1" : 
 				set.add(new Boss1((this.INITIAL_MAX_WIDTH+this.INITIAL_MIN_WIDTH)/2,
@@ -451,5 +452,13 @@ public class WorldImpl implements World{
 		this.entities.clear();
 		this.newEntities.clear();
 		this.nextLevel(lvlNum);	
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void processInput(List<GameEvent> events, int cycles) {
+		events.forEach(e -> this.getUserEntity().forEach(eL -> eL.updateEntityPosition(e, cycles)));
 	}
 }

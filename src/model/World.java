@@ -6,6 +6,7 @@ import java.util.Set;
 import model.entities.Alien;
 import model.entitiesutil.MappedEntity;
 import model.entitiesutil.typeentities.GenericEntity;
+import view.game.GameEvent;
 
 /**
  * interface for managing the game world
@@ -84,5 +85,13 @@ public interface World {
 	 * @return
 	 */
 	public int getScore();
+
+	/**
+	 * method to process the inputs that are take from keyBoard 
+	 *
+	 * @param list
+	 * @param cycles
+	 */
+	public void processInput(List<GameEvent> list, int cycles);
 	
 }

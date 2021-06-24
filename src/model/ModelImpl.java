@@ -6,6 +6,7 @@ import controller.GameController;
 import model.entities.Alien;
 import model.entitiesutil.MappedEntity;
 import model.entitiesutil.typeentities.GenericEntity;
+import view.game.GameEvent;
 
 /**
  * {@link Model} implementation
@@ -158,6 +159,11 @@ public class ModelImpl implements Model {
 	@Override
 	public int getLevelNum() {
 		return this.lvlNum-1;
+	}
+
+	@Override
+	public void processInput(List<GameEvent> list, int cycles) {
+		this.gameWorld.processInput(list, cycles);
 	}
 	
 	
