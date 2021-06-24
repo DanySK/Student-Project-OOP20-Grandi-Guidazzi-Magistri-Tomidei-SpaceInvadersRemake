@@ -63,6 +63,7 @@ public class Strings {
 		public final static String AUDIO_SETTINGS = "Audio settings";
 		public final static String GO_BACK_TO_MENU = "Go back to menu";
 		public final static String RESTART = "Restart game";
+		public final static String RESUME = "Resume game";
 		public final static String RETURN_TO_GAME_MENU = "Return back to game menu";
 		public final static String AUDIO_SETTINGS_IN_GAME = "Game audio settings";
 		public final static String START_GAME = "Start game"; 
