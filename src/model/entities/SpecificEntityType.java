@@ -12,32 +12,32 @@ public enum SpecificEntityType {
 	/**
 	 * {@link Alien}
 	 */
-	ALIEN_1(GenericEntityType.GENERIC_ENEMY, 0),
+	ALIEN_1(GenericEntityType.GENERIC_ENEMY, 100),
 	
 	/**
 	 * {@link Alien}
 	 */
-	ALIEN_2(GenericEntityType.GENERIC_ENEMY, 0),
+	ALIEN_2(GenericEntityType.GENERIC_ENEMY, 50),
 	
 	/**
 	 * {@link Alien}
 	 */
-	ALIEN_3(GenericEntityType.GENERIC_ENEMY, 0),
+	ALIEN_3(GenericEntityType.GENERIC_ENEMY, 25),
 
 	/**
 	 * {@link Boss1}
 	 */
-	BOSS_1(GenericEntityType.BOSS, 0),
+	BOSS_1(GenericEntityType.BOSS, 250),
 
 	/**
 	 * {@link Boss2}
 	 */
-	BOSS_2(GenericEntityType.BOSS, 0),
+	BOSS_2(GenericEntityType.BOSS, 500),
 
 	/**
 	 * {@link Boss3}
 	 */
-	BOSS_3(GenericEntityType.BOSS, 0),
+	BOSS_3(GenericEntityType.BOSS, 1000),
 
 	/**
 	 * {@link Player}
@@ -57,7 +57,7 @@ public enum SpecificEntityType {
 	/**
 	 * {@link Player}'s {@link Bullet}
 	 */
-	PLAYER_1_BULLET(GenericEntityType.PLAYER_BULLET);
+	PLAYER_1_BULLET(GenericEntityType.PLAYER_BULLET, -5);
 
 
 	private final GenericEntityType type;

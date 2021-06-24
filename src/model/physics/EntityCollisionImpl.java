@@ -4,8 +4,7 @@ import java.awt.Rectangle;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import model.Model;
-import model.ModelImpl;
+import model.World;
 import model.entities.SpecificEntityType;
 import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.typeentities.GenericEntity;
@@ -16,15 +15,15 @@ import model.entitiesutil.typeentities.MobileEntity;
  */
 public class EntityCollisionImpl implements EntityCollision{
 
-	private Model model;
+	private World world;
 	private List<GenericEntity> enemyEntities;
 	private List<GenericEntity> playerEntities;
 	
 	/**
 	 * Implementation of {@link EntityCollision}
 	 */
-	public EntityCollisionImpl(Model model) {
-		this.model = model;
+	public EntityCollisionImpl(World world) {
+		this.world = world;
 	}
 
 	/**
@@ -32,8 +31,8 @@ public class EntityCollisionImpl implements EntityCollision{
 	 */
 	@Override
 	public void checkCollision() {	
-		this.model.getEntitiesLevel().forEach(e ->{
-			this.model.getEntitiesLevel().forEach(eLevel -> this.collision(e, eLevel));
+		this.world.getLevelEntities().forEach(e ->{
+			this.world.getLevelEntities().forEach(eLevel -> this.collision(e, eLevel));
 			this.edgeCollision((MobileEntity) e);
 		});
 	}
@@ -43,12 +42,12 @@ public class EntityCollisionImpl implements EntityCollision{
 	 */
 	@Override
 	public void checkCollision(GenericEntity e) {
-		this.enemyEntities = this.model.getEntitiesLevel().stream().
+		this.enemyEntities = this.world.getLevelEntities().stream().
 				filter(i -> !i.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)
 						&& !i.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET))
 				.collect(Collectors.toList());
 
-		this.playerEntities = this.model.getEntitiesLevel().stream().
+		this.playerEntities = this.world.getLevelEntities().stream().
 				filter(i -> i.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)
 						|| i.getEntityType().equals(SpecificEntityType.PLAYER_1_BULLET))
 				.collect(Collectors.toList());
@@ -92,16 +91,16 @@ public class EntityCollisionImpl implements EntityCollision{
 	 */
 	private void edgeCollision(MobileEntity e) {
 		if(e.isAlive()) {
-			if(e.getX() - e.getWidth()/2 < ModelImpl.MIN_WIDTH) {
+			if(e.getX() - e.getWidth()/2 < world.getMinWorldWidth()) {
 				e.doAfterCollisionWithEdge(EdgeCollision.LEFT);
 			}
-			if(e.getX() + e.getWidth()/2 + e.getMuX() > ModelImpl.MAX_WIDTH) {
+			if(e.getX() + e.getWidth()/2 + e.getMuX() > world.getMaxWorldWidth()) {
 				e.doAfterCollisionWithEdge(EdgeCollision.RIGHT);
 			}
-			if(e.getY() - e.getHeight()/2 < ModelImpl.MIN_HEIGHT) {
+			if(e.getY() - e.getHeight()/2 < world.getMinWorldHeight()) {
 				e.doAfterCollisionWithEdge(EdgeCollision.TOP);
 			}
-			if(e.getY() + e.getHeight()/2 > ModelImpl.MAX_HEIGHT) {
+			if(e.getY() + e.getHeight()/2 > world.getMaxWorldHeight()) {
 				e.doAfterCollisionWithEdge(EdgeCollision.DOWN);
 			}
 		}

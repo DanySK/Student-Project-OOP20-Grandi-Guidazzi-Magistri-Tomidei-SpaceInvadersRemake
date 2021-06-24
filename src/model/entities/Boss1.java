@@ -61,7 +61,7 @@ public class Boss1 extends Enemy {
 	 */
 	@Override
 	public void shoot() {
-		this.model.getNewEntity().add(new MonoDirectionEnemyBullet(this.getX(),
+		this.model.getNewEntities().add(new MonoDirectionEnemyBullet(this.getX(),
 				this.getY() + this.getHeight()/2 + EntityConstants.MonoDirectionEnemyBullet.INITIAL_HEIGHT/2,
 				SpecificEntityType.BOSS_BULLET));
 	}

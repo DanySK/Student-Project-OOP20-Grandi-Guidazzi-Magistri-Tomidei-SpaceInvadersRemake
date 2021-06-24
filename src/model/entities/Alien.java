@@ -83,7 +83,7 @@ public class Alien extends Enemy{
 	 */
 	@Override
 	public void shoot() {
-		this.model.getNewEntity().add(new MonoDirectionEnemyBullet(this.getX(),
+		this.model.getNewEntities().add(new MonoDirectionEnemyBullet(this.getX(),
 		this.getY() + EntityConstants.MonoDirectionEnemyBullet.INITIAL_WIDTH / 2 + this.getHeight() / 2, SpecificEntityType.ALIEN_BULLET));
 	}
 

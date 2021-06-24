@@ -3,47 +3,40 @@ package model;
 import java.util.List;
 import java.util.Set;
 
-import controller.GameController;
 import model.entities.Alien;
 import model.entitiesutil.MappedEntity;
 import model.entitiesutil.typeentities.GenericEntity;
 
 /**
- * interface of the game's model
+ * interface for managing the game world
  *
  */
-public interface Model {
-
+public interface World {
+	
+	/**
+	 * a method that returns the initial entity set
+	 * @return
+	 */
+	public Set<GenericEntity> getLevelEntities();
+	
 	/**
 	 * a method that returns a set of new entities
 	 * @return
 	 */
 	public Set<GenericEntity> getNewEntities();
-
-	/**
-	 * a method that returns entities to be contained in the panel through a mapping
-	 * @return
-	 */
-	public Set<MappedEntity> getMappedEntities();
-
-	/**
-	 * method that start the next level
-	 * @return
-	 */
-	public void nextLevel();
-
+	
 	/**
 	 * a method that updates entities
 	 * @return
 	 */
 	public void updateEntityLevel(int cycles);
-
+	
 	/**
-	 * method that return the current controller which is managing the game
+	 * a method that returns entities to be contained in the panel through a mapping
 	 * @return
 	 */
-	public GameController getController();
-
+	public Set<MappedEntity> getMappedEntities();
+	
 	/**
 	 * a method that returns a list of aliens still alive
 	 * @return
@@ -75,36 +68,21 @@ public interface Model {
 	public double getMinWorldHeight();
 
 	/**
-	 * method that return the world which contains the current entities
+	 * method that cleans from entities, increments the level and calls the method to create the new level
 	 * @return
 	 */
-	public World getWorld();
+	public void startNextLevel(int lvlNum); 
+
+	/**
+	 * method for restarting the game
+	 * @return
+	 */
+	public void restartLevel();
 
 	/**
 	 * method that return the score
 	 * @return
 	 */
 	public int getScore();
-
-	/**
-	 * method that process the game over
-	 * @return
-	 */
-	public void processGameOver();
-
-	/**
-	 * method that return if there is a next level
-	 * @return
-	 */
-	public boolean hasNextLevel();
 	
-	/**
-	 * method for restarting the game
-	 */
-	public void restartGame();
-
-	/**
-	 * method that return the current level number
-	 */
-	public int getLevelNum();
 }

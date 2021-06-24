@@ -33,7 +33,7 @@ public class Player1 extends Player{
 	 */
 	@Override
 	public void shoot() {
-		this.model.getNewEntity().add(new PlayerBullet(this.getX(), getY() - this.getHeight()/2 - EntityConstants.PlayerBullet.INITIALHEIGHT/2));
+		this.model.getNewEntities().add(new PlayerBullet(this.getX(), getY() - this.getHeight()/2 - EntityConstants.PlayerBullet.INITIALHEIGHT/2));
 	}
 	
 	/**
