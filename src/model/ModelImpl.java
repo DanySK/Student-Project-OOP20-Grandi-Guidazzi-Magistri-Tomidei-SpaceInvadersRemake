@@ -36,7 +36,7 @@ public class ModelImpl implements Model {
 	 */
 	@Override
 	public void nextLevel() {
-		this.gameWorld.startNextLevel(this.lvlNum);
+		this.gameWorld.startNextLevel(this.lvlNum++);
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class ModelImpl implements Model {
 	 */
 	@Override
 	public int getLevelNum() {
-		return this.lvlNum;
+		return this.lvlNum-1;
 	}
 	
 	
