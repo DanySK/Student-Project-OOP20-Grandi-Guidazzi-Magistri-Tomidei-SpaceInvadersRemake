@@ -32,6 +32,8 @@ public class Strings {
 		public final static String PANEL_BACKGROUND = "src/res/image/backgroundImage.png";
 		public final static String GAME_OVER_BACKGROUND = "src/res/image/gameOverBackground.png";
 		public final static String WIN_BACKGROUND = "src/res/image/winBackground.png";
+		public final static String GAME_BACKGROUND = "src/res/image/gameBackground.png";
+		public final static String BLACK_BACKGROUND = "src/res/image/blackBackground.png";
 	}
 	
 	public class Skins{

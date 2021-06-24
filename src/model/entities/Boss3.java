@@ -3,7 +3,6 @@ package model.entities;
 import java.util.Random;
 
 import model.Model;
-import model.ModelImpl;
 import model.entitiesutil.Enemy;
 import model.entitiesutil.EntityConstants;
 import model.entitiesutil.EntityDirections;
@@ -125,8 +124,8 @@ public class Boss3 extends Enemy{
 		if(this.state.equals(BossState.UPSET) && 
 				this.getHits() % (this.getMaxHits()/2 - 1) == 0 && !this.teleport) {
 			do {
-				x = this.random.nextInt((int)(ModelImpl.MAX_WIDTH - this.getMuX()));
-			}while(x < ModelImpl.MIN_WIDTH);
+				x = this.random.nextInt((int)(this.model.getMaxWorldWidth() - this.getMuX()));
+			}while(x < this.model.getMinWorldWidth());
 
 			this.setX(x);
 			this.teleport = true;
