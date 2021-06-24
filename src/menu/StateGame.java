@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import menu.factories.PanelBackgroundFactory;
-import menu.factories.PanelFactory;
 import model.entitiesutil.MappedEntity;
 import util.Strings;
 import view.GraphicsView;
@@ -20,7 +19,6 @@ public class StateGame implements State{
 	
 	private GraphicsView graphicsPanel;
 	private JPanel panel;
-	private Board board;
 	
 	/**
 	 * The constructor of the StateGame,
@@ -30,7 +28,6 @@ public class StateGame implements State{
 	 */
 	public StateGame(Board board, String skinUri) {
 		this.panel = new PanelBackgroundFactory(Strings.BackgroundImages.GAME_BACKGROUND);
-		this.board = board;
 		if(skinUri.isBlank()) {
 			JOptionPane.showMessageDialog(board.getFrame(), "Can't find the skin!", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(1);
@@ -44,6 +41,8 @@ public class StateGame implements State{
 				System.exit(1);
 			}
 			this.graphicsPanel.setOpaque(false);
+			this.graphicsPanel.addKeyListener(board.getController().getView());
+			this.graphicsPanel.setFocusable(true);
 			this.panel.add(this.graphicsPanel);
 		}
 	}
