@@ -43,11 +43,11 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	@Override
 	public void startNewGame() {
 		if(!this.isRunning()) {
-			this.model.nextLevel();
-			this.frames = 0;
-			this.stateGameManager.setStart();
 			this.loop = Executors.newScheduledThreadPool
 					(Runtime.getRuntime().availableProcessors()-1);
+			this.frames = 0;
+			this.model.restartGame();
+			this.stateGameManager.setStart();
 			this.loop.scheduleWithFixedDelay(()-> gameLoop(), DEL, DEL, TimeUnit.MILLISECONDS);
 		}
 	}
@@ -110,7 +110,6 @@ public class GameControllerImpl implements GameController, ViewGameController {
 		}
 		this.updateGame();
 		this.render();
-		this.view.updateGui(this.model.getMappedEntities());
 	}
 
 	/**
@@ -149,8 +148,8 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 */
 	@Override
 	public void gameOver() {
-		this.stop();
 		this.view.openGameOver();
+		this.stop();
 	}
 
 	/**
@@ -158,8 +157,8 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 */
 	@Override
 	public void victory() {
-		this.stop();
 		this.view.openVictoryScene();
+		this.stop();
 	}
 
 	/**
