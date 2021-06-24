@@ -1,54 +1,74 @@
 package view.game;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import java.lang.ModuleLayer.Controller;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import controller.GameController;
 import controller.GameStatus;
 import controller.ViewGameController;
 import controller.gameStatusManager.ViewGameStatusManager;
+
 import menu.Board;
 import menu.StateGame;
+import menu.StateGameOver;
 import menu.StateMenu;
+import menu.StateWin;
 import menu.gameview.StateInGameMenu;
+
 import model.entitiesutil.MappedEntity;
 
-public class GameViewImpl extends KeyAdapter {
+/**
+ * implementation of {@link GameView}. Manage all the graphics aspects
+ *
+ */
+public class GameViewImpl extends KeyAdapter implements GameView {
     private final ViewGameStatusManager flag;
-    private final List<GameEvent> guiUpdateSet;
+    private final ViewGameController controller;
+    private final List<Set<MappedEntity>> guiUpdateSet;
     private final Map<GameEvent,Boolean> keyPressed;
     private final Board board;
 
+    /**
+     * implementation of {@link GameView}. Manage all the graphics aspects
+     *
+     */
     public GameViewImpl(final ViewGameController controller) {
+    	this.controller = controller;
         this.flag = controller.getViewStatusManager();
-        this.guiUpdateSet = Collections.synchronizedList(new ArrayList<>());
+        this.guiUpdateSet = Collections.synchronizedList(new LinkedList<>());
         this.keyPressed = Collections.synchronizedMap(new HashMap<>());
         this.board = new Board(controller);
     }
-
-    public List<GameEvent> getEvents(){
+    
+   /**
+ 	* {@inheritDoc}
+ 	*/
+    @Override
+	public List<GameEvent> getEvents(){
     	return this.keyPressed.entrySet().stream()
     			.filter(e -> e.getValue() == true)
     			.map(e-> e.getKey())
     			.collect(Collectors.toList());
     }
 
-    public void updateGui(Set<MappedEntity> updates){
+     /**
+ 	 * {@inheritDoc}
+ 	 */
+     @Override
+     public void updateGui(Set<MappedEntity> updates){
         this.guiUpdateSet.addAll(null);
-        this.refresh();
+        this.board.render(this.guiUpdateSet.get(0));
+        this.guiUpdateSet.remove(0);
     }
     
-    private void refresh() {
-       this.board.render();
-    }
-
-	/**
+    /**
 	 * {@inheritDoc}
 	 */
     @Override
@@ -60,30 +80,66 @@ public class GameViewImpl extends KeyAdapter {
 	 * {@inheritDoc}
 	 */
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e){
     	this.setKeyValue(e.getKeyCode(), false);
     }
     
+   /**
+ 	* {@inheritDoc}
+ 	*/
+    @Override
+	public void openGameOver(){
+    	this.board.setCurrentState(new StateGameOver(this.board));
+    }
+    
+    /**
+ 	 * {@inheritDoc}
+ 	 */
+     @Override
+     public void openVictoryScene(){
+    	this.board.setCurrentState(new StateWin(board, this.controller.getScore));
+    }
+    
+    /**
+     * method for set the pause
+     */
     private void setPause(){
     	this.board.setCurrentState(new StateInGameMenu(this.board));
         this.flag.pause();
     }
 
+    /**
+     * method for resume the game
+     */
     private void resume(){
+    	this.keyPressed.clear();
     	this.board.setCurrentState(new StateGame(this.board));
         this.flag.resume();
     }
 
+    /**
+     * method for stop the game
+     */
     private void stop() {
+    	this.keyPressed.clear();
     	this.board.setCurrentState(new StateMenu(this.board));
     	this.flag.stop();
     }
 
-    private void restart() {
+    /**
+     * method for restart the game
+     */
+    private void restart() {    
+    	this.keyPressed.clear();
     	this.flag.restart();
     	this.board.setCurrentState(new StateGame(this.board));
     }
     
+    /**
+     * method that handles keyboard inputs 
+     * @param code
+     * @param value
+     */
     private void setKeyValue(int code, boolean value) {
     	switch (code) {
     	case KeyEvent.VK_ESCAPE:
@@ -111,7 +167,12 @@ public class GameViewImpl extends KeyAdapter {
     		this.keyPressed.put(this.toGameEvent(code), value);
     	}
     }
-        
+    
+    /**
+     * method that manages possible game events
+     * @param code
+     * @return
+     */
     private GameEvent toGameEvent(int code) {
     	switch (code) {
 		case KeyEvent.VK_LEFT:
@@ -124,8 +185,23 @@ public class GameViewImpl extends KeyAdapter {
 			return GameEvent.FIRE;
 
 		default:
-			throw new IllegalArgumentException("wrong typing");
+			throw new IllegalArgumentException("Wrong typing");
 		}
     }
-    
+
+    /**
+ 	 * {@inheritDoc}
+ 	 */
+     @Override
+     public int getWidth() {
+		return this.board.getWidth();
+	}
+
+     /**
+ 	 * {@inheritDoc}
+ 	 */
+     @Override
+     public int getHeight() {
+		return this.board.getHeight();
+	}
 }
