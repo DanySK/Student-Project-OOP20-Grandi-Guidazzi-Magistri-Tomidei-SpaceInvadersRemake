@@ -22,7 +22,7 @@ public class StateSelectSkin implements State{
 
 	private TitleFactory titleFactory = new TitleFactory();
 	private JButton button = new JButton(Strings.Skins.RANDOM_SKIN);
-	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.PANEL_BACKGROUND);
+	private JPanel panel = new PanelBackgroundFactory(Strings.BackgroundImages.BLACK_BACKGROUND);
 	private JPanel centerPanel = new JPanel();
 	private JPanel gridPanel = new JPanel();
 	private JButton firstSkin;

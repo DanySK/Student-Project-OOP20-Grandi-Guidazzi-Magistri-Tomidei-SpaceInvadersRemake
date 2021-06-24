@@ -18,7 +18,6 @@ import view.GraphicsView;
 public class StateGame implements State{
 	
 	private GraphicsView graphicsPanel;
-	private JPanel panel;
 	
 	/**
 	 * The constructor of the StateGame,
@@ -27,7 +26,6 @@ public class StateGame implements State{
 	 * @param skinUri 
 	 */
 	public StateGame(Board board, String skinUri) {
-		this.panel = new PanelBackgroundFactory(Strings.BackgroundImages.GAME_BACKGROUND);
 		if(skinUri.isBlank()) {
 			JOptionPane.showMessageDialog(board.getFrame(), "Can't find the skin!", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(1);
@@ -43,7 +41,6 @@ public class StateGame implements State{
 			this.graphicsPanel.setOpaque(false);
 			this.graphicsPanel.addKeyListener(board.getController().getView());
 			this.graphicsPanel.setFocusable(true);
-			this.panel.add(this.graphicsPanel);
 		}
 	}
 	/**
