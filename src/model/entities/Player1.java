@@ -57,11 +57,7 @@ public class Player1 extends Player{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void doAfterCollisionWithEdge(EdgeCollision edge) {
-		if(edge.equals(EdgeCollision.LEFT) || edge.equals(EdgeCollision.RIGHT)) {
-			this.setMuX(0);
-		}
-	}
+	public void doAfterCollisionWithEdge(EdgeCollision edge) {}
 
 	/**
 	 * {@inheritDoc}
