@@ -150,7 +150,7 @@ public class ModelImpl implements Model {
 	@Override
 	public void restartGame() {
 		this.lvlNum = FIRST_LEVEL;
-		this.restartGame();
+		this.gameWorld.restartLevel();
 	}
 	
 	/**
