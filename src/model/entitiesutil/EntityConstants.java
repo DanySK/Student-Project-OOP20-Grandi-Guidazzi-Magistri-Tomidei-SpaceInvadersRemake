@@ -18,6 +18,7 @@ public class EntityConstants {
 		public final static int INITIAL_HEIGHT = 115;
 		public final static double INITIAL_MU_X = 10;
 		public final static int MAX_HITS = 3;
+		public final static int CYCLES_TO_SHOOT = 5; 
 	}
 	
 	public class Alien{
