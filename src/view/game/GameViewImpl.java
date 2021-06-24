@@ -28,7 +28,7 @@ public class GameViewImpl extends KeyAdapter {
         this.flag = controller.getViewStatusManager();
         this.guiUpdateSet = Collections.synchronizedList(new ArrayList<>());
         this.keyPressed = Collections.synchronizedMap(new HashMap<>());
-        this.board = new Board();
+        this.board = new Board(controller);
     }
 
     public List<GameEvent> getEvents(){

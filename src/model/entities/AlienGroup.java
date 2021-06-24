@@ -47,9 +47,9 @@ public class AlienGroup{
 		Pair<Integer, Integer> lastPos;
 		rows += numAlien % this.MAX_ALIEN_PER_COLUMN == 0 ? 0 : 1;
 		for(int i = 0; i < rows; i++) {
-			lastPos=new Pair<>(spacingX * 4, (i+1)*spacingY);
+			lastPos=new Pair<>(model.getController().getWindowWidth() - spacingX, (i+1)*spacingY);
 			for(int j = 0; j < this.MAX_ALIEN_PER_COLUMN; j++) {
-				if(alienInserted>=numAlien) {
+				if(alienInserted >= numAlien) {
 					break;
 				}
 				if(j == 0) {
@@ -59,7 +59,7 @@ public class AlienGroup{
 				} else {
 					alienGroup.add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_3));
 				}
-				lastPos = new Pair<>(lastPos.getX()+spacingX, lastPos.getY());
+				lastPos = new Pair<>(lastPos.getX() - spacingX, lastPos.getY());
 				alienInserted++;
 			}
 		}
