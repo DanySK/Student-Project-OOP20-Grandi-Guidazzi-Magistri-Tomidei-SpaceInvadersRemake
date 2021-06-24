@@ -96,9 +96,6 @@ public class WorldImpl implements World{
 						(e.getY() > this.MAX_HEIGHT) ? this.MAX_HEIGHT :
 							(e.getY() < this.MIN_HEIGHT) ? this.MIN_HEIGHT : e.getY());
 			}
-			else if(e.getX() < this.MIN_WIDTH || e.getY() < this.MIN_HEIGHT) {
-				this.model.getController().gameOver();
-			}
 		});
 
 		this.setWorldBounds(eLevel);
