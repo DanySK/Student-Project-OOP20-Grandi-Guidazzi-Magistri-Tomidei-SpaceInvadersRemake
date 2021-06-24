@@ -140,7 +140,7 @@ public abstract class Player implements UserEntity{
 	 */
 	@Override
 	public void setX(double x) {
-		this.position.setY(x);
+		this.position.setX(x);
 	}
 
 	/**
