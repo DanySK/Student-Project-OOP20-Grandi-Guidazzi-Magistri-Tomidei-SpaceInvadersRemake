@@ -22,7 +22,7 @@ public class AlienGroup{
 	private final int MAX_ALIEN_SHOOTING = 4;
 	private final int MIN_ALIEN_SHOOTING = 1;
 	private final int MAX_ALIEN_PER_COLUMN = 10;
-	private EdgeCollision expectedCollision = EdgeCollision.LEFT;
+	private EdgeCollision expectedCollision;
 	
 	/**
 	 * the constructor of the alien group,
@@ -39,6 +39,7 @@ public class AlienGroup{
 	 * @return a set with the aliens 
 	 */
 	public Set<Alien> createAlienGroup(int numAlien){
+		this.expectedCollision = EdgeCollision.LEFT;
 		Set<Alien> alienGroup = new HashSet<>();
 		int alienInserted = 0;
 		int rows = numAlien / this.MAX_ALIEN_PER_COLUMN;
