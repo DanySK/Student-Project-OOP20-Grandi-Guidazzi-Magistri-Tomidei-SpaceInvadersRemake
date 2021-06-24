@@ -45,4 +45,12 @@ public interface EntityCollision {
 	 */
 	public void checkCollision(GenericEntity e);
 	
+	/**
+	 * Check collision between two specific entities
+	 * 
+	 * @param e				is one {@link GenericEntity} to check
+	 * @param entityLevel	is one  {@link GenericEntity} to check
+	 */
+	public void collision(GenericEntity e, GenericEntity entityLevel);
+	
 }

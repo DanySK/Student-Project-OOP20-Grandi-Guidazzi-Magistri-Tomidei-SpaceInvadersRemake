@@ -62,12 +62,9 @@ public class EntityCollisionImpl implements EntityCollision{
 	}
 
 	/**
-	 * Check collision between two specific entities
-	 * 
-	 * @param e				is one {@link GenericEntity} to check
-	 * @param entityLevel	is one  {@link GenericEntity} to check
+	 * {@inheritDoc}
 	 */
-	private void collision(GenericEntity e, GenericEntity entityLevel) {
+	public void collision(GenericEntity e, GenericEntity entityLevel) {
 		if(!e.equals(entityLevel) && e.isAlive() && entityLevel.isAlive() && 
 				!e.getEntityType().equals(entityLevel.getEntityType())){
 
