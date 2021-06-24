@@ -38,6 +38,9 @@ public class StateOptions implements State{
 		this.centerPanel.add(this.labelFactory.createButton(Strings.States.AUDIO_SETTINGS, board, "Center"));
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;

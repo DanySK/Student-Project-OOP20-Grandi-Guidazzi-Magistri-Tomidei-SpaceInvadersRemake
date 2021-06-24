@@ -35,6 +35,9 @@ public class StateChangeKeys implements State{
 		
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;

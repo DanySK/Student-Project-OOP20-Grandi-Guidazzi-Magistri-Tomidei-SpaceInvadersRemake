@@ -46,6 +46,10 @@ public class StateLeaderboard implements State{
 					createTitle("There was an error", Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle));
 		}
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;
