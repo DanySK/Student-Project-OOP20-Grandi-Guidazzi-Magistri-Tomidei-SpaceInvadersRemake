@@ -47,14 +47,14 @@ public class AlienGroup{
 		Pair<Integer, Integer> lastPos;
 		rows += numAlien % this.MAX_ALIEN_PER_COLUMN == 0 ? 0 : 1;
 		for(int i = 0; i < rows; i++) {
-			lastPos=new Pair<>(model.getController().getWindowWidth() - spacingX, (i+1)*spacingY);
+			lastPos=new Pair<>((int)model.getMaxWorldWidth() - EntityConstants.Alien.INITIAL_WIDTH, (i+1)*spacingY);
 			for(int j = 0; j < this.MAX_ALIEN_PER_COLUMN; j++) {
 				if(alienInserted >= numAlien) {
 					break;
 				}
-				if(j == 0) {
+				if(i == 0) {
 					alienGroup.add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_1));
-				} else if(j == 1) {
+				} else if(i == 1) {
 					alienGroup.add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_2));
 				} else {
 					alienGroup.add(new Alien(lastPos.getX(), lastPos.getY(), this, model, SpecificEntityType.ALIEN_3));
