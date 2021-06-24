@@ -97,7 +97,7 @@ public class GameViewImpl extends KeyAdapter implements GameView {
  	 */
      @Override
      public void openVictoryScene(){
-    	this.board.setCurrentState(new StateWin(board, this.controller.getScore));
+    	this.board.setCurrentState(new StateWin(board, this.controller.getScore()));
     }
     
     /**

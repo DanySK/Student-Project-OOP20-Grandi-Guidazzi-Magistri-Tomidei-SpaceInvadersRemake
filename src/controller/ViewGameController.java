@@ -34,4 +34,10 @@ public interface ViewGameController {
 	 */
 	public ViewGameStatusManager getViewStatusManager();
 
+	/**
+	 * Return the current score of the game
+	 * 
+	 * @return an integer which represent the current score of the game
+	 */
+	public int getScore();
 }
