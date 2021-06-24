@@ -149,7 +149,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	@Override
 	public void gameOver() {
 		this.stop();
-		
+		this.view.openGameOver();
 	}
 
 	/**
@@ -157,7 +157,8 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 */
 	@Override
 	public void victory() {
-		this.stop();		
+		this.stop();
+		this.view.openVictoryScene();
 	}
 
 	/**
