@@ -2,7 +2,6 @@ package view.game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.lang.ModuleLayer.Controller;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -89,7 +88,7 @@ public class GameViewImpl extends KeyAdapter implements GameView {
  	*/
     @Override
 	public void openGameOver(){
-    	this.board.setCurrentState(new StateGameOver(this.board));
+    	this.board.getMenuController().changeState(new StateGameOver(this.board));
     }
     
     /**
@@ -97,14 +96,14 @@ public class GameViewImpl extends KeyAdapter implements GameView {
  	 */
      @Override
      public void openVictoryScene(){
-    	this.board.setCurrentState(new StateWin(board, this.controller.getScore()));
+    	this.board.getMenuController().changeState(new StateWin(board, this.controller.getScore()));
     }
     
     /**
      * method for set the pause
      */
     private void setPause(){
-    	this.board.setCurrentState(new StateInGameMenu(this.board));
+    	this.board.getMenuController().changeState(new StateInGameMenu(this.board));
         this.flag.pause();
     }
 
@@ -113,7 +112,7 @@ public class GameViewImpl extends KeyAdapter implements GameView {
      */
     private void resume(){
     	this.keyPressed.clear();
-    	this.board.setCurrentState(new StateGame(this.board));
+    	this.board.getMenuController().changeState(new StateGame(this.board));
         this.flag.resume();
     }
 
@@ -132,7 +131,7 @@ public class GameViewImpl extends KeyAdapter implements GameView {
     private void restart() {    
     	this.keyPressed.clear();
     	this.flag.restart();
-    	this.board.setCurrentState(new StateGame(this.board));
+    	this.board.getMenuController().changeState(new StateGame(this.board));
     }
     
     /**
