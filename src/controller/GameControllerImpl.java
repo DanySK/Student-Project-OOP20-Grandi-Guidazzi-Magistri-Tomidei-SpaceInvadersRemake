@@ -43,7 +43,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	@Override
 	public void startNewGame() {
 		if(!this.isRunning()) {
-			//
+			this.model.nextLevel();
 			this.frames = 0;
 			this.stateGameManager.setStart();
 			this.loop = Executors.newScheduledThreadPool
@@ -75,8 +75,8 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public GameView getView() {
-		return this.view;
+	public GameViewImpl getView() {
+		return (GameViewImpl) this.view;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 				break;
 			case RESTARTED:
 				this.frames = 0;
-				//this.model.restartLvl();
+				this.model.restartGame();
 				this.stateGameManager.setResume();
 				break;
 			case RESUMED:
@@ -109,7 +109,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 				break;
 		}
 		this.updateGame();
-//		this.render();
+		this.render();
 		this.view.updateGui(this.model.getMappedEntities());
 	}
 
@@ -124,7 +124,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 * Update the game view
 	 */
 	private void render() {
-		//
+		this.view.updateGui(this.getLevelEntities());
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 */
 	@Override
 	public int getWindowWidth() {
-		return 0;
+		return this.view.getWidth();
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 */
 	@Override
 	public int getWindowHeight() {
-		return 0;
+		return this.view.getHeight();
 	}
 
 	/**
@@ -166,5 +166,10 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	@Override
 	public ViewGameStatusManager getViewStatusManager() {
 		return (ViewGameStatusManager) this.stateGameManager;
+	}
+
+	@Override
+	public int getScore() {
+		return this.model.getScore();
 	}
 }
