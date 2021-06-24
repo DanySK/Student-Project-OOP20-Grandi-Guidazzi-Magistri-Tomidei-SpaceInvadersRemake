@@ -10,5 +10,5 @@ public interface UserEntity extends MobileEntity, EntityCapableOfShooting {
 	/**
 	 * Update {@link UserEntity} position
 	 */
-	void updateEntityPosition(GameEvent event);
+	void updateEntityPosition(GameEvent event, int cycles);
 }

@@ -2,7 +2,7 @@ package menu;
 
 
 import java.awt.Color;
-
+import java.util.Set;
 
 import javax.swing.BoxLayout;
 
@@ -12,6 +12,7 @@ import javax.swing.WindowConstants;
 import controller.ViewGameController;
 import menuController.menuController;
 import menuController.menuControllerImpl;
+import model.entitiesutil.MappedEntity;
 import util.Constants;
 
 /**
@@ -104,9 +105,9 @@ public class Board {
 	/**
 	 * A method to refresh the game panel
 	 */
-	public void render() {
+	public void render(Set<MappedEntity> set) {
 		if(this.currentState.getClass().getSimpleName().equals("StateGame")) {
-			this.getStateGame().refresh();
+			this.getStateGame().refresh(set);
 		}
 	}
 

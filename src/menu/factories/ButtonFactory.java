@@ -6,7 +6,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -15,9 +14,7 @@ import javax.swing.JOptionPane;
 
 import menu.Board;
 import menu.StateGame;
-import menu.StateInfo;
 import util.Constants;
-import view.ImageManagerImpl;
 /**
  * A class that makes buttons for choose the player image. 
  */

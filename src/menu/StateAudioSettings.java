@@ -39,6 +39,9 @@ public class StateAudioSettings implements State{
 		this.centerPanel.add(this.sliderFactory.create(board));
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;

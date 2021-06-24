@@ -26,6 +26,9 @@ public class StateGameOver implements State{
 		this.panel.add(this.labelFactory.createButton(Strings.States.GO_BACK_TO_MENU, board, "Center"), BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public JPanel getMainPanel() {
 		return this.panel;
