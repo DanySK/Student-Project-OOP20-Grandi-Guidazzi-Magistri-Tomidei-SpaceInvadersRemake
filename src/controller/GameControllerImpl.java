@@ -11,6 +11,7 @@ import controller.gameStatusManager.ViewGameStatusManager;
 import model.Model;
 import model.ModelImpl;
 import model.entitiesutil.MappedEntity;
+import view.game.GameView;
 import view.game.GameViewImpl;
 
 /**
@@ -22,7 +23,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	private final int DEL = 1000/FPS;
 	private final ControllerGameStatusManager stateGameManager;
 	private final Model model;
-	private final GameViewImpl view;
+	private final GameView view;
 
 	private ScheduledExecutorService loop;
 	private int frames;
@@ -74,7 +75,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public GameViewImpl getView() {
+	public GameView getView() {
 		return this.view;
 	}
 

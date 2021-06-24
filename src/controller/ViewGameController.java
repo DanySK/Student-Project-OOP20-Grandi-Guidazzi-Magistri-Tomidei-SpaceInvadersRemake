@@ -4,7 +4,7 @@ import java.util.Set;
 
 import controller.gameStatusManager.ViewGameStatusManager;
 import model.entitiesutil.MappedEntity;
-import view.game.GameViewImpl;
+import view.game.GameView;
 
 public interface ViewGameController {
 
@@ -18,7 +18,7 @@ public interface ViewGameController {
 	 * 
 	 * @return an Object that represent the game view
 	 */
-	public GameViewImpl getView();
+	public GameView getView();
 
 	/**
 	 * Get the entities that are in the level, mapped to fit in the game panel
