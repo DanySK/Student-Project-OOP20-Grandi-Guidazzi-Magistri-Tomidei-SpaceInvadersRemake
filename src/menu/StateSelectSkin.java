@@ -61,7 +61,8 @@ public class StateSelectSkin implements State{
 		this.centerPanel.add(this.button);
 		this.button.addActionListener(e->{
 			board.setPlayerSkin(this.selectRandomSkin());
-			board.setCurrentState(new StateGame(board, board.getPlayerSkin()));
+			board.getMenuController().changeState(new StateGame(board, board.getPlayerSkin()));
+			//board.setCurrentState(new StateGame(board, board.getPlayerSkin()));
 			JOptionPane.showMessageDialog(null, "Welcome to Space Invaders Remix!"
 					+ "\n\nTHINGS TO KNOW:"
 					+ "\n\n- Use left/right arrow keys to move\n- Press spacebar to shoot"
