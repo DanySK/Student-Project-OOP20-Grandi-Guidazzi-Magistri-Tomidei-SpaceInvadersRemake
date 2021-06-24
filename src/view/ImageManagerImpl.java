@@ -57,6 +57,14 @@ public class ImageManagerImpl implements UpdateManager{
 		return this.gameImages.get(entity.getEntityType());
 	}
 	
+	/**
+	 * Method that returs the resized image for the entitties
+	 * @param e
+	 * @param width
+	 * @param height
+	 * @return
+	 * @throws IOException
+	 */
 	private Image getImage(SpecificEntityType e, int width, int height) throws IOException {
 		final StringBuilder stringNameBuilder = new StringBuilder();
 		stringNameBuilder.append("src/res/image/" + e.toString().toLowerCase() + ".png");

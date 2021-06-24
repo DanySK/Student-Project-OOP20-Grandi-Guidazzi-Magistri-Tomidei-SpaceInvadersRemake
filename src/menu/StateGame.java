@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import menu.gameview.StateInGameMenu;
 import view.GraphicsView;
 
 
