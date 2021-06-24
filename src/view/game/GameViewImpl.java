@@ -106,6 +106,14 @@ public class GameViewImpl extends KeyAdapter implements GameView {
     	this.board.getMenuController().changeState(new StateInGameMenu(this.board));
         this.flag.pause();
     }
+    
+    /**
+ 	* {@inheritDoc}
+ 	*/
+    @Override
+    public void clearKeyMap() {
+    	this.keyPressed.clear();
+    }
 
     /**
      * method for resume the game

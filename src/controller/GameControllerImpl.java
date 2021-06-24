@@ -47,6 +47,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 					(Runtime.getRuntime().availableProcessors()-1);
 			this.frames = 0;
 			this.model.restartGame();
+			this.view.clearKeyMap();
 			this.stateGameManager.setStart();
 			this.loop.scheduleWithFixedDelay(()-> gameLoop(), DEL, DEL, TimeUnit.MILLISECONDS);
 		}

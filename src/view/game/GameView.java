@@ -42,4 +42,10 @@ public interface GameView {
 	 */
 	public int getHeight();
 
+	/**
+	 * Method for clear the map
+	 */
+	void clearKeyMap();
+	
+
 }
