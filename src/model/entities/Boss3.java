@@ -86,8 +86,8 @@ public class Boss3 extends Enemy{
 			}
 		}
 		else {
-			this.model.getNewEntities().add(new MonoDirectionEnemyBullet(this.getX() + this.getWidth()/2 -1,
-					this.getY() + this.getHeight() + EntityConstants.MonoDirectionEnemyBullet.INITIAL_HEIGHT / 2, 
+			this.model.getNewEntities().add(new MonoDirectionEnemyBullet(this.getX(),
+					this.getY() + this.getHeight()/2 + EntityConstants.MonoDirectionEnemyBullet.INITIAL_HEIGHT / 2, 
 					SpecificEntityType.BOSS_BULLET));
 		}
 	}
