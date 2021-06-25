@@ -6,9 +6,7 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import menu.factories.PanelBackgroundFactory;
 import model.entitiesutil.MappedEntity;
-import util.Strings;
 import view.GraphicsView;
 
 
