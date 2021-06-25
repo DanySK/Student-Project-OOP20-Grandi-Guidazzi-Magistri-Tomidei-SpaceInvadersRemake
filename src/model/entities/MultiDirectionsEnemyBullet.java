@@ -24,12 +24,13 @@ public class MultiDirectionsEnemyBullet extends Bullet {
 	 */
 	public MultiDirectionsEnemyBullet(double x, double y, SpecificEntityType type) {
 		this.random = new Random();
+		double maxSpeed = EntityConstants.MultiDirectionEnemyBullet.MAX_MU_Y;
+		double speedY = (maxSpeed == 0) ? 0 :
+			(random.nextInt((int)maxSpeed) + 1);
 		this.create(type, x, y, EntityConstants.MultiDirectionEnemyBullet.INITIAL_WIDTH, 
 				EntityConstants.MultiDirectionEnemyBullet.INITIAL_HEIGHT, 
 				EntityConstants.MultiDirectionEnemyBullet.INITIAL_MU_X,
-				(this.random.nextInt((int)EntityConstants.MultiDirectionEnemyBullet.MAX_MU_Y) + 1), 
-				this.setRandomDirection(), 
-				new EntityMovementImpl());
+				speedY, this.setRandomDirection(), new EntityMovementImpl());
 	}
 
 	/**

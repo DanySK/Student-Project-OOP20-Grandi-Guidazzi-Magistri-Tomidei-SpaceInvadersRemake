@@ -22,10 +22,12 @@ public class MonoDirectionEnemyBullet extends Bullet {
 	 */
 	public MonoDirectionEnemyBullet(double x,double y, SpecificEntityType type) {
 		Random random = new Random();
+		double maxSpeed = EntityConstants.MonoDirectionEnemyBullet.MAX_MU_Y;
+		double speedY = (maxSpeed == 0) ? 0 :
+			(random.nextInt((int)maxSpeed) + 1);
 		this.create(type, x, y, EntityConstants.MonoDirectionEnemyBullet.INITIAL_WIDTH, 
 				EntityConstants.MonoDirectionEnemyBullet.INITIAL_HEIGHT, 
-				0, (random.nextInt((int)EntityConstants.MonoDirectionEnemyBullet.MAX_MU_Y) + 1), 
-				EntityDirections.DOWN, new EntityMovementImpl());
+				0, speedY, EntityDirections.DOWN, new EntityMovementImpl());
 	}
 
 	/**
