@@ -24,9 +24,11 @@ public class Player1 extends Player{
 	 * @param model		is the {@link Model}
 	 */
 	public Player1(SpecificEntityType type, double x, double y, Model model) {
-		this.create(type, x, y, EntityConstants.Player.INITIAL_WIDTH, EntityConstants.Player.INITIAL_HEIGHT,
-				EntityConstants.Player.INITIAL_MU_X, 0, EntityConstants.Player.MAX_HITS);
 		this.model = model;
+		double speedX = this.model.getMaxWorldWidth()/100;
+		this.create(type, x, y, EntityConstants.Player.INITIAL_WIDTH, EntityConstants.Player.INITIAL_HEIGHT,
+				speedX, 0, EntityConstants.Player.MAX_HITS);
+		
 		this.shoot = false;
 	}
 	
