@@ -69,6 +69,11 @@ public class WorldImpl implements World{
 		this.score = 0;
 		this.lvlNum =  this.FIRST_LEVEL;
 		this.loaderManager = new LvLoaderImpl();
+
+		MAX_WIDTH = (this.INITIAL_MAX_WIDTH == 0) ? 100 + this.INITIAL_MIN_WIDTH : this.INITIAL_MAX_WIDTH;
+		MAX_HEIGHT = (this.INITIAL_MAX_HEIGHT == 0) ? 100 + this.INITIAL_MIN_HEIGHT : this.INITIAL_MAX_HEIGHT;
+		MIN_WIDTH = this.INITIAL_MIN_WIDTH;
+		MIN_HEIGHT = this.INITIAL_MIN_HEIGHT;
 		
 	}
 
@@ -76,11 +81,6 @@ public class WorldImpl implements World{
 	 * method that initializes the layer and resizes the game edges to accommodate all entities
 	 */
 	private void nextLevel() {
-
-		MAX_WIDTH = (this.INITIAL_MAX_WIDTH == 0) ? 100 + this.INITIAL_MIN_WIDTH : this.INITIAL_MAX_WIDTH;
-		MAX_HEIGHT = (this.INITIAL_MAX_HEIGHT == 0) ? 100 + this.INITIAL_MIN_HEIGHT : this.INITIAL_MAX_HEIGHT;
-		MIN_WIDTH = this.INITIAL_MIN_WIDTH;
-		MIN_HEIGHT = this.INITIAL_MIN_HEIGHT;
 
 		Set<GenericEntity> eLevel = new HashSet<>();
 
