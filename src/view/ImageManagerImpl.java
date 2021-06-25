@@ -3,20 +3,15 @@ package view;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 
 import model.entities.SpecificEntityType;
-import model.entitiesutil.EntityConstants;
 import model.entitiesutil.GenericEntityType;
 import model.entitiesutil.MappedEntity;
-import model.entitiesutil.typeentities.GenericEntity;
-import util.Strings;
 
 public class ImageManagerImpl implements UpdateManager{
 
