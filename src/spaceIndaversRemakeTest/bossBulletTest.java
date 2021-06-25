@@ -9,6 +9,9 @@ import model.entities.MultiDirectionsEnemyBullet;
 import model.entities.SpecificEntityType;
 import util.Pair;
 
+/**
+ *  Test that checks the correct creation of the Boss bullet.
+ */
 public class bossBulletTest {
 
 		@Test

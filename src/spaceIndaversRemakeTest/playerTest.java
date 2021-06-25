@@ -16,7 +16,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/**
+ * Test that checks the correct player movement.
+ */
 
 public class playerTest {
 
