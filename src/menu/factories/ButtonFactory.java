@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.io.File;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,7 +32,7 @@ public class ButtonFactory {
 	 */
 	public JButton createSkinButton(String skinUri, Board board) {
 		try {
-			this.image = ImageIO.read(getClass().getResourceAsStream(skinUri));
+			this.image = ImageIO.read(new File(skinUri));
 			this.resizedImage = this.image.getScaledInstance(Constants.ObjectSize.imageDimension, Constants.ObjectSize.imageDimension, Image.SCALE_DEFAULT);
 			button.setIcon(new ImageIcon(this.resizedImage));
 		} catch (Exception ex) {

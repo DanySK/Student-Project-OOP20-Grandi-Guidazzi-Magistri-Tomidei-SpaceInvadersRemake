@@ -23,7 +23,7 @@ public class ImageManagerImpl implements UpdateManager{
 	 */
 	public ImageManagerImpl(String uriSkin) throws IOException {
 		this.gameImages = new HashMap<>();
-		this.playerImage = ImageIO.read(getClass().getResourceAsStream(uriSkin));
+		this.playerImage = ImageIO.read(new File(uriSkin));
 	}
 	
 	/**
