@@ -11,7 +11,7 @@ import model.physics.EntityCollision.EdgeCollision;
 import model.physics.EntityMovementImpl;
 /**
  * 
- * The class that models the enity alien.
+ * The class that models the entity alien.
  *
  */
 public class Alien extends Enemy{
