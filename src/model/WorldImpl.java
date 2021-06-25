@@ -394,6 +394,7 @@ public class WorldImpl implements World{
 	@Override
 	public void restartLevel() {
 		this.score = 0;
+		this.lvlNum = this.LAST_LEVEL;
 		this.startNextLevel();
 	}
 
