@@ -22,7 +22,10 @@ public class LvImpl implements Level{
 		this.bossType = Optional.ofNullable(boss); //if bossType is null it contains an optional empty else a string
 		this.aliens= aliens;
 	}
-	
+
+	/**
+	 * {@link Level} implementation
+	 */
 	public LvImpl(int levelNum) {
 		switch(levelNum) {
 			case 1:

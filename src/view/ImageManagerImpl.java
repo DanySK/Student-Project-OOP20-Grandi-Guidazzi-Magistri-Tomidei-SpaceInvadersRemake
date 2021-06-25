@@ -21,8 +21,6 @@ public class ImageManagerImpl implements UpdateManager{
 	/**
 	 * The constructor that add all the images for the playerSkin
 	 */
-	
-
 	public ImageManagerImpl(String uriSkin) throws IOException {
 		this.gameImages = new HashMap<>();
 		this.playerImage = ImageIO.read(new File(uriSkin));
@@ -39,6 +37,9 @@ public class ImageManagerImpl implements UpdateManager{
 		return Optional.of(image.getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Image drawEntity(MappedEntity entity) throws IOException {
 		

@@ -49,13 +49,16 @@ public class StateGame implements State{
 	public StateGame(Board board) {
 		this(board, board.getPlayerSkin());
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public JPanel getMainPanel() {
 		return this.graphicsPanel;
 	}
 	
-	/*
+	/**
 	 * Method that update the screen.
 	 */
 	public void refresh(Set<MappedEntity> entity) {
