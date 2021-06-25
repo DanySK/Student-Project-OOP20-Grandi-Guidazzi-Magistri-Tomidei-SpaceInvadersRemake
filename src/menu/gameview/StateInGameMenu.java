@@ -39,7 +39,9 @@ public class StateInGameMenu implements State{
 		this.centerPanel.add(this.labelFactory.createButton(Strings.States.RESTART, board, "Center"));
 		this.centerPanel.add(this.labelFactory.createButton(Strings.States.AUDIO_SETTINGS_IN_GAME, board, "Center"));
 		this.centerPanel.add(this.labelFactory.createButton(Strings.States.GO_BACK_TO_MENU, board, "Center"));
-		
+
+		this.panel.addKeyListener(board.getController().getView());
+		this.panel.setFocusable(true);
 	}
 	
 	@Override
