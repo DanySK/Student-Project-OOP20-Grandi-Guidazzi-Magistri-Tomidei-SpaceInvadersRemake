@@ -44,6 +44,9 @@ public class GraphicsView extends JPanel{
 		this.entity = Collections.synchronizedSet(new HashSet<>());	
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
