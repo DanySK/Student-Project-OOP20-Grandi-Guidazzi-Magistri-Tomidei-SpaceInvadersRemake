@@ -32,7 +32,7 @@ public class ButtonFactory {
 	 */
 	public JButton createSkinButton(String skinUri, Board board) {
 		try {
-			this.image = ImageIO.read(new File(skinUri));
+			this.image = ImageIO.read(getClass().getResourceAsStream(skinUri));
 			this.resizedImage = this.image.getScaledInstance(Constants.ObjectSize.imageDimension, Constants.ObjectSize.imageDimension, Image.SCALE_DEFAULT);
 			button.setIcon(new ImageIcon(this.resizedImage));
 		} catch (Exception ex) {

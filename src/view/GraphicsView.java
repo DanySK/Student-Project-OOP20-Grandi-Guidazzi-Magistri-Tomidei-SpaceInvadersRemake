@@ -34,7 +34,7 @@ public class GraphicsView extends JPanel{
 	 */
 	public GraphicsView(String uriSkin, ViewGameController ctrl) throws IOException{
 		try {
-			imageBackgound = ImageIO.read(new File(Strings.BackgroundImages.GAME_BACKGROUND));
+			imageBackgound = ImageIO.read(getClass().getResourceAsStream(Strings.BackgroundImages.GAME_BACKGROUND));
 			this.resizedImage = imageBackgound.getScaledInstance(Constants.ObjectDimension.preferDimension.width,
 				Constants.ObjectDimension.preferDimension.height, Image.SCALE_DEFAULT);
 		} catch(IOException e) {

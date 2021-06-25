@@ -29,25 +29,21 @@ public class Strings {
 	}
 	
 	public class BackgroundImages{
-		public final static String PANEL_BACKGROUND = "src/res/image/backgroundImage.png";
-		public final static String GAME_OVER_BACKGROUND = "src/res/image/gameOverBackground.png";
-		public final static String WIN_BACKGROUND = "src/res/image/winBackground.png";
-		public final static String GAME_BACKGROUND = "src/res/image/gameBackground.png";
-		public final static String BLACK_BACKGROUND = "src/res/image/blackBackground.png";
+		public final static String PANEL_BACKGROUND = "/res/image/backgroundImage.png";
+		public final static String GAME_OVER_BACKGROUND = "/res/image/gameOverBackground.png";
+		public final static String WIN_BACKGROUND = "/res/image/winBackground.png";
+		public final static String GAME_BACKGROUND = "/res/image/gameBackground.png";
+		public final static String BLACK_BACKGROUND = "/res/image/blackBackground.png";
 	}
 	
 	public class Skins{
-		public final static String BOSS_1 = "src/res/image/boss_1.png";
-		public final static String BOSS_2 = "src/res/image/boss_2.png";
-		public final static String BOSS_3 = "src/res/image/boss_3.png";
-		public final static String SKIN_1 = "src/res/image/skin_1.png";
-		public final static String SKIN_2 = "src/res/image/skin_2.png";
-		public final static String SKIN_3 = "src/res/image/skin_3.png";
-		public final static String SKIN_4 = "src/res/image/skin_4.png";
-		public final static String ALIEN_SKIN = "src/res/image/alien_Bullet.png";
-		public final static String ALIEN_BULLET = "src/res/image/alienBullet.jpg";
-		public final static String BOSS_BULLET = "src/res/image/boss_Bullet.jpg";
-		public final static String PLAYER_BULLET = "src/res/image/player_1_Bullet.jpg";
+		public final static String BOSS_1 = "/res/image/boss_1.png";
+		public final static String BOSS_2 = "/res/image/boss_2.png";
+		public final static String BOSS_3 = "/res/image/boss_3.png";
+		public final static String SKIN_1 = "/res/image/skin_1.png";
+		public final static String SKIN_2 = "/res/image/skin_2.png";
+		public final static String SKIN_3 = "/res/image/skin_3.png";
+		public final static String SKIN_4 = "/res/image/skin_4.png";
 		public final static String RANDOM_SKIN = "Random Skin";
 	}
 	

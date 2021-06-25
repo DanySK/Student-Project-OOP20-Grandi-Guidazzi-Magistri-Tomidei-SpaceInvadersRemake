@@ -3,7 +3,6 @@ package menu.factories;
 import java.awt.Graphics;
 
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -23,7 +22,7 @@ public class PanelBackgroundFactory extends JPanel{
 	 */
 	public PanelBackgroundFactory(String imageLocation) {
 		try {
-			image = ImageIO.read(new File(imageLocation));
+			image = ImageIO.read(getClass().getResourceAsStream(imageLocation));
 			this.resizedImage = image.getScaledInstance(Constants.ObjectDimension.preferDimension.width,
 					Constants.ObjectDimension.preferDimension.height, Image.SCALE_DEFAULT);
 		} catch (IOException e) {
