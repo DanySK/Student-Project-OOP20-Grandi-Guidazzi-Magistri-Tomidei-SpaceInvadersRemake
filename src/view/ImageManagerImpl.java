@@ -46,13 +46,14 @@ public class ImageManagerImpl implements UpdateManager{
 
 	@Override
 	public Image drawEntity(MappedEntity entity) throws IOException {
-		if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
-			this.playerImage = this.resizeImage(this.playerImage, entity.getWidth(), entity.getHeight()).get();
-			this.gameImages.put(SpecificEntityType.PLAYER_1, this.playerImage);
-		}
 		if(!this.gameImages.containsKey(entity.getEntityType())) {
-			this.gameImages.put(entity.getEntityType(), this.getImage(entity.getEntityType(), 
+			if(entity.getEntityType().getGenericType().equals(GenericEntityType.PLAYER)) {
+				this.playerImage = this.resizeImage(this.playerImage, entity.getWidth(), entity.getHeight()).get();
+				this.gameImages.put(SpecificEntityType.PLAYER_1, this.playerImage);
+			} else {
+				this.gameImages.put(entity.getEntityType(), this.getImage(entity.getEntityType(), 
 					entity.getWidth(), entity.getHeight()));
+			}
 		}
 		return this.gameImages.get(entity.getEntityType());
 	}
