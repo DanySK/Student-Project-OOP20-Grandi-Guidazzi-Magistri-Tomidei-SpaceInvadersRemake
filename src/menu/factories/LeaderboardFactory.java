@@ -37,14 +37,15 @@ public class LeaderboardFactory {
 		
 		try {
 			this.bufferedReader = new BufferedReader(new FileReader(Strings.Leaderboard.LEADERBOARD_URI));
-			
+			//cycle to get the last score on the podium
 			for(int i=Constants.LeaderboardConstants.minPodium; i<=Constants.LeaderboardConstants.maxPodium+1; i++) {
 				Optional<String> position = Optional.ofNullable(bufferedReader.readLine());
-				
+				//if position is not a score then it will insert a standard string
 				if(position.isEmpty() || position.get().equals("") || position.get().equals(Strings.Leaderboard.LEADERBOARD_DEFAULT_TEXT)) {
 					position = Optional.of(Strings.Leaderboard.LEADERBOARD_DEFAULT_TEXT);
 					this.leaderboardList.add(new Pair<>(position, 0));
 				} else {
+					//it takes the score from the line read
 					String[] lineSplitted = position.get().split(" ");
 					int lineScore = Integer.parseInt(lineSplitted[lineSplitted.length-1]);
 					this.leaderboardList.add(new Pair<>(position, lineScore));
@@ -61,6 +62,7 @@ public class LeaderboardFactory {
 			}
 			this.leaderboardList.remove(Constants.LeaderboardConstants.maxPodium);
 			this.bufferedWriter = new BufferedWriter(new FileWriter(Strings.Leaderboard.LEADERBOARD_URI));
+			//cycle that write the leaderboard in the file
 			for(var line : this.leaderboardList) {
 				String stringToWrite = line.getX().get();
 				this.list.add(stringToWrite);

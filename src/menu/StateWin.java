@@ -56,7 +56,7 @@ public class StateWin implements State{
 		
 		try {
 			this.bufferedReader = new BufferedReader(new FileReader(Strings.Leaderboard.LEADERBOARD_URI));
-				
+			//cycle to get the last score on the podium
 			for(int i=Constants.LeaderboardConstants.minPodium; i<=Constants.LeaderboardConstants.maxPodium; i++) {
 				if(i==Constants.LeaderboardConstants.maxPodium) {
 					this.lastOnPodium = Optional.ofNullable(bufferedReader.readLine());
@@ -65,6 +65,7 @@ public class StateWin implements State{
 				}
 			}
 			String[] lastOnPodiumArray = lastOnPodium.get().split(" ");
+			//case the score is higher than the one in last position
 			if(this.lastOnPodium.get().equals(Strings.Leaderboard.LEADERBOARD_DEFAULT_TEXT) || this.lastOnPodium.get().equals("") ||
 					 Integer.parseInt(lastOnPodiumArray[lastOnPodiumArray.length-1]) < score) {
 				this.southPanel.add(this.textField);
@@ -78,6 +79,7 @@ public class StateWin implements State{
 						createTitle("Congratulation, Please insert your nickname(max " + Constants.LeaderboardConstants.maxLeaderboardCharacters + " characters)",
 						Constants.ObjectSize.subtitleSize, Constants.Colors.colorSubtitle), BorderLayout.NORTH);
 				this.button.addActionListener(e->{
+					//if a name is not insert than it will be saved as anonymous
 					if(this.textField.getText().equals("")) {
 						try {
 							 Files.write(Paths.get(Strings.Leaderboard.LEADERBOARD_URI), ("Anonymous score: " + score).getBytes(), StandardOpenOption.APPEND);
@@ -86,10 +88,12 @@ public class StateWin implements State{
 							System.out.println("there was a problem with the leaderboard file");
 						}
 					} else {
+						//control on the max length of the name
 						if(this.textField.getText().length() > Constants.LeaderboardConstants.maxLeaderboardCharacters) {
 							this.textField.setText("You have to insert max " + Constants.LeaderboardConstants.maxLeaderboardCharacters + " characters.");
 						} else {
 							try {
+								//method to write the new score in the leaderboard
 								Files.write(Paths.get(Strings.Leaderboard.LEADERBOARD_URI), 
 										(this.textField.getText() + " score: " + score).getBytes(), StandardOpenOption.APPEND);
 									board.setCurrentState(new StateLeaderboard(board));
@@ -101,6 +105,7 @@ public class StateWin implements State{
 				});
 				
 			} else{
+				//case the score is lower than the one of the last on the podium
 				this.panel.add(this.labelFactory.createButton(Strings.States.GO_BACK_TO_MENU, board, "Center"), BorderLayout.CENTER);
 			}
 		} catch (IOException e) {

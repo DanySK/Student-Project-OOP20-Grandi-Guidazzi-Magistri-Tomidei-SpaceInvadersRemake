@@ -17,6 +17,10 @@ public class PanelBackgroundFactory extends JPanel{
 	private Image image;
 	private Image resizedImage;
 	
+	/**
+	 * A class that create a simple JPanel with a background image that is given in the constructor
+	 * @param imageLocation
+	 */
 	public PanelBackgroundFactory(String imageLocation) {
 		try {
 			image = ImageIO.read(new File(imageLocation));
