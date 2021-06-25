@@ -23,7 +23,7 @@ public class ImageManagerImpl implements UpdateManager{
 	 */
 	public ImageManagerImpl(String uriSkin) throws IOException {
 		this.gameImages = new HashMap<>();
-		this.playerImage = ImageIO.read(new File(uriSkin));
+		this.playerImage = ImageIO.read(ClassLoader.getSystemResource(uriSkin));
 	}
 	
 	/**
@@ -66,8 +66,8 @@ public class ImageManagerImpl implements UpdateManager{
 	 */
 	private Image getImage(SpecificEntityType e, int width, int height) throws IOException {
 		final StringBuilder stringNameBuilder = new StringBuilder();
-		stringNameBuilder.append("src/res/image/" + e.toString().toLowerCase() + ".png");
-		Image image = ImageIO.read(new File(stringNameBuilder.toString()));
+		stringNameBuilder.append("image/" + e.toString().toLowerCase() + ".png");
+		Image image = ImageIO.read(ClassLoader.getSystemResource(stringNameBuilder.toString()));
 		return this.resizeImage(image, width, height).get();
 	}
 

@@ -3,7 +3,6 @@ package view;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
@@ -34,7 +33,7 @@ public class GraphicsView extends JPanel{
 	 */
 	public GraphicsView(String uriSkin, ViewGameController ctrl) throws IOException{
 		try {
-			imageBackgound = ImageIO.read(new File(Strings.BackgroundImages.GAME_BACKGROUND));
+			imageBackgound = ImageIO.read(ClassLoader.getSystemResource(Strings.BackgroundImages.GAME_BACKGROUND));
 			this.resizedImage = imageBackgound.getScaledInstance(Constants.ObjectDimension.preferDimension.width,
 				Constants.ObjectDimension.preferDimension.height, Image.SCALE_DEFAULT);
 		} catch(IOException e) {

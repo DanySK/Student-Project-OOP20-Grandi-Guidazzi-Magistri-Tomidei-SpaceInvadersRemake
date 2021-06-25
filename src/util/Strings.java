@@ -20,30 +20,27 @@ public class Strings {
 	}
 	
 	public class Leaderboard{
-		public final static String LEADERBOARD_URI = "src/res/Leaderboard.txt";
+		public final static String LEADERBOARD_URI = "res/Leaderboard.txt";
 		public final static String LEADERBOARD_DEFAULT_TEXT = "No one is that good yet";
 	}
 	
 	public class Volume{
-		public final static String VOLUME_URI = "src/res/Volume.txt";
+		public final static String VOLUME_URI = "res/Volume.txt";
 	}
 	
 	public class BackgroundImages{
-		public final static String PANEL_BACKGROUND = "src/res/image/backgroundImage.png";
-		public final static String GAME_OVER_BACKGROUND = "src/res/image/gameOverBackground.png";
-		public final static String WIN_BACKGROUND = "src/res/image/winBackground.png";
-		public final static String GAME_BACKGROUND = "src/res/image/gameBackground.png";
-		public final static String BLACK_BACKGROUND = "src/res/image/blackBackground.png";
+		public final static String PANEL_BACKGROUND = "image/backgroundImage.png";
+		public final static String GAME_OVER_BACKGROUND = "image/gameOverBackground.png";
+		public final static String WIN_BACKGROUND = "image/winBackground.png";
+		public final static String GAME_BACKGROUND = "image/gameBackground.png";
+		public final static String BLACK_BACKGROUND = "image/blackBackground.png";
 	}
 	
 	public class Skins{
-		public final static String BOSS_1 = "src/res/image/boss_1.png";
-		public final static String BOSS_2 = "src/res/image/boss_2.png";
-		public final static String BOSS_3 = "src/res/image/boss_3.png";
-		public final static String SKIN_1 = "src/res/image/skin_1.png";
-		public final static String SKIN_2 = "src/res/image/skin_2.png";
-		public final static String SKIN_3 = "src/res/image/skin_3.png";
-		public final static String SKIN_4 = "src/res/image/skin_4.png";
+		public final static String SKIN_1 = "image/skin_1.png";
+		public final static String SKIN_2 = "image/skin_2.png";
+		public final static String SKIN_3 = "image/skin_3.png";
+		public final static String SKIN_4 = "image/skin_4.png";
 		public final static String RANDOM_SKIN = "Random Skin";
 	}
 	
