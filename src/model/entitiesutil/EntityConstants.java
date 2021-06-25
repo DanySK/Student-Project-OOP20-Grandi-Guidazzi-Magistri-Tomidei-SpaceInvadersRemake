@@ -16,7 +16,7 @@ public class EntityConstants {
 	public class Player{
 		public final static int INITIAL_WIDTH = 150;
 		public final static int INITIAL_HEIGHT = 90;
-		public final static double INITIAL_MU_X = 5;
+		public final static double INITIAL_MU_X = 10;
 		public final static int MAX_HITS = 3;
 		public final static int CYCLES_TO_SHOOT = 5; 
 	}

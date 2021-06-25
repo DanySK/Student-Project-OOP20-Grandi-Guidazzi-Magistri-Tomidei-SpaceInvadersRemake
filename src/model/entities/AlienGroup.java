@@ -86,11 +86,18 @@ public class AlienGroup{
 	 */
 	public void shoot(int cycle) {
 		Set<Alien> alienShootingAtTheSameTime = new HashSet<>();
-		if(this.model.getAlienList().get(0).canShoot(cycle)) {
+		if(this.isTimeToShoot(cycle)) {
 			while(alienShootingAtTheSameTime.size() < random.nextInt(this.MAX_ALIEN_SHOOTING) + this.MIN_ALIEN_SHOOTING) {
-				alienShootingAtTheSameTime.add(this.model.getAlienList().get(random.nextInt(this.model.getAlienList().size())));
+				alienShootingAtTheSameTime.add((Alien) this.model.getAlienList().get(random.nextInt(this.model.getAlienList().size())));
 			}
 			alienShootingAtTheSameTime.stream().forEach(i->i.shoot());
 		}
+	}
+
+	private boolean isTimeToShoot(int cycles) {
+		for(var e : this.model.getAlienList()) {
+			return e.canShoot(cycles);
+		}
+		return false;
 	}
 }
