@@ -10,7 +10,7 @@ public interface ControllerGameStatusManager {
 	/**
 	 * Set the {@link GameStatus} equal to stopped
 	 */
-	public void stop();
+	public void setStop();
 
 	/**
 	 * Puts the thread that call this method to wait if the game status is equal to paused

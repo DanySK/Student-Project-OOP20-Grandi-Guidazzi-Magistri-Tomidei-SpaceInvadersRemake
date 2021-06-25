@@ -145,4 +145,18 @@ public class GameStatusManagerImpl implements ViewGameStatusManager, ControllerG
     		this.lock.unlock();
     	}
 	}
+
+	/**
+   	 * {@inheritDoc}
+   	 */
+	@Override
+	public void setStop() {
+		this.lock.lock();
+    	try {
+    		this.gameState = GameStatus.STOPPED;
+    	}
+    	finally {
+    		this.lock.unlock();
+    	}
+	}
 }

@@ -59,7 +59,7 @@ public class GameControllerImpl implements GameController, ViewGameController {
 	private void stop() {
 		if(this.isRunning()) {
 			this.loop.shutdownNow();
-			this.stateGameManager.stop();
+			this.stateGameManager.setStop();
 		}
 	}
 
