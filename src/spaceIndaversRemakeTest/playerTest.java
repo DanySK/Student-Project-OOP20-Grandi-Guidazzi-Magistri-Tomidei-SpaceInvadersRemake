@@ -21,7 +21,7 @@ import org.junit.Test;
 public class playerTest {
 
 	@Test
-	public void playerTest() {
+	public void PlayerTest() {
 		
 		final GameController controller = new GameControllerImpl();
 		final Model game = new ModelImpl(controller);

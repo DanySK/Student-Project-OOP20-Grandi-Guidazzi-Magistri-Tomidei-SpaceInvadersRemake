@@ -94,6 +94,11 @@ public class AlienGroup{
 		}
 	}
 
+	/**
+	 * A method that return true if at least one of the alien can shoot
+	 * @param cycles
+	 * @return true if at least one of the aliens can shoot, false otherwise 
+	 */
 	private boolean isTimeToShoot(int cycles) {
 		for(var e : this.model.getAlienList()) {
 			return e.canShoot(cycles);

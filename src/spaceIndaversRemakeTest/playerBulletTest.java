@@ -11,7 +11,7 @@ import util.Pair;
 public class playerBulletTest {
 
 	@Test
-	public void playerBulletTest() {
+	public void PlayerBulletTest() {
 		final PlayerBullet testBullet = new PlayerBullet(0, 0);
 	    assertNotNull(testBullet);
 	    final Pair<Double, Double> position = testBullet.getPos();
