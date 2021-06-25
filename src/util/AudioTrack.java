@@ -33,7 +33,7 @@ public enum AudioTrack {
 	 * @return the path of the track.
 	 */
 	public String getPath() {
-		return Strings.Sounds.SOUNDS_DIRECTORY + this.path;
+		return path;
 	}
 	
 	/**

@@ -1,11 +1,5 @@
 package util;
 
-import java.io.BufferedReader;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.sound.sampled.AudioInputStream;
@@ -20,34 +14,24 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class AudioImpl implements Audio{
 	
 	private Clip clip;
-	private File file;
 	private AudioInputStream audioIn;
 	private float gain;
 	private float volume;
-	private BufferedReader reader;
-	private BufferedWriter writer;
 	private boolean isPlaying = false;
 
 	/**
 	 * The constructor creates a new Audio for each audio track.
 	 */
     public AudioImpl() {
-    	try {
-			this.reader = new BufferedReader(new FileReader(Strings.Volume.VOLUME_URI));
-			String level = this.reader.readLine().strip();
-			this.volume = Float.parseFloat(level);
-		} catch (IOException | NullPointerException e1) {
-			this.volume = Constants.AudioConstants.VOLUME_LEVEL_START;
-			System.out.println("error in the sound files");
-		}
+		this.volume = Constants.AudioConstants.VOLUME_LEVEL_START;
+
     }
     
 	@Override
 	public void play(AudioTrack music, boolean inLoop) {
 		this.isPlaying = true;
-		this.file = new File(music.getPath());
 			try {
-				audioIn = AudioSystem.getAudioInputStream(file.toURI().toURL());
+				audioIn =AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(music.getPath()));
 				this.clip = AudioSystem.getClip();
 				this.clip.open(audioIn);
 				this.clip.start();
@@ -74,13 +58,6 @@ public class AudioImpl implements Audio{
 			this.gain = (range * volume) + floatControl.getMinimum();
 			this.volume = volume;
 			floatControl.setValue(gain);
-			try {
-				this.writer = new BufferedWriter(new FileWriter(Strings.Volume.VOLUME_URI));
-				this.writer.write("" + this.getVolume());
-				this.writer.close();
-			} catch (IOException e1) {
-				System.out.println("can't find the volume file");
-			}
 	}
 
 	@Override

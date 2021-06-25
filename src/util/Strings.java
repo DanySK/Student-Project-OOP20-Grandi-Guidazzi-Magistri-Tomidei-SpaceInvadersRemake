@@ -4,7 +4,6 @@ package util;
  * An interface to store all the project's strings.
  */
 public class Strings {
-	
 	public class Texts{
 		public final static String ABOUT_TEXT = "The original videogame was an arcade created in 1978, by Tomohiro Nishikado.\n" +
 							"The game was inspired by the videogame \"Space Monster\" and from the novel \"The War of the Worlds\".\n" +
@@ -20,12 +19,8 @@ public class Strings {
 	}
 	
 	public class Leaderboard{
-		public final static String LEADERBOARD_URI = "res/Leaderboard.txt";
+		public final static String LEADERBOARD_URI = "src/leaderboardTxt/Leaderboard.txt";
 		public final static String LEADERBOARD_DEFAULT_TEXT = "No one is that good yet";
-	}
-	
-	public class Volume{
-		public final static String VOLUME_URI = "res/Volume.txt";
 	}
 	
 	public class BackgroundImages{

@@ -36,7 +36,7 @@ public class Constants {
 	public class AudioConstants{
 		public final static boolean IN_LOOP = true;
 		public final static boolean NOT_IN_LOOP = false;
-		public final static float VOLUME_LEVEL_START = 0.7f;
+		public final static float VOLUME_LEVEL_START = 1.0f;
 		public final static int SPACING = 1;
 		public final static int minSliderValue = 0;
 		public final static int maxSliderValue = 10;
