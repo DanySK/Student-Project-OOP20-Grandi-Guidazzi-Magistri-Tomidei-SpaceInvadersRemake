@@ -18,7 +18,7 @@ import model.entitiesutil.Player;
 import model.physics.EntityCollision;
 import model.physics.EntityCollisionImpl;
 
-public class CollisionTest {
+public class collisionTest {
 
 	
 	final GameController controller = new GameControllerImpl();
