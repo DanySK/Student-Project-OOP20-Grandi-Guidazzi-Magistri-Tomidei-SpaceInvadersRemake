@@ -36,12 +36,6 @@ public interface Model {
 	public Set<MappedEntity> getMappedEntities();
 
 	/**
-	 * method that start the next level
-	 * @return
-	 */
-	public void nextLevel();
-
-	/**
 	 * a method that updates entities
 	 * @return
 	 */
@@ -100,20 +94,9 @@ public interface Model {
 	 * @return
 	 */
 	public void processGameOver();
-
-	/**
-	 * method that return if there is a next level
-	 * @return
-	 */
-	public boolean hasNextLevel();
 	
 	/**
 	 * method for restarting the game
 	 */
 	public void restartGame();
-
-	/**
-	 * method that return the current level number
-	 */
-	public int getLevelNum();
 }

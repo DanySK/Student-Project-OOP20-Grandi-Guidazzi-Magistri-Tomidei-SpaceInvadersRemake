@@ -72,7 +72,7 @@ public interface World {
 	 * method that cleans from entities, increments the level and calls the method to create the new level
 	 * @return
 	 */
-	public void startNextLevel(int lvlNum); 
+	public void startNextLevel(); 
 
 	/**
 	 * method for restarting the game

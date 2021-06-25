@@ -17,11 +17,6 @@ public class ModelImpl implements Model {
 	private final GameController controller;
 	private final World gameWorld;
 	
-	private final int LAST_LEVEL = 6;
-	private final int FIRST_LEVEL = 1;
-	
-	private int lvlNum;
-
 	/**
 	 * {@link Model} implementation
 	 *
@@ -29,15 +24,6 @@ public class ModelImpl implements Model {
 	public ModelImpl(GameController controller) {
 		this.controller = controller;
 		this.gameWorld = new WorldImpl(this);
-		this.lvlNum =  this.FIRST_LEVEL;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void nextLevel() {
-		this.gameWorld.startNextLevel(this.lvlNum++);
 	}
 
 	/**
@@ -135,30 +121,13 @@ public class ModelImpl implements Model {
 	public void processGameOver() {
 		this.controller.gameOver();
 	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean hasNextLevel(){
-		return this.lvlNum <= this.LAST_LEVEL;
-	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void restartGame() {
-		this.lvlNum = FIRST_LEVEL;
 		this.gameWorld.restartLevel();
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getLevelNum() {
-		return this.lvlNum-1;
 	}
 
 	@Override

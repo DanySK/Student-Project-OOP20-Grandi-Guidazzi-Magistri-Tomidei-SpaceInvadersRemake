@@ -38,6 +38,9 @@ public class WorldImpl implements World{
 	private final int INITIAL_MIN_WIDTH = 0;
 	private final int INITIAL_MIN_HEIGHT = 0;
 
+	private final int LAST_LEVEL = 6;
+	private final int FIRST_LEVEL = 1;
+
 	private double MAX_WIDTH;
 	private double MAX_HEIGHT;
 	private double MIN_WIDTH;
@@ -51,6 +54,7 @@ public class WorldImpl implements World{
 	private final LvLoader loaderManager;
 	private final AlienGroup alienGroup;
 	private int score;
+	private int lvlNum;
 
 	/**
 	 * {@link World} implementation
@@ -63,6 +67,7 @@ public class WorldImpl implements World{
 		this.newEntities = new HashSet<>();	
 		this.alienGroup = new AlienGroup(this.model);
 		this.score = 0;
+		this.lvlNum =  this.FIRST_LEVEL;
 		this.loaderManager = new LvLoaderImpl();
 		
 	}
@@ -70,7 +75,7 @@ public class WorldImpl implements World{
 	/**
 	 * method that initializes the layer and resizes the game edges to accommodate all entities
 	 */
-	private void nextLevel(int lvlNum) {
+	private void nextLevel() {
 
 		MAX_WIDTH = (this.INITIAL_MAX_WIDTH == 0) ? 100 + this.INITIAL_MIN_WIDTH : this.INITIAL_MAX_WIDTH;
 		MAX_HEIGHT = (this.INITIAL_MAX_HEIGHT == 0) ? 100 + this.INITIAL_MIN_HEIGHT : this.INITIAL_MAX_HEIGHT;
@@ -120,7 +125,6 @@ public class WorldImpl implements World{
 			if(e.getY() - e.getHeight()/2 < this.MIN_HEIGHT) {
 				e.setY(this.INITIAL_MIN_HEIGHT);
 			}
-
 		});
 	}
 
@@ -170,19 +174,19 @@ public class WorldImpl implements World{
 			set.addAll(this.alienGroup.createAlienGroup(numAliens));
 		}
 		
-		if(!bossType.isEmpty()) {
+		if(!bossType.isEmpty() && this.isBossType(bossType.get())) {
 			switch (bossType.get().toUpperCase()) {
 			case "BOSS_1" : 
-				set.add(new Boss1((this.INITIAL_MAX_WIDTH+this.INITIAL_MIN_WIDTH)/2,
-						(this.INITIAL_MIN_HEIGHT + EntityConstants.Boss1.INITIAL_HEIGHT), this.model));
+				set.add(new Boss1((int) ((maxWidth+minWidth)/2),
+						(int) (minHeight + EntityConstants.Boss1.INITIAL_HEIGHT), this.model));
 				break;
 			case "BOSS_2" : 
-				set.add(new Boss2((this.INITIAL_MAX_WIDTH+this.INITIAL_MIN_WIDTH)/2,
-						(this.INITIAL_MIN_HEIGHT + EntityConstants.Boss1.INITIAL_HEIGHT), this.model));
+				set.add(new Boss2((int)(((maxWidth+minWidth)/2)),
+						(int) (minHeight + EntityConstants.Boss1.INITIAL_HEIGHT), this.model));
 				break;
 			case "BOSS_3" : 
-				set.add(new Boss3((this.INITIAL_MAX_WIDTH+this.INITIAL_MIN_WIDTH)/2,
-						(this.INITIAL_MIN_HEIGHT + EntityConstants.Boss1.INITIAL_HEIGHT), this.model));
+				set.add(new Boss3((int)(((maxWidth+minWidth)/2)),
+						(int) (minHeight + EntityConstants.Boss1.INITIAL_HEIGHT), this.model));
 			}
 		}
 		return set;
@@ -202,13 +206,10 @@ public class WorldImpl implements World{
 	@Override
 	public void updateEntityLevel(int cycles) {
 		if(this.isGameOver()) {
-			this.model.getController().gameOver();
+			this.model.processGameOver();
 		}
 		if(!this.isEnemiesAlive()) {
-			if(!this.model.hasNextLevel()) {
-				this.model.getController().victory();
-			}
-			this.startNextLevel(this.model.getLevelNum());
+			this.startNextLevel();
 		}
 		if(!this.enemyCapableOfFiring().isEmpty()) {
 			this.enemyCapableOfFiring().stream()
@@ -393,7 +394,7 @@ public class WorldImpl implements World{
 	@Override
 	public void restartLevel() {
 		this.score = 0;
-		this.startNextLevel(this.model.getLevelNum());
+		this.startNextLevel();
 	}
 
 	/**
@@ -445,10 +446,16 @@ public class WorldImpl implements World{
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void startNextLevel(int lvlNum) {
+	public void startNextLevel() {
 		this.entities.clear();
 		this.newEntities.clear();
-		this.nextLevel(lvlNum);	
+		if(!(this.lvlNum > this.LAST_LEVEL)) {
+			this.nextLevel();
+			this.lvlNum++;
+		}
+		else{
+			this.model.getController().victory();
+		}
 	}
 
 	/**
