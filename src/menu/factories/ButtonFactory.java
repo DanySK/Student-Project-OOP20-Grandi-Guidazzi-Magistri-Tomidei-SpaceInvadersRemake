@@ -37,6 +37,7 @@ public class ButtonFactory {
 			button.setIcon(new ImageIcon(this.resizedImage));
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(board.getFrame(), "Update image error", "Error", JOptionPane.ERROR_MESSAGE);
+			System.exit(1);
 		}
 		this.button.setMaximumSize(new Dimension(Constants.ObjectSize.imageDimension, Constants.ObjectSize.imageDimension));
 		this.button.setOpaque(false);
