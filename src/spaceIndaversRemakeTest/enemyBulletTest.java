@@ -9,6 +9,9 @@ import model.entities.MonoDirectionEnemyBullet;
 import model.entities.SpecificEntityType;
 import util.Pair;
 
+/**
+ * Test that checks the correct creation of the enemy bullet.
+ */
 public class enemyBulletTest {
 
 	@Test

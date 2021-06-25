@@ -18,6 +18,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ *  Test that checks the correct boss creation and life.
+ */
 public class enemyTest {
 
 	@Test

@@ -18,6 +18,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+/**
+ *  Test that checks the correct boss creation and life.
+ */
 public class bossTest {
 
 	@Test

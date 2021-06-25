@@ -1,13 +1,16 @@
 package spaceIndaversRemakeTest;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
 import model.entities.PlayerBullet;
 import util.Pair;
-
+/**
+ * Test that checks the correct creation of the Player bullet.
+ */
 public class playerBulletTest {
 
 	@Test

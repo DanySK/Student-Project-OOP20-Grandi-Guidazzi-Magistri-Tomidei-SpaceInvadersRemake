@@ -18,6 +18,9 @@ import model.entitiesutil.Player;
 import model.physics.EntityCollision;
 import model.physics.EntityCollisionImpl;
 
+/**
+ * Test that checks for collisions between entities.
+ */
 public class collisionTest {
 
 	
