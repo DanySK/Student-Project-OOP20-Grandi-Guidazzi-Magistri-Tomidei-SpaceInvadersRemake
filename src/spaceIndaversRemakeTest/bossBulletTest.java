@@ -12,7 +12,7 @@ import util.Pair;
 public class bossBulletTest {
 
 		@Test
-	public void bossBulletTest() {
+	public void BossBulletTest() {
 		final MultiDirectionsEnemyBullet testBullet = new MultiDirectionsEnemyBullet(0, 0, SpecificEntityType.BOSS_BULLET);
         assertNotNull(testBullet);
         final Pair<Double, Double> position = testBullet.getPos();

@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 public class enemyTest {
 
 	@Test
-	public void enemyTest() {
+	public void EnemyTest() {
 		
 		final GameController controller = new GameControllerImpl();
 		final Model game = new ModelImpl(controller);

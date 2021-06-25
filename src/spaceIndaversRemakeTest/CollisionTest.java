@@ -29,7 +29,7 @@ public class CollisionTest {
 	final EntityCollision collision = new EntityCollisionImpl(game.getWorld()); 
 	
 	@Test
-	public void collisionTest(){
+	public void CollisionTest(){
 		collision.collision(player, alien);
 		assertFalse(player.isAlive());
 		assertTrue(alien.isAlive());
