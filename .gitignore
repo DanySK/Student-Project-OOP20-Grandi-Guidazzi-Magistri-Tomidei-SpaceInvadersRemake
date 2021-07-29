@@ -1,3 +1,4 @@
 bin/
 src/res/Leaderboard.txt
 build/
+.gradle/
